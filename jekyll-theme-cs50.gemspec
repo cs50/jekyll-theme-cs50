@@ -18,14 +18,15 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency "jekyll", "~> 3.8"
-  spec.add_runtime_dependency "jekyll-commonmark-ghpages", "~> 0.1.5"
-  spec.add_runtime_dependency "jekyll-optional-front-matter", "~> 0.3.0"
-  spec.add_runtime_dependency "jekyll-relative-links", "~> 0.5.3"
-  spec.add_runtime_dependency "jekyll-titles-from-headings", "~> 0.5.1"
-  spec.add_runtime_dependency "jekyll-toc", "~> 0.6.0"
-  spec.add_runtime_dependency "jemoji", "~> 0.10.1"
-  spec.add_runtime_dependency "plugins", "~> 0.1.2"
-  spec.add_runtime_dependency "replace_regex", "~> 0.1.0"
+
+  spec.add_runtime_dependency "jekyll-commonmark-ghpages"
+  spec.add_runtime_dependency "jekyll-optional-front-matter"
+  spec.add_runtime_dependency "jekyll-relative-links"
+  spec.add_runtime_dependency "jekyll-titles-from-headings"
+  spec.add_runtime_dependency "jekyll-toc"
+  spec.add_runtime_dependency "jemoji"
+  spec.add_runtime_dependency "plugins"
+  spec.add_runtime_dependency "replace_regex"
 
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 12.0"
