@@ -1,16 +1,21 @@
 .*
 !.gitignore
 
+# https://yehudakatz.com/2010/12/16/clarifying-the-roles-of-the-gemspec-and-gemfile/
+Gemfile.lock
+
 _includes/node_modules/*
 !_includes/node_modules/fitty/
 _includes/node_modules/fitty/*
 !_includes/node_modules/fitty/dist/
 _includes/node_modules/fitty/dist/*
 !_includes/node_modules/fitty/dist/fitty.min.js
+!_includes/node_modules/fitty/LICENSE
 
 _sass/node_modules/*
 !_sass/node_modules/bootstrap/
 _sass/node_modules/bootstrap/*
+!_sass/node_modules/bootstrap/LICENSE
 !_sass/node_modules/bootstrap/scss/
 
 _site/

@@ -1,8 +1,3 @@
----
-layout: default
-toc: true
----
-
 # Classes
 
 ## Mon 6/25
