@@ -24,6 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "jekyll-titles-from-headings", "~> 0.5.1"
   spec.add_runtime_dependency "jekyll-toc", "~> 0.6.0"
   spec.add_runtime_dependency "jemoji", "~> 0.10.1"
+  spec.add_runtime_dependency "plugins", "~> 0.1.2"
   spec.add_runtime_dependency "replace_regex", "~> 0.1.0"
 
   spec.add_development_dependency "bundler", "~> 1.16"
