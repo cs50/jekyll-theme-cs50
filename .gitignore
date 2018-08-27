@@ -1,0 +1,16 @@
+.*
+!.gitignore
+
+_includes/node_modules/*
+!_includes/node_modules/fitty/
+_includes/node_modules/fitty/*
+!_includes/node_modules/fitty/dist/
+_includes/node_modules/fitty/dist/*
+!_includes/node_modules/fitty/dist/fitty.min.js
+
+_sass/node_modules/*
+!_sass/node_modules/bootstrap/
+_sass/node_modules/bootstrap/*
+!_sass/node_modules/bootstrap/scss/
+
+_site/

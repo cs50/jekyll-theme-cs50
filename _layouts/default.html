@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+        <meta property="og:description" content="{{ site.description }}">
+
+        <meta property="og:image" content="{{ site.image }}">
+        <meta property="og:title" content="{{ site.title }}">
+        <meta property="og:url" content="{{ site.url }}">
+
+        <link href="{{ site.baseurl }}/favicon.ico" rel="icon">
+        <link href="{{ site.baseurl }}/css/styles.css" rel="stylesheet">
+
+        <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface" rel="stylesheet">
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
+
+        <script>
+
+            {% include node_modules/fitty/dist/fitty.min.js %}
+
+        </script>
+
+        <script>
+
+            $(function() {
+
+                anchors.add('main h1, main h2, main h3, main h4, main h5, main h6');
+
+                /*
+                for (let i = 0; i <= 6; i++) {
+                    fitty(`body > aside > header h${i} strong`);
+                    fitty(`body > aside > header h${i} em`);
+                }
+                */
+
+                /*
+                $('body > main > h2').addClass('closed').css('cursor', 'pointer');
+                $('body > main > h2').nextUntil('h2').hide();
+                $('body > main > h2').click(function() {
+                    $(this).nextUntil('h2').toggle(100);
+                    $(this).toggleClass('closed open');
+                });
+                */
+            });
+
+        </script>
+
+        <style>
+
+            html {
+                font-size: 16px;
+            }
+
+            body > aside {
+                background-color: #ac4142;
+                color: #fff;
+                font-size: 1.125rem;
+                overflow: auto;
+                padding: 2rem 2rem;
+                text-align: center;
+            }
+
+            body > aside > header h2,
+            body > aside > header h3,
+            body > aside > header h4,
+            body > aside > header h5,
+            body > aside > header h6 {
+                opacity: 0.5;
+            }
+
+            body > aside a,
+            body > aside a:hover {
+                color: inherit;
+            }
+
+            body > aside dl,
+            body > aside ol,
+            body > aside ul {
+                padding-left: 0;
+                list-style: none;
+            }
+
+            body > main {
+                padding: 4rem 1rem;
+            }
+
+            /* Match headings */
+            body > main .anchorjs-link {
+                color: inherit;
+            }
+            body > main .anchorjs-link:hover {
+                text-decoration: none;
+            }
+
+            body > main h1,
+            body > main h2,
+            body > main h3,
+            body > main h4,
+            body > main h5,
+            body > main h6 {
+                font-weight: bold;
+            }
+
+            body > main > h2.closed:before {
+                content: "+ ";
+                font-family: monospace;
+            }
+            
+            body > main > h2.open:before {
+                content: "- ";
+                font-family: monospace;
+            }
+            
+            body > main > .section-nav {
+                font-size: .875rem;
+                padding-left: 0;
+                list-style: none;
+            }
+
+            body > main > .section-nav + h1 {
+                display: none;
+            }
+
+            @media (min-width: 48em) { 
+
+                body > aside {
+                    bottom: 0;
+                    left: 0;
+                    position: fixed;
+                    text-align: left;
+                    top: 0;
+                    width: 18rem;
+                }
+
+                body > main {
+                    margin-left: 20rem;
+                    margin-right: 2rem;
+                }
+            }
+
+        </style>
+
+        <title>{{ site.title }}</title>
+
+    </head>
+
+    <body>
+
+        <aside>
+
+            <header class="">
+
+                {% capture header %}{% include header.md %}{% endcapture %}
+                {{ header | markdownify | replace_regex: ' +id="[^"]+"', '' }}
+
+            </header>
+
+            <nav>
+
+                {% capture nav %}{% include nav.md %}{% endcapture %}
+                {{ nav | markdownify }}
+
+            </nav>
+
+            <footer>
+
+                {% capture footer %}{% include footer.md %}{% endcapture %}
+                {{ footer | markdownify | replace_regex: ' +id="[^"]+"', '' }}
+
+            </footer>
+
+        </aside>
+
+        <main class="markdown-body">
+            {{ content }}
+        </main>
+
+    </body>
+
+</html>

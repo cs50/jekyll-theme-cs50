@@ -1,0 +1,25 @@
+commonmark:
+  options:
+    - SMART
+  extensions: 
+    - autolink
+    - strikethrough
+    - table
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"
+
+markdown: CommonMarkGhPages
+
+sass:
+  load_paths:
+    - _sass
+    - _sass/node_modules
+
+toc:
+  min_level: 2
+  max_level: 2
