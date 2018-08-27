@@ -34,24 +34,8 @@
         <script>
 
             $(function() {
-
                 anchors.add('main h1, main h2, main h3, main h4, main h5, main h6');
-
-                /*
-                for (let i = 0; i <= 6; i++) {
-                    fitty(`body > aside > header h${i} strong`);
-                    fitty(`body > aside > header h${i} em`);
-                }
-                */
-
-                /*
-                $('body > main > h2').addClass('closed').css('cursor', 'pointer');
-                $('body > main > h2').nextUntil('h2').hide();
-                $('body > main > h2').click(function() {
-                    $(this).nextUntil('h2').toggle(100);
-                    $(this).toggleClass('closed open');
-                });
-                */
+                fitty('.fit');
             });
 
         </script>
@@ -62,26 +46,23 @@
                 font-size: 16px;
             }
 
+            img {
+                max-width: 100%;
+            }
+
             body > aside {
                 background-color: #ac4142;
-                color: #fff;
+                color: rgba(255, 255, 255, 0.5);
                 font-size: 1.125rem;
                 overflow: auto;
                 padding: 2rem 2rem;
                 text-align: center;
             }
 
-            body > aside > header h2,
-            body > aside > header h3,
-            body > aside > header h4,
-            body > aside > header h5,
-            body > aside > header h6 {
-                opacity: 0.5;
-            }
-
             body > aside a,
             body > aside a:hover {
-                color: inherit;
+                color: rgba(255, 255, 255, 1);
+                opacity: 1;
             }
 
             body > aside dl,
@@ -112,16 +93,6 @@
                 font-weight: bold;
             }
 
-            body > main > h2.closed:before {
-                content: "+ ";
-                font-family: monospace;
-            }
-            
-            body > main > h2.open:before {
-                content: "- ";
-                font-family: monospace;
-            }
-            
             body > main > .section-nav {
                 font-size: .875rem;
                 padding-left: 0;
