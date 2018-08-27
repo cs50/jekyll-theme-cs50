@@ -132,7 +132,7 @@
 
         <aside>
 
-            <header class="">
+            <header>
 
                 {% capture header %}{% include header.md %}{% endcapture %}
                 {{ header | markdownify | replace_regex: ' +id="[^"]+"', '' }}
@@ -142,7 +142,7 @@
             <nav>
 
                 {% capture nav %}{% include nav.md %}{% endcapture %}
-                {{ nav | markdownify }}
+                {{ nav | markdownify | replace_regex: ' +id="[^"]+"', '' }}
 
             </nav>
 
