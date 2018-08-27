@@ -19,10 +19,10 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "jekyll", "~> 3.8"
 
-  spec.add_runtime_dependency "_plugins"
   spec.add_runtime_dependency "jekyll-commonmark-ghpages"
   spec.add_runtime_dependency "jekyll-optional-front-matter"
   spec.add_runtime_dependency "jekyll-relative-links"
+  spec.add_runtime_dependency "jekyll-theme-cs50-plugins"
   spec.add_runtime_dependency "jekyll-titles-from-headings"
   spec.add_runtime_dependency "jekyll-toc"
   spec.add_runtime_dependency "jemoji"
