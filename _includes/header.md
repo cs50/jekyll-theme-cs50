@@ -1,8 +1,8 @@
-![Harvard crest](/assets/images/harvard_shield.png)
+![Harvard crest](/assets/images/shield.png)
 
-# [CSCI P-14300](/)
+# [CS50]({{ site.baseurl }})
 
-## Introduction to Web Programming
+## Introduction to Computer Science
 
-[Harvard Summer School](http://www.summer.harvard.edu/)\
+[Harvard Summer School](http://www.summer.harvard.edu/)\\
 2018

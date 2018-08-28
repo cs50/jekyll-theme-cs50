@@ -32,12 +32,6 @@ body > aside {
 	text-align: center;
 }
 
-body > aside > header img {
-	margin-left: auto;
-	margin-right: auto;
-	width: 50%;
-}
-
 body > aside a,
 body > aside a:hover {
 	color: rgba(255, 255, 255, 1);
@@ -47,20 +41,12 @@ body > aside a:hover {
 body > aside dl,
 body > aside ol,
 body > aside ul {
-	padding-left: 0;
 	list-style: none;
+	padding-left: 0;
 }
 
 body > main {
 	padding: 4rem 1rem;
-}
-
-/* Match headings */
-body > main .anchorjs-link {
-	color: inherit;
-}
-body > main .anchorjs-link:hover {
-	text-decoration: none;
 }
 
 body > main h1,
@@ -72,17 +58,7 @@ body > main h6 {
 	font-weight: bold;
 }
 
-body > main > .section-nav {
-	font-size: .875rem;
-	padding-left: 0;
-	list-style: none;
-}
-
-body > main > .section-nav + h1 {
-	display: none;
-}
-
-@media (min-width: 48em) { 
+@include media-breakpoint-down(sm) {
 
 	body > aside {
 		bottom: 0;
