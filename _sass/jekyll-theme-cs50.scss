@@ -26,7 +26,7 @@ img {
 }
 
 // Fixed aside, transparent text
-body > aside {
+aside {
     background-color: #ac4142;
     bottom: 0;
     color: rgba(255, 255, 255, 0.5);
@@ -41,33 +41,33 @@ body > aside {
 }
 
 // Opaque text
-body > aside a,
-body > aside a:hover {
+aside a,
+aside a:hover {
     color: rgba(255, 255, 255, 1);
     opacity: 1;
 }
 
 // No bullets for nav
-body > aside nav dl,
-body > aside nav ol,
-body > aside nav ul {
+nav dl,
+nav ol,
+nav ul {
     list-style: none;
     padding-left: 0;
 }
 
 // Padding around main
-body > main {
+main {
     margin-left: 20rem;
     padding: 4rem 2rem;
 }
 
 // Bold headings
-body > main h1,
-body > main h2,
-body > main h3,
-body > main h4,
-body > main h5,
-body > main h6 {
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6 {
     font-weight: bold;
 }
 
@@ -75,7 +75,7 @@ body > main h6 {
 @include media-breakpoint-down(sm) {
 
     // Static aside
-    body > aside {
+    aside {
         bottom: auto;
         left: auto;
         overflow: visible;
@@ -87,7 +87,7 @@ body > main h6 {
     }
 
     // Don't offset main
-    body > main {
+    main {
         margin-left: auto;
     }
 }
