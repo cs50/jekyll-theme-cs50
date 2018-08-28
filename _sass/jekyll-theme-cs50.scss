@@ -1,0 +1,98 @@
+// Default font
+$font-family-sans-serif: "PT Sans";
+
+// Mimic Primer's sizes
+$h1-font-size: 2rem;
+$h2-font-size: 1.75rem;
+$h3-font-size: 1.5rem;
+$h4-font-size: 1.25rem;
+$h5-font-size: 1.125rem;
+$h6-font-size: 1rem;
+
+// Import Bootstrap
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+
+html {
+	font-size: 16px;
+}
+
+img {
+	max-width: 100%;
+}
+
+body > aside {
+	background-color: #ac4142;
+	color: rgba(255, 255, 255, 0.5);
+	font-size: 1.125rem;
+	overflow: auto;
+	padding: 2rem 2rem;
+	text-align: center;
+}
+
+body > aside > header img {
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+body > aside a,
+body > aside a:hover {
+	color: rgba(255, 255, 255, 1);
+	opacity: 1;
+}
+
+body > aside dl,
+body > aside ol,
+body > aside ul {
+	padding-left: 0;
+	list-style: none;
+}
+
+body > main {
+	padding: 4rem 1rem;
+}
+
+/* Match headings */
+body > main .anchorjs-link {
+	color: inherit;
+}
+body > main .anchorjs-link:hover {
+	text-decoration: none;
+}
+
+body > main h1,
+body > main h2,
+body > main h3,
+body > main h4,
+body > main h5,
+body > main h6 {
+	font-weight: bold;
+}
+
+body > main > .section-nav {
+	font-size: .875rem;
+	padding-left: 0;
+	list-style: none;
+}
+
+body > main > .section-nav + h1 {
+	display: none;
+}
+
+@media (min-width: 48em) { 
+
+	body > aside {
+		bottom: 0;
+		left: 0;
+		position: fixed;
+		text-align: left;
+		top: 0;
+		width: 18rem;
+	}
+
+	body > main {
+		margin-left: 20rem;
+		margin-right: 2rem;
+	}
+}
+

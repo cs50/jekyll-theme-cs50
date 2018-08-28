@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/cs50/jekyll-theme-cs50"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r!^(_includes|_layouts|_sass|assets|lib|LICENSE.txt)!i) }
+  spec.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r!^(_includes|_layouts|_sass|assets|lib|LICENSE)!i) }
 
   spec.require_paths = ["lib"]
 
@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "jekyll-commonmark-ghpages"
   spec.add_runtime_dependency "jekyll-optional-front-matter"
+  spec.add_runtime_dependency "jekyll-redirect-from"
   spec.add_runtime_dependency "jekyll-relative-links"
   spec.add_runtime_dependency "jekyll-titles-from-headings"
   spec.add_runtime_dependency "jekyll-toc"
