@@ -58,7 +58,7 @@ body > main h6 {
 	font-weight: bold;
 }
 
-@include media-breakpoint-down(sm) {
+@include media-breakpoint-up(sm) {
 
 	body > aside {
 		bottom: 0;
