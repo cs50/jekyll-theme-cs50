@@ -12,7 +12,7 @@ $h6-font-size: 1rem;
 // Import Bootstrap
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 
-// Import Google Font
+// Import Google Fonts
 @import url("https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700");
 
 // Root em
@@ -91,4 +91,3 @@ body > main h6 {
         margin-left: auto;
     }
 }
-
