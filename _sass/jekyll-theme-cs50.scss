@@ -17,22 +17,22 @@ $h6-font-size: 1rem;
 
 // Root em
 html {
-	font-size: 16px;
+    font-size: 16px;
 }
 
 // Confine images to parent
 img {
-	max-width: 100%;
+    max-width: 100%;
 }
 
-// Crimson aside, faded text
+// Fixed aside, transparent text
 body > aside {
-	background-color: #ac4142;
+    background-color: #ac4142;
     bottom: 0;
-	color: rgba(255, 255, 255, 0.5);
-	font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.125rem;
     left: 0;
-	padding: 2rem 2rem;
+    padding: 2rem 2rem;
     overflow: auto;
     position: fixed;
     text-align: left;
@@ -40,24 +40,25 @@ body > aside {
     width: 20rem;
 }
 
-// White text
+// Opaque text
 body > aside a,
 body > aside a:hover {
-	color: rgba(255, 255, 255, 1);
-	opacity: 1;
+    color: rgba(255, 255, 255, 1);
+    opacity: 1;
 }
 
 // No bullets for nav
 body > aside nav dl,
 body > aside nav ol,
 body > aside nav ul {
-	list-style: none;
-	padding-left: 0;
+    list-style: none;
+    padding-left: 0;
 }
 
 // Padding around main
 body > main {
-	padding: 4rem 2rem;
+    margin-left: 20rem;
+    padding: 4rem 2rem;
 }
 
 // Bold headings
@@ -67,14 +68,14 @@ body > main h3,
 body > main h4,
 body > main h5,
 body > main h6 {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 // On small devices
 @include media-breakpoint-down(sm) {
 
-    // Fixed aside
-	body > aside {
+    // Static aside
+    body > aside {
         bottom: auto;
         left: auto;
         overflow: visible;
@@ -83,11 +84,11 @@ body > main h6 {
         text-align: center;
         top: auto;
         width: auto;
-	}
+    }
 
-    // Offset main
-	body > main {
-		margin-left: 20rem;
-	}
+    // Don't offset main
+    body > main {
+        margin-left: auto;
+    }
 }
 
