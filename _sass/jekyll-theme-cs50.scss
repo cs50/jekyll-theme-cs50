@@ -1,13 +1,13 @@
 // Default font
-$font-family-sans-serif: "PT Sans";
+$font-family-sans-serif: "PT Sans" !default;
 
 // Mimic Primer's sizes
-$h1-font-size: 2rem;
-$h2-font-size: 1.75rem;
-$h3-font-size: 1.5rem;
-$h4-font-size: 1.25rem;
-$h5-font-size: 1.125rem;
-$h6-font-size: 1rem;
+$h1-font-size: 2rem !default;
+$h2-font-size: 1.75rem !default;
+$h3-font-size: 1.5rem !default;
+$h4-font-size: 1.25rem !default;
+$h5-font-size: 1.125rem !default;
+$h6-font-size: 1rem !default;
 
 // Import Bootstrap
 @import "node_modules/bootstrap/scss/bootstrap.scss";
