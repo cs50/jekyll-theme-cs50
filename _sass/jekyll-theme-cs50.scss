@@ -15,14 +15,17 @@ $h6-font-size: 1rem;
 // Import Google Font
 @import url("https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700");
 
+// Root em
 html {
 	font-size: 16px;
 }
 
+// Confine images to parent
 img {
 	max-width: 100%;
 }
 
+// Crimson aside
 body > aside {
 	background-color: #ac4142;
 	color: rgba(255, 255, 255, 0.5);
@@ -32,23 +35,27 @@ body > aside {
 	text-align: center;
 }
 
+// White text
 body > aside a,
 body > aside a:hover {
 	color: rgba(255, 255, 255, 1);
 	opacity: 1;
 }
 
-body > aside dl,
-body > aside ol,
-body > aside ul {
+// No bullets for nav
+body > aside nav dl,
+body > aside nav ol,
+body > aside nav ul {
 	list-style: none;
 	padding-left: 0;
 }
 
+// Padding around main
 body > main {
 	padding: 4rem 1rem;
 }
 
+// Bold headings
 body > main h1,
 body > main h2,
 body > main h3,
@@ -58,8 +65,10 @@ body > main h6 {
 	font-weight: bold;
 }
 
+// On small devices
 @include media-breakpoint-up(sm) {
 
+    // Fixed aside
 	body > aside {
 		bottom: 0;
 		left: 0;
@@ -70,8 +79,7 @@ body > main h6 {
 	}
 
 	body > main {
-		margin-left: 20rem;
-		margin-right: 2rem;
+		margin-left: 18rem;
 	}
 }
 
