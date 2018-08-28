@@ -1,8 +1,8 @@
 ![Harvard crest](https://www.harvard.edu/sites/default/files/user13/harvard_shield.png)
 
-# {% fit %}[CSCI P-14300](/){% endfit %}
+# [CSCI P-14300](/)
 
-## {% fit %}Introduction to{% endfit %}{% fit %}Web Programming{% endfit %}
+## Introduction to Web Programming
 
 [Harvard Summer School](http://www.summer.harvard.edu/)\
 2018
