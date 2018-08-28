@@ -25,14 +25,19 @@ img {
 	max-width: 100%;
 }
 
-// Crimson aside
+// Crimson aside, faded text
 body > aside {
 	background-color: #ac4142;
+    bottom: 0;
 	color: rgba(255, 255, 255, 0.5);
 	font-size: 1.125rem;
-	overflow: auto;
+    left: 0;
 	padding: 2rem 2rem;
-	text-align: center;
+    overflow: auto;
+    position: fixed;
+    text-align: left;
+    top: 0;
+    width: 20rem;
 }
 
 // White text
@@ -52,7 +57,7 @@ body > aside nav ul {
 
 // Padding around main
 body > main {
-	padding: 4rem 1rem;
+	padding: 4rem 2rem;
 }
 
 // Bold headings
@@ -66,20 +71,23 @@ body > main h6 {
 }
 
 // On small devices
-@include media-breakpoint-up(sm) {
+@include media-breakpoint-down(sm) {
 
     // Fixed aside
 	body > aside {
-		bottom: 0;
-		left: 0;
-		position: fixed;
-		text-align: left;
-		top: 0;
-		width: 18rem;
+        bottom: auto;
+        left: auto;
+        overflow: visible;
+        position: static;
+        right: auto;
+        text-align: center;
+        top: auto;
+        width: auto;
 	}
 
+    // Offset main
 	body > main {
-		margin-left: 18rem;
+		margin-left: 20rem;
 	}
 }
 
