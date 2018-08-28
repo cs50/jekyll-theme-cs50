@@ -1,4 +1,4 @@
-![Harvard crest](https://www.harvard.edu/sites/default/files/user13/harvard_shield.png)
+![Harvard crest](/assets/images/harvard_shield.png)
 
 # [CSCI P-14300](/)
 

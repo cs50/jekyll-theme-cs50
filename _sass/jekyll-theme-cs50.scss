@@ -12,6 +12,9 @@ $h6-font-size: 1rem;
 // Import Bootstrap
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 
+// Import Google Font
+@import url("https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700");
+
 html {
 	font-size: 16px;
 }
