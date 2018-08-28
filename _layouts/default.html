@@ -19,21 +19,8 @@
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/fitty@2.2.6/dist/fitty.min.js"></script>
-
-        <script>
-
-            $(function() {
-
-                // Make text fit perfectly
-                fitty('.fit');
-            });
-
-        </script>
 
         <title>{{ site.title }}</title>
-
-        {% include head.html %}
 
     </head>
 
@@ -44,21 +31,21 @@
             <header>
 
                 {% capture header %}{% include header.md %}{% endcapture %}
-                {{ header | markdownify | replace_regex: ' +id="[^"]+"', '' }}
+                {{ header | markdownify | replace: " id=", " data-id=" }}
 
             </header>
 
             <nav>
 
                 {% capture nav %}{% include nav.md %}{% endcapture %}
-                {{ nav | markdownify | replace_regex: ' +id="[^"]+"', '' }}
+                {{ nav | markdownify | replace: " id=", " data-id=" }}
 
             </nav>
 
             <footer>
 
                 {% capture footer %}{% include footer.md %}{% endcapture %}
-                {{ footer | markdownify | replace_regex: ' +id="[^"]+"', '' }}
+                {{ footer | markdownify | replace: " id=", " data-id=" }}
 
             </footer>
 
