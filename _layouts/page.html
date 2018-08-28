@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en-us">
+<html lang="{{ page.lang | default: site.lang | default: "en-us" }}">
 
     <head>
 
@@ -13,7 +13,7 @@
         <meta property="og:title" content="{{ site.title }}">
         <meta property="og:url" content="{{ site.url }}">
 
-        <link href="{{ '/favicon.ico?v=' | append: site.github.build_revision | relative_url }}" rel="icon">
+        <link href="{{ '/assets/images/favicon.ico?v=' | append: site.github.build_revision | relative_url }}" rel="icon">
         <link href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}" rel="stylesheet">
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
