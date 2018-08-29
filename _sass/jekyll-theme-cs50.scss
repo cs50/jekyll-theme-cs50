@@ -9,6 +9,9 @@ $h4-font-size: 1.25rem !default;
 $h5-font-size: 1.125rem !default;
 $h6-font-size: 1rem !default;
 
+// Style links
+$link-color: #a32f38 !default;
+
 // Import Bootstrap
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 
@@ -27,7 +30,7 @@ img {
 
 // Fixed aside, transparent text
 aside {
-    background-color: #a32f38;
+    background-color: $link-color;
     bottom: 0;
     color: rgba(255, 255, 255, 0.5);
     font-size: 1.125rem;
