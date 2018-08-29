@@ -88,6 +88,11 @@ main h6 {
 // On small devices
 @include media-breakpoint-down(sm) {
 
+    // Root em
+    html {
+        font-size: 16px;
+    }
+
     // Static aside
     aside {
         bottom: auto;
