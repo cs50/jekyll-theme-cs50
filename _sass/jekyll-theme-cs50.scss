@@ -11,6 +11,7 @@ $h6-font-size: 1rem !default;
 
 // Style links
 $link-color: #a32f38 !default;
+$link-hover-color: $link-color !default;
 
 // Import Bootstrap
 @import "node_modules/bootstrap/scss/bootstrap.scss";
