@@ -12,7 +12,7 @@
         <meta property="og:image" content="{{ site.image }}">
 
         {%- capture title -%}
-            {%- if page.title != "" -%}
+            {%- if page.title -%}
                 {{- page.title -}}
             {%- endif -%}
             {%- if site.title != site.github.repository_name -%}
