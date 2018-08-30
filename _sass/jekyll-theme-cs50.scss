@@ -85,15 +85,15 @@ main h6 {
     font-weight: bold;
 }
 
-// Mimic paragraphs
-main table {
-    margin-bottom: $paragraph-margin-bottom;
-}   
-
 // Add .table to tables
 main table {
     @extend .table;
 }
+
+// Mimic paragraphs
+main table {
+    margin-bottom: $paragraph-margin-bottom;
+}   
 
 // On small devices
 @include media-breakpoint-down(sm) {
