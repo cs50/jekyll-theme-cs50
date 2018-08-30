@@ -85,6 +85,16 @@ main h6 {
     font-weight: bold;
 }
 
+// Mimic paragraphs
+main table {
+    margin-bottom: $paragraph-margin-bottom;
+}   
+
+// Add .table to tables
+main table {
+    @extend .table;
+}
+
 // On small devices
 @include media-breakpoint-down(sm) {
 
