@@ -95,6 +95,16 @@ main {
     padding: 4rem 2rem;
 }
 
+// Padding above headings in main (to match Primer's padding below headings)
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6 {
+    padding-top: .3em;
+}
+
 // On small devices
 @include media-breakpoint-down(sm) {
 
