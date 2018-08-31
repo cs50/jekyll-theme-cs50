@@ -72,6 +72,11 @@ nav ul {
     padding-left: 0;
 }
 
+// Inherit from .markdown-body
+main {
+    @extend .markdown-body;
+}
+
 // Padding around main
 main {
     margin-left: 20rem;
