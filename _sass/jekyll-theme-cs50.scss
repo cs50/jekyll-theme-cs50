@@ -16,6 +16,9 @@ $link-hover-color: $link-color !default;
 // Import Bootstrap
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 
+// Import primer-markdown
+@import "node_modules/primer-markdown/build/build.css";
+
 // Import Google Fonts
 @import url("https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700");
 
@@ -75,6 +78,7 @@ main {
     padding: 4rem 2rem;
 }
 
+/*
 // Bold headings
 main h1,
 main h2,
@@ -93,7 +97,8 @@ main table {
 // Mimic paragraphs
 main table {
     margin-bottom: $paragraph-margin-bottom;
-}   
+} 
+*/
 
 // On small devices
 @include media-breakpoint-down(sm) {

@@ -15,9 +15,16 @@ _includes/node_modules/fitty/dist/*
 !_includes/node_modules/fitty/LICENSE
 
 _sass/node_modules/*
+
 !_sass/node_modules/bootstrap/
 _sass/node_modules/bootstrap/*
 !_sass/node_modules/bootstrap/LICENSE
 !_sass/node_modules/bootstrap/scss/
+
+!_sass/node_modules/primer-markdown/
+_sass/node_modules/primer-markdown/*
+!_sass/node_modules/primer-markdown/build/
+_sass/node_modules/primer-markdown/build/*
+!_sass/node_modules/primer-markdown/build/build.css
 
 _site/
