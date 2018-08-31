@@ -76,8 +76,8 @@ nav ul {
 // Render Markdown like GitHub
 main {
     @extend .markdown-body;
-    font-family: auto; /* Use our family */
-    font-size: auto; /* Use our size */
+    font-family: inherit; /* Use our family */
+    font-size: inherit; /* Use our size */
 }
 
 // Padding around main
