@@ -38,12 +38,6 @@ html {
     font-size: 20px;
 }
 
-// Override Primer
-.markdown-body {
-    font-family: unset; /* Use our family */
-    font-size: unset; /* Use our size */
-}
-
 // Confine images to parent
 img {
     max-width: 100%;
@@ -95,13 +89,19 @@ main {
     padding: 4rem 2rem;
 }
 
-// Padding above headings in main (to match Primer's padding below headings)
-main h1,
-main h2,
-main h3,
-main h4,
-main h5,
-main h6 {
+// Override Primer's family and size for fonts
+.markdown-body {
+    font-family: unset; /* Use our family */
+    font-size: unset; /* Use our size */
+}
+
+// Add padding above headings to match Primer's padding below headings
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
     padding-top: .3em;
 }
 
