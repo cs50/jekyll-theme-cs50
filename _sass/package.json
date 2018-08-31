@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "primer-markdown": "^3.7.9"
+  },
+  "description": "",
+  "name": "",
+  "scripts": {
+    "install": "node -e \"require('fs').renameSync('node_modules/primer-markdown/build/build.css', 'node_modules/primer-markdown/build/build.scss')\""
+  },
+  "version": "0.1.0"
+}
