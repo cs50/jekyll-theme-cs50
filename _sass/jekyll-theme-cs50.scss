@@ -76,6 +76,7 @@ nav ul {
 main {
     @extend .markdown-body;
     font-family: inherit;
+    font-size: inherit;
 }
 
 // Padding around main
