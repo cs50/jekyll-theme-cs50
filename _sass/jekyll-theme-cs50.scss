@@ -28,7 +28,7 @@ $link-hover-color: $link-color !default;
 .anchorjs-link {
     color: inherit;
 }
-:hover > .anchorjs-link {
+a:hover.anchorjs-link {
     color: inherit;
     text-decoration: none;
 }
