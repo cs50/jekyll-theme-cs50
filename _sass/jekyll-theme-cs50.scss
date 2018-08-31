@@ -17,7 +17,7 @@ $link-hover-color: $link-color !default;
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 
 // Import primer-markdown
-@import "node_modules/primer-markdown/build/build.css";
+@import "node_modules/primer-markdown/build/build";
 
 // Import Google Fonts
 @import url("https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700");
