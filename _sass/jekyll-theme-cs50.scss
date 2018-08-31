@@ -95,7 +95,8 @@ main {
     font-size: unset; /* Use our size */
 }
 
-// Add padding above headings to match Primer's padding below headings
+// Add padding above headings to match Primer's padding below headings,
+// to ensure anchors aren't too close to top of viewport
 .markdown-body h1,
 .markdown-body h2,
 .markdown-body h3,
