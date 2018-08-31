@@ -16,7 +16,8 @@ $link-hover-color: $link-color !default;
 // Import Bootstrap
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 
-// Import primer-markdown
+// Import build of primer-markdown after renaming build.css to build.scss via package.json so that we can import, per
+// https://stackoverflow.com/questions/7111610/import-regular-css-file-in-scss-file/36166487#36166487
 @import "node_modules/primer-markdown/build/build.scss";
 
 // Import Google Fonts
@@ -72,12 +73,11 @@ nav ul {
     padding-left: 0;
 }
 
-// Inherit from .markdown-body in build.scss, which is renamed upon installation by package.json because of
-// https://stackoverflow.com/questions/7111610/import-regular-css-file-in-scss-file/36166487#36166487
+// Render Markdown like GitHub
 main {
     @extend .markdown-body;
-    font-family: inherit; /* Use our family */
-    font-size: inherit; /* Use our size */
+    font-family: auto; /* Use our family */
+    font-size: auto; /* Use our size */
 }
 
 // Padding around main
