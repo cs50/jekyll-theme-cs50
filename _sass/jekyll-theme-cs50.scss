@@ -73,37 +73,17 @@ nav ul {
     padding-left: 0;
 }
 
-// Render Markdown like GitHub
-main {
-}
-
 // Padding around main
 main {
     margin-left: 20rem;
     padding: 4rem 2rem;
 }
-
-/*
-// Bold headings
-main h1,
-main h2,
-main h3,
-main h4,
-main h5,
-main h6 {
-    font-weight: bold;
+ 
+// Override Primer
+main.markdown-body {
+    font-family: unset; /* Use our family */
+    font-size: unset; /* Use our size */
 }
-
-// Add .table to tables
-main table {
-    @extend .table;
-}
-
-// Mimic paragraphs
-main table {
-    margin-bottom: $paragraph-margin-bottom;
-} 
-*/
 
 // On small devices
 @include media-breakpoint-down(sm) {
