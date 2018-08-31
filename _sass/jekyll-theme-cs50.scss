@@ -28,6 +28,12 @@ html {
     font-size: 20px;
 }
 
+// Override Primer
+.markdown-body {
+    font-family: unset; /* Use our family */
+    font-size: unset; /* Use our size */
+}
+
 // Confine images to parent
 img {
     max-width: 100%;
@@ -79,12 +85,6 @@ main {
     padding: 4rem 2rem;
 }
  
-// Override Primer
-main.markdown-body {
-    font-family: unset; /* Use our family */
-    font-size: unset; /* Use our size */
-}
-
 // On small devices
 @include media-breakpoint-down(sm) {
 
