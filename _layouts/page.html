@@ -39,7 +39,6 @@
             // https://www.bryanbraun.com/anchorjs/#basic-usage
             document.addEventListener('DOMContentLoaded', function() {
                 anchors.options = {
-                    placement: 'left'
                 };
                 {% for i in (2..6) -%}
                     anchors.add('main.markdown-body h{{ i }}');
