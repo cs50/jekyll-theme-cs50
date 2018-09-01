@@ -7,19 +7,19 @@
 
     </header>
 
-    <nav class="navbar-expand-sm">
+    <nav>
 
-        <button aria-expanded="false" class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" type="button">
-            <span class="navbar-toggler-icon"></span>
+        <button aria-controls="collapseExample" aria-expanded="false" class="btn" data-target="#collapseExample" data-toggle="collapse" type="button">
+            <span class="oi oi-menu"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse" id="collapseExample">
 
             {%- capture nav %}{% include nav.md %}{% endcapture -%}
             {{ nav | markdownify | replace: " id=", " data-id=" }}
 
         </div>
-
+ 
     </nav>
 
     <footer>
