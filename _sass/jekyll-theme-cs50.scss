@@ -69,18 +69,17 @@ aside button {
     opacity: 1;
 }
 
+// Margins only on nav so that, when collapsed, only button's margin remains
+nav {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
 // Mimic Primer
 header *:last-child,
 nav *:last-child,
 footer *:last-child {
     margin-bottom: 0;
-}
-
-// Mimic paragraphs
-header,
-aside button[data-toggle=collapse],
-nav {
-    margin-bottom: 1rem;
 }
 
 // No bullets for nav
