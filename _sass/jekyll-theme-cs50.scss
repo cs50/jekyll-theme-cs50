@@ -69,6 +69,11 @@ aside button {
     opacity: 1;
 }
 
+// Mimic Primer
+aside *:last-child {
+    margin-bottom: 0;
+}
+
 // Mimic paragraphs
 header,
 aside button[data-toggle=collapse],
