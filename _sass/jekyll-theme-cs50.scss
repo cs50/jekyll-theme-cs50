@@ -121,6 +121,9 @@ button[data-toggle=collapse] {
         display: none;
     }
 
+    nav.collapse {
+        display: block;
+    }
 }
 
 // On small devices
