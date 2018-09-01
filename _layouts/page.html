@@ -74,36 +74,9 @@
 
     <body>
 
-        <aside>
+        {%- include aside.html -%}
 
-            <header>
-
-                {%- capture header %}{% include header.md %}{% endcapture -%}
-                {{ header | markdownify | replace: " id=", " data-id=" }}
-
-            </header>
-
-            <nav>
-
-                {%- capture nav %}{% include nav.md %}{% endcapture -%}
-                {{ nav | markdownify | replace: " id=", " data-id=" }}
-
-            </nav>
-
-            <footer>
-
-                {%- capture footer %}{% include footer.md %}{% endcapture -%}
-                {{ footer | markdownify | replace: " id=", " data-id=" }}
-
-            </footer>
-
-        </aside>
-
-        <main class="markdown-body">
-
-            {{ content }}
-
-        </main>
+        {%- include main.html -%}
 
     </body>
 
