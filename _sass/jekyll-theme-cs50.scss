@@ -99,8 +99,8 @@ main {
     padding-top: .3em;
 }
 
-// Mimic paragraphs
-.markdown-body iframe {
+// Mimic paragraphs for responsive embeds
+.markdown-body .embed-responsive {
     margin-bottom: 16px;
     margin-top: 0;
 }
