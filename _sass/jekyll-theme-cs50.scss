@@ -73,9 +73,11 @@ aside button {
 aside button[data-toggle=collapse] {
     margin-top: 1rem;
 }
-nav {
-    padding-bottom: 1rem;
-    padding-top: 1rem;
+nav *:first-child {
+    margin-top: 1rem;
+}
+nav *:last-child {
+    margin-bottom: 1rem;
 }
 
 // Mimic Primer
