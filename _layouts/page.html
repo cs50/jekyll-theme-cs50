@@ -44,36 +44,36 @@
                 {% endfor %}
             });
 
-			// Embed YouTube videos responsively
-			$(function() {
+            // Embed YouTube videos responsively
+            $(function() {
 
-				// For each iframe
-				$('iframe').each(function(index, element) {
+                // For each iframe
+                $('iframe').each(function(index, element) {
 
-					// If an embedded YouTube video
-					if ($(this).attr('src').toLowerCase().startsWith('https://www.youtube.com/embed/')) {
+                    // If an embedded YouTube video
+                    if ($(this).attr('src').toLowerCase().startsWith('https://www.youtube.com/embed/')) {
 
-						// Add allowfullscreen if not present
-						if ($(this).attr('allowfullscreen') === undefined) {
-							$(this).attr('allowfullscreen', '');
-						}
+                        // Add allowfullscreen if not present
+                        if ($(this).attr('allowfullscreen') === undefined) {
+                            $(this).attr('allowfullscreen', '');
+                        }
 
-						// Add modifier classes if not present, assuming 16x9 by default
-						if (!$(this).hasClass('embed-responsive-item')) {
-							$(this).addClass('embed-responsive-item');
-							$(this).wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
-						}
-					}
-				});
+                        // Add modifier classes if not present, assuming 16x9 by default
+                        if (!$(this).hasClass('embed-responsive-item')) {
+                            $(this).addClass('embed-responsive-item');
+                            $(this).wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
+                        }
+                    }
+                });
 
                 // For each (collapsed) nav in aside
                 let nav = $('aside nav.collapse');
                 let button = $('<button aria-expanded="false" class="btn" data-toggle="collapse" type="button"><span class="oi oi-menu"></span></button>');
                 nav.before(button);
                 button.click(function() {
-                    nav.collapse('toggle'); 
+                    nav.toggle();
                 });
-			});
+            });
 
         </script>
 

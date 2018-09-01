@@ -110,18 +110,12 @@ main {
     margin-top: 0;
 }
 
-// On large devices
-@include media-breakpoint-up(sm) {
+button[data-toggle=collapse] {
+    display: none;
+}
 
-    // Show nav
-    aside nav.collapse:not(.show) {
-        display: block;
-    }
-
-    // Hide button
-    aside button[data-toggle=collapse] {
-        display: none;
-    }
+nav {
+    display: block;
 }
 
 // On small devices
@@ -142,6 +136,13 @@ main {
         text-align: center;
         top: auto;
         width: auto;
+    }
+
+    button[data-toggle=collapse] {
+        display: block;
+    }
+    nav {
+        display: none;
     }
 
     // Don't offset main
