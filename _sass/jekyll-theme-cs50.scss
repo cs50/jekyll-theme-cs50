@@ -110,6 +110,20 @@ main {
     margin-top: 0;
 }
 
+// On large devices
+@include media-breakpoint-up(sm) {
+
+    // Show nav
+    nav {
+        display: block;
+    }
+
+    // Hide button
+    nav button[data-toggle=collapse] {
+        display: none;
+    }
+}
+
 // On small devices
 @include media-breakpoint-down(sm) {
 
