@@ -119,6 +119,8 @@ nav.collapse {
 
 @include media-breakpoint-up(sm) {
 
+    .foo { color: red; }
+
     button[data-toggle=collapse] {
         display: none;
     }
@@ -131,6 +133,7 @@ nav.collapse {
 // On small devices
 @include media-breakpoint-down(sm) {
 
+    .bar { color: red; }
     // Root em
     html {
         font-size: 16px;
