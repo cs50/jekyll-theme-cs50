@@ -66,14 +66,12 @@
 					}
 				});
 
-                // For each (collapsed) nav
-                $('nav.collapse').each(function(index, element) {
-                    let nav = $(this);
-                    let button = $('<button aria-expanded="false" class="btn" type="button"><span class="oi oi-menu"></span></button>');
-                    nav.before(button);
-                    button.click(function() {
-                        nav.collapse('toggle'); 
-                    });
+                // For each (collapsed) nav in aside
+                let nav = $('aside nav.collapse');
+                let button = $('<button aria-expanded="false" class="btn" type="button"><span class="oi oi-menu"></span></button>');
+                nav.before(button);
+                button.click(function() {
+                    nav.collapse('toggle'); 
                 });
 			});
 
