@@ -121,8 +121,10 @@ button[data-toggle=collapse] {
         display: none;
     }
 
-    .collapse:not(.show) {
-        display: block;
+    nav {
+        .collapse:not(.show) {
+            display: block;
+        }
     }
 }
 
