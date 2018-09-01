@@ -124,7 +124,7 @@ main {
 button[data-toggle=collapse] {
     display: inline-block;
 }
-nav.collapse:not(.show) {
+nav.collapse {
     display: none;
 }
 
