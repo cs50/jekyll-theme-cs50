@@ -68,8 +68,13 @@
 
                 // For each (collapsed) nav
                 $('nav.collapse').each(function(index, element) {
+                    let nav = $(this);
                     let button = $('<button aria-expanded="false" class="btn" type="button"><span class="oi oi-menu"></span></button>');
-                    $(this).before(button);
+                    nav.before(button);
+                    nav.collapse();
+                    button.click(function() {
+                        nav.collapse('toggle'); 
+                    });
                 });
 			});
 
