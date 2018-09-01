@@ -10,13 +10,15 @@
     <nav>
 
         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            Button with data-target
+            Button with data-target 
+            {% octicon alert height:32 class:"right left" aria-label:hi %}
         </button>
 
         <div class="collapse" id="collapseExample">
 
             {%- capture nav %}{% include nav.md %}{% endcapture -%}
             {{ nav | markdownify | replace: " id=", " data-id=" }}
+
         </div>
  
     </nav>
