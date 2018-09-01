@@ -71,7 +71,7 @@
                 let button = $('<button aria-expanded="false" class="btn" data-toggle="collapse" type="button"><span class="oi oi-menu"></span></button>');
                 nav.before(button);
                 button.click(function() {
-                    nav.toggle();
+                    nav.collapse('toggle'); 
                 });
             });
 

@@ -114,7 +114,7 @@ button[data-toggle=collapse] {
     display: none;
 }
 
-nav {
+nav.collapse {
     display: block;
 }
 
@@ -141,7 +141,7 @@ nav {
     button[data-toggle=collapse] {
         display: block;
     }
-    nav {
+    nav.collapse {
         display: none;
     }
 
