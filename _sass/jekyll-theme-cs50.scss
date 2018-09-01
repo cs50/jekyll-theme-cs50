@@ -81,11 +81,6 @@ main {
     padding: 4rem 2rem;
 }
 
-// Mimic paragraphs
-main iframe {
-    @extend p;
-}
-
 // Override Primer's family and size for fonts
 .markdown-body {
     font-family: unset; /* Use our family */
@@ -102,6 +97,12 @@ main iframe {
 .markdown-body h6 {
     margin-top: calc(24px - .3em); /* $spacer-4, https://github.com/primer/primer/blob/master/modules/primer-markdown/lib/headings.scss, is 24px in build.css */
     padding-top: .3em;
+}
+
+// Mimic paragraphs
+.markdown-body iframe {
+    margin-bottom: 16px;
+    margin-top: 0;
 }
 
 // On small devices
