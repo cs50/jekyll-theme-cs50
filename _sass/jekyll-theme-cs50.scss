@@ -38,17 +38,11 @@ img {
     max-width: 100%;
 }
 
-// White links
-aside {
-    $link-color: rgba(255, 255, 255, 0.5);
-    $link-hover-color: $link-color;
-}
-
 // Crimson aside, transparent text
 aside {
     background-color: $link-color;
     bottom: 0;
-    color: $link-color;
+    color: rgba(255, 255, 255, 0.5);
     font-size: 1.125rem;
     left: 0;
     padding: 2rem 2rem;
@@ -72,13 +66,10 @@ aside h6 {
 // Opaque text
 aside a,
 aside a:hover,
-aside button[data-toggle=collapse] {
+aside button {
+    background-color: inherit;
     color: rgba(255, 255, 255, 1);
     opacity: 1;
-}
-aside button[data-toggle=collapse] {
-    background-color: inherit;
-    border-color: rgba(255, 255, 255, 1);
 }
 
 // No bullets for nav
