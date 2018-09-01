@@ -26,7 +26,7 @@ _sass/node_modules/bootstrap/*
 _sass/node_modules/open-iconic/*
 !_sass/node_modules/open-iconic/font/
 _sass/node_modules/open-iconic/font/css/*
-!_sass/node_modules/open-iconic/font/css/open-iconic.scss
+!_sass/node_modules/open-iconic/font/css/open-iconic-bootstrap.scss
 !_sass/node_modules/open-iconic/FONT-LICENSE
 !_sass/node_modules/open-iconic/ICON-LICENSE
 
