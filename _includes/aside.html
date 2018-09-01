@@ -9,17 +9,9 @@
 
     <nav>
 
-        <button aria-controls="collapseExample" aria-expanded="false" class="btn" data-target="#collapseExample" data-toggle="collapse" type="button">
-            <span class="oi oi-menu"></span>
-        </button>
+        {%- capture nav %}{% include nav.md %}{% endcapture -%}
+        {{ nav | markdownify | replace: " id=", " data-id=" }}
 
-        <div class="collapse" id="collapseExample">
-
-            {%- capture nav %}{% include nav.md %}{% endcapture -%}
-            {{ nav | markdownify | replace: " id=", " data-id=" }}
-
-        </div>
- 
     </nav>
 
     <footer>

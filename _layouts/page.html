@@ -65,6 +65,12 @@
 						}
 					}
 				});
+
+                // For each (collapsed) nav
+                $('nav.collapse').each(function(index, element) {
+                    let button = $('<button aria-expanded="false" class="btn" type="button">');
+                    $(this).insertBefore(button);
+                });
 			});
 
         </script>
