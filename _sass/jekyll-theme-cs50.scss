@@ -122,7 +122,7 @@ button[data-toggle=collapse] {
     }
 
     nav {
-        .collapse:not(.show) {
+        &.collapse:not(.show) {
             display: block;
         }
     }
