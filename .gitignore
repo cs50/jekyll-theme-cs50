@@ -14,14 +14,20 @@ _includes/node_modules/fitty/dist/*
 !_includes/node_modules/fitty/dist/fitty.min.js
 !_includes/node_modules/fitty/LICENSE
 
+_sass/package-lock.json
 _sass/node_modules/*
-!_sass/node_modules/package.json
-!_sass/node_modules/package-lock.json
 
 !_sass/node_modules/bootstrap/
 _sass/node_modules/bootstrap/*
 !_sass/node_modules/bootstrap/LICENSE
 !_sass/node_modules/bootstrap/scss/
+
+!_sass/node_modules/@fortawesome/
+_sass/node_modules/@fortawesome/*
+!_sass/node_modules/@fortawesome/fontawesome-free/
+_sass/node_modules/@fortawesome/fontawesome-free/*
+!_sass/node_modules/@fortawesome/fontawesome-free/LICENSE.txt
+!_sass/node_modules/@fortawesome/fontawesome-free/scss/
 
 !_sass/node_modules/primer-markdown/
 _sass/node_modules/primer-markdown/*

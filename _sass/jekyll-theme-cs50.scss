@@ -15,6 +15,9 @@ $link-hover-color: $link-color !default;
 // Import Google Fonts
 @import url("https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700");
 
+// Import Font Awesome
+@import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+
 // Style anchors
 // https://www.bryanbraun.com/anchorjs/
 .anchorjs-link {
