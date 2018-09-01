@@ -110,19 +110,18 @@ main {
     margin-top: 0;
 }
 
-button[data-toggle=collapse] {
-    display: inline-block;
-}
 
 // On large devices
 @include media-breakpoint-up(md) {
 
+    // Hide button above nav
     button[data-toggle=collapse] {
         display: none;
     }
 
+    // Show nav
     nav.collapse:not(.show) {
-            display: block;
+        display: block;
     }
 }
 
