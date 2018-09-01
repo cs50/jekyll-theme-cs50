@@ -69,10 +69,12 @@ aside button {
     opacity: 1;
 }
 
-// Separate nav (and button, when displayed) from header and footer
+// Separate button from header and nav
 aside button[data-toggle=collapse] {
     margin-top: 1rem;
 }
+
+// Separate nav button (or header) and footer, applying margins to children to avoid flicker when uncollapsing
 nav *:first-child {
     margin-top: 1rem;
 }
