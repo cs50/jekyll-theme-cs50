@@ -139,7 +139,7 @@ nav.collapse {
     }
 
     button[data-toggle=collapse] {
-        display: block;
+        display: inline-block;
     }
     nav.collapse:not(.show) {
         display: none;
