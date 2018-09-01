@@ -69,8 +69,11 @@ aside button {
     opacity: 1;
 }
 
-// Mimic paragraph
-aside button[data-toggle=collapse] {
+// Mimic paragraphs
+header,
+aside button[data-toggle=collapse],
+nav,
+footer {
     margin-bottom: 1rem;
 }
 
