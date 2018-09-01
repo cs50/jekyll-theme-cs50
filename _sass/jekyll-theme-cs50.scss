@@ -114,7 +114,7 @@ main {
 @include media-breakpoint-up(sm) {
 
     // Show nav
-    nav {
+    nav.collapse:not(.show) {
         display: block;
     }
 
