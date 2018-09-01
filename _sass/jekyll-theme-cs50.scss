@@ -65,7 +65,9 @@ aside h6 {
 
 // Opaque text
 aside a,
-aside a:hover {
+aside a:hover,
+aside button[data-toggle=collapse] {
+    border-color: rgba(255, 255, 255, 1);
     color: rgba(255, 255, 255, 1);
     opacity: 1;
 }
