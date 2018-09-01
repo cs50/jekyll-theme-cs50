@@ -81,6 +81,11 @@ main {
     padding: 4rem 2rem;
 }
 
+// Mimic paragraphs
+main iframe {
+    @extend .markdown-body p;
+}
+
 // Override Primer's family and size for fonts
 .markdown-body {
     font-family: unset; /* Use our family */
