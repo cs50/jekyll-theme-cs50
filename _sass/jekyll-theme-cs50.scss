@@ -113,9 +113,6 @@ main {
 button[data-toggle=collapse] {
     display: inline-block;
 }
-nav.collapse:not(.show) {
-    display: none;
-}
 
 // On large devices
 @include media-breakpoint-up(md) {
@@ -124,9 +121,6 @@ nav.collapse:not(.show) {
         display: none;
     }
 
-    nav.collapse {
-        display: block;
-    }
 }
 
 // On small devices
