@@ -46,7 +46,7 @@
                 button.click(function() {
                     nav.collapse('toggle');
                     $(this).toggleClass('collapsed');
-                    $(this).attr('aria-expanded', ($(this).attr('aria-expanded').val() === 'false') ? 'true' : 'false');
+                    $(this).attr('aria-expanded', ($(this).attr('aria-expanded') === 'false') ? 'true' : 'false');
                 });
 
                 // Add anchors on DOMContentLoaded
