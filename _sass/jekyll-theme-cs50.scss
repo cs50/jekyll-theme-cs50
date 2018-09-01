@@ -121,14 +121,12 @@ main {
     }
 }
 
-/*
-    button[data-toggle=collapse] {
-        display: inline-block;
-    }
-    nav.collapse:not(.show) {
-        display: none;
-    }
-*/
+button[data-toggle=collapse] {
+    display: inline-block;
+}
+nav.collapse:not(.show) {
+    display: none;
+}
 
 // On small devices
 @include media-breakpoint-down(sm) {
