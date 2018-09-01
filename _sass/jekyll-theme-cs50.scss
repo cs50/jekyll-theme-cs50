@@ -147,7 +147,7 @@ main {
     }
 
     // Don't show nav
-    nav.collapse:not(.show) {
+    nav {
         display: none;
     }
 
