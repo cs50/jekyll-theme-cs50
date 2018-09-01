@@ -69,7 +69,10 @@ aside button {
     opacity: 1;
 }
 
-// Margins only on nav so that, when collapsed, only button's margin remains
+// Separate nav (and button, when displayed) from header and footer
+aside button[data-toggle=collapse] {
+    margin-top: 1rem;
+}
 nav {
     margin-bottom: 1rem;
     margin-top: 1rem;
