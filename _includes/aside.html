@@ -7,10 +7,16 @@
 
     </header>
 
-    <nav class="collapse navbar-collapse">
+    <nav class="navbar navbar-expand-sm">
 
-        {%- capture nav %}{% include nav.md %}{% endcapture -%}
-        {{ nav | markdownify | replace: " id=", " data-id=" }}
+        <button aria-expanded="false" class="btn" type="button"><span class="oi oi-menu"></span></button>
+
+        <div class="collapse navbar-collapse">
+
+            {%- capture nav %}{% include nav.md %}{% endcapture -%}
+            {{ nav | markdownify | replace: " id=", " data-id=" }}
+
+        </div>
 
     </nav>
 
