@@ -146,6 +146,11 @@ main {
         width: auto;
     }
 
+    // Don't show nav
+    nav.collapse:not(.show) {
+        display: none;
+    }
+
     // Don't offset main
     main {
         margin-left: auto;
