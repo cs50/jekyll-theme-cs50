@@ -112,10 +112,6 @@ main {
     margin-top: 0;
 }
 
-nav.collapse {
-    display: block;
-}
-
 // On large devices
 @include media-breakpoint-up(md) {
 
