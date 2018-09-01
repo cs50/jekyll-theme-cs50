@@ -83,7 +83,7 @@ main {
 
 // Mimic paragraphs
 main iframe {
-    @extend .markdown-body p;
+    @extend p;
 }
 
 // Override Primer's family and size for fonts
