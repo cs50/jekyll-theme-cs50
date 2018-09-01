@@ -37,9 +37,10 @@
 
         <script>
 
-            // Add anchors on DOMContentLoaded
-            // https://www.bryanbraun.com/anchorjs/#basic-usage
-            document.addEventListener('DOMContentLoaded', function() {
+            $(document).on('DOMContentLoaded', function() {
+
+                // Add anchors on DOMContentLoaded
+                // https://www.bryanbraun.com/anchorjs/#basic-usage
                 {% for i in (2..6) -%}
                     anchors.add('main.markdown-body h{{ i }}');
                 {% endfor %}
@@ -52,10 +53,6 @@
                     nav.collapse('toggle');
                     $(this).toggleClass('collapsed');
                 });
-            });
-
-            // Embed YouTube videos responsively
-            $(function() {
 
                 // For each iframe
                 $('iframe').each(function(index, element) {
