@@ -113,19 +113,18 @@ main {
 button[data-toggle=collapse] {
     display: inline-block;
 }
-nav.collapse {
+nav.collapse:not(.show) {
     display: none;
 }
 
+// On large devices
 @include media-breakpoint-up(md) {
-
-    .foo { color: red; }
 
     button[data-toggle=collapse] {
         display: none;
     }
 
-    nav.collapse:not(.show) {
+    nav.collapse {
         display: block;
     }
 }
@@ -133,7 +132,6 @@ nav.collapse {
 // On small devices
 @include media-breakpoint-down(sm) {
 
-    .bar { color: red; }
     // Root em
     html {
         font-size: 16px;
