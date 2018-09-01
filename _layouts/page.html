@@ -66,9 +66,9 @@
                     }
                 });
 
-                // For each (collapsed) nav in aside
+                // Add toggler
                 let nav = $('aside nav.collapse');
-                let button = $('<button aria-expanded="false" class="btn" data-toggle="collapse" type="button"><span class="oi oi-menu"></span></button>');
+                let button = $('<button aria-expanded="false" class="btn collapsed" data-toggle="collapse" type="button"><span class="oi oi-menu"></span></button>');
                 nav.before(button);
                 button.click(function() {
                     nav.collapse('toggle'); 
