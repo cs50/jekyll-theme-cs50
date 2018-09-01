@@ -70,7 +70,9 @@ aside button {
 }
 
 // Mimic Primer
-aside *:last-child {
+header *:last-child,
+nav *:last-child,
+footer *:last-child {
     margin-bottom: 0;
 }
 
