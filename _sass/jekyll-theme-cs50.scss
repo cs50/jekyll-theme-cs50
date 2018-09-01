@@ -110,13 +110,25 @@ main {
     margin-top: 0;
 }
 
-button[data-toggle=collapse] {
-    display: none;
+@include media-breakpoint-up(sm) {
+
+    button[data-toggle=collapse] {
+        display: none;
+    }
+
+    nav.collapse {
+        display: block;
+    }
 }
 
-nav.collapse {
-    display: block;
-}
+/*
+    button[data-toggle=collapse] {
+        display: inline-block;
+    }
+    nav.collapse:not(.show) {
+        display: none;
+    }
+*/
 
 // On small devices
 @include media-breakpoint-down(sm) {
@@ -136,13 +148,6 @@ nav.collapse {
         text-align: center;
         top: auto;
         width: auto;
-    }
-
-    button[data-toggle=collapse] {
-        display: inline-block;
-    }
-    nav.collapse:not(.show) {
-        display: none;
     }
 
     // Don't offset main
