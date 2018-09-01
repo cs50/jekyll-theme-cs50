@@ -22,14 +22,6 @@ _sass/node_modules/bootstrap/*
 !_sass/node_modules/bootstrap/LICENSE
 !_sass/node_modules/bootstrap/scss/
 
-!_sass/node_modules/open-iconic/
-_sass/node_modules/open-iconic/*
-!_sass/node_modules/open-iconic/font/
-_sass/node_modules/open-iconic/font/css/*
-!_sass/node_modules/open-iconic/font/css/open-iconic-bootstrap.scss
-!_sass/node_modules/open-iconic/FONT-LICENSE
-!_sass/node_modules/open-iconic/ICON-LICENSE
-
 !_sass/node_modules/primer-markdown/
 _sass/node_modules/primer-markdown/*
 !_sass/node_modules/primer-markdown/build/
