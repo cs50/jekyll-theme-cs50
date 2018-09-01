@@ -110,6 +110,13 @@ main {
     margin-top: 0;
 }
 
+button[data-toggle=collapse] {
+    display: inline-block;
+}
+nav.collapse {
+    display: none;
+}
+
 @include media-breakpoint-up(sm) {
 
     button[data-toggle=collapse] {
@@ -119,13 +126,6 @@ main {
     nav.collapse:not(.show) {
         display: block;
     }
-}
-
-button[data-toggle=collapse] {
-    display: inline-block;
-}
-nav.collapse {
-    display: none;
 }
 
 // On small devices
