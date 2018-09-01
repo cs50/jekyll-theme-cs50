@@ -14,9 +14,8 @@ _includes/node_modules/fitty/dist/*
 !_includes/node_modules/fitty/dist/fitty.min.js
 !_includes/node_modules/fitty/LICENSE
 
+_sass/package-lock.json
 _sass/node_modules/*
-!_sass/node_modules/package.json
-!_sass/node_modules/package-lock.json
 
 !_sass/node_modules/bootstrap/
 _sass/node_modules/bootstrap/*

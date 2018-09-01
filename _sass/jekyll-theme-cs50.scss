@@ -62,9 +62,16 @@ aside h6 {
 
 // Opaque text
 aside a,
-aside a:hover {
+aside a:hover,
+aside button {
+    background-color: inherit;
     color: rgba(255, 255, 255, 1);
     opacity: 1;
+}
+
+// Mimic paragraph
+aside button[data-toggle=collapse] {
+    margin-bottom: 1rem;
 }
 
 // No bullets for nav
@@ -99,10 +106,24 @@ main {
     padding-top: .3em;
 }
 
-// Mimic paragraphs for responsive embeds
+// Mimic paragraph
 .markdown-body .embed-responsive {
     margin-bottom: 16px;
     margin-top: 0;
+}
+
+// On large devices
+@include media-breakpoint-up(md) {
+
+    // Hide button above nav
+    aside button[data-toggle=collapse] {
+        display: none;
+    }
+
+    // Show nav
+    nav.collapse:not(.show) {
+        display: block;
+    }
 }
 
 // On small devices
