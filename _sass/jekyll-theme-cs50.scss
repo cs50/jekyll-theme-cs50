@@ -69,6 +69,11 @@ aside button {
     opacity: 1;
 }
 
+// Mimic paragraph
+aside button[data-toggle=collapse] {
+    margin-bottom: 1rem;
+}
+
 // No bullets for nav
 nav dl,
 nav ol,
@@ -101,7 +106,7 @@ main {
     padding-top: .3em;
 }
 
-// Mimic paragraphs for responsive embeds
+// Mimic paragraph
 .markdown-body .embed-responsive {
     margin-bottom: 16px;
     margin-top: 0;
@@ -111,7 +116,7 @@ main {
 @include media-breakpoint-up(md) {
 
     // Hide button above nav
-    button[data-toggle=collapse] {
+    aside button[data-toggle=collapse] {
         display: none;
     }
 
