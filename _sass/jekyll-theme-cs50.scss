@@ -71,6 +71,9 @@ aside button {
     color: rgba(255, 255, 255, 1);
     opacity: 1;
 }
+aside button:hover {
+    border: 1px;
+}
 
 // No bullets for nav
 nav dl,
