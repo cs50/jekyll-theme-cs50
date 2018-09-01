@@ -2,8 +2,10 @@
 $font-family-sans-serif: "PT Sans" !default;
 
 // Crimson links
-$link-color: #a32f38 !default;
-$link-hover-color: $link-color !default;
+main {
+    $link-color: #a32f38 !default;
+    $link-hover-color: $link-color !default;
+}
 
 // Import Bootstrap
 @import "node_modules/bootstrap/scss/bootstrap.scss";
@@ -67,9 +69,12 @@ aside h6 {
 aside a,
 aside a:hover,
 aside button[data-toggle=collapse] {
-    border-color: rgba(255, 255, 255, 1);
     color: rgba(255, 255, 255, 1);
     opacity: 1;
+}
+aside button[data-toggle=collapse] {
+    background-color: inherit;
+    border-color: rgba(255, 255, 255, 1);
 }
 
 // No bullets for nav
