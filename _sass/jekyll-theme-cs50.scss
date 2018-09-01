@@ -82,6 +82,14 @@ nav *:last-child {
     margin-bottom: 1rem;
 }
 
+// Remove margins from horizontal rules at top and bottom of nav
+nav > hr:first-child {
+    margin-top: 0;
+}
+nav > hr:last-child {
+    margin-bottom: 0;
+}
+
 // Mimic Primer
 header *:last-child,
 nav *:last-child,
