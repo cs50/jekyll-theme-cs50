@@ -117,7 +117,7 @@ nav.collapse {
     display: none;
 }
 
-@include media-breakpoint-up(sm) {
+@include media-breakpoint-up(md) {
 
     .foo { color: red; }
 
@@ -131,7 +131,7 @@ nav.collapse {
 }
 
 // On small devices
-@include media-breakpoint-down(xs) {
+@include media-breakpoint-down(sm) {
 
     .bar { color: red; }
     // Root em
