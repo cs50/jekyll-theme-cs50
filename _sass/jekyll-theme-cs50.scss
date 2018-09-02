@@ -137,6 +137,11 @@ main {
     height: 1px;
 }
 
+// Treat elements before horizontal rules like last-child
+.markdown-body * + hr {
+    margin-bottom: 0;
+}
+
 // Mimic paragraph
 .markdown-body .embed-responsive {
     margin-bottom: 16px;
