@@ -9,7 +9,7 @@
 
     <nav class="collapse">
 
-        {%- capture nav %}{% include nav.md %}{% endcapture -%}
+        {%- capture nav -%}{%- include nav.md -%}{%- endcapture -%}
         {{- nav | markdownify | replace: " id=", " data-id=" | strip -}}
 
     </nav>
