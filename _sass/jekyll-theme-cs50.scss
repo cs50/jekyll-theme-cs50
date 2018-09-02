@@ -131,6 +131,12 @@ main {
     padding-top: .3em;
 }
 
+ // Mimic h1's bottom border
+.markdown-body hr {
+    background-color: #eaecef;
+    height: 1px;
+}
+
 // Mimic paragraph
 .markdown-body .embed-responsive {
     margin-bottom: 16px;
