@@ -99,11 +99,11 @@ nav ul {
     padding-left: 0;
 }
 
-// Separate footer from nav unless blank
+// Separate footer from nav unless empty
 footer {
     margin-top: 1rem;
 }
-footer:blank {
+footer:empty {
     margin-top: 0;
 }
 // Padding around main
