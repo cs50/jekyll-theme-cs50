@@ -37,16 +37,23 @@
 
         <script>
 
-            // Add anchors on DOMContentLoaded
-            // https://www.bryanbraun.com/anchorjs/#basic-usage
-            document.addEventListener('DOMContentLoaded', function() {
+            $(document).on('DOMContentLoaded', function() {
+
+                // Add toggler
+                let nav = $('aside nav.collapse');
+                let button = $('<button aria-expanded="false" class="btn collapsed" data-toggle="collapse" type="button"><span class="oi oi-menu"></span></button>');
+                nav.before(button);
+                button.click(function() {
+                    nav.collapse('toggle');
+                    $(this).toggleClass('collapsed');
+                    $(this).attr('aria-expanded', ($(this).attr('aria-expanded') === 'false') ? 'true' : 'false');
+                });
+
+                // Add anchors on DOMContentLoaded
+                // https://www.bryanbraun.com/anchorjs/#basic-usage
                 {% for i in (2..6) -%}
                     anchors.add('main.markdown-body h{{ i }}');
                 {% endfor %}
-            });
-
-            // Embed YouTube videos responsively
-            $(function() {
 
                 // For each iframe
                 $('iframe').each(function(index, element) {
@@ -67,14 +74,6 @@
                     }
                 });
 
-                // Add toggler
-                let nav = $('aside nav.collapse');
-                let button = $('<button aria-expanded="false" class="btn collapsed" data-toggle="collapse" type="button"><span class="oi oi-menu"></span></button>');
-                nav.before(button);
-                button.click(function() {
-                    nav.collapse('toggle');
-                    $(this).toggleClass('collapsed');
-                });
             });
 
         </script>

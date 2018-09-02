@@ -69,9 +69,26 @@ aside button {
     opacity: 1;
 }
 
-// Mimic paragraph
+// Separate nav button (or header) and footer, applying margins to children to avoid flicker when uncollapsing
+nav *:first-child {
+    margin-top: 1rem;
+}
+
+// Mimic Primer
+header *:last-child,
+nav *:last-child,
+footer *:last-child {
+    margin-bottom: 0;
+}
+
+// Separate button from header and nav
 aside button[data-toggle=collapse] {
-    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+// Remove padding around icon
+aside button[data-toggle=collapse] {
+    padding: 0;
 }
 
 // No bullets for nav
@@ -82,6 +99,13 @@ nav ul {
     padding-left: 0;
 }
 
+// Separate footer from nav unless empty
+footer {
+    margin-top: 1rem;
+}
+footer:empty {
+    margin-top: 0;
+}
 // Padding around main
 main {
     margin-left: 20rem;
