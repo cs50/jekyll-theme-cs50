@@ -86,9 +86,10 @@ aside button[data-toggle=collapse] {
     margin-top: 1rem;
 }
 
-// Remove padding around icon
+// Remove padding above and below icon
 aside button[data-toggle=collapse] {
-    padding: 0;
+    padding-bottom: 0;
+    padding-top: 0;
 }
 
 // No bullets for nav
