@@ -2,7 +2,7 @@
 
     <header>
 
-        {%- capture header %}{% include header.md %}{% endcapture -%}
+        {%- capture header -%}{%- include header.md -%}{%- endcapture -%}
         {{- header | markdownify | replace: " id=", " data-id=" | strip -}}
 
     </header>
@@ -16,7 +16,7 @@
 
     <footer>
 
-        {%- capture footer %}{% include footer.md %}{% endcapture -%}
+        {%- capture footer -%}{%- include footer.md -%}{%- endcapture -%}
         {{- footer | markdownify | replace: " id=", " data-id=" | strip -}}
 
     </footer>
