@@ -16,7 +16,7 @@
 
     <footer>
 
-        {%- capture footer %}{%- include footer.md -%}{% endcapture -%}
+        {%- capture footer -%}{%- include footer.md -%}{%- endcapture -%}
         {{- footer | markdownify | replace: " id=", " data-id=" -}}
 
     </footer>
