@@ -3,17 +3,22 @@
     <header>
 
         {%- capture header %}{% include header.md %}{% endcapture -%}
-        {{- header | markdownify | replace: " id=", " data-id=" -}}
+        {{- header | markdownify | replace: " id=", " data-id=" | strip -}}
 
     </header>
 
     <nav class="collapse">
 
         {%- capture nav %}{% include nav.md %}{% endcapture -%}
-        {{- nav | markdownify | replace: " id=", " data-id=" -}}
+        {{- nav | markdownify | replace: " id=", " data-id=" | strip -}}
 
     </nav>
 
-    <footer>{%- capture footer -%}{%- include footer.md -%}{%- endcapture -%}{{- footer | markdownify | replace: " id=", " data-id=" | strip -}}</footer>
+    <footer>
+
+        {%- capture footer %}{% include footer.md %}{% endcapture -%}
+        {{- footer | markdownify | replace: " id=", " data-id=" | strip -}}
+
+    </footer>
 
 </aside>
