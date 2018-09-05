@@ -25,6 +25,10 @@ a:hover.anchorjs-link {
     text-decoration: none;
 }
 
+html, body, main {
+    height: 100%;
+}
+
 // Root em
 html {
     font-size: 20px;
