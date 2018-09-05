@@ -50,7 +50,7 @@
 
                 // Add anchors to headings
                 $('main.markdown-body h2').each(function(index, element) {
-                    if ($(element).attr('id') && !$(element).has('a')) {
+                    if ($(element).attr('id') && $(element).has('a').length === 0) {
                         $(element).wrapInner($('<a href="#' + $(element).attr('id') + '"></a>'));
                     }
                 });
