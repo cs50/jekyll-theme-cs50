@@ -25,10 +25,6 @@ a:hover.anchorjs-link {
     text-decoration: none;
 }
 
-html, body, main {
-    height: 100%;
-}
-
 // Root em
 html {
     font-size: 20px;
@@ -37,7 +33,7 @@ html {
 // Defaults for iframes
 iframe {
     border: 0;
-    height: 100%;
+    height: 480px;
     width: 100%;
 }
 
