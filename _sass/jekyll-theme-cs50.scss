@@ -131,6 +131,18 @@ main {
     padding-top: .3em;
 }
 
+// Subtle anchors in headings 
+.markdown-body h2 a,
+.markdown-body h3 a,
+.markdown-body h4 a,
+.markdown-body h5 a,
+.markdown-body h6 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+// Fix inconsistency in Primer
+// https://github.com/primer/primer/pull/563
 .markdown-body ol > li:first-child,
 .markdown-body ul > li:first-child {
     margin-top: .25em;   
