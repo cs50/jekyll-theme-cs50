@@ -33,7 +33,6 @@
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
 
         <script>
 
@@ -49,11 +48,12 @@
                     $(this).attr('aria-expanded', ($(this).attr('aria-expanded') === 'false') ? 'true' : 'false');
                 });
 
-                // Add anchors on DOMContentLoaded
-                // https://www.bryanbraun.com/anchorjs/#basic-usage
-                {% for i in (2..6) -%}
-                    anchors.add('main.markdown-body h{{ i }}');
-                {% endfor %}
+                // Add anchors to headings
+                $('main.markdown-body h2').each(index, element) {
+                    if ($(element).attr('id') && !$(element).has('a')) {
+                        $(element).wrapInner($('<a href="#' + $(element).attr('id') + '"></a>'));
+                    }
+                });
 
                 // For each iframe
                 $('iframe').each(function(index, element) {
