@@ -30,6 +30,13 @@ html {
     font-size: 20px;
 }
 
+// Defaults for iframes
+iframe {
+    border: 0;
+    height: 100%;
+    width: 100%;
+}
+
 // Confine images to parent
 img {
     max-width: 100%;
