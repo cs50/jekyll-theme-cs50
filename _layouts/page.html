@@ -49,7 +49,7 @@
                 });
 
                 // Add anchors to headings
-                $('main.markdown-body h2').each(index, element) {
+                $('main.markdown-body h2').each(function(index, element) {
                     if ($(element).attr('id') && !$(element).has('a')) {
                         $(element).wrapInner($('<a href="#' + $(element).attr('id') + '"></a>'));
                     }
