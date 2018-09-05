@@ -131,6 +131,11 @@ main {
     padding-top: .3em;
 }
 
+.markdown-body ol > li:first-child,
+.markdown-body ul > li:first-child {
+    margin-top: .25em;   
+}
+
  // Mimic h1's bottom border
 .markdown-body hr {
     background-color: #eaecef;
