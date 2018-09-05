@@ -53,7 +53,7 @@
                     'main.markdown-body h3',
                     'main.markdown-body h4',
                     'main.markdown-body h5',
-                    'main.markdown-body h6']).each(function(index, element) {
+                    'main.markdown-body h6'].join(',')).each(function(index, element) {
                     if ($(element).attr('id') && $(element).has('a').length === 0) {
                         $(element).wrapInner($('<a href="#' + $(element).attr('id') + '"></a>'));
                     }
