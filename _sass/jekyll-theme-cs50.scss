@@ -15,16 +15,6 @@ $link-hover-color: $link-color !default;
 // Import Google Fonts
 @import url("https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700");
 
-// Style anchors
-// https://www.bryanbraun.com/anchorjs/
-.anchorjs-link {
-    color: inherit;
-}
-a:hover.anchorjs-link {
-    color: inherit;
-    text-decoration: none;
-}
-
 // Root em
 html {
     font-size: 20px;
