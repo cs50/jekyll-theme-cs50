@@ -157,6 +157,13 @@ main {
     margin-top: 0;
 }
 
+// Condense TOC
+#markdown-toc li + li,
+#markdown-toc ol > li:first-child,
+#markdown-toc ul > li:first-child {
+    margin-top: 0;
+}
+
 // On large devices
 @include media-breakpoint-up(md) {
 
