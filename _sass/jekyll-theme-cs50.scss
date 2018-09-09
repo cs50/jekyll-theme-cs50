@@ -145,6 +145,14 @@ main {
     margin-top: .25em;   
 }
 
+// 
+.markdown-body li > blockquote,
+.markdown-body li > div > div.highlight,
+.markdown-body li > img,
+.markdown-body li > pre {
+    margin-top: .25em;
+}
+
  // Mimic h1's bottom border
 .markdown-body hr {
     background-color: #eaecef;
