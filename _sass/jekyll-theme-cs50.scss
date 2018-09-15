@@ -228,8 +228,15 @@ main {
         display: none;
     }
 
-    a[href^="http"]:after {
-        content: " (" attr(href) ")";
+    // Display links' URLs
+    a[href^='http']:after {
+        content: ' (' attr(href) ')';
+        word-wrap: break-word;
+    }
+
+    // Display iframes' URLs
+    iframe[src^='http']:after {
+        content: ' (' attr(href) ')';
         word-wrap: break-word;
     }
 }
