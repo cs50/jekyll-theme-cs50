@@ -104,6 +104,7 @@ footer {
 footer:empty {
     margin-top: 0;
 }
+
 // Padding around main
 main {
     margin-left: 20rem;
@@ -187,6 +188,23 @@ main {
 }
 
 @media print {
+
+    // Static aside
+    aside {
+        bottom: auto;
+        left: auto;
+        overflow: visible;
+        position: static;
+        right: auto;
+        text-align: center;
+        top: auto;
+        width: auto;
+    }
+
+    // Only show header
+    nav, footer {
+        display: none;
+    }
 
     // Don't offset main
     main {
