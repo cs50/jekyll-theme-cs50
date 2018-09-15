@@ -202,7 +202,10 @@ main {
     }
 
     // Only show header
-    nav, footer {
+    nav {
+        display: none;
+    }
+    footer {
         display: none;
     }
 
