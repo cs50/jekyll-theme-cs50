@@ -64,8 +64,7 @@
 
                     // If an embedded YouTube video
                     let matches = $(this).attr('src').match(/^https:\/\/www.youtube.com\/embed\/([A-Za-z0-9_-]+)/);
-                    console.log(matches);
-                    if ($(this).attr('src').toLowerCase().startsWith('https://www.youtube.com/embed/')) {
+                    if (matches) {
 
                         // Add allowfullscreen if not present
                         if ($(this).attr('allowfullscreen') === undefined) {
@@ -80,7 +79,7 @@
 
                         // Add background image
                         if (!$(this).css('background-image')) {
-                            $(this).css('background-image', 'http://img.youtube.com/vi/6j6OfI9zKVQ/0.jpg');
+                            $(this).css('background-image', 'http://img.youtube.com/vi/' + matches[1] + '/0.jpg');
                         }
                     }
                 });
