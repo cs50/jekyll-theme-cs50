@@ -235,7 +235,7 @@ main {
     }
 
     // Display iframes' URLs
-    iframe[src^='http']:after {
+    iframe[src^='http'] {
         content: ' (' attr(href) ')';
         word-wrap: break-word;
     }

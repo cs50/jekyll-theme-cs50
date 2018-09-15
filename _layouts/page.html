@@ -63,6 +63,8 @@
                 $('iframe').each(function(index, element) {
 
                     // If an embedded YouTube video
+                    let matches = $(this).attr('src').match(/^https:\/\/www.youtube.com\/embed\/([A-Za-z0-9_-]+)/);
+                    alert(matches);
                     if ($(this).attr('src').toLowerCase().startsWith('https://www.youtube.com/embed/')) {
 
                         // Add allowfullscreen if not present
@@ -74,6 +76,11 @@
                         if (!$(this).hasClass('embed-responsive-item')) {
                             $(this).addClass('embed-responsive-item');
                             $(this).wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
+                        }
+
+                        // Add background image
+                        if (!$(this).css('background-image')) {
+                            $(this).css('background-image', 'http://img.youtube.com/vi/6j6OfI9zKVQ/0.jpg');
                         }
                     }
                 });
