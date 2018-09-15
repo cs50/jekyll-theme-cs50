@@ -188,8 +188,7 @@ main {
 }
 
 // On small devices
-@media print,
-@include media-breakpoint-down(sm) {
+@include media-breakpoint-down(sm), print {
 
     // Root em
     html {
@@ -213,7 +212,6 @@ main {
         margin-left: auto;
     }
 }
-
 
 // On printers
 @media print {
