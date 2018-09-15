@@ -227,4 +227,9 @@ main {
     nav.collapse:not(.show), footer {
         display: none;
     }
+
+    a[href^="http"]:after {
+        content: " (" attr(href) ")";
+        word-wrap: break-word;
+    }
 }
