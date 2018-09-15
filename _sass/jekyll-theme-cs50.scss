@@ -201,9 +201,14 @@ main {
         width: auto;
     }
 
+    // Hide button above nav
+    aside button[data-toggle=collapse] {
+        display: none;
+    }
+
     // Only show header
-    nav, footer {
-        display: none !important;
+    nav.collapse:not(.show), footer {
+        display: none;
     }
 
     // Don't offset main
