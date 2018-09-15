@@ -104,6 +104,7 @@ footer {
 footer:empty {
     margin-top: 0;
 }
+
 // Padding around main
 main {
     margin-left: 20rem;
@@ -173,7 +174,8 @@ main {
 }
 
 // On large devices
-@include media-breakpoint-up(md) {
+// https://getbootstrap.com/docs/4.1/layout/overview/#responsive-breakpoints
+@media (min-width: 768px) {
 
     // Hide button above nav
     aside button[data-toggle=collapse] {
@@ -186,8 +188,9 @@ main {
     }
 }
 
-// On small devices
-@include media-breakpoint-down(sm) {
+// On small devices and printers
+// https://getbootstrap.com/docs/4.1/layout/overview/#responsive-breakpoints
+@media (max-width: 767.98px), print {
 
     // Root em
     html {
@@ -209,5 +212,25 @@ main {
     // Don't offset main
     main {
         margin-left: auto;
+    }
+}
+
+// Also on printers
+@media print {
+
+    // Hide button above nav
+    aside button[data-toggle=collapse] {
+        display: none;
+    }
+
+    // Only show header
+    nav.collapse:not(.show), footer {
+        display: none;
+    }
+
+    // Display links' URLs
+    a[href^='http']:after {
+        content: ' (' attr(href) ')';
+        word-wrap: break-word;
     }
 }
