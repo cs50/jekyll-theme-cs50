@@ -202,11 +202,8 @@ main {
     }
 
     // Only show header
-    nav {
-        display: none;
-    }
-    footer {
-        display: none;
+    nav, footer {
+        display: none !important;
     }
 
     // Don't offset main
