@@ -188,7 +188,7 @@ main {
 }
 
 // On small devices
-@include media-breakpoint-down(sm), print {
+@include media-breakpoint-down(sm) {
 
     // Root em
     html {
