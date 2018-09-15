@@ -173,7 +173,7 @@ main {
 }
 
 // On large devices
-@include media-breakpoint-up(md), @media print {
+@include media-breakpoint-up(md) {
 
     // Hide button above nav
     aside button[data-toggle=collapse] {
@@ -183,6 +183,14 @@ main {
     // Show nav
     nav.collapse:not(.show) {
         display: block;
+    }
+}
+
+@media print {
+
+    // Don't offset main
+    main {
+        margin-left: auto;
     }
 }
 
