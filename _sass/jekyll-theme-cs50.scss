@@ -187,6 +187,35 @@ main {
     }
 }
 
+// On small devices
+@media print,
+@include media-breakpoint-down(sm) {
+
+    // Root em
+    html {
+        font-size: 16px;
+    }
+
+    // Static aside
+    aside {
+        bottom: auto;
+        left: auto;
+        overflow: visible;
+        position: static;
+        right: auto;
+        text-align: center;
+        top: auto;
+        width: auto;
+    }
+
+    // Don't offset main
+    main {
+        margin-left: auto;
+    }
+}
+
+
+// On printers
 @media print {
 
     // Static aside
@@ -209,32 +238,6 @@ main {
     // Only show header
     nav.collapse:not(.show), footer {
         display: none;
-    }
-
-    // Don't offset main
-    main {
-        margin-left: auto;
-    }
-}
-
-// On small devices
-@include media-breakpoint-down(sm) {
-
-    // Root em
-    html {
-        font-size: 16px;
-    }
-
-    // Static aside
-    aside {
-        bottom: auto;
-        left: auto;
-        overflow: visible;
-        position: static;
-        right: auto;
-        text-align: center;
-        top: auto;
-        width: auto;
     }
 
     // Don't offset main
