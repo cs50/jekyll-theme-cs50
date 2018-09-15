@@ -173,7 +173,7 @@ main {
 }
 
 // On large devices
-@include media-breakpoint-up(md) {
+@include media-breakpoint-up(md), @media print {
 
     // Hide button above nav
     aside button[data-toggle=collapse] {
