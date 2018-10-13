@@ -65,6 +65,16 @@
                     }
                 });
 
+                // Ensure last heading can be anchored atop page
+                $(window).resize(function() {
+                    let last = $('.markdown-body h2[id], .markdown-body h3[id], .markdown-body h4[id], .markdown-body h5[id], .markdown-body h6[id]').last();
+                    if (last.length) {
+                        let margin = Math.floor($(window).height() - ($('.markdown-body').outerHeight() - last.offset().top));
+                        $('.markdown-body').css('margin-bottom', Math.ceil(margin) + 'px');
+                    }
+                });
+                $(window).trigger('resize');
+
                 // For each iframe
                 $('iframe').each(function(index, element) {
 
