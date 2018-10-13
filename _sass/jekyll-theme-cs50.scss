@@ -146,12 +146,17 @@ main {
     margin-top: .25em;   
 }
 
-// 
+// Mimic li's margin-top
 .markdown-body li > blockquote,
 .markdown-body li > div > div.highlight,
 .markdown-body li > img,
 .markdown-body li > pre {
     margin-top: .25em;
+}
+
+// Mimic li's margin-bottom, not p's margin-bottom
+.markdown-body li > div > div.highlight {
+    margin-bottom: 0;
 }
 
  // Mimic h1's bottom border
@@ -160,7 +165,7 @@ main {
     height: 1px;
 }
 
-// Mimic paragraph
+// Mimic p
 .markdown-body .embed-responsive {
     margin-bottom: 16px;
     margin-top: 0;
