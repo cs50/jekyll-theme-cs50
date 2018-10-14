@@ -54,12 +54,16 @@
                     $(this).attr('aria-expanded', ($(this).attr('aria-expanded') === 'false') ? 'true' : 'false');
                 });
 
-                // Add anchors to headings
-                $(['main.markdown-body h2',
+                // Get headings
+                let $headings = $([
+                    'main.markdown-body h2',
                     'main.markdown-body h3',
                     'main.markdown-body h4',
                     'main.markdown-body h5',
-                    'main.markdown-body h6'].join(',')).each(function(index, element) {
+                    'main.markdown-body h6'].join(','));
+
+                // Add anchors to headings
+                headings.each(function(index, element) {
                     if ($(element).attr('id') && $(element).has('a').length === 0) {
                         $(element).wrapInner($('<a href="#' + $(element).attr('id') + '"></a>'));
                     }
@@ -67,10 +71,10 @@
 
                 // Ensure last heading can be anchored atop page
                 $(window).resize(function() {
-                    let last = $('.markdown-body h2[id], .markdown-body h3[id], .markdown-body h4[id], .markdown-body h5[id], .markdown-body h6[id]').last();
+                    let last = $headings.last();
                     if (last.length) {
-                        let margin = Math.floor($(window).height() - ($('.markdown-body').outerHeight() - last.offset().top));
-                        $('.markdown-body').css('margin-bottom', Math.ceil(margin) + 'px');
+                        let margin = Math.floor($(window).height() - ($('main.markdown-body').outerHeight() - last.offset().top));
+                        $('main.markdown-body').css('margin-bottom', Math.ceil(margin) + 'px');
                     }
                 });
                 $(window).trigger('resize');
