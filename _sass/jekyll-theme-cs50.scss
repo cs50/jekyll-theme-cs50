@@ -125,8 +125,8 @@ main {
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
-    margin-top: calc(24px - .3em); /* $spacer-4, https://github.com/primer/primer/blob/master/modules/primer-markdown/lib/headings.scss, is 24px in build.css */
-    padding-top: .3em;
+    margin-top: 0;
+    padding-top: 16px;
 }
 
 // Subtle anchors in headings 
