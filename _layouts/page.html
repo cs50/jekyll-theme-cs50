@@ -63,7 +63,7 @@
                     'main.markdown-body h6'].join(','));
 
                 // Add anchors to headings
-                headings.each(function(index, element) {
+                $headings.each(function(index, element) {
                     if ($(element).attr('id') && $(element).has('a').length === 0) {
                         $(element).wrapInner($('<a href="#' + $(element).attr('id') + '"></a>'));
                     }
