@@ -67,7 +67,7 @@ aside button {
 }
 
 // Separate nav button (or header) and footer, applying margins to children to avoid flicker when uncollapsing
-nav *:first-child {
+nav > *:first-child {
     margin-top: 1rem;
 }
 
