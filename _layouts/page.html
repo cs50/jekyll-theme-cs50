@@ -70,16 +70,25 @@
                 });
 
                 // Ensure last heading can be anchored atop page
-                /*
                 $(window).resize(function() {
                     let last = $headings.last();
                     if (last.length) {
-                        let margin = Math.floor($(window).height() - ($('main.markdown-body').outerHeight() - last.offset().top));
-                        $('main.markdown-body').css('margin-bottom', Math.ceil(margin) + 'px');
+
+                        // On large devices
+                        if ($('aside').offset().top === $('main').offset().top) {
+                            var margin = Math.floor($(window).height() - ($('main').outerHeight() - last.offset().top));
+                        }
+
+                        // On small devices
+                        else {
+                            var margin = Math.floor($(window).height() - ($('main').outerHeight() + $('aside').outerHeight() - last.offset().top));
+                        }
+
+                        // Update margin
+                        $('main').css('margin-bottom', Math.ceil(margin) + 'px');
                     }
                 });
                 $(window).trigger('resize');
-                */
 
                 // For each iframe
                 $('iframe').each(function(index, element) {
