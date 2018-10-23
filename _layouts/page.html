@@ -70,14 +70,16 @@
                 });
 
                 // Ensure last heading can be anchored atop page
+                /*
                 $(window).resize(function() {
                     let last = $headings.last();
                     if (last.length) {
-                        let margin = Math.floor($(window).height() - ($('main.markdown-body').outerHeight(true) - last.offset().top));
+                        let margin = Math.floor($(window).height() - ($('main.markdown-body').outerHeight() - last.offset().top));
                         $('main.markdown-body').css('margin-bottom', Math.ceil(margin) + 'px');
                     }
                 });
                 $(window).trigger('resize');
+                */
 
                 // For each iframe
                 $('iframe').each(function(index, element) {
