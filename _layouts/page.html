@@ -69,27 +69,6 @@
                     }
                 });
 
-                // Ensure last heading can be anchored atop page
-                $(window).resize(function() {
-                    let last = $headings.last();
-                    if (last.length) {
-
-                        // On small devices
-                        if ($('aside').position().top < $('main').position().top) {
-                            var margin = $(window).height() - ($('main').outerHeight() + $('aside').outerHeight() - last.offset().top);
-                        }
-
-                        // On large devices
-                        else {
-                            var margin = $(window).height() - ($('main').outerHeight() - last.offset().top);
-                        }
-
-                        // Update margin
-                        $('main').css('margin-bottom', Math.max(0, Math.ceil(margin)) + 'px');
-                    }
-                });
-                $(window).trigger('resize');
-
                 // For each iframe
                 $('iframe').each(function(index, element) {
 
@@ -117,6 +96,27 @@
                         }
                     }
                 });
+
+                // Ensure last heading can be anchored atop page
+                $(window).resize(function() {
+                    let last = $headings.last();
+                    if (last.length) {
+
+                        // On small devices
+                        if ($('aside').position().top < $('main').position().top) {
+                            var margin = $(window).height() - ($('main').outerHeight() + $('aside').outerHeight() - last.offset().top);
+                        }
+
+                        // On large devices
+                        else {
+                            var margin = $(window).height() - ($('main').outerHeight() - last.offset().top);
+                        }
+
+                        // Update margin
+                        $('main').css('margin-bottom', Math.max(0, Math.ceil(margin)) + 'px');
+                    }
+                });
+                $(window).trigger('resize');
 
             });
 
