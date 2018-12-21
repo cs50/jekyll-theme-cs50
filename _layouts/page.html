@@ -11,19 +11,13 @@
 
         <meta property="og:image" content="{{ site.image }}">
 
-        {%- unless site.github -%}
-            {%- assign site.github = [] -%}
-        {%- endunless -%}
-
         {%- capture title -%}
             {%- if page.title -%}
                 {{- page.title -}}
             {%- endif -%}
             {%- if site.title -%}
-                {%- if site.title != site.github.repository_name -%}
-                    {%- if page.title %} - {% endif -%}
-                    {{- site.title -}}
-                {%- endif -%}
+                {%- if page.title %} - {% endif -%}
+                {{- site.title -}}
             {%- endif -%}
         {%- endcapture -%}
 
