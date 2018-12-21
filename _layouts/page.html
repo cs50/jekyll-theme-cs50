@@ -21,7 +21,7 @@
                     {{- site.title -}}
                 {%- endunless -%}
             {%- endif -%}
-        {%- endcapture -%}
+        {%- endcapture %}
 
         <meta property="og:title" content="{{ title }}">
 
@@ -30,17 +30,14 @@
         <link href="{{ '/favicon.ico' | relative_url }}?{{ site.time | date: '%s' }}" rel="icon">
 
         <!-- https://useiconic.com/open -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" rel="stylesheet">
-
-        <!-- https://github.com/PhilipTrauner/pygments-github-css -->
-        <link href="https://cdn.rawgit.com/PhilipTrauner/pygments-github-css/master/github.css" rel="stylesheet">
+        <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" integrity="sha256-BJ/G+e+y7bQdrYkS2RBTyNfBHpA9IuGaPmf9htub5MQ=" rel="stylesheet">
 
         <link href="{{ '/assets/css/style.css' | relative_url }}?{{ site.time | date: '%s' }}" rel="stylesheet">
 
-        <!-- http://getbootstrap.com/docs/4.1/getting-started/introduction/ -->
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <!-- http://getbootstrap.com/docs/4.2/getting-started/introduction/ -->
+        <script crossorigin="anonymous" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script crossorigin="anonymous" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+        <script crossorigin="anonymous" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 
         <script>
 
