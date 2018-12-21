@@ -15,9 +15,11 @@
             {%- if page.title -%}
                 {{- page.title -}}
             {%- endif -%}
-            {%- if site.title != site.github.repository_name -%}
-                {%- if page.title %} - {% endif -%}
-                {{- site.title -}}
+            {%- if site.title -%}
+                {%- if not (site.github and site.title == site.github.repository_name) -%}
+                    {%- if page.title %} - {% endif -%}
+                    {{- site.title -}}
+                {%- endif -%}
             {%- endif -%}
         {%- endcapture -%}
 
