@@ -1,0 +1,4 @@
+deploy:
+  provider: rubygems
+  api_key: "$API_KEY"
+  before_deploy: "chmod -R a+rX *"
