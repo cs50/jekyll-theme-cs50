@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
   spec.name          = "jekyll-theme-cs50"
   spec.summary       = "This is CS50's theme for Jekyll."
-  spec.version       = "0.1.5"
+  spec.version       = "0.1.6"
 
-  spec.add_runtime_dependency "jekyll", "~> 3.8"
+  spec.add_runtime_dependency "jekyll", "~> 3.7"
   spec.add_runtime_dependency "jekyll-default-layout", "~> 0.1"
   spec.add_runtime_dependency "jekyll-optional-front-matter", "~> 0.3"
   spec.add_runtime_dependency "jekyll-redirect-from", "~> 0.14"
