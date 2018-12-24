@@ -60,7 +60,8 @@ aside h6 {
 // Opaque text
 aside a,
 aside a:hover,
-aside .btn {
+aside .btn,
+aside .btn:hover {
     background-color: inherit;
     color: rgba(255, 255, 255, 1);
     opacity: 1;
