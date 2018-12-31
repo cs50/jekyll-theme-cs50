@@ -63,6 +63,7 @@ aside a:hover,
 aside .btn,
 aside .btn:hover {
     background-color: inherit;
+    border-color: rgba(255, 255, 255, 1);
     color: rgba(255, 255, 255, 1);
     opacity: 1;
 }
@@ -211,7 +212,6 @@ main {
         overflow: visible;
         position: static;
         right: auto;
-        text-align: center;
         top: auto;
         width: auto;
     }
