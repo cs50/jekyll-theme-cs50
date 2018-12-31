@@ -95,9 +95,19 @@ aside button[data-toggle=collapse] {
     margin-top: 1rem;
 }
 
-// No bullets for nav
-nav dl,
-nav ol,
+// Truncate list items
+nav ol li, nav ul li {
+    @include text-truncate;
+}
+
+// Left-align ordered lists in nav
+nav ol {
+    list-style-position: inside;
+    list-style-type: decimal;
+    padding-left: 0;
+}
+
+// No bullets for unordered lists in nav
 nav ul {
     list-style: none;
     padding-left: 0;
