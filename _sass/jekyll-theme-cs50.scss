@@ -60,15 +60,19 @@ aside h6 {
 // Opaque text
 aside a,
 aside a:hover,
-aside button[data-toggle=collapse] {
+aside button[data-toggle=collapse],
+aside button[data-toggle=collapse]:hover {
     background-color: inherit;
     border-color: rgba(255, 255, 255, .5);
     color: rgba(255, 255, 255, 1);
-    opacity: 1;
 }
+
+// Opaque border
 aside button[data-toggle=collapse]:hover {
     border-color: rgba(255, 255, 255, 1);
 }
+
+// Invert colors when not collapsed
 aside button[data-toggle=collapse]:not(.collapsed) {
     background-color: rgba(255, 255, 255, 1);
     color: $link-color;
