@@ -97,7 +97,7 @@ aside button[data-toggle=collapse] {
 
 // Truncate list items
 nav ol li, nav ul li {
-    @extend %text-truncate;
+    @include text-truncate;
     display: block;
 }
 
