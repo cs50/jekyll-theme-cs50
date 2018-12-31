@@ -67,6 +67,10 @@ aside .btn:hover {
     color: rgba(255, 255, 255, 1);
     opacity: 1;
 }
+aside .btn:not(.collapsed) {
+    background-color: rgba(255, 255, 255, 1);
+    color: $link-color;
+}
 
 // Separate nav button (or header) and footer, applying margins to children to avoid flicker when uncollapsing
 nav > *:first-child {
