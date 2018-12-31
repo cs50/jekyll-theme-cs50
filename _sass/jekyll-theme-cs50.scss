@@ -104,6 +104,7 @@ nav ol li, nav ul li {
 // Left-align ordered lists in nav
 nav ol {
     list-style-position: inside;
+    padding-left: 0;
 }
 
 // No bullets for unordered lists in nav
