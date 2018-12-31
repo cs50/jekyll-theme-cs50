@@ -98,12 +98,12 @@ aside button[data-toggle=collapse] {
 // Truncate list items
 nav ol li, nav ul li {
     @include text-truncate;
-    display: block;
 }
 
 // Left-align ordered lists in nav
 nav ol {
     list-style-position: inside;
+    list-style-type: decimal;
     padding-left: 0;
 }
 
