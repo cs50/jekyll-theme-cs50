@@ -60,14 +60,14 @@ aside h6 {
 // Opaque text
 aside a,
 aside a:hover,
-aside .btn,
-aside .btn:hover {
+aside button[data-toggle=collapse],
+aside button[data-toggle=collapse]:hover {
     background-color: inherit;
     border-color: rgba(255, 255, 255, 1);
     color: rgba(255, 255, 255, 1);
     opacity: 1;
 }
-aside .btn:not(.collapsed) {
+aside button[data-toggle=collapse]:not(.collapsed) {
     background-color: rgba(255, 255, 255, 1);
     color: $link-color;
 }
@@ -87,12 +87,6 @@ footer *:last-child {
 // Separate button from header and nav
 aside button[data-toggle=collapse] {
     margin-top: 1rem;
-}
-
-// Remove padding above and below icon
-aside button[data-toggle=collapse] {
-    padding-bottom: 0;
-    padding-top: 0;
 }
 
 // No bullets for nav
