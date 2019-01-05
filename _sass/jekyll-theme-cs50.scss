@@ -32,6 +32,11 @@ img {
     max-width: 100%;
 }
 
+// Confine borders to images
+.img-thumbnail {
+    width: fit-content;
+}
+
 // Crimson aside, transparent text
 aside {
     background-color: $link-color;
