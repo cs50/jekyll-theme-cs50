@@ -105,17 +105,16 @@ nav ol li, nav ul li {
     @include text-truncate;
 }
 
-// Left-align ordered lists in nav
-nav ol {
-    list-style-position: inside;
-    list-style-type: decimal;
-    padding-left: 0;
-}
-
-// No bullets for unordered lists in nav
+// No bullets for top-level unordered lists in nav
 nav ul {
     list-style: none;
     padding-left: 0;
+}
+
+// Left-align bullets in nested unordered lists
+nav ul ul {
+    list-style-position: inside;
+    list-style-type: initial;
 }
 
 // Separate footer from nav unless empty
