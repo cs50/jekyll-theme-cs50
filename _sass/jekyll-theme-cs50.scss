@@ -223,6 +223,7 @@ main {
 
     // Root em
     html {
+        font-size: 16px;
     }
 
     // Static aside
@@ -239,6 +240,11 @@ main {
     // Don't offset main
     main {
         margin-left: auto;
+    }
+
+    // Don't shrink fonts as much
+    small, .small {
+        font-size: 90%;
     }
 }
 
