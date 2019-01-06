@@ -134,8 +134,8 @@ main {
 
 // Override Primer's family and size for fonts
 .markdown-body {
-    font-family: unset; /* Use our family */
-    font-size: unset; /* Use our size */
+    font-family: inherit; /* Use our family */
+    font-size: inherit; /* Use our size */
 }
 
 // Add padding above headings to match Primer's padding below headings,
@@ -199,6 +199,8 @@ main {
 #markdown-toc ul > li:first-child {
     margin-top: 0;
 }
+
+//
 
 // On large devices
 // https://getbootstrap.com/docs/4.2/layout/overview/#responsive-breakpoints
