@@ -24,7 +24,13 @@ html {
 iframe {
     border: 0;
     height: 480px;
+}
+
+// Ensure responsive in Safari on iOS (for, e.g., Google Calendars), per 
+// https://stackoverflow.com/a/23083463/5156190
+iframe {
     min-width: 100%;
+    width: 1px;
 }
 
 // Confine images to parent
