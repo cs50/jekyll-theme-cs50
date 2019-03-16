@@ -17,19 +17,30 @@ $link-hover-color: $link-color !default;
 
 // Root em
 html {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 // Defaults for iframes
 iframe {
     border: 0;
     height: 480px;
-    width: 100%;
+}
+
+// Ensure responsive in Safari on iOS (for, e.g., Google Calendars), per 
+// https://stackoverflow.com/a/23083463/5156190
+iframe {
+    min-width: 100%;
+    width: 1px;
 }
 
 // Confine images to parent
 img {
     max-width: 100%;
+}
+
+// Confine borders to images
+.img-thumbnail {
+    width: fit-content;
 }
 
 // Crimson aside, transparent text
@@ -100,17 +111,16 @@ nav ol li, nav ul li {
     @include text-truncate;
 }
 
-// Left-align ordered lists in nav
-nav ol {
-    list-style-position: inside;
-    list-style-type: decimal;
-    padding-left: 0;
-}
-
-// No bullets for unordered lists in nav
+// No bullets for top-level unordered lists in nav
 nav ul {
     list-style: none;
     padding-left: 0;
+}
+
+// Left-align bullets in nested unordered lists
+nav ul ul {
+    list-style-position: inside;
+    list-style-type: initial;
 }
 
 // Separate footer from nav unless empty
@@ -129,8 +139,8 @@ main {
 
 // Override Primer's family and size for fonts
 .markdown-body {
-    font-family: unset; /* Use our family */
-    font-size: unset; /* Use our size */
+    font-family: inherit; /* Use our family */
+    font-size: inherit; /* Use our size */
 }
 
 // Add padding above headings to match Primer's padding below headings,
@@ -195,6 +205,8 @@ main {
     margin-top: 0;
 }
 
+//
+
 // On large devices
 // https://getbootstrap.com/docs/4.2/layout/overview/#responsive-breakpoints
 @media (min-width: 768px) {
@@ -233,6 +245,11 @@ main {
     // Don't offset main
     main {
         margin-left: auto;
+    }
+
+    // Don't shrink fonts as much
+    small, .small {
+        font-size: 90%;
     }
 }
 

@@ -71,6 +71,11 @@
                 // For each iframe
                 $('iframe').each(function(index, element) {
 
+                    // Ensure responsive in Safari on iOS (for, e.g., Google Calendars), per https://stackoverflow.com/a/23083463/5156190
+                    if (!$(this).attr('scrolling')) {
+                        $(this).attr('scrolling', 'no');
+                    }
+
                     // If an embedded YouTube video
                     let matches = $(this).attr('src').match(/^https:\/\/www.youtube.com\/embed\/([A-Za-z0-9_-]+)/);
                     if (matches) {
