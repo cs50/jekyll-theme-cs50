@@ -155,6 +155,16 @@ main {
     padding-top: 16px;
 }
 
+// Mute emphasized text in headings
+.markdown-body h1 em,
+.markdown-body h2 em,
+.markdown-body h3 em,
+.markdown-body h4 em,
+.markdown-body h5 em,
+.markdown-body h6 em {
+    @extend .text-muted;
+}
+
 // Subtle anchors in headings 
 .markdown-body h2 a,
 .markdown-body h3 a,
