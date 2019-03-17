@@ -124,12 +124,12 @@ nav ol {
 }
 
 // Mute emphasized text in nav's lists of links
-.markdown-body ul > li > a > em,
-.markdown-body ul > li > a > em,
-.markdown-body ul > li > a > em,
-.markdown-body ul > li > a > em,
-.markdown-body ul > li > a > em,
-.markdown-body ul > li > a > em {
+nav ul > li > a > em,
+nav ul > li > a > em,
+nav ul > li > a > em,
+nav ul > li > a > em,
+nav ul > li > a > em,
+nav ul > li > a > em {
     @extend .font-weight-normal;
     @extend .text-muted;
     font-style: normal;
