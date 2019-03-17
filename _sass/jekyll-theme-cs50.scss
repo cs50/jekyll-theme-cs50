@@ -162,9 +162,10 @@ main {
 .markdown-body h4 em,
 .markdown-body h5 em,
 .markdown-body h6 em {
+    @extend .font-weight-normal;
+    @extend .small;
     @extend .text-muted;
     font-style: normal;
-    font-weight: initial;
 }
 
 // Subtle anchors in headings 
