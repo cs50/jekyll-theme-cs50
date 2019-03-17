@@ -123,18 +123,6 @@ nav ol {
     padding-left: 0;
 }
 
-// Mute emphasized text in nav's lists of links
-nav ul > li > a > em,
-nav ul > li > a > em,
-nav ul > li > a > em,
-nav ul > li > a > em,
-nav ul > li > a > em,
-nav ul > li > a > em {
-    @extend .font-weight-normal;
-    @extend .text-muted;
-    font-style: normal;
-}
-
 // Separate footer from nav unless empty
 footer {
     margin-top: 1rem;
