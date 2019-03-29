@@ -50,7 +50,6 @@ aside {
     color: rgba(255, 255, 255, 0.5);
     font-size: 1.125rem;
     left: 0;
-    line-height: 1.25;
     padding: 2rem 2rem;
     overflow: auto;
     position: fixed;
@@ -88,6 +87,11 @@ aside button[data-toggle=collapse]:hover {
 aside button[data-toggle=collapse]:not(.collapsed) {
     background-color: rgba(255, 255, 255, 1);
     color: $link-color;
+}
+
+// Compact paragraphs
+aside p {
+    line-height: 1.25;
 }
 
 // Separate nav button (or header) and footer, applying margins to children to avoid flicker when uncollapsing
