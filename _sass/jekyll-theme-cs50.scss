@@ -89,8 +89,8 @@ aside button[data-toggle=collapse]:not(.collapsed) {
     color: $link-color;
 }
 
-// Compact paragraphs
-aside p {
+// Compact small paragraphs
+aside p.small {
     line-height: 1.25;
 }
 
