@@ -183,11 +183,11 @@ main {
 }
 
 // Subtle anchors in headings 
-.markdown-body h2 a,
-.markdown-body h3 a,
-.markdown-body h4 a,
-.markdown-body h5 a,
-.markdown-body h6 a {
+.markdown-body h2 a[data-id],
+.markdown-body h3 a[data-id],
+.markdown-body h4 a[data-id],
+.markdown-body h5 a[data-id],
+.markdown-body h6 a[data-id] {
     color: inherit;
     text-decoration: none;
 }
