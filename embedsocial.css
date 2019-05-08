@@ -1,0 +1,11 @@
+/* Add border around images */
+.image-div {
+    border: 1px solid #e8e8e8; 
+}
+
+/* Allow 2 images side-by-side on mobile */
+@media (max-width: 384px) {
+    .col-xxs-12 {
+        width: 50%;
+    }
+}
