@@ -43,16 +43,6 @@
 
             $(document).on('DOMContentLoaded', function() {
 
-                // Add toggler
-                let nav = $('aside nav.collapse');
-                let button = $('<button aria-expanded="false" class="btn btn-sm collapsed" data-toggle="collapse">Menu</button>');
-                nav.before(button);
-                button.click(function() {
-                    nav.collapse('toggle');
-                    $(this).toggleClass('collapsed');
-                    $(this).attr('aria-expanded', ($(this).attr('aria-expanded') === 'false') ? 'true' : 'false');
-                });
-
                 // Get headings
                 let $headings = $([
                     'main.markdown-body h2',

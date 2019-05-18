@@ -7,7 +7,9 @@
 
     </header>
 
-    <nav class="collapse">
+    <button aria-controls="nav" aria-expanded="false" class="btn btn-sm collapsed" data-target="#nav" data-toggle="collapse">Menu</button>
+
+    <nav class="collapse" id="nav">
 
         {%- capture nav -%}{%- include nav.md -%}{%- endcapture -%}
         {{- nav | markdownify | replace: " id=", " data-id=" | strip -}}
