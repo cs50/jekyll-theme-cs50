@@ -55,10 +55,12 @@ aside.col-md {
     padding: 2rem 2rem;
 }
 
-// Fixed width on larger devices
+// Fixed width, scroll on larger devices
 @include media-breakpoint-up(md) {
     aside.col-md {
         flex: 0 1 20rem;
+        max-height: 100vh;
+        overflow-y: auto;
     }
 }
 
