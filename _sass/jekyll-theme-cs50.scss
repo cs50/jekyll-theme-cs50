@@ -49,6 +49,10 @@ aside {
     color: rgba(255, 255, 255, 0.5);
     font-size: 1.125rem;
     padding: 2rem 2rem;
+
+    @include media-breakpoint-up(xl) {
+        flex: 0 1 20rem;
+    }
 }
 
 // Align badges
