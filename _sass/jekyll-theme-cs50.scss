@@ -60,7 +60,7 @@ aside.col-md {
     aside.col-md {
         flex: 0 1 20rem;
         @supports (position: sticky) {
-            max-height: 100vh;
+            height: 100vh;
             overflow-y: auto;
             position: sticky;
             top: 0;
