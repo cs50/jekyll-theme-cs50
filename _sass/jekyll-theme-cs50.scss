@@ -51,13 +51,13 @@ aside {
 }
 
 // Override column's padding
-aside.col-sm {
+aside.col-md {
     padding: 2rem 2rem;
 }
 
 // Fixed width (except for xs)
 @include media-breakpoint-up(sm) {
-    aside.col-sm {
+    aside.col-md {
         flex: 0 1 20rem;
     }
 }
@@ -151,7 +151,7 @@ footer:empty {
 }
 
 // Override column's padding
-main.col-sm {
+main.col-md {
     padding: 4rem 2rem;
 }
 
