@@ -126,17 +126,38 @@
 
             <div class="row">
 
-                <div class="col-sm">
-                
-                    {%- include aside.html -%}
+                <aside class="col-sm">
+ 
+                    <header>
 
-                </div>
+                        {%- capture header -%}{%- include header.md -%}{%- endcapture -%}
+                        {{- header | markdownify | replace: " id=", " data-id=" | strip -}}
 
-                <div class="col-sm">
+                    </header>
 
-                    {%- include main.html -%}
+                    <button aria-controls="nav" aria-expanded="false" class="btn btn-sm collapsed" data-target="#nav" data-toggle="collapse">Menu</button>
 
-                </div>
+                    <nav class="collapse" id="nav">
+
+                        {%- capture nav -%}{%- include nav.md -%}{%- endcapture -%}
+                        {{- nav | markdownify | replace: " id=", " data-id=" | strip -}}
+
+                    </nav>
+
+                    <footer>
+
+                        {%- capture footer -%}{%- include footer.md -%}{%- endcapture -%}
+                        {{- footer | markdownify | replace: " id=", " data-id=" | strip -}}
+
+                    </footer>
+
+                </aside>
+
+                <main class="col-sm markdown-body">
+
+                    {{ content }}
+
+                </main>
 
             </div>
 
