@@ -43,19 +43,23 @@ img {
     width: fit-content;
 }
 
-// Crimson aside, transparent text
+// Crimson background, transparent text
 aside {
     background-color: $link-color;
-    bottom: 0;
     color: rgba(255, 255, 255, 0.5);
     font-size: 1.125rem;
-    left: 0;
+}
+
+// Override column's padding
+aside.col-md {
     padding: 2rem 2rem;
-    overflow: auto;
-    position: fixed;
-    text-align: left;
-    top: 0;
-    width: 20rem;
+}
+
+// Fixed width on larger devices
+@include media-breakpoint-up(md) {
+    aside.col-md {
+        flex: 0 1 20rem;
+    }
 }
 
 // Align badges
@@ -146,9 +150,9 @@ footer:empty {
     margin-top: 0;
 }
 
-// Padding around main
-main {
-    margin-left: 20rem;
+// Override column's padding, width
+main.col-md {
+    max-width: 80rem;
     padding: 4rem 2rem;
 }
 
@@ -232,23 +236,6 @@ main {
     margin-top: 0;
 }
 
-//
-
-// On large devices
-// https://getbootstrap.com/docs/4.2/layout/overview/#responsive-breakpoints
-@media (min-width: 768px) {
-
-    // Hide button above nav
-    aside button[data-toggle=collapse] {
-        display: none;
-    }
-
-    // Show nav
-    nav.collapse:not(.show) {
-        display: block;
-    }
-}
-
 // On small devices and printers
 // https://getbootstrap.com/docs/4.2/layout/overview/#responsive-breakpoints
 @media (max-width: 767.98px), print {
@@ -256,22 +243,6 @@ main {
     // Root em
     html {
         font-size: 16px;
-    }
-
-    // Static aside
-    aside {
-        bottom: auto;
-        left: auto;
-        overflow: visible;
-        position: static;
-        right: auto;
-        top: auto;
-        width: auto;
-    }
-
-    // Don't offset main
-    main {
-        margin-left: auto;
     }
 
     // Don't shrink fonts as much

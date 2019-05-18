@@ -1,19 +1,9 @@
-commonmark:
-  options:
-    - SMART
-  extensions: 
-    - autolink
-    - strikethrough
-    - table
-
 defaults:
   -
     scope:
       path: ""
     values:
-      layout: "default"
-
-markdown: CommonMarkGhPages
+      layout: "page"
 
 sass:
   load_paths:

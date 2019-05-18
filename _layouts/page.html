@@ -43,16 +43,6 @@
 
             $(document).on('DOMContentLoaded', function() {
 
-                // Add toggler
-                let nav = $('aside nav.collapse');
-                let button = $('<button aria-expanded="false" class="btn btn-sm collapsed" data-toggle="collapse">Menu</button>');
-                nav.before(button);
-                button.click(function() {
-                    nav.collapse('toggle');
-                    $(this).toggleClass('collapsed');
-                    $(this).attr('aria-expanded', ($(this).attr('aria-expanded') === 'false') ? 'true' : 'false');
-                });
-
                 // Get headings
                 let $headings = $([
                     'main.markdown-body h2',
@@ -132,9 +122,46 @@
 
     <body>
 
-        {%- include aside.html -%}
+        <div class="container-fluid">
 
-        {%- include main.html -%}
+            <div class="row">
+
+                <aside class="col-md">
+ 
+                    <header>
+
+                        {%- capture header -%}{%- include header.md -%}{%- endcapture -%}
+                        {{- header | markdownify | replace: " id=", " data-id=" | strip -}}
+
+                    </header>
+
+                    <button aria-controls="nav" aria-expanded="false" class="btn btn-sm collapsed d-md-none" data-target="#nav" data-toggle="collapse">Menu</button>
+
+                    <nav class="collapse d-md-block" id="nav">
+
+                        {%- capture nav -%}{%- include nav.md -%}{%- endcapture -%}
+                        {{- nav | markdownify | replace: " id=", " data-id=" | strip -}}
+
+                    </nav>
+
+                    <footer>
+
+                        {%- capture footer -%}{%- include footer.md -%}{%- endcapture -%}
+                        {{- footer | markdownify | replace: " id=", " data-id=" | strip -}}
+
+                    </footer>
+
+                </aside>
+
+                <main class="col-md markdown-body">
+
+                    {{ content }}
+
+                </main>
+
+            </div>
+
+        </div>
 
     </body>
 
