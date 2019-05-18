@@ -48,6 +48,10 @@ aside {
     background-color: $link-color;
     color: rgba(255, 255, 255, 0.5);
     font-size: 1.125rem;
+}
+
+// Override column's padding
+aside.col-sm {
     padding: 2rem 2rem;
 }
 
@@ -146,8 +150,8 @@ footer:empty {
     margin-top: 0;
 }
 
-// Padding around main
-main {
+// Override column's padding
+main.col-sm {
     padding: 4rem 2rem;
 }
 
@@ -231,25 +235,6 @@ main {
     margin-top: 0;
 }
 
-//
-
-/*
-// On large devices
-// https://getbootstrap.com/docs/4.2/layout/overview/#responsive-breakpoints
-@media (min-width: 768px) {
-
-    // Hide button above nav
-    aside button[data-toggle=collapse] {
-        display: none;
-    }
-
-    // Show nav
-    nav.collapse:not(.show) {
-        display: block;
-    }
-}
-*/
-
 // On small devices and printers
 // https://getbootstrap.com/docs/4.2/layout/overview/#responsive-breakpoints
 @media (max-width: 767.98px), print {
@@ -258,26 +243,6 @@ main {
     html {
         font-size: 16px;
     }
-
-    /*
-    // Static aside
-    aside {
-        bottom: auto;
-        left: auto;
-        overflow: visible;
-        position: static;
-        right: auto;
-        top: auto;
-        width: auto;
-    }
-    */
-
-    /*
-    // Don't offset main
-    main {
-        margin-left: auto;
-    }
-    */
 
     // Don't shrink fonts as much
     small, .small {
