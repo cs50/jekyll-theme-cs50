@@ -135,9 +135,9 @@
 
                     </header>
 
-                    <button aria-controls="nav" aria-expanded="false" class="btn btn-sm" data-target="#nav" data-toggle="collapse">Menu</button>
+                    <button aria-controls="nav" aria-expanded="false" class="btn btn-sm collapsed" data-target="#nav" data-toggle="collapse">Menu</button>
 
-                    <nav class="collapse d-none d-md-block" id="nav">
+                    <nav class="collapse d-md-block" id="nav">
 
                         {%- capture nav -%}{%- include nav.md -%}{%- endcapture -%}
                         {{- nav | markdownify | replace: " id=", " data-id=" | strip -}}
