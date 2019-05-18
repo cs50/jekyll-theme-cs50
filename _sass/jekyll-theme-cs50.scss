@@ -55,8 +55,8 @@ aside.col-md {
     padding: 2rem 2rem;
 }
 
-// Fixed width (except for xs)
-@include media-breakpoint-up(sm) {
+// Fixed width on larger devices
+@include media-breakpoint-up(md) {
     aside.col-md {
         flex: 0 1 20rem;
     }
