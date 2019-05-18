@@ -46,16 +46,9 @@ img {
 // Crimson aside, transparent text
 aside {
     background-color: $link-color;
-    bottom: 0;
     color: rgba(255, 255, 255, 0.5);
     font-size: 1.125rem;
-    left: 0;
     padding: 2rem 2rem;
-    overflow: auto;
-    position: fixed;
-    text-align: left;
-    top: 0;
-    width: 20rem;
 }
 
 // Align badges
@@ -148,7 +141,6 @@ footer:empty {
 
 // Padding around main
 main {
-    margin-left: 20rem;
     padding: 4rem 2rem;
 }
 
