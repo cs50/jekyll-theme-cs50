@@ -58,10 +58,14 @@ aside.col-md {
 // Fixed width, scroll on larger devices
 @include media-breakpoint-up(md) {
     aside.col-md {
-        @extend .sticky-top;
         flex: 0 1 20rem;
-        max-height: 100vh;
-        overflow-y: auto;
+        @supports (position: sticky) {
+            max-height: 100vh;
+            overflow-y: auto;
+            position: sticky;
+            top: 0;
+            z-index: $zindex-sticky;
+        }
     }
 }
 
