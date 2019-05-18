@@ -43,7 +43,7 @@ img {
     width: fit-content;
 }
 
-// Crimson aside, transparent text
+// Crimson background, transparent text
 aside {
     background-color: $link-color;
     color: rgba(255, 255, 255, 0.5);
@@ -51,8 +51,11 @@ aside {
     padding: 2rem 2rem;
 }
 
-aside.col-sm {
-    flex: 0 1 20rem;
+// Fixed width (except for xs)
+@include media-breakpoint-up(sm) {
+    aside.col-sm {
+        flex: 0 1 20rem;
+    }
 }
 
 // Align badges
