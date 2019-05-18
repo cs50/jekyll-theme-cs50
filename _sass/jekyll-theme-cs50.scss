@@ -234,6 +234,7 @@ main {
 
 //
 
+/*
 // On large devices
 // https://getbootstrap.com/docs/4.2/layout/overview/#responsive-breakpoints
 @media (min-width: 768px) {
@@ -248,6 +249,7 @@ main {
         display: block;
     }
 }
+*/
 
 // On small devices and printers
 // https://getbootstrap.com/docs/4.2/layout/overview/#responsive-breakpoints
@@ -258,6 +260,7 @@ main {
         font-size: 16px;
     }
 
+    /*
     // Static aside
     aside {
         bottom: auto;
@@ -268,11 +271,14 @@ main {
         top: auto;
         width: auto;
     }
+    */
 
+    /*
     // Don't offset main
     main {
         margin-left: auto;
     }
+    */
 
     // Don't shrink fonts as much
     small, .small {
