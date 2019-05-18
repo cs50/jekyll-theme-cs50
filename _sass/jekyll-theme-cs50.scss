@@ -47,9 +47,12 @@ img {
 aside {
     background-color: $link-color;
     color: rgba(255, 255, 255, 0.5);
-    flex: 0 1 20rem;
     font-size: 1.125rem;
     padding: 2rem 2rem;
+}
+
+aside.col-sm {
+    flex: 0 1 20rem;
 }
 
 // Align badges
