@@ -150,8 +150,9 @@ footer:empty {
     margin-top: 0;
 }
 
-// Override column's padding
+// Override column's padding, width
 main.col-md {
+    max-width: 80rem;
     padding: 4rem 2rem;
 }
 
