@@ -51,13 +51,13 @@ aside {
 }
 
 // Override column's padding
-aside.col-md {
+aside {
     padding: 2rem 2rem;
 }
 
 // Fixed width, scroll on larger devices
 @include media-breakpoint-up(md) {
-    aside.col-md {
+    aside {
         @supports (position: sticky) {
             height: 100vh;
             overflow-y: auto;
@@ -157,7 +157,7 @@ footer:empty {
 }
 
 // Override column's padding, width
-main.col-md {
+main.col {
     max-width: 80rem;
     overflow: auto;
     padding: 4rem 2rem;
