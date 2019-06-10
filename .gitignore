@@ -7,18 +7,45 @@
 # https://yehudakatz.com/2010/12/16/clarifying-the-roles-of-the-gemspec-and-gemfile/
 Gemfile.lock
 
-_sass/package-lock.json
-_sass/node_modules/*
+_sass/bootstrap/*
+!_sass/bootstrap/LICENSE
+!_sass/bootstrap/scss/
 
-!_sass/node_modules/bootstrap/
-_sass/node_modules/bootstrap/*
-!_sass/node_modules/bootstrap/LICENSE
-!_sass/node_modules/bootstrap/scss/
-
-!_sass/node_modules/primer-markdown/
-_sass/node_modules/primer-markdown/*
-!_sass/node_modules/primer-markdown/build/
-_sass/node_modules/primer-markdown/build/*
-!_sass/node_modules/primer-markdown/build/build.scss
+_sass/primer-markdown/*
+!_sass/primer-markdown/LICENSE
+!_sass/primer-markdown/build/
+_sass/primer-markdown/build/*
+!_sass/primer-markdown/build/build.scss
 
 _site/
+
+assets/bootstrap/*
+!assets/bootstrap/LICENSE
+!assets/bootstrap/dist/
+assets/bootstrap/dist/*
+!assets/bootstrap/dist/js/
+assets/bootstrap/dist/js/*
+!assets/bootstrap/dist/js/bootstrap.min.js
+
+assets/@fortawesome/*
+!assets/@fortawesome/fontawesome-free/
+assets/@fortawesome/fontawesome-free/*
+!assets/@fortawesome/fontawesome-free/css/
+assets/@fortawesome/fontawesome-free/css/*
+!assets/@fortawesome/fontawesome-free/css/all.min.css
+!assets/@fortawesome/fontawesome-free/webfonts/
+
+assets/jquery/*
+!assets/jquery/LICENSE.txt
+!assets/jquery/dist/
+assets/jquery/dist/*
+!assets/jquery/dist/jquery.min.js
+
+assets/popper.js/*
+!assets/popper.js/dist/
+assets/popper.js/dist/*
+!assets/popper.js/dist/umd/
+assets/popper.js/dist/umd/*
+!assets/popper.js/dist/umd/popper.min.js
+
+node_modules/

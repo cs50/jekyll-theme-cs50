@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.9.0",
+    "bootstrap": "4.3.1",
+    "jquery": "3.3.1",
+    "popper.js": "1.15.0",
+    "primer-markdown": "4.0.0"
+  },
+  "scripts": {
+    "install": "cp -r node_modules/bootstrap assets/ && cp -r node_modules/@fortawesome assets/ && cp -r node_modules/jquery assets/ && cp -r node_modules/popper.js assets/ && cp -r node_modules/primer-markdown _sass/ && mv _sass/primer-markdown/build/build.css _sass/primer-markdown/build/build.scss && cp -r node_modules/bootstrap _sass/ && rm -rf node_modules && rougify style github > _sass/rouge.scss",
+    "preinstall": "rm -rf node_modules && rm -rf _sass/bootstrap _sass/primer-markdown && rm -rf _sass/bootstrap _sass/jquery _sass/popper.js _sass/rouge.scss"
+  }
+}
