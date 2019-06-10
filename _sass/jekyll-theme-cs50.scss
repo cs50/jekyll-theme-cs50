@@ -58,7 +58,6 @@ aside.col-md {
 // Fixed width, scroll on larger devices
 @include media-breakpoint-up(md) {
     aside.col-md {
-        flex: 0 1 20rem;
         @supports (position: sticky) {
             height: 100vh;
             overflow-y: auto;
