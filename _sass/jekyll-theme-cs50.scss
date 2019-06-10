@@ -160,6 +160,7 @@ footer:empty {
 // Override column's padding, width
 main.col-md {
     max-width: 80rem;
+    overflow: auto;
     padding: 4rem 2rem;
 }
 
