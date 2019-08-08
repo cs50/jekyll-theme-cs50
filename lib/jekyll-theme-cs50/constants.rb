@@ -6,6 +6,7 @@ module CS50
     "jekyll-redirect-from" => "0.15.0",
     "jekyll-relative-links" => "0.6.0",
     "jekyll-titles-from-headings" => "0.5.1",
+    "jekyll-toc" => "0.12.2",
     "jemoji" => "0.11.0"
   }.freeze
 
