@@ -28,3 +28,8 @@ $link-hover-color: $link-color !default;
 details > summary {
     font-weight: bold;
 }
+
+// Prevent padding within 
+.markdown-body p:last-child {
+    margin-bottom: 0;
+}

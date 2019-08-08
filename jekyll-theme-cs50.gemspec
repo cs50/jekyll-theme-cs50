@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.license = "MIT"
   spec.name = "jekyll-theme-cs50"
   spec.summary = "This is CS50's theme for Jekyll."
-  spec.version = "1.0.0"
+  spec.version = "1.0.1"
 
   spec.add_runtime_dependency "jekyll", "3.8.6"
   spec.add_runtime_dependency "sanitize", " 5.0.0"
