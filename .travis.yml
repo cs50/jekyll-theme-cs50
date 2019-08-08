@@ -4,4 +4,5 @@ deploy:
   on:
     branch: master
   provider: rubygems
+rvm: 2.5
 script: gem build jekyll-theme-cs50.gemspec
