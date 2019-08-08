@@ -30,6 +30,6 @@ details > summary {
 }
 
 // Prevent padding within 
-.markdown-body p:last-child {
+.markdown-body :last-child {
     margin-bottom: 0;
 }
