@@ -18,7 +18,8 @@ module CS50
 
   OVERRIDES = {
     "exclude" => [
-      "redirects.json"
+      "redirects.json",
+      "vendor"
     ],
     "kramdown" => {
       "gfm_quirks" => "paragraph_end",
