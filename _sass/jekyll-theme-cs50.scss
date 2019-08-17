@@ -29,7 +29,12 @@ details > summary {
     font-weight: bold;
 }
 
-// Prevent padding within 
+// Suppress bottom margin within parents
 .markdown-body :last-child {
     margin-bottom: 0;
+}
+
+// Suppress Font Awesome's margin
+.fa-ul {
+    margin-left: 0;
 }
