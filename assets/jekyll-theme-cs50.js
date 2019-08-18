@@ -45,10 +45,10 @@ $(document).on('DOMContentLoaded', function() {
         $(element).parent().addClass('fa-ul');
 
         // Prepend icon
-        if ($element.attr('data-marker') === '+') {
+        if ($(element).attr('data-marker') === '+') {
             $(element).prepend('<span class="fa-li"><i class="fas fa-caret-right"></i></span>');
         }
-        else if ($element.attr('data-marker') === '-') {
+        else if ($(element).attr('data-marker') === '-') {
             $(element).prepend('<span class="fa-li"><i class="fas fa-caret-left"></i></span>');
         }
     });
