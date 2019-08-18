@@ -135,12 +135,11 @@ module Kramdown
       def parse_list
         super
         current_list = @tree.children.select{ |element| [:ul].include?(element.type) }.last
+        current_list.attr["data-list"] = ""
         current_list.children.each do |li|
           location = li.options[:location]
           li.attr["data-list"] = @source.lines[location-1].lstrip[0]
         end
-        #location = current_list.options[:location]
-        #current_list.attr["data-list"] = @source.lines[location-1].lstrip[0]
         true
       end
     end
