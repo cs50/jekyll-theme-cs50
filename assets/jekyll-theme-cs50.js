@@ -1,6 +1,6 @@
 $(document).on('DOMContentLoaded', function() {
 
-    // alert
+    // data-alert
     $('[data-alert]').each(function(index, element) {
         if ($(element).attr('data-alert')) {
             $(element).addClass('alert-' + $(element).attr('data-alert'));
@@ -38,8 +38,23 @@ $(document).on('DOMContentLoaded', function() {
         $('html, body').animate({scrollTop: y}, 500);
     }
 
-    // next
-    $('[data-next]').each(function(index) {
+    // data-markers
+    $('[data-marker]').each(function(index, element) {
+
+        // Add .fa-ul to parent ul
+        $(element).parent().addClass('fa-ul');
+
+        // Prepend icon
+        if ($element.attr('data-marker') === '+') {
+            $(element).prepend('<span class="fa-li"><i class="fas fa-caret-right"></i></span>');
+        }
+        else if ($element.attr('data-marker') === '-') {
+            $(element).prepend('<span class="fa-li"><i class="fas fa-caret-left"></i></span>');
+        }
+    });
+
+    // data-next
+    $('[data-next]').each(function(index, element) {
 
         // Hide next elements
         next($(this).parent()).addClass('next');
