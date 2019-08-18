@@ -135,7 +135,7 @@ module Kramdown
         super
         current_list = @tree.children.select{ |element| [:ul].include?(element.type) }.last
         current_list.attr["data-list"] = "+"
-        puts current_list.to_yaml
+        puts current_list.options[":location"]
         puts @src
         true
       end
