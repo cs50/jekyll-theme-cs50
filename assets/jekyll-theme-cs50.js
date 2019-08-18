@@ -49,8 +49,9 @@ $(document).on('DOMContentLoaded', function() {
         const click = function(eventObject) {
             eventObject.stopPropagation();
             console.log("HERE");
+            console.log(this);
+            console.log(event.target);
             const marker = $(element).attr('data-marker');
-            console.log(marker);
             if (marker === '+') {
                 $(element).attr('data-marker', '-');
             }
