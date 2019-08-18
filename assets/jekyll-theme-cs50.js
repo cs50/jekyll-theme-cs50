@@ -46,7 +46,7 @@ $(document).on('DOMContentLoaded', function() {
 
         // Prepend icon
         if ($(element).attr('data-marker') === '+') {
-            $(element).prepend('<span class="fa-li fa-sm"><i class="fas fa-play fa-xs"></i></span>');
+            $(element).prepend('<span class="fa-li"><i class="fas fa-triangle" style="transform: rotate(90deg);"></i></span>');
         }
         else if ($(element).attr('data-marker') === '-') {
             $(element).prepend('<span class="fa-li"><i class="fas fa-caret-left"></i></span>');
