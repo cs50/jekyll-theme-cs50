@@ -58,12 +58,12 @@ $(document).on('DOMContentLoaded', function() {
         };
 
         // Listen for clicks
-        $(element).on('click', click);
         play.on('click', click);
 
         // Prepend icons
         if ($(element).attr('data-marker') === '+' || $(element).attr('data-marker') === '-') {
             $(element).prepend(play);
+            $(element).on('click', click);
         }
         else if ($(element).attr('data-marker') === '*') {
             $(element).prepend('<span class="fa-li"><i class="fas fa-circle"></i></span>');
