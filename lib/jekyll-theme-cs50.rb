@@ -134,10 +134,10 @@ module Kramdown
       def parse_list
         super
         current_list = @tree.children.select{ |element| [:ul].include?(element.type) }.last
-        current_list.attr["data-list"] = "+"
         location = current_list.options[:location]
-        puts location
-        puts @source.split(/\n/)[location-1]
+        if @source.split(/\n/)[location-1] =~ LIST_START_UL
+          current_list.attr["data-list"] = $1[-1]
+        end
         true
       end
     end
