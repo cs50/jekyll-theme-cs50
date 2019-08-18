@@ -135,14 +135,7 @@ module Kramdown
         super
         current_list = @tree.children.select{ |element| [:ul].include?(element.type) }.last
         location = current_list.options[:location]
-        puts location
-        puts @source.split(/\n/)[location-1]
-        puts Kramdown::Parser::Kramdown::LIST_START_UL
-        puts current_list.to_yaml
-        if @source.lines[location-1] =~ Kramdown::Parser::Kramdown::LIST_START_UL
-          puts "YES"
-          current_list.attr["data-list"] = $1[-1]
-        end
+        current_list.attr["data-list"] = @source.lines[location-1].lstrip[0]
         true
       end
     end
