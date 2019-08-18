@@ -46,7 +46,7 @@ $(document).on('DOMContentLoaded', function() {
 
         // Prepare icon
         const play = $('<span class="fa-li"><i class="fas fa-play"></i></span>');
-        play.on('click', function(eventObject) {
+        const click = function(eventObject) {
             const marker = $(this).parent().attr('data-marker');
             if (marker === '+') {
                 $(this).parent().attr('data-marker', '-');
@@ -54,7 +54,12 @@ $(document).on('DOMContentLoaded', function() {
             else if (marker === '-') {
                 $(this).parent().attr('data-marker', '+');
             }
-        });
+            $(window).trigger('resize');
+        };
+
+        // Listen for clicks
+        $(element).on('click', click);
+        play.on('click', click);
 
         // Prepend icons
         if ($(element).attr('data-marker') === '+' || $(element).attr('data-marker') === '-') {
