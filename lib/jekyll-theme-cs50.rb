@@ -133,9 +133,8 @@ module Kramdown
   module Parser
     class GFM < Kramdown::Parser::Kramdown
       def parse_list
-        puts "AAA"
         super
-        puts "BBB"
+        true
       end
     end
   end
