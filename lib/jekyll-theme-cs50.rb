@@ -128,14 +128,19 @@ end
 Jekyll::Hooks.register [:pages, :documents], :post_render do |doc|
 end
 
+# Check for toggles
 module Kramdown
   module Parser
     class GFM < Kramdown::Parser::Kramdown
       def parse_list
         super
         current_list = @tree.children.select{ |element| [:ul].include?(element.type) }.last
-        location = current_list.options[:location]
-        current_list.attr["data-list"] = @source.lines[location-1].lstrip[0]
+        current_list.children.each do |li|
+          location = li.options[:location]
+          li.attr["data-list"] = @source.lines[location-1].lstrip[0]
+        end
+        #location = current_list.options[:location]
+        #current_list.attr["data-list"] = @source.lines[location-1].lstrip[0]
         true
       end
     end
