@@ -138,6 +138,7 @@ module Kramdown
         puts location
         puts @source.split(/\n/)[location-1]
         puts Kramdown::Parser::Kramdown::LIST_START_UL
+        puts current_list.to_yaml
         if @source.lines[location-1] =~ Kramdown::Parser::Kramdown::LIST_START_UL
           puts "YES"
           current_list.attr["data-list"] = $1[-1]
