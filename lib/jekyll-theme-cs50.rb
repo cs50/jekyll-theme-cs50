@@ -138,6 +138,7 @@ module Kramdown
         puts location
         puts @source.split(/\n/)[location-1]
         if @source.split(/\n/)[location-1] =~ LIST_START_UL
+          puts "YES"
           current_list.attr["data-list"] = $1[-1]
         end
         true
