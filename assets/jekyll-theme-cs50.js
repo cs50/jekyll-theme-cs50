@@ -46,13 +46,13 @@ $(document).on('DOMContentLoaded', function() {
 
         // Prepend icon
         if ($(element).attr('data-marker') === '+') {
-            $(element).prepend('<span class="fa-li"><i class="fas fa-play" style="font-size: 50%; vertical-align: 25%"></i></span>');
+            $(element).prepend('<span class="fa-li"><i class="fas fa-play"></i></span>');
         }
         else if ($(element).attr('data-marker') === '-') {
-            $(element).prepend('<span class="fa-li"><i class="fas fa-play" style="font-size: 50%; transform: rotate(90deg); vertical-align: 25%;"></i></span>');
+            $(element).prepend('<span class="fa-li"><i class="fas fa-play"></i></span>');
         }
         else if ($(element).attr('data-marker') === '*') {
-            $(element).prepend('<span class="fa-li"><i class="fas fa-circle" style="font-size: 25%; vertical-align: 25%;"></i></span>');
+            $(element).prepend('<span class="fa-li"><i class="fas fa-circle"></i></span>');
         }
     });
 
