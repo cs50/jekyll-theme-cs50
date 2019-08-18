@@ -132,10 +132,6 @@ end
 module Kramdown
   module Parser
     class GFM < Kramdown::Parser::Kramdown
-      def parse_list
-        super
-        puts "XXX"
-      end
     end
   end
 end
