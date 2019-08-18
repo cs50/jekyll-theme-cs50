@@ -29,7 +29,6 @@ $link-hover-color: $link-color !default;
 // + and -
 [data-marker="+"], [data-marker="-"] {
     cursor: pointer;
-    font-weight: bold;
 }
 [data-marker="+"] > .fa-li, [data-marker="-"] > .fa-li {
     user-select: none;
@@ -46,9 +45,6 @@ $link-hover-color: $link-color !default;
 }
 
 // -
-[data-marker="-"] > ol, [data-marker="-"] > ul {
-    font-weight: initial;
-}
 [data-marker="-"] > .fa-li > .fa-play {
     cursor: pointer;
     font-size: 50%;
