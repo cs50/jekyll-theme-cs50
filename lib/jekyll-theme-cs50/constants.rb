@@ -29,7 +29,7 @@ module CS50
       "syntax_highlighter" => "rouge",
       "template" => ""
     },
-    "markdown" => "MyCustomProcessor",
+    "markdown" => "kramdown",
     "permalink" => "pretty",
     "theme" => "jekyll-theme-cs50"
   }.freeze
