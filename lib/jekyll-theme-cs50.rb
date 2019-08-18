@@ -1,6 +1,6 @@
 require "cgi"
 require "jekyll"
-require "jekyll/converters/markdown/kramdown_parser"
+require "kramdown/parser/gfm"
 require "sanitize"
 require "uri"
 
@@ -128,12 +128,9 @@ end
 Jekyll::Hooks.register [:pages, :documents], :post_render do |doc|
 end
 
-class Jekyll::Converters::Markdown::MyCustomProcessor
-  def initialize(config)
-    @parser = Jekyll::Converters::Markdown::KramdownParser.new(config)
-  end
-
-  def convert(content)
-    @parser.convert(content)
+class Kramdown::Parser::GFM
+  def parse_list
+    super
+    puts "XXX"
   end
 end
