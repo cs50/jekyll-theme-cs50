@@ -137,7 +137,8 @@ module Kramdown
         location = current_list.options[:location]
         puts location
         puts @source.split(/\n/)[location-1]
-        if @source.split(/\n/)[location-1] =~ LIST_START_UL
+        puts Kramdown::Parser::Kramdown::LIST_START_UL
+        if @source.split(/\n/)[location-1] =~ Kramdown::Parser::Kramdown::LIST_START_UL
           puts "YES"
           current_list.attr["data-list"] = $1[-1]
         end
