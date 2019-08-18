@@ -127,6 +127,6 @@ end
 Jekyll::Hooks.register [:pages, :documents], :post_render do |doc|
 end
 
-Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc|
+Jekyll::Hooks.register [:pages, :documents], :post_render do |doc|
     puts doc
 end
