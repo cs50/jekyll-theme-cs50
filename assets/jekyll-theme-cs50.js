@@ -51,6 +51,9 @@ $(document).on('DOMContentLoaded', function() {
         else if ($(element).attr('data-marker') === '-') {
             $(element).prepend('<span class="fa-li"><i class="fas fa-caret-left"></i></span>');
         }
+        else if ($(element).attr('data-marker') === '*') {
+            $(element).prepend('<span class="fa-li"><i class="fas fa-circle"></i></span>');
+        }
     });
 
     // data-next
