@@ -52,7 +52,7 @@ $(document).on('DOMContentLoaded', function() {
             $(element).prepend('<span class="fa-li fa-sm"><i class="fas fa-play fa-xs" style="transform: rotate(90deg);"></i></span>');
         }
         else if ($(element).attr('data-marker') === '*') {
-            $(element).prepend('<span class="fa-li fa-sm"><i class="fas fa-circle fa-xs"></i></span>');
+            $(element).css('list-style-type', 'disc');
         }
     });
 
