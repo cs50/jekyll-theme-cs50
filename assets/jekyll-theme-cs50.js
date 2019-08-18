@@ -62,7 +62,9 @@ $(document).on('DOMContentLoaded', function() {
                 else if (marker === '-') {
                     $(element).attr('data-marker', '+');
                 }
-                //$(window).trigger('resize');
+                window.setTimeout(function() {
+                    $(window).trigger('resize');
+                }, 0);
             }
         };
 
