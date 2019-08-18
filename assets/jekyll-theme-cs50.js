@@ -59,13 +59,17 @@ $(document).on('DOMContentLoaded', function() {
             $(window).trigger('resize');
         };
 
-        // Listen for clicks
-        play.on('click', click);
-
-        // Prepend icons
+        // If + or -
         if ($(element).attr('data-marker') === '+' || $(element).attr('data-marker') === '-') {
+
+            // Prepend icons
             $(element).prepend(play);
+
+            // Listen for clicks
+            $(element).on('click', click);
         }
+
+        // If *
         else if ($(element).attr('data-marker') === '*') {
             $(element).prepend('<span class="fa-li"><i class="fas fa-circle"></i></span>');
         }
