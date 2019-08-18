@@ -48,7 +48,7 @@ $(document).on('DOMContentLoaded', function() {
         const play = $('<span class="fa-li"><i class="fas fa-play"></i></span>');
         const click = function(eventObject) {
             console.log("HERE");
-            const marker = $(element).attr('data-marker');
+            let marker = $(element).attr('data-marker');
             console.log(marker);
             if (marker === '+') {
                 $(element).attr('data-marker', '-');
