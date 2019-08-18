@@ -1,6 +1,5 @@
 require "cgi"
 require "jekyll"
-require "kramdown/parser"
 require "kramdown/parser/gfm"
 require "sanitize"
 require "uri"
@@ -134,6 +133,8 @@ module Kramdown
     class GFM < Kramdown::Parser::Kramdown
       def parse_list
         super
+        current_list = @tree.children.select{ |element| [:ul].include?(element.type) }.last
+        puts current_list.inspect
         true
       end
     end
