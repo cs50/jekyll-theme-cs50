@@ -26,6 +26,9 @@ $link-hover-color: $link-color !default;
 [data-marker="+"] {
     cursor: pointer;
 }
+[data-marker="+"] > ol, [data-marker="+"] > ul {
+    display: none;
+}
 [data-marker="+"] > .fa-li > .fa-play
 {
     font-size: 50%;

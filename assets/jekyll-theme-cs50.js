@@ -44,12 +44,21 @@ $(document).on('DOMContentLoaded', function() {
         // Add .fa-ul to parent ul
         $(element).parent().addClass('fa-ul');
 
-        // Prepend icon
-        if ($(element).attr('data-marker') === '+') {
-            $(element).prepend('<span class="fa-li"><i class="fas fa-play"></i></span>');
-        }
-        else if ($(element).attr('data-marker') === '-') {
-            $(element).prepend('<span class="fa-li"><i class="fas fa-play"></i></span>');
+        // Prepare icon
+        const play = $('<span class="fa-li"><i class="fas fa-play"></i></span>');
+        play.on('click', function(eventObject) {
+            const marker = $(this).parent().attr('data-marker');
+            if (marker === '+') {
+                $(this).parent().attr('data-marker', '-');
+            }
+            else if (marker === '-') {
+                $(this).parent().attr('data-marker', '+');
+            }
+        });
+
+        // Prepend icons
+        if ($(element).attr('data-marker') === '+' || $(element).attr('data-marker') === '-') {
+            $(element).prepend(play);
         }
         else if ($(element).attr('data-marker') === '*') {
             $(element).prepend('<span class="fa-li"><i class="fas fa-circle"></i></span>');
