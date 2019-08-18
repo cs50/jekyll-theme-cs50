@@ -1,5 +1,6 @@
 require "cgi"
 require "jekyll"
+require "kramdown/parser/gfm"
 require "sanitize"
 require "uri"
 
@@ -125,4 +126,21 @@ end
 # https://github.com/jekyll/jekyll-mentions/blob/master/lib/jekyll-mentions.rb and
 # https://github.com/jekyll/jemoji/blob/master/lib/jemoji.rb
 Jekyll::Hooks.register [:pages, :documents], :post_render do |doc|
+end
+
+# Remember list markers
+module Kramdown
+  module Parser
+    class GFM < Kramdown::Parser::Kramdown
+      def parse_list
+        super
+        current_list = @tree.children.select{ |element| [:ul].include?(element.type) }.last
+        current_list.children.each do |li|
+          location = li.options[:location]
+          li.attr["data-marker"] = @source.lines[location-1].lstrip[0]
+        end
+        true
+      end
+    end
+  end
 end
