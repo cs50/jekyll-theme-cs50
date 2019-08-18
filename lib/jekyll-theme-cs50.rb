@@ -130,7 +130,7 @@ end
 
 class Jekyll::Converters::Markdown::MyCustomProcessor
   def initialize(config)
-    @parser = ::KramdownParser.new(config)
+    @parser = KramdownParser.new(config)
   end
 
   def convert(content)
