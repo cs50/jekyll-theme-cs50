@@ -134,7 +134,7 @@ module Kramdown
       def parse_list
         super
         current_list = @tree.children.select{ |element| [:ul].include?(element.type) }.last
-        puts current_list.inspect
+        current_list.attr['data-list'] = "+"
         true
       end
     end
