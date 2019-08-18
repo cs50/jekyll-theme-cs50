@@ -128,17 +128,16 @@ end
 Jekyll::Hooks.register [:pages, :documents], :post_render do |doc|
 end
 
-# Check for toggles
+# Remember list markers
 module Kramdown
   module Parser
     class GFM < Kramdown::Parser::Kramdown
       def parse_list
         super
         current_list = @tree.children.select{ |element| [:ul].include?(element.type) }.last
-        current_list.attr["data-list"] = ""
         current_list.children.each do |li|
           location = li.options[:location]
-          li.attr["data-list"] = @source.lines[location-1].lstrip[0]
+          li.attr["data-marker"] = @source.lines[location-1].lstrip[0]
         end
         true
       end
