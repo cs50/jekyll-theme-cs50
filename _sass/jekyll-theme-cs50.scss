@@ -23,17 +23,25 @@ $link-hover-color: $link-color !default;
 .fa-ul {
     margin-left: 0;
 }
+[data-marker="+"] {
+    cursor: pointer;
+}
 [data-marker="+"] > .fa-li > .fa-play
 {
     font-size: 50%;
     vertical-align: 25%
 }
+[data-marker="-"] {
+    cursor: pointer;
+}
 [data-marker="-"] > .fa-li > .fa-play {
+    cursor: pointer;
     font-size: 50%;
     transform: rotate(90deg);
     vertical-align: 25%
 }
 [data-marker="*"] > .fa-li > .fa-circle {
+    cursor: pointer;
     font-size: 25%;
     vertical-align: 25%;
 }
