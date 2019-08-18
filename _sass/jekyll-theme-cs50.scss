@@ -19,14 +19,23 @@ $link-hover-color: $link-color !default;
 // Import Google Fonts
 @import url("https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700");
 
-// marker
+//// marker
+
+// Suppress margin
 .fa-ul {
     margin-left: 0;
 }
-[data-marker="+"] {
+
+// + and -
+[data-marker="+"], [data-marker="-"] {
     cursor: pointer;
+    font-weight: bold;
+}
+[data-marker="+"] > .fa-li, [data-marker="-"] > .fa-li {
     user-select: none;
 }
+
+// +
 [data-marker="+"] > ol, [data-marker="+"] > ul {
     display: none;
 }
@@ -35,9 +44,10 @@ $link-hover-color: $link-color !default;
     font-size: 50%;
     vertical-align: 25%
 }
-[data-marker="-"] {
-    cursor: pointer;
-    user-select: none;
+
+// -
+[data-marker="-"] > ol, [data-marker="-"] > ul {
+    font-weight: inherit;
 }
 [data-marker="-"] > .fa-li > .fa-play {
     cursor: pointer;
@@ -45,6 +55,8 @@ $link-hover-color: $link-color !default;
     transform: rotate(90deg);
     vertical-align: 25%
 }
+
+// *
 [data-marker="*"] > .fa-li > .fa-circle {
     cursor: pointer;
     font-size: 25%;
