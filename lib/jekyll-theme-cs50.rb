@@ -1,5 +1,6 @@
 require "cgi"
 require "jekyll"
+require "kramdown/parser"
 require "kramdown/parser/gfm"
 require "sanitize"
 require "uri"
@@ -128,12 +129,13 @@ end
 Jekyll::Hooks.register [:pages, :documents], :post_render do |doc|
 end
 
-class Kramdown::Parser::GFM
-  def initialize(source, options)
-    super
-  end
-  def parse_list
-    super
-    puts "XXX"
+module Kramdown
+  module Parser
+    class GFM < Kramdown::Parser::Kramdown
+      def parse_list
+        super
+        puts "XXX"
+      end
+    end
   end
 end
