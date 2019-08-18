@@ -129,6 +129,9 @@ Jekyll::Hooks.register [:pages, :documents], :post_render do |doc|
 end
 
 class Kramdown::Parser::GFM
+  def initialize(source, options)
+    super
+  end
   def parse_list
     super
     puts "XXX"
