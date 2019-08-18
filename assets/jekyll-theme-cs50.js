@@ -1,6 +1,6 @@
 $(document).on('DOMContentLoaded', function() {
 
-    // alert
+    // data-alert
     $('[data-alert]').each(function(index, element) {
         if ($(element).attr('data-alert')) {
             $(element).addClass('alert-' + $(element).attr('data-alert'));
@@ -38,8 +38,52 @@ $(document).on('DOMContentLoaded', function() {
         $('html, body').animate({scrollTop: y}, 500);
     }
 
-    // next
-    $('[data-next]').each(function(index) {
+    // data-markers
+    $('[data-marker]').each(function(index, element) {
+
+        // Add .fa-ul to parent ul
+        $(element).parent().addClass('fa-ul');
+
+        // Prepare icon
+        const play = $('<span class="fa-li"><i class="fas fa-play"></i></span>');
+        const click = function(eventObject) {
+
+            // If it wasn't a descendent link that was clicked
+            if (!$(eventObject.target).is('a')) {
+
+                // Don't propgate to nested lists
+                eventObject.stopPropagation();
+
+                // Toggle market
+                const marker = $(element).attr('data-marker');
+                if (marker === '+') {
+                    $(element).attr('data-marker', '-');
+                }
+                else if (marker === '-') {
+                    $(element).attr('data-marker', '+');
+                }
+                $(window).trigger('resize');
+            }
+        };
+
+        // If + or -
+        if ($(element).attr('data-marker') === '+' || $(element).attr('data-marker') === '-') {
+
+            // Prepend icons
+            $(element).prepend(play);
+
+            // Listen for clicks
+            $(element).on('click', click);
+        }
+
+        // If *
+        else if ($(element).attr('data-marker') === '*') {
+            $(element).prepend('<span class="fa-li"><i class="fas fa-circle"></i></span>');
+        }
+    });
+
+    // data-next
+    $('[data-next]').each(function(index, element) {
 
         // Hide next elements
         next($(this).parent()).addClass('next');
