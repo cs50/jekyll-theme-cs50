@@ -47,12 +47,12 @@ $(document).on('DOMContentLoaded', function() {
         // Prepare icon
         const play = $('<span class="fa-li"><i class="fas fa-play"></i></span>');
         const click = function(eventObject) {
-            const marker = $(this).parent().attr('data-marker');
+            const marker = $(element).attr('data-marker');
             if (marker === '+') {
-                $(this).parent().attr('data-marker', '-');
+                $(element).attr('data-marker', '-');
             }
             else if (marker === '-') {
-                $(this).parent().attr('data-marker', '+');
+                $(element).attr('data-marker', '+');
             }
             $(window).trigger('resize');
         };
