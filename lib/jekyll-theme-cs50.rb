@@ -137,7 +137,7 @@ module Kramdown
         current_list.attr["data-list"] = "+"
         location = current_list.options[:location]
         puts location
-        puts @source.split(/\n/)[location]
+        puts @source.split(/\n/)[location-1]
         true
       end
     end
