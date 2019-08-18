@@ -47,18 +47,23 @@ $(document).on('DOMContentLoaded', function() {
         // Prepare icon
         const play = $('<span class="fa-li"><i class="fas fa-play"></i></span>');
         const click = function(eventObject) {
-            eventObject.stopPropagation();
-            console.log("HERE");
-            console.log(this);
-            console.log(eventObject.target);
-            const marker = $(element).attr('data-marker');
-            if (marker === '+') {
-                $(element).attr('data-marker', '-');
+
+            // If it wasn't a descendent link that was clicked
+            if (!$(eventObject.target).is('a')) {
+
+                // Don't propgate to nested lists
+                eventObject.stopPropagation();
+
+                // Toggle market
+                const marker = $(element).attr('data-marker');
+                if (marker === '+') {
+                    $(element).attr('data-marker', '-');
+                }
+                else if (marker === '-') {
+                    $(element).attr('data-marker', '+');
+                }
+                //$(window).trigger('resize');
             }
-            else if (marker === '-') {
-                $(element).attr('data-marker', '+');
-            }
-            $(window).trigger('resize');
         };
 
         // If + or -
