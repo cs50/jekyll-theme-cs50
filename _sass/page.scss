@@ -2,7 +2,7 @@
 
 // Root em
 html {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 // So that main's height doesn't grow to fill viewport, which breaks addition of margin-bottom for last headings
@@ -237,11 +237,6 @@ main.col-md {
 // On small devices and printers
 // https://getbootstrap.com/docs/4.2/layout/overview/#responsive-breakpoints
 @media (max-width: 767.98px), print {
-
-    // Root em
-    html {
-        font-size: 16px;
-    }
 
     // Don't shrink fonts as much
     small, .small {
