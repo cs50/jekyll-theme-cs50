@@ -227,6 +227,11 @@ main.col-md {
     margin-top: 0;
 }
 
+// Constrain videos
+.markdown-body .embed-responsive {
+    max-width: 720px;
+}
+
 // Condense TOC
 #markdown-toc li + li,
 #markdown-toc ol > li:first-child,
