@@ -61,6 +61,7 @@ $(document).on('DOMContentLoaded', function() {
                 // Toggle marker
                 const marker = $(element).attr('data-marker');
                 if (marker === '+') {
+                    $(element).attr('data-marker', '-');
                     $(element).children('.fa-li').replaceWith(minus);
                 }
                 else if (marker === '-') {
