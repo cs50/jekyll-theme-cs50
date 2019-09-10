@@ -49,12 +49,17 @@ aside.col-md {
 @include media-breakpoint-up(md) {
     aside.col-md {
         flex: 0 1 20rem;
-        @supports (position: sticky) {
+        @supports (position: sticky) or (position: -webkit-sticky) {
             height: 100vh;
             overflow-y: auto;
-            position: sticky;
             top: 0;
             z-index: $zindex-sticky;
+        }
+        @supports (position: sticky) {
+            position: sticky;
+        }
+        @supports (position: -webkit-sticky) {
+            position: -webkit-sticky;
         }
     }
 }
