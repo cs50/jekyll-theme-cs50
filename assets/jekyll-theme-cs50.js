@@ -126,6 +126,7 @@ $(document).on('DOMContentLoaded', function() {
 
     // Get headings
     let headings = $([
+        'main.markdown-body h1',
         'main.markdown-body h2',
         'main.markdown-body h3',
         'main.markdown-body h4',
