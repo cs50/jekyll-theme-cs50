@@ -44,8 +44,12 @@ $(document).on('DOMContentLoaded', function() {
         // Add .fa-ul to parent ul
         $(element).parent().addClass('fa-ul');
 
-        // Prepare icon
-        const play = $('<span class="fa-li"><i class="fas fa-play"></i></span>');
+        // Icons
+        const plus = $('<span class="fa-li"><i class="far fa-plus-square"></i></span>');
+        const minus = $('<span class="fa-li"><i class="far fa-minus-square"></i></span>');
+        const circle = $(element).prepend('<span class="fa-li"><i class="fas fa-circle"></i></span>');
+
+        // Listener
         const click = function(eventObject) {
 
             // If it wasn't a descendent link that was clicked
@@ -54,31 +58,34 @@ $(document).on('DOMContentLoaded', function() {
                 // Don't propgate to nested lists
                 eventObject.stopPropagation();
 
-                // Toggle market
+                // Toggle marker
                 const marker = $(element).attr('data-marker');
                 if (marker === '+') {
-                    $(element).attr('data-marker', '-');
+                    $(element).children('.fa-li').replaceWith(minus);
                 }
                 else if (marker === '-') {
                     $(element).attr('data-marker', '+');
+                    $(element).children('.fa-li').replaceWith(plus);
                 }
                 $(window).trigger('resize');
             }
         };
 
-        // If + or -
-        if ($(element).attr('data-marker') === '+' || $(element).attr('data-marker') === '-') {
+        // If +
+        if ($(element).attr('data-marker') === '+') {
+            $(element).prepend(plus);
+            $(element).on('click', click);
+        }
 
-            // Prepend icons
-            $(element).prepend(play);
-
-            // Listen for clicks
+        // If -
+        else if ($(element).attr('data-marker') === '-') {
+            $(element).prepend(minus);
             $(element).on('click', click);
         }
 
         // If *
         else if ($(element).attr('data-marker') === '*') {
-            $(element).prepend('<span class="fa-li"><i class="fas fa-circle"></i></span>');
+            $(element).prepend(circle);
         }
     });
 
