@@ -47,7 +47,7 @@ $(document).on('DOMContentLoaded', function() {
         // Icons
         const plus = $('<span class="fa-li"><i class="far fa-plus-square"></i></span>');
         const minus = $('<span class="fa-li"><i class="far fa-minus-square"></i></span>');
-        const circle = $(element).prepend('<span class="fa-li"><i class="fas fa-circle"></i></span>');
+        const circle = $('<span class="fa-li"><i class="fas fa-circle"></i></span>');
 
         // Listener
         const click = function(eventObject) {
