@@ -33,6 +33,9 @@ $link-hover-color: $link-color !default;
 [data-marker="+"] > .fa-li, [data-marker="-"] > .fa-li {
     user-select: none;
 }
+[data-marker="+"] > .fa-li > .fa-plus-square, [data-marker="-"] > .fa-li > .fa-minus-square {
+    font-size: 80%;
+}
 
 // +
 [data-marker="+"] > ol, [data-marker="+"] > ul {
