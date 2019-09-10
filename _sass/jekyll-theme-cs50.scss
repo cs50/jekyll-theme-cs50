@@ -38,25 +38,12 @@ $link-hover-color: $link-color !default;
 [data-marker="+"] > ol, [data-marker="+"] > ul {
     display: none;
 }
-[data-marker="+"] > .fa-li > .fa-play
-{
-    font-size: 50%;
-    vertical-align: 25%
-}
-
-// -
-[data-marker="-"] > .fa-li > .fa-play {
-    cursor: pointer;
-    font-size: 50%;
-    transform: rotate(90deg);
-    vertical-align: 25%
-}
 
 // *
 [data-marker="*"] > .fa-li > .fa-circle {
     cursor: pointer;
-    font-size: 33%;
-    vertical-align: 33%;
+    font-size: 40%;
+    vertical-align: 40%;
 }
 
 // next
