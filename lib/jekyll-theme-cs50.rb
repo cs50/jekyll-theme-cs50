@@ -89,7 +89,7 @@ module CS50
       @args = Liquid::Tag::Parser.new(markup)
       puts "HERE:"
       puts @args.inspect
-      if @args.raw and @args.raw =~ /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+      if @args.@raw and @args.@raw =~ /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
         @v = $1
         components = {
           rel: "0",
