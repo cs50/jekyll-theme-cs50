@@ -92,7 +92,7 @@ module CS50
 
       # Allow unquoted URLs
       if @args.args.keys and @args.args.keys[0].to_s =~ /\Ahttps?\z/
-        argv1 = @args.args.keys[0].to_s + ":" + @args.args.values[0]
+        argv1 = @args.args.keys[0].to_s + ":" + @args.args.values[0].to_s
       else
         argv1 = @argv[:argv1]
       end
