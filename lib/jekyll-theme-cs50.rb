@@ -13,7 +13,7 @@ module CS50
 
     def initialize(tag_name, markup, options)
       super
-      @args = Liquid::Tag::Parser.new(markup).args
+      @args = Liquid::Tag::Parser.new(markup)
       alert = @args[:argv1]
       @alert = (["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].include? alert) ? alert : ""
     end
@@ -35,9 +35,10 @@ module CS50
 
   class NextTag < Liquid::Tag
 
-    def initialize(tag_name, text, tokens)
+    def initialize(tag_name, markup, options)
       super
-      @text = (text.length > 0) ? CGI.escapeHTML(text.strip().gsub(/\A"|"\Z/, "").gsub(/\A"|"\Z/, "")) : "Next"
+      @args = Liquid::Tag::Parser.new(markup)
+      @text = (@args[:argv1].length > 0) ? CGI.escapeHTML(@args[:argv1]) : "Next"
     end
 
     def render(context)
