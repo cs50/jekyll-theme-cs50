@@ -14,6 +14,14 @@ $(document).on('DOMContentLoaded', function() {
         }
     });
 
+    // data-calendar
+    $('[data-calendar]').each(function(index, element) {
+        if ($(element).attr('data-calendar')) {
+            const timezone = jstz.determine();
+            $(element).attr('src', $(element).attr('data-calendar') + '&ctz=' + timezone.name());
+        }
+    });
+
     // Get next slice of elements
     function next(element) {
 

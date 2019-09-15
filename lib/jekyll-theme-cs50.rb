@@ -75,7 +75,7 @@ module CS50
     def render(context)
       if @src
         <<~EOT
-          <iframe src="#{@src}"></iframe>
+          <iframe data-calendar="#{@src}"></iframe>
         EOT
       else
         <<~EOT
