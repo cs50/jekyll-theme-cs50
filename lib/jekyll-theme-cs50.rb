@@ -33,6 +33,60 @@ module CS50
 
   end
 
+  class CalendarTag < Liquid::Tag
+
+    # https://gist.github.com/niquepa/4c59b7d52a15dde2367a
+    def initialize(tag_name, markup, options)
+      super
+
+      # Parse arguments
+      @args = Liquid::Tag::Parser.new(markup)
+
+      # Default components
+      components = {
+        bgcolor: "#FFFFFF",
+        color: "#875509",
+        height: "480",
+        mode: "AGENDA",
+        showCalendars: "0",
+        showDate: "0",
+        showNav: "0",
+        showPrint: "0",
+        showTabs: "0",
+        showTitle: "0",
+        showTz: "0",
+        src: @args[:argv1],
+        wkst: "1"
+       }
+
+        # Supported components
+        params = CGI::parse(URI::parse(@args[:argv1]).query || "")
+        ["mode"].each do |param|
+            if params.key?(param)
+              components[param] = params[param].first
+            end
+        end
+
+        # Build URL
+        @src = URI::HTTPS.build(:host => "calendar.google.com", :path => "/calendar/embed", :query => URI.encode_www_form(components))
+      end
+    end
+
+    def render(context)
+      if @src
+        <<~EOT
+          <iframe src="#{@src}"></iframe>
+        EOT
+        <<~EOT
+          📅
+        EOT
+      end
+    end
+
+    Liquid::Template.register_tag("calendar", self)
+
+  end
+
   class NextTag < Liquid::Tag
 
     def initialize(tag_name, markup, options)
