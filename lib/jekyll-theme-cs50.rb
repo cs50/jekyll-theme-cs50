@@ -16,7 +16,7 @@ module CS50
       @args = Liquid::Tag::Parser.new(markup)
       alert = @args[:argv1]
       puts "HERE:"
-      puts @args.to_html
+      puts @args.skippable_loop
       @alert = (["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].include? alert) ? alert : ""
     end
 
