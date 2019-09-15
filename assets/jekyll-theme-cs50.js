@@ -16,6 +16,8 @@ $(document).on('DOMContentLoaded', function() {
 
     // data-calendar
     $('[data-calendar]').each(function(index, element) {
+
+        // Display calendar in user's time zone
         if ($(element).attr('data-calendar')) {
             const timezone = jstz.determine();
             $(element).attr('src', $(element).attr('data-calendar') + '&ctz=' + timezone.name());
