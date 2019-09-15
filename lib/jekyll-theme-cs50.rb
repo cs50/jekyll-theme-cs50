@@ -87,10 +87,15 @@ module CS50
     def initialize(tag_name, markup, options)
       super
       @args = Liquid::Tag::Parser.new(markup)
-      puts "HERE:"
-      puts @args.inspect
       if @args[:argv1] and @args[:argv1] =~ /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
         @v = $1
+        @ratio = "16by9"
+        ["21by9", "4by3", "1by1"].each do |ratio|
+          puts @args.args.keys[1]
+          if @args.args.keys[1] == ratio
+            @ratio = ratio
+          end
+        end
         components = {
           rel: "0",
           showinfo: "0"
