@@ -1,6 +1,7 @@
 require "cgi"
 require "jekyll"
 require "kramdown/parser/gfm"
+require "liquid/tag/parser"
 require "sanitize"
 require "uri"
 
@@ -10,9 +11,12 @@ module CS50
 
   class AlertBlock < Liquid::Block
 
-    def initialize(tag_name, text, tokens)
+    def initialize(tag_name, markup, options)
       super
-      alert = text.strip().gsub(/\A"|"\Z/, "").gsub(/\A"|"\Z/, "")
+      @args = Liquid::Tag::Parser.new(markup)
+      #alert = text.strip().gsub(/\A"|"\Z/, "").gsub(/\A"|"\Z/, "")
+      puts @args
+      alert = "primary"
       @alert = (["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].include? alert) ? alert : ""
     end
 
