@@ -100,7 +100,10 @@ module CS50
         @ratio = "16by9"
         ["21by9", "4by3", "1by1"].each do |ratio|
           if @args.args.keys[1] == ratio
+            puts "OVERRIDING"
+            puts ratio
             @ratio = ratio
+            puts @ratio
           end
         end
 
