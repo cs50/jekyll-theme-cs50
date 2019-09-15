@@ -7,6 +7,10 @@ require "uri"
 
 require "jekyll-theme-cs50/constants"
 
+class Liquid::Tag::Parser
+  public :from_shellwords
+end
+
 module CS50
 
   class AlertBlock < Liquid::Block
