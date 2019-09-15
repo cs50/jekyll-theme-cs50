@@ -20,8 +20,11 @@ $(document).on('DOMContentLoaded', function() {
         // Display calendar in user's time zone
         // https://stackoverflow.com/a/32511510/5156190
         if ($(element).attr('data-calendar')) {
-            const ctz = ($(element).attr('data-ctz')) ? $(element).attr('data-ctz') : timezone.name();
-            $(element).attr('src', $(element).attr('data-calendar') + '&ctz=' + ctz);
+            let src = $(element).attr('data-calendar');
+            if ($(element).attr('data-ctz')) {
+                src += '&ctz=' + timezone.name();
+            }
+            $(element).attr('src', src);
         }
     });
 
