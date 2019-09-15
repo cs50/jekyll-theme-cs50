@@ -1,7 +1,7 @@
 require "cgi"
 require "jekyll"
 require "kramdown/parser/gfm"
-#require "liquid/tag/parser"
+require "liquid/tag/parser"
 require "sanitize"
 require "uri"
 
