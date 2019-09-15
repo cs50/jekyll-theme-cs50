@@ -90,7 +90,7 @@ module CS50
       # Parse arguments
       @args = Liquid::Tag::Parser.new(markup)
 
-      if @args[:argv1] =~ /\Ahttps?\z/:
+      if @args[:argv1] =~ /\Ahttps?\z/
         argv1 = @args[:argv1] + ""
       end
 
