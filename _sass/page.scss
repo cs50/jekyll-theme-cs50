@@ -14,6 +14,7 @@ body > div.container-fluid > div.row {
 iframe {
     border: 0;
     height: 480px;
+    margin-bottom: 16px;
 }
 
 // Ensure responsive in Safari on iOS (for, e.g., Google Calendars), per 
@@ -230,7 +231,6 @@ main.col-md {
 // Mimic p
 .markdown-body .embed-responsive {
     margin-bottom: 16px;
-    margin-top: 0;
 }
 
 // Constrain videos
