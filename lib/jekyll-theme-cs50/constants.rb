@@ -16,7 +16,7 @@ module CS50
     },
     "plugins"  => CS50::PLUGINS
   }.freeze
-  puts CS50::PLUGINS
+  puts CS50::PLUGINS.keys
 
   OVERRIDES = {
     "exclude" => [
