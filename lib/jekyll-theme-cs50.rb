@@ -7,10 +7,6 @@ require "uri"
 
 require "jekyll-theme-cs50/constants"
 
-class Liquid::Tag::Parser
-  public :from_shellwords
-end
-
 module CS50
 
   class AlertBlock < Liquid::Block
@@ -95,6 +91,8 @@ module CS50
       @args = Liquid::Tag::Parser.new(markup)
 
       # Allow unquoted URLs
+      puts "HERE:"
+      puts @args.send :from_shellwords
       if @args.args.keys and @args.args.keys[0].to_s =~ /\Ahttps?\z/
         argv1 = @args.args.keys[0].to_s + ":" + @args.args.values[0].to_s
       else
