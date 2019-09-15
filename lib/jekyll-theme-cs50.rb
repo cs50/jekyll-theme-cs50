@@ -16,9 +16,9 @@ module CS50
       @args = Liquid::Tag::Parser.new(markup)
       alert = @args[:argv1]
       puts "HERE:"
-      puts @args[0]
-      puts @args[1]
-      puts @args[2]
+      puts #args[0]
+      puts #args[1]
+      puts #args[2]
       @alert = (["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].include? alert) ? alert : ""
     end
 
