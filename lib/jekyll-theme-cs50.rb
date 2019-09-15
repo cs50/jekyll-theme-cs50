@@ -99,6 +99,10 @@ module CS50
         # Determine aspect ratio
         @ratio = "16by9"
         ["21by9", "4by3", "1by1"].each do |ratio|
+          puts @args.args.keys[1]
+          puts "vs"
+          puts ratio
+          puts ""
           if @args.args.keys[1] == ratio
             puts "OVERRIDING"
             puts ratio
