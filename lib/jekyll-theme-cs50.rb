@@ -87,6 +87,8 @@ module CS50
     def initialize(tag_name, markup, options)
       super
       @args = Liquid::Tag::Parser.new(markup)
+      puts "HERE:"
+      puts @args[:argv1]
       if @args[:argv1] and @args[:argv1] =~ /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
         @v = $1
         components = {
