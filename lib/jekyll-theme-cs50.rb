@@ -88,6 +88,10 @@ module CS50
       super
 
       #
+      puts "HERE:"
+      puts markup.inspect
+      tokens = markup.split(" ", 2)
+      puts tokens.inspect
 
       # Parse arguments
       @args = Liquid::Tag::Parser.new(markup)
