@@ -13,7 +13,7 @@ module CS50
     "optional_front_matter" => {
       "remove_originals" => true
     },
-    "plugins"  => CS50::PLUGINS.keys
+    "plugins"  => ["liquid/tag/parser"]
   }.freeze
 
   OVERRIDES = {
