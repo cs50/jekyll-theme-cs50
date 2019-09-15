@@ -69,8 +69,6 @@ module CS50
 
       # Build URL
       @src = URI::HTTPS.build(:host => "calendar.google.com", :path => "/calendar/embed", :query => URI.encode_www_form(components))
-      puts components
-      puts @src
 
     end
 
@@ -79,6 +77,7 @@ module CS50
         <<~EOT
           <iframe src="#{@src}"></iframe>
         EOT
+      else
         <<~EOT
           📅
         EOT
