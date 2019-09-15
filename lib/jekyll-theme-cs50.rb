@@ -103,6 +103,8 @@ module CS50
           puts "vs"
           puts "[#{ratio}]"
           puts ""
+          puts @args.args.keys[1] == ratio
+          puts ""
           if @args.args.keys[1] == ratio
             puts "OVERRIDING"
             puts ratio
