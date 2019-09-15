@@ -22,7 +22,7 @@ $(document).on('DOMContentLoaded', function() {
         if ($(element).attr('data-calendar')) {
             let src = $(element).attr('data-calendar');
             if ($(element).attr('data-ctz') !== undefined) {
-                src += '&ctz=' + timezone.name();
+                src += '&ctz=' + jstz.determine().name();
             }
             $(element).attr('src', src);
         }
