@@ -97,13 +97,10 @@ module CS50
         @v = $1
 
         # Determine aspect ratio
-        @ratio = "16by9"
+        @ratio = "16by9" # Default
         ["21by9", "4by3", "1by1"].each do |ratio|
           if @args.args.keys[1].to_s == ratio
-            puts "OVERRIDING"
-            puts ratio
             @ratio = ratio
-            puts @ratio
           end
         end
 
@@ -127,7 +124,7 @@ module CS50
     end
 
     def render(context)
-      if @v and @src
+      if @v and @src and @ratio
         <<~EOT
           <div class="embed-responsive embed-responsive-#{@ratio}" data-video>
               <iframe allowfullscreen class="border embed-responsive-item" src="#{@src}" style="background-image: url('https://img.youtube.com/vi/#{@v}/sddefault.jpg'); background-repeat: no-repeat; background-size: cover;"></iframe>
