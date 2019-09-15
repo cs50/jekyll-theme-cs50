@@ -88,10 +88,13 @@ module CS50
       super
 
       #
-      puts "HERE:"
-      puts markup.inspect
+      puts markup
       tokens = markup.split(" ", 2)
-      puts tokens.inspect
+      uri = URI.parse(tokens[0])
+      if uri.kind_of?(URI::HTTP) or uri.kind_of?(URI::HTTPS)
+        markup = "'#{tokens[0]}' #{tokens[1]}"
+      end
+      puts markup
 
       # Parse arguments
       @args = Liquid::Tag::Parser.new(markup)
