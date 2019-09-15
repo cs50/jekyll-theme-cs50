@@ -1,0 +1,1 @@
+require "liquid/tag/parser"
