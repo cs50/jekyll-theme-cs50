@@ -14,6 +14,17 @@ $(document).on('DOMContentLoaded', function() {
         }
     });
 
+    // data-calendar
+    $('[data-calendar]').each(function(index, element) {
+
+        // Display calendar in user's time zone
+        // https://stackoverflow.com/a/32511510/5156190
+        if ($(element).attr('data-calendar')) {
+            const timezone = jstz.determine();
+            $(element).attr('src', $(element).attr('data-calendar') + '&ctz=' + timezone.name());
+        }
+    });
+
     // Get next slice of elements
     function next(element) {
 
