@@ -65,7 +65,7 @@ module CS50
     end
 
     def render(context)
-      puts @args
+      puts @args.inspect
       if @src
         if @args[:ctz] == true
           <<~EOT
