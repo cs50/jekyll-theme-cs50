@@ -57,19 +57,19 @@ module CS50
         showTz: "0",
         src: @args[:argv1],
         wkst: "1"
-       }
+      }
 
-        # Supported components
-        params = CGI::parse(URI::parse(@args[:argv1]).query || "")
-        ["mode"].each do |param|
-            if params.key?(param)
-              components[param] = params[param].first
-            end
-        end
-
-        # Build URL
-        @src = URI::HTTPS.build(:host => "calendar.google.com", :path => "/calendar/embed", :query => URI.encode_www_form(components))
+      # Supported components
+      params = CGI::parse(URI::parse(@args[:argv1]).query || "")
+      ["mode"].each do |param|
+          if params.key?(param)
+            components[param] = params[param].first
+          end
       end
+
+      # Build URL
+      @src = URI::HTTPS.build(:host => "calendar.google.com", :path => "/calendar/embed", :query => URI.encode_www_form(components))
+
     end
 
     def render(context)
