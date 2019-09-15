@@ -92,7 +92,8 @@ module CS50
 
       # Allow unquoted URLs
       puts "HERE:"
-      puts @args.send :from_shellwords
+      tokens = @args.send :from_shellwords
+      puts tokens.inspect
       if @args.args.keys and @args.args.keys[0].to_s =~ /\Ahttps?\z/
         argv1 = @args.args.keys[0].to_s + ":" + @args.args.values[0].to_s
       else
