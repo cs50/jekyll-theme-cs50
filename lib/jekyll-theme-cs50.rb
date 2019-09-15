@@ -89,13 +89,13 @@ module CS50
       @args = Liquid::Tag::Parser.new(markup)
       puts "HERE:"
       puts @args.inspect
-      if @args[:argv1] and @args[:argv1] =~ /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+      if @args.raw and @args.raw =~ /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
         @v = $1
         components = {
           rel: "0",
           showinfo: "0"
         }
-        params = CGI::parse(URI::parse(@args[:argv1]).query || "")
+        params = CGI::parse(URI::parse(@args.raw).query || "")
         ["autoplay", "end", "index", "list", "start", "t"].each do |param|
             if params.key?(param)
               components[param] = params[param].first
