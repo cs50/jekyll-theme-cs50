@@ -15,7 +15,9 @@ module CS50
       super
       @args = Liquid::Tag::Parser.new(markup)
       #alert = text.strip().gsub(/\A"|"\Z/, "").gsub(/\A"|"\Z/, "")
-      puts @args
+      puts "HERE: ["
+      puts @args[:argv1]
+      puts "]"
       alert = "primary"
       @alert = (["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].include? alert) ? alert : ""
     end
