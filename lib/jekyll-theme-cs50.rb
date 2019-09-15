@@ -44,10 +44,8 @@ module CS50
 
       # Default components
       components = {
-        bgcolor: "#FFFFFF",
-        color: "#875509",
-        height: "480",
-        mode: "AGENDA",
+        height: @args[:height] || "480",
+        mode: @args[:mode] || "AGENDA",
         showCalendars: "0",
         showDate: "0",
         showNav: "0",
@@ -55,8 +53,7 @@ module CS50
         showTabs: "0",
         showTitle: "0",
         showTz: "1",
-        src: @args[:argv1],
-        wkst: "1"
+        src: @args[:argv1]
       }
 
       # Build URL
