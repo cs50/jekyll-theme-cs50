@@ -103,7 +103,7 @@ module CS50
           puts "vs"
           puts "[#{ratio}]"
           puts ""
-          puts @args.args.keys[0].inspect
+          puts @args.args.keys[1].inspect
           puts ratio.inspect
           puts ""
           if @args.args.keys[1] == ratio
