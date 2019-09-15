@@ -86,9 +86,17 @@ module CS50
     # https://gist.github.com/niquepa/4c59b7d52a15dde2367a
     def initialize(tag_name, markup, options)
       super
+
+      # Parse arguments
       @args = Liquid::Tag::Parser.new(markup)
+
+      # Parse YouTube URL
       if @args[:argv1] and @args[:argv1] =~ /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+
+        # Video's ID
         @v = $1
+
+        # Determine aspect ratio
         @ratio = "16by9"
         ["21by9", "4by3", "1by1"].each do |ratio|
           puts @args.args.keys[1]
@@ -96,16 +104,22 @@ module CS50
             @ratio = ratio
           end
         end
+
+        # Default components
         components = {
           rel: "0",
           showinfo: "0"
         }
+
+        # Supported components
         params = CGI::parse(URI::parse(@args[:argv1]).query || "")
         ["autoplay", "end", "index", "list", "start", "t"].each do |param|
             if params.key?(param)
               components[param] = params[param].first
             end
         end
+
+        # Build URL
         @src = URI::HTTPS.build(:host => "www.youtube.com", :path => "/embed/#{@v}", :query => URI.encode_www_form(components))
       end
     end
@@ -113,7 +127,7 @@ module CS50
     def render(context)
       if @v and @src
         <<~EOT
-          <div class="embed-responsive embed-responsive-16by9" data-video>
+          <div class="embed-responsive embed-responsive-#{@ratio}" data-video>
               <iframe allowfullscreen class="border embed-responsive-item" src="#{@src}" style="background-image: url('https://img.youtube.com/vi/#{@v}/sddefault.jpg'); background-repeat: no-repeat; background-size: cover;"></iframe>
           </div>
         EOT
