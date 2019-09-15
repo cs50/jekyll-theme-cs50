@@ -89,10 +89,13 @@ module CS50
 
       #
       puts markup
-      tokens = markup.split(" ", 2)
-      uri = URI.parse(tokens[0])
-      if uri.kind_of?(URI::HTTP) or uri.kind_of?(URI::HTTPS)
-        markup = "'#{tokens[0]}' #{tokens[1]}"
+      begin
+        tokens = markup.split(" ", 2)
+        uri = URI.parse(tokens[0])
+        if uri.kind_of?(URI::HTTP) or uri.kind_of?(URI::HTTPS)
+          markup = "'#{tokens[0]}' #{tokens[1]}"
+        end
+      rescue
       end
       puts markup
 
