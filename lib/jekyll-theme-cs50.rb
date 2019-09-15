@@ -1,6 +1,7 @@
 require "cgi"
 require "jekyll"
 require "kramdown/parser/gfm"
+require "liquid/tag/parser"
 require "sanitize"
 require "uri"
 
@@ -10,9 +11,10 @@ module CS50
 
   class AlertBlock < Liquid::Block
 
-    def initialize(tag_name, text, tokens)
+    def initialize(tag_name, markup, options)
       super
-      alert = text.strip().gsub(/\A"|"\Z/, "").gsub(/\A"|"\Z/, "")
+      @args = Liquid::Tag::Parser.new(markup)
+      alert = @args[:argv1]
       @alert = (["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].include? alert) ? alert : ""
     end
 
@@ -33,9 +35,10 @@ module CS50
 
   class NextTag < Liquid::Tag
 
-    def initialize(tag_name, text, tokens)
+    def initialize(tag_name, markup, options)
       super
-      @text = (text.length > 0) ? CGI.escapeHTML(text.strip().gsub(/\A"|"\Z/, "").gsub(/\A"|"\Z/, "")) : "Next"
+      @args = Liquid::Tag::Parser.new(markup)
+      @text = (@args[:argv1]) ? CGI.escapeHTML(@args[:argv1]) : "Next"
     end
 
     def render(context)
@@ -53,9 +56,10 @@ module CS50
 
   class SpoilerBlock < Liquid::Block
 
-    def initialize(tag_name, text, tokens)
+    def initialize(tag_name, markup, options)
       super
-      @text = (text.length > 0) ? CGI.escapeHTML(text.strip().gsub(/\A"|"\Z/, "").gsub(/\A"|"\Z/, "")) : "Spoiler"
+      @args = Liquid::Tag::Parser.new(markup)
+      @text = (@args[:argv1]) ? CGI.escapeHTML(@args[:argv1]) : "Spoiler"
     end
 
     # https://stackoverflow.com/q/19169849/5156190
@@ -80,28 +84,49 @@ module CS50
   class VideoTag < Liquid::Tag
 
     # https://gist.github.com/niquepa/4c59b7d52a15dde2367a
-    def initialize(tag_name, text, tokens)
+    def initialize(tag_name, markup, options)
       super
-      if text =~ /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+
+      # Parse arguments
+      @args = Liquid::Tag::Parser.new(markup)
+
+      # Parse YouTube URL
+      if @args[:argv1] and @args[:argv1] =~ /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+
+        # Video's ID
         @v = $1
+
+        # Determine aspect ratio
+        @ratio = "16by9" # Default
+        ["21by9", "4by3", "1by1"].each do |ratio|
+          if @args.args.keys[1].to_s == ratio
+            @ratio = ratio
+          end
+        end
+
+        # Default components
         components = {
           rel: "0",
           showinfo: "0"
         }
-        params = CGI::parse(URI::parse(text.strip).query || "")
+
+        # Supported components
+        params = CGI::parse(URI::parse(@args[:argv1]).query || "")
         ["autoplay", "end", "index", "list", "start", "t"].each do |param|
             if params.key?(param)
               components[param] = params[param].first
             end
         end
+
+        # Build URL
         @src = URI::HTTPS.build(:host => "www.youtube.com", :path => "/embed/#{@v}", :query => URI.encode_www_form(components))
       end
     end
 
     def render(context)
-      if @v and @src
+      if @v and @src and @ratio
         <<~EOT
-          <div class="embed-responsive embed-responsive-16by9" data-video>
+          <div class="embed-responsive embed-responsive-#{@ratio}" data-video>
               <iframe allowfullscreen class="border embed-responsive-item" src="#{@src}" style="background-image: url('https://img.youtube.com/vi/#{@v}/sddefault.jpg'); background-repeat: no-repeat; background-size: cover;"></iframe>
           </div>
         EOT
