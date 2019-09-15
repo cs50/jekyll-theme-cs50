@@ -87,8 +87,7 @@ module CS50
     def initialize(tag_name, markup, options)
       super
 
-      #
-      puts markup
+      # Allow unquoted URLs in argv1
       begin
         tokens = markup.split(" ", 2)
         uri = URI.parse(tokens[0])
@@ -97,7 +96,6 @@ module CS50
         end
       rescue
       end
-      puts markup
 
       # Parse arguments
       @args = Liquid::Tag::Parser.new(markup)
