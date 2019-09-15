@@ -66,9 +66,15 @@ module CS50
 
     def render(context)
       if @src
-        <<~EOT
-          <iframe data-calendar="#{@src}" data-ctz="#{@args[:ctz]}"></iframe>
-        EOT
+        if @args[:ctz]
+          <<~EOT
+            <iframe data-calendar="#{@src}" data-ctz="#{@args[:ctz]}"></iframe>
+          EOT
+        else
+          <<~EOT
+            <iframe data-calendar src="#{@src}"></iframe>
+          EOT
+        end
       else
         <<~EOT
           📅
