@@ -42,9 +42,12 @@ module CS50
       # Parse arguments
       @args = Liquid::Tag::Parser.new(markup)
 
+      # Calendar's height
+      @height = @args[:height] || "480"
+
       # Default components
       components = {
-        height: @args[:height] || "480",
+        height: @height,
         mode: @args[:mode] || "AGENDA",
         showCalendars: "0",
         showDate: "0",
@@ -62,15 +65,14 @@ module CS50
     end
 
     def render(context)
-      puts @args.inspect
-      if @src
+      if @height and @src
         if @args[:ctz] == true
           <<~EOT
-            <iframe data-calendar="#{@src}" data-ctz></iframe>
+            <iframe data-calendar="#{@src}" data-ctz style="height: #{@height}px;"></iframe>
           EOT
         else
           <<~EOT
-            <iframe data-calendar="#{@src}"></iframe>
+            <iframe data-calendar="#{@src}" style="height: #{@height}px;"></iframe>
           EOT
         end
       else
