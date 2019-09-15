@@ -21,7 +21,7 @@ $(document).on('DOMContentLoaded', function() {
         // https://stackoverflow.com/a/32511510/5156190
         if ($(element).attr('data-calendar')) {
             let src = $(element).attr('data-calendar');
-            if ($(element).attr('data-ctz')) {
+            if ($(element).attr('data-ctz') !== undefined) {
                 src += '&ctz=' + timezone.name();
             }
             $(element).attr('src', src);
