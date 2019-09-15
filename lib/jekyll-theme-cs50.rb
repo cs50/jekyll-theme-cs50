@@ -90,9 +90,9 @@ module CS50
       # Parse arguments
       @args = Liquid::Tag::Parser.new(markup)
 
-      if @args.args.keys[0] =~ /\Ahttps?\z/
-        argv1 = @args[:argv1] + ""
-      end
+      #if @args.args.keys[0] =~ /\Ahttps?\z/
+      #  argv1 = @args[:argv1] + ""
+      #end
 
       puts "HERE:"
       puts @args.args.keys[0]
