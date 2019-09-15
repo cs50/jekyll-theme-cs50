@@ -88,7 +88,7 @@ module CS50
       super
 
       # Parse arguments
-      @args = Liquid::Tag::Parser.new(markup)
+      @args = Liquid::Tag::Parser.new
 
       # Allow unquoted URLs
       puts "HERE:"
