@@ -38,7 +38,7 @@ module CS50
     def initialize(tag_name, markup, options)
       super
       @args = Liquid::Tag::Parser.new(markup)
-      @text = (@args[:argv1].length > 0) ? CGI.escapeHTML(@args[:argv1]) : "Next"
+      @text = (@args[:argv1]) ? CGI.escapeHTML(@args[:argv1]) : "Next"
     end
 
     def render(context)
