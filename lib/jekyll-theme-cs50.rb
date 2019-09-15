@@ -90,12 +90,12 @@ module CS50
       # Parse arguments
       @args = Liquid::Tag::Parser.new(markup)
 
-      if @args[:argv1] =~ /\Ahttps?\z/
+      if @args.args.keys[0] =~ /\Ahttps?\z/
         argv1 = @args[:argv1] + ""
       end
 
       puts "HERE:"
-      puts @args[:argv1]
+      puts @args.args.keys[0]
 
       # Parse YouTube URL
       if @args[:argv1] and @args[:argv1] =~ /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
