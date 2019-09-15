@@ -14,11 +14,7 @@ module CS50
     def initialize(tag_name, markup, options)
       super
       @args = Liquid::Tag::Parser.new(markup)
-      #alert = text.strip().gsub(/\A"|"\Z/, "").gsub(/\A"|"\Z/, "")
-      puts "HERE: ["
-      puts @args[:argv1]
-      puts "]"
-      alert = "primary"
+      alert = @args[:argv1]
       @alert = (["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].include? alert) ? alert : ""
     end
 
