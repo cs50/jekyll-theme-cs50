@@ -141,13 +141,10 @@ module CS50
       super
 
       # Allow unquoted URLs in argv1
-      begin
-        tokens = markup.split(" ", 2)
-        uri = URI.parse(tokens[0])
-        if uri.kind_of?(URI::HTTP) or uri.kind_of?(URI::HTTPS)
-          markup = "'#{tokens[0]}' #{tokens[1]}"
-        end
-      rescue
+      tokens = markup.split(" ", 2)
+      uri = URI.parse(tokens[0])
+      if uri =~ /\A#{URI::regexp(['http', 'https'])}\z/
+        markup = "'#{tokens[0]}' #{tokens[1]}"
       end
 
       # Parse arguments
@@ -208,6 +205,42 @@ end
 # Configure site
 Jekyll::Hooks.register :site, :after_reset do |site|
   site.config = Jekyll::Utils.deep_merge_hashes(Jekyll::Utils.deep_merge_hashes(CS50::DEFAULTS, site.config), CS50::OVERRIDES)
+end
+
+# Prepend site.baseurl to absolute paths
+# https://github.com/benbalter/jekyll-relative-links/blob/master/lib/jekyll-relative-links/generator.rb
+LINK_TEXT_REGEX = %r!(.*?)!.freeze
+FRAGMENT_REGEX = %r!(#.+?)?!.freeze
+INLINE_LINK_REGEX = %r!\[#{LINK_TEXT_REGEX}\]\(([^\)]+?)#{FRAGMENT_REGEX}\)!.freeze
+Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc, payload|
+
+  # If no site.baseurl
+  next if !doc.site.baseurl
+
+  # If .md file
+  markdown_converter ||= doc.site.find_converter_instance(Jekyll::Converters::Markdown)
+  if markdown_converter.matches(doc.extname)
+
+    # For each link
+    doc.content = doc.content.dup.gsub(INLINE_LINK_REGEX) do |original|
+
+      # []
+      a = Regexp.last_match[1]
+
+      # ()
+      href = Regexp.last_match[2]
+
+      # If absolute path, prepend site.baseurl
+      if href.start_with?("/")
+        href = doc.site.baseurl.gsub(/\/\Z/, "") + "/" + href.gsub(/\A\//, "")
+        "[#{a}](#{href})"
+
+      # Else leave unchanged
+      else
+        original
+      end
+    end
+  end
 end
 
 # TODO: In offline mode, base64-encode images, embed CSS (in style tags) and JS (in script tags), a la
