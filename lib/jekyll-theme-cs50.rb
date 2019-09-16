@@ -223,8 +223,10 @@ Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc, payload|
       href = Regexp.last_match[2]
       if href.start_with?("/")
         href = doc.site.baseurl + href
+        "[#{a}](#{href})"
+      else
+        original
       end
-      "[#{a}](#{href})"
     end
     puts doc.content
   end
