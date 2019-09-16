@@ -213,15 +213,29 @@ LINK_TEXT_REGEX = %r!(.*?)!.freeze
 FRAGMENT_REGEX = %r!(#.+?)?!.freeze
 INLINE_LINK_REGEX = %r!\[#{LINK_TEXT_REGEX}\]\(([^\)]+?)#{FRAGMENT_REGEX}\)!.freeze
 Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc, payload|
+
+  # If no site.baseurl
   next if !doc.site.baseurl
+
+  # If .md file
   markdown_converter ||= doc.site.find_converter_instance(Jekyll::Converters::Markdown)
   if markdown_converter.matches(doc.extname)
+
+    # For each link
     doc.content = doc.content.dup.gsub(INLINE_LINK_REGEX) do |original|
+
+      # []
       a = Regexp.last_match[1]
+
+      # ()
       href = Regexp.last_match[2]
+
+      # If absolute path, prepend site.baseurl
       if href.start_with?("/")
         href = doc.site.baseurl.gsub(/\/\Z/, "") + "/" + href.gsub(/\A\//, "")
         "[#{a}](#{href})"
+
+      # Else leave unchanged
       else
         original
       end
