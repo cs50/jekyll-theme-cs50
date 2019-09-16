@@ -224,7 +224,7 @@ Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc, payload|
       href = Regexp.last_match[2]
       begin
         fail if href.start_with?("#")
-        fail if uri.kind_of?(URI::HTTP) or uri.kind_of?(URI::HTTPS)
+        fail if href.kind_of?(URI::HTTP) or href.kind_of?(URI::HTTPS)
         href = URI.join(doc.site.baseurl, href)
         "[#{a}](#{href})"
       rescue
