@@ -231,9 +231,6 @@ Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc, payload|
         href = doc.site.baseurl.gsub!(/\/\Z/) + "/" + href.gsub!(/\A\//)
         puts "3"
         "[#{a}](#{href})"
-      rescue
-        puts "4"
-        original
       end
     end
     puts doc.content
