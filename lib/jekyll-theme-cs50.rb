@@ -207,7 +207,15 @@ end
 
 # Configure site
 Jekyll::Hooks.register :site, :after_reset do |site|
+
+  #
   site.config = Jekyll::Utils.deep_merge_hashes(Jekyll::Utils.deep_merge_hashes(CS50::DEFAULTS, site.config), CS50::OVERRIDES)
+
+  if site.baseurl
+    puts "YES"
+    puts site.baseurl
+  end
+
 end
 
 # TODO
@@ -216,6 +224,7 @@ LINK_TEXT_REGEX = %r!(.*?)!.freeze
 FRAGMENT_REGEX = %r!(#.+?)?!.freeze
 INLINE_LINK_REGEX = %r!\[#{LINK_TEXT_REGEX}\]\(([^\)]+?)#{FRAGMENT_REGEX}\)!.freeze
 Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc, payload|
+  next if !doc.site.baseurl
   markdown_converter ||= doc.site.find_converter_instance(Jekyll::Converters::Markdown)
   if markdown_converter.matches(doc.extname)
     doc.content = doc.content.dup.gsub(INLINE_LINK_REGEX) do |original|
