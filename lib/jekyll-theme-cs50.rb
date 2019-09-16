@@ -216,28 +216,27 @@ Jekyll::Hooks.register :site, :after_reset do |site|
     puts site.baseurl
   end
 
-end
-
-# TODO
-# https://github.com/benbalter/jekyll-relative-links/blob/master/lib/jekyll-relative-links/generator.rb
-LINK_TEXT_REGEX = %r!(.*?)!.freeze
-FRAGMENT_REGEX = %r!(#.+?)?!.freeze
-INLINE_LINK_REGEX = %r!\[#{LINK_TEXT_REGEX}\]\(([^\)]+?)#{FRAGMENT_REGEX}\)!.freeze
-Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc, payload|
-  next if !doc.site.baseurl
-  markdown_converter ||= doc.site.find_converter_instance(Jekyll::Converters::Markdown)
-  if markdown_converter.matches(doc.extname)
-    doc.content = doc.content.dup.gsub(INLINE_LINK_REGEX) do |original|
-      a = Regexp.last_match[1]
-      href = Regexp.last_match[2]
-      if href.start_with?("/")
-        href = doc.site.baseurl + href
-        "[#{a}](#{href})"
-      else
-        original
+  # TODO
+  # https://github.com/benbalter/jekyll-relative-links/blob/master/lib/jekyll-relative-links/generator.rb
+  LINK_TEXT_REGEX = %r!(.*?)!.freeze
+  FRAGMENT_REGEX = %r!(#.+?)?!.freeze
+  INLINE_LINK_REGEX = %r!\[#{LINK_TEXT_REGEX}\]\(([^\)]+?)#{FRAGMENT_REGEX}\)!.freeze
+  Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc, payload|
+    next if !doc.site.baseurl
+    markdown_converter ||= doc.site.find_converter_instance(Jekyll::Converters::Markdown)
+    if markdown_converter.matches(doc.extname)
+      doc.content = doc.content.dup.gsub(INLINE_LINK_REGEX) do |original|
+        a = Regexp.last_match[1]
+        href = Regexp.last_match[2]
+        if href.start_with?("/")
+          href = doc.site.baseurl + href
+          "[#{a}](#{href})"
+        else
+          original
+        end
       end
+      puts doc.content
     end
-    puts doc.content
   end
 end
 
