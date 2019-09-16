@@ -210,35 +210,6 @@ Jekyll::Hooks.register :site, :after_reset do |site|
   site.config = Jekyll::Utils.deep_merge_hashes(Jekyll::Utils.deep_merge_hashes(CS50::DEFAULTS, site.config), CS50::OVERRIDES)
 end
 
-# TODO
-# https://github.com/benbalter/jekyll-relative-links/blob/master/lib/jekyll-relative-links/generator.rb
-LINK_TEXT_REGEX = %r!(.*?)!.freeze
-FRAGMENT_REGEX = %r!(#.+?)?!.freeze
-INLINE_LINK_REGEX = %r!\[#{LINK_TEXT_REGEX}\]\(([^\)]+?)#{FRAGMENT_REGEX}\)!.freeze
-Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc, payload|
-  next if !doc.site.baseurl
-  markdown_converter ||= doc.site.find_converter_instance(Jekyll::Converters::Markdown)
-  if markdown_converter.matches(doc.extname)
-    doc.content = doc.content.dup.gsub(INLINE_LINK_REGEX) do |original|
-      a = Regexp.last_match[1]
-      href = Regexp.last_match[2]
-      begin
-        puts "HERE: #{href}"
-        fail if href.start_with?("#")
-        puts "1"
-        fail if href =~ /\A#{URI::regexp(['http', 'https'])}\z/
-        puts "2"
-        href = doc.site.baseurl.gsub(/\/\Z/, "") + "/" + href.gsub(/\A\//, "")
-        puts "3"
-        "[#{a}](#{href})"
-      rescue
-        puts "4"
-        original
-      end
-    end
-    puts doc.content
-  end
-end
 
 # TODO: In offline mode, base64-encode images, embed CSS (in style tags) and JS (in script tags), a la
 # https://github.com/jekyll/jekyll-mentions/blob/master/lib/jekyll-mentions.rb and
