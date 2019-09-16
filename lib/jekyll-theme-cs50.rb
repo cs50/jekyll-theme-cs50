@@ -217,13 +217,13 @@ REFERENCE_LINK_REGEX = %r!^\s*?\[#{LINK_TEXT_REGEX}\]: (.+?)#{FRAGMENT_REGEX}\s*
 LINK_REGEX = %r!(#{INLINE_LINK_REGEX}|#{REFERENCE_LINK_REGEX})!.freeze
 
 Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc|
-    puts doc
 end
 
 # TODO: In offline mode, base64-encode images, embed CSS (in style tags) and JS (in script tags), a la
 # https://github.com/jekyll/jekyll-mentions/blob/master/lib/jekyll-mentions.rb and
 # https://github.com/jekyll/jemoji/blob/master/lib/jemoji.rb
 Jekyll::Hooks.register [:pages, :documents], :post_render do |doc|
+  puts "HERE"
   doc.content = doc.content.dup.gsub(LINK_REGEX) do |original|
     #link_type, link_text, relative_path, fragment = link_parts(Regexp.last_match)
     puts "TODO"
