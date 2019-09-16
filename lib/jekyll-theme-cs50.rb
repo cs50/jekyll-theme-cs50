@@ -141,14 +141,14 @@ module CS50
       super
 
       # Allow unquoted URLs in argv1
-      tokens = markup.split(" ", 2)
-      uri = URI.parse(tokens[0])
-      puts uri
-      if uri =~ /\A#{URI::regexp(['http', 'https'])}\z/
-        markup = "'#{tokens[0]}' #{tokens[1]}"
+      begin
+        tokens = markup.split(" ", 2)
+        uri = URI.parse(tokens[0])
+        if uri.kind_of?(URI::HTTP) or uri.kind_of?(URI::HTTPS)
+          markup = "'#{tokens[0]}' #{tokens[1]}"
+        end
+      rescue
       end
-      puts uri
-      puts "---"
 
       # Parse arguments
       @args = Liquid::Tag::Parser.new(markup)
