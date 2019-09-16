@@ -215,7 +215,8 @@ INLINE_LINK_REGEX = %r!\[#{LINK_TEXT_REGEX}\]\(([^\)]+?)#{FRAGMENT_REGEX}\)!.fre
 Jekyll::Hooks.register [:pages], :pre_render do |doc, payload|
 
   puts "HERE"
-  puts doc
+  puts doc.inspect
+  puts payload.inspect
   next
 
   # If no site.baseurl
