@@ -230,9 +230,6 @@ Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc, payload|
         puts "333"
         href = URI.join(doc.site.baseurl, href)
         "[#{a}](#{href})"
-      rescue
-        puts "444"
-        original
       end
     end
     puts doc.content
