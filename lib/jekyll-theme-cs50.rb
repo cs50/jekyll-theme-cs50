@@ -210,6 +210,10 @@ Jekyll::Hooks.register :site, :after_reset do |site|
   site.config = Jekyll::Utils.deep_merge_hashes(Jekyll::Utils.deep_merge_hashes(CS50::DEFAULTS, site.config), CS50::OVERRIDES)
 end
 
+Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc|
+    puts doc.inspect
+end
+
 # TODO: In offline mode, base64-encode images, embed CSS (in style tags) and JS (in script tags), a la
 # https://github.com/jekyll/jekyll-mentions/blob/master/lib/jekyll-mentions.rb and
 # https://github.com/jekyll/jemoji/blob/master/lib/jemoji.rb
