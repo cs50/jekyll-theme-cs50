@@ -223,7 +223,7 @@ end
 # https://github.com/jekyll/jekyll-mentions/blob/master/lib/jekyll-mentions.rb and
 # https://github.com/jekyll/jemoji/blob/master/lib/jemoji.rb
 Jekyll::Hooks.register [:pages, :documents], :post_render do |doc|
-  puts "HERE"
+  puts doc.content
   doc.content = doc.content.dup.gsub(LINK_REGEX) do |original|
     #link_type, link_text, relative_path, fragment = link_parts(Regexp.last_match)
     puts "TODO"
