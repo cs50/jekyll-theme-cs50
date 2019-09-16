@@ -211,7 +211,7 @@ Jekyll::Hooks.register :site, :after_reset do |site|
 end
 
 Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc|
-    puts doc.inspect
+    puts doc
 end
 
 # TODO: In offline mode, base64-encode images, embed CSS (in style tags) and JS (in script tags), a la
