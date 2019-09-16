@@ -216,7 +216,8 @@ FRAGMENT_REGEX = %r!(#.+?)?!.freeze
 INLINE_LINK_REGEX = %r!\[#{LINK_TEXT_REGEX}\]\(([^\)]+?)#{FRAGMENT_REGEX}\)!.freeze
 REFERENCE_LINK_REGEX = %r!^\s*?\[#{LINK_TEXT_REGEX}\]: (.+?)#{FRAGMENT_REGEX}\s*?$!.freeze
 LINK_REGEX = %r!(#{INLINE_LINK_REGEX}|#{REFERENCE_LINK_REGEX})!.freeze
-Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc|
+Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc, payload|
+  puts payload
   markdown_converter ||= site.find_converter_instance(CONVERTER_CLASS)
   if markdown_converter.matches(doc.extname)
     puts doc.content
