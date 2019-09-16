@@ -227,7 +227,7 @@ Jekyll::Hooks.register [:pages, :documents], :post_render do |doc|
   doc.content = doc.content.dup.gsub(LINK_REGEX) do |original|
     #link_type, link_text, relative_path, fragment = link_parts(Regexp.last_match)
     puts original
-    original
+    "foo"
     
   end
 end
