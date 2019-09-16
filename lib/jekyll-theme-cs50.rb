@@ -219,7 +219,7 @@ Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc, payload|
   if markdown_converter.matches(doc.extname)
     doc.content = doc.content.dup.gsub(INLINE_LINK_REGEX) do |original|
       #link_type, link_text, relative_path, fragment = link_parts(Regexp.last_match)
-      puts Regexp.last_match
+        puts Regexp.last_match.inspect
       "TODO"
     end
     puts doc.content
