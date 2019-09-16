@@ -217,11 +217,6 @@ FRAGMENT_REGEX = %r!(#.+?)?!.freeze
 INLINE_LINK_REGEX = %r!\[#{LINK_TEXT_REGEX}\]\(([^\)]+?)#{FRAGMENT_REGEX}\)!.freeze
 Jekyll::Hooks.register [:pages], :pre_render do |doc, payload|
 
-  puts "HERE"
-  puts doc.inspect
-  puts payload.inspect
-  next
-
   # If no site.baseurl
   next if !doc.site.baseurl
 
