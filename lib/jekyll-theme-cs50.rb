@@ -141,13 +141,10 @@ module CS50
       super
 
       # Allow unquoted URLs in argv1
-      begin
-        tokens = markup.split(" ", 2)
-        uri = URI.parse(tokens[0])
-        if uri.kind_of?(URI::HTTP) or uri.kind_of?(URI::HTTPS)
-          markup = "'#{tokens[0]}' #{tokens[1]}"
-        end
-      rescue
+      tokens = markup.split(" ", 2)
+      uri = URI.parse(tokens[0])
+      if uri =~ /\A#{URI::regexp(['http', 'https'])}\z/
+        markup = "'#{tokens[0]}' #{tokens[1]}"
       end
 
       # Parse arguments
@@ -210,7 +207,7 @@ Jekyll::Hooks.register :site, :after_reset do |site|
   site.config = Jekyll::Utils.deep_merge_hashes(Jekyll::Utils.deep_merge_hashes(CS50::DEFAULTS, site.config), CS50::OVERRIDES)
 end
 
-# TODO
+# Prepend site.baseurl to absolute paths
 # https://github.com/benbalter/jekyll-relative-links/blob/master/lib/jekyll-relative-links/generator.rb
 LINK_TEXT_REGEX = %r!(.*?)!.freeze
 FRAGMENT_REGEX = %r!(#.+?)?!.freeze
@@ -222,15 +219,13 @@ Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc, payload|
     doc.content = doc.content.dup.gsub(INLINE_LINK_REGEX) do |original|
       a = Regexp.last_match[1]
       href = Regexp.last_match[2]
-      begin
-        fail if !href.start_with?("/")
+      if href.start_with?("/")
         href = doc.site.baseurl.gsub(/\/\Z/, "") + "/" + href.gsub(/\A\//, "")
         "[#{a}](#{href})"
-      rescue
+      else
         original
       end
     end
-    puts doc.content
   end
 end
 
