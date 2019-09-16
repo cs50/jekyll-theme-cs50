@@ -223,16 +223,10 @@ Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc, payload|
       a = Regexp.last_match[1]
       href = Regexp.last_match[2]
       begin
-        puts "HERE: #{href}"
-        fail if href.start_with?("#")
-        puts "1"
-        fail if href =~ /\A#{URI::regexp(['http', 'https'])}\z/
-        puts "2"
+        fail if !href.start_with?("/")
         href = doc.site.baseurl.gsub(/\/\Z/, "") + "/" + href.gsub(/\A\//, "")
-        puts "3"
         "[#{a}](#{href})"
       rescue
-        puts "4"
         original
       end
     end
