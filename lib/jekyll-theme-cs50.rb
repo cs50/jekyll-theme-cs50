@@ -217,9 +217,12 @@ INLINE_LINK_REGEX = %r!\[#{LINK_TEXT_REGEX}\]\(([^\)]+?)#{FRAGMENT_REGEX}\)!.fre
 REFERENCE_LINK_REGEX = %r!^\s*?\[#{LINK_TEXT_REGEX}\]: (.+?)#{FRAGMENT_REGEX}\s*?$!.freeze
 LINK_REGEX = %r!(#{INLINE_LINK_REGEX}|#{REFERENCE_LINK_REGEX})!.freeze
 Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc|
-  puts doc.content
-  doc.content = doc.content.dup.gsub(LINK_REGEX) do |original|
-    #link_type, link_text, relative_path, fragment = link_parts(Regexp.last_match)
+  markdown_converter ||= site.find_converter_instance(CONVERTER_CLASS)
+  if markdown_converter.matches(doc.extname)
+    puts doc.content
+    doc.content = doc.content.dup.gsub(LINK_REGEX) do |original|
+      #link_type, link_text, relative_path, fragment = link_parts(Regexp.last_match)
+    end
   end
 end
 
