@@ -210,6 +210,12 @@ Jekyll::Hooks.register :site, :after_reset do |site|
   site.config = Jekyll::Utils.deep_merge_hashes(Jekyll::Utils.deep_merge_hashes(CS50::DEFAULTS, site.config), CS50::OVERRIDES)
 end
 
+# TODO
+LINK_TEXT_REGEX = %r!(.*?)!.freeze
+FRAGMENT_REGEX = %r!(#.+?)?!.freeze
+INLINE_LINK_REGEX = %r!\[#{LINK_TEXT_REGEX}\]\(([^\)]+?)#{FRAGMENT_REGEX}\)!.freeze
+REFERENCE_LINK_REGEX = %r!^\s*?\[#{LINK_TEXT_REGEX}\]: (.+?)#{FRAGMENT_REGEX}\s*?$!.freeze
+LINK_REGEX = %r!(#{INLINE_LINK_REGEX}|#{REFERENCE_LINK_REGEX})!.freeze
 Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc|
   doc.content = doc.content.dup.gsub(LINK_REGEX) do |original|
     #link_type, link_text, relative_path, fragment = link_parts(Regexp.last_match)
