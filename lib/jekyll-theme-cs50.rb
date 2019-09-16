@@ -228,9 +228,12 @@ Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc, payload|
         puts "1"
         fail if href =~ /\A#{URI::regexp(['http', 'https'])}\z/
         puts "2"
-        href = doc.site.baseurl.gsub!(/\/\Z/) + "/" + href.gsub!(/\A\//)
+        href = doc.site.baseurl.gsub!(/\/\Z/, "") + "/" + href.gsub!(/\A\//, "")
         puts "3"
         "[#{a}](#{href})"
+      rescue
+        puts "4"
+        original
       end
     end
     puts doc.content
