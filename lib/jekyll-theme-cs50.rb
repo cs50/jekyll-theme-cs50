@@ -222,10 +222,13 @@ Jekyll::Hooks.register [:pages, :documents], :pre_render do |doc, payload|
     doc.content = doc.content.dup.gsub(INLINE_LINK_REGEX) do |original|
       a = Regexp.last_match[1]
       href = Regexp.last_match[2]
-      if href.start_with?("/")
-        href = doc.site.baseurl + href
+      begin
+        fail if href.start_with?("/")
+        fail if uri.kind_of?(URI::HTTP) or uri.kind_of?(URI::HTTPS)
+        href = URI.join(doc.site.baseurl, href)
         "[#{a}](#{href})"
-      else
+        else
+      rescue
         original
       end
     end
