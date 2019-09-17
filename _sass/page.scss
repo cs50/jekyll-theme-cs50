@@ -13,6 +13,7 @@ body > div.container-fluid > div.row {
 // Defaults for iframes
 iframe {
     border: 0;
+    display: block; // Else defaults to inline, which adds whitespace below margin-bottom
     height: 480px;
     margin-bottom: 16px;
 }
