@@ -1,6 +1,7 @@
 require "cgi"
 require "jekyll"
 require "kramdown/parser/gfm"
+require "kramdown/parser/kramdown/link"
 require "liquid/tag/parser"
 require "sanitize"
 require "uri"
@@ -210,40 +211,8 @@ Jekyll::Hooks.register :site, :after_reset do |site|
   site.config = Jekyll::Utils.deep_merge_hashes(Jekyll::Utils.deep_merge_hashes(CS50::DEFAULTS, site.config), CS50::OVERRIDES)
 end
 
-# Prepend site.baseurl to absolute paths
-# https://github.com/benbalter/jekyll-relative-links/blob/master/lib/jekyll-relative-links/generator.rb
-LINK_TEXT_REGEX = %r!(.*?)!.freeze
-FRAGMENT_REGEX = %r!(#.+?)?!.freeze
-INLINE_LINK_REGEX = %r!\[#{LINK_TEXT_REGEX}\]\(([^\)]+?)#{FRAGMENT_REGEX}\)!.freeze
-Jekyll::Hooks.register [:pages], :pre_render do |doc, payload|
-
-  # If no site.baseurl
-  next if !doc.site.baseurl
-
-  # If .md file
-  markdown_converter ||= doc.site.find_converter_instance(Jekyll::Converters::Markdown)
-  if markdown_converter.matches(doc.extname)
-
-    # For each link
-    doc.content = doc.content.dup.gsub(INLINE_LINK_REGEX) do |original|
-
-      # []
-      a = Regexp.last_match[1]
-
-      # ()
-      href = Regexp.last_match[2]
-
-      # If absolute path, prepend site.baseurl
-      if href.start_with?("/")
-        href = doc.site.baseurl.gsub(/\/\Z/, "") + "/" + href.gsub(/\A\//, "")
-        "[#{a}](#{href})"
-
-      # Else leave unchanged
-      else
-        original
-      end
-    end
-  end
+Jekyll::Hooks.register :site, :pre_render do |site|
+  $site = site
 end
 
 # TODO: In offline mode, base64-encode images, embed CSS (in style tags) and JS (in script tags), a la
@@ -252,10 +221,25 @@ end
 Jekyll::Hooks.register [:pages, :documents], :post_render do |doc|
 end
 
-# Remember list markers
 module Kramdown
   module Parser
     class GFM < Kramdown::Parser::Kramdown
+
+      def parse_link
+        super
+
+        # Get link
+        current_link = @tree.children.select{ |element| [:a].include?(element.type) }.last
+
+        # If absolute path, prepend site.baseurl
+        unless current_link.nil?
+          if current_link and current_link.attr["href"].start_with?("/")
+              current_link.attr["href"] = $site.baseurl.gsub(/\/\Z/, "") + "/" + current_link.attr["href"].gsub(/\A\//, "")
+          end
+        end
+      end
+
+      # Remember list markers
       def parse_list
         super
         current_list = @tree.children.select{ |element| [:ul].include?(element.type) }.last
@@ -267,6 +251,7 @@ module Kramdown
         end
         true
       end
+
     end
   end
 end
