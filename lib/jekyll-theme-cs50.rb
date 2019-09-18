@@ -232,8 +232,8 @@ module Kramdown
         current_link = @tree.children.select{ |element| [:a].include?(element.type) }.last
 
         # If absolute path, prepend site.baseurl
-        unless current_link.nil? or not $site.baseurl?
-          if current_link and current_link.attr["href"].start_with?("/")
+        unless current_link.nil? or $site.baseurl.nil?
+          if current_link.attr["href"].start_with?("/")
               current_link.attr["href"] = $site.baseurl.gsub(/\/\Z/, "") + "/" + current_link.attr["href"].gsub(/\A\//, "")
           end
         end
