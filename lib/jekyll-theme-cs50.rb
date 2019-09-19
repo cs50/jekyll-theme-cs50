@@ -206,7 +206,9 @@ module CS50
 
   end
 
-  # Disable relative_url filter, since we prepend site.baseurl to all absolute paths
+  # Disable relative_url filter, since we prepend site.baseurl to all absolute paths,
+  # but we're not monkey-patching Jekyll::Filters::URLFilters::relative_url, since it's used by
+  # https://github.com/benbalter/jekyll-relative-links/blob/master/lib/jekyll-relative-links/generator.rb
   module Filters
     def relative_url(input)
       Jekyll.logger.warn "CS50 warning: no need to use relative_url with this theme"
