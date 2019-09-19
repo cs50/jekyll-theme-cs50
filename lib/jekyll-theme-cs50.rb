@@ -104,7 +104,7 @@ module CS50
     def render(context)
       site = context.registers[:site]
       converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
-      button = CS50::sanitize(converter.convert(@text), :elements => ["b", "code", "em", "i", "img", "span", "strong", "sub", "sup"])
+      button = CS50::sanitize(converter.convert(@text))
       <<~EOT
         <button class="btn btn-dark btn-sm" data-next type="button">#{button}</button>
       EOT
@@ -127,7 +127,7 @@ module CS50
     def render(context)
       site = context.registers[:site]
       converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
-      summary = sanitize(converter.convert(@text), :elements => ["b", "code", "em", "i", "img", "kbd", "span", "strong", "sub", "sup"])
+      summary = CS50::sanitize(converter.convert(@text))
       details = converter.convert(super(context))
       <<~EOT
         <details>
