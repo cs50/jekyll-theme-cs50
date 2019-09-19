@@ -221,6 +221,16 @@ end
 Jekyll::Hooks.register [:pages, :documents], :post_render do |doc|
 end
 
+module Jekyll
+  module Filters
+    module URLFilters
+      def relative_url(input)
+        puts "DEPRECATED"
+      end
+    end
+  end
+end
+
 module Kramdown
   module Parser
     class GFM < Kramdown::Parser::Kramdown
