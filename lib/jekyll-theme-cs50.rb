@@ -268,13 +268,10 @@ module Kramdown
           #href = current_link.attr["href"].sub(/\A\s*/, "")  # https://github.github.com/gfm/#whitespace-character
 
           # If absolute path
-          if current_link.attr["href"] =~ /\A\s*\/(.*)\z/
+          if match = current_link.attr["href"].match(/\A\s*\/(.*)\z/)
 
               # Prepend site.baseurl
-              puts "["
-              puts $1
-              puts "]"
-              current_link.attr["href"] = $site.baseurl.sub(/\/+\z/, "") #+ "/" + $1.sub(/\A\/+/, "")
+              current_link.attr["href"] = $site.baseurl.sub(/\/+\z/, "") + "/" + match.captures[0].sub(/\A\/+/, "")
           end
 
           # If inline link ends with .md
