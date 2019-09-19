@@ -221,8 +221,15 @@ end
 
 # Configure site
 Jekyll::Hooks.register :site, :after_reset do |site|
+
+  # Disable jekyll-relative-links because it prepends site.baseurl to relative links
+  if site.include? "jekyll-relative-links"
+    site.remove("jekyll-relative-links")
+    Jekyll.logger.warn "CS50 warning: jekyll-relative-links is not supported"
+  end
+
+  # Merge in theme's configuration
   site.config = Jekyll::Utils.deep_merge_hashes(Jekyll::Utils.deep_merge_hashes(CS50::DEFAULTS, site.config), CS50::OVERRIDES)
-  puts site.config
 end
 
 Jekyll::Hooks.register :site, :pre_render do |site|
