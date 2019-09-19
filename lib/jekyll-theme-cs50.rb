@@ -226,7 +226,7 @@ module Jekyll
     module URLFilters
       def relative_url(input)
         puts "DEPRECATED"
-        input
+        Jekyll.logger.warn "CS50 warning: no need to use relative_url with this theme"
       end
     end
   end
