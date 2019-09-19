@@ -10,6 +10,12 @@ require "jekyll-theme-cs50/constants"
 
 module CS50
 
+  # Sanitize string, allowing only these tags, which are a (reasonable) subset of
+  # https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Phrasing_content
+  def sanitize(s)
+    summary = Sanitize.fragment(s, :elements => ["b", "code", "em", "i", "img", "kbd", "span", "strong", "sub", "sup"])
+  end
+
   class AlertBlock < Liquid::Block
 
     def initialize(tag_name, markup, options)
@@ -98,7 +104,7 @@ module CS50
     def render(context)
       site = context.registers[:site]
       converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
-      button = Sanitize.fragment(converter.convert(@text), :elements => ["b", "code", "em", "i", "img", "span", "strong", "sub", "sup"])
+      button = sanitize(converter.convert(@text), :elements => ["b", "code", "em", "i", "img", "span", "strong", "sub", "sup"])
       <<~EOT
         <button class="btn btn-dark btn-sm" data-next type="button">#{button}</button>
       EOT
@@ -121,7 +127,7 @@ module CS50
     def render(context)
       site = context.registers[:site]
       converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
-      summary = Sanitize.fragment(converter.convert(@text), :elements => ["b", "code", "em", "i", "img", "span", "strong", "sub", "sup"])
+      summary = sanitize(converter.convert(@text), :elements => ["b", "code", "em", "i", "img", "kbd", "span", "strong", "sub", "sup"])
       details = converter.convert(super(context))
       <<~EOT
         <details>
@@ -233,8 +239,16 @@ module Kramdown
 
         # If absolute path, prepend site.baseurl
         unless current_link.nil? or $site.baseurl.nil?
-          if current_link.attr["href"].start_with?("/")
-              current_link.attr["href"] = $site.baseurl.gsub(/\/\Z/, "") + "/" + current_link.attr["href"].gsub(/\A\//, "")
+
+          # Trim leading whitespace from inline link
+          # https://github.github.com/gfm/#links
+          href = current_link.attr["href"].sub(/\A\s*/, "")  # https://github.github.com/gfm/#whitespace-character
+
+          # If absolute path
+          if href.start_with?("/")
+
+              # Prepend site.baseurl
+              current_link.attr["href"] = $site.baseurl.sub(/\/\Z/, "") + "/" + href.sub(/\A\//, "")
           end
         end
       end
