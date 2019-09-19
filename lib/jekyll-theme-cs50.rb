@@ -13,7 +13,7 @@ module CS50
   # Sanitize string, allowing only these tags, which are a (reasonable) subset of
   # https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Phrasing_content
   def self.sanitize(s)
-    summary = Sanitize.fragment(s, :elements => ["b", "code", "em", "i", "img", "kbd", "span", "strong", "sub", "sup"])
+    Sanitize.fragment(s, :elements => ["b", "code", "em", "i", "img", "kbd", "span", "strong", "sub", "sup"]).strip
   end
 
   class AlertBlock < Liquid::Block
