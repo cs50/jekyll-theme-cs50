@@ -12,7 +12,7 @@ module CS50
 
   # Sanitize string, allowing only these tags, which are a (reasonable) subset of
   # https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Phrasing_content
-  def sanitize(s)
+  def self.sanitize(s)
     summary = Sanitize.fragment(s, :elements => ["b", "code", "em", "i", "img", "kbd", "span", "strong", "sub", "sup"])
   end
 
@@ -104,7 +104,7 @@ module CS50
     def render(context)
       site = context.registers[:site]
       converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
-      button = self.sanitize(converter.convert(@text), :elements => ["b", "code", "em", "i", "img", "span", "strong", "sub", "sup"])
+      button = sanitize(converter.convert(@text), :elements => ["b", "code", "em", "i", "img", "span", "strong", "sub", "sup"])
       <<~EOT
         <button class="btn btn-dark btn-sm" data-next type="button">#{button}</button>
       EOT
@@ -127,7 +127,7 @@ module CS50
     def render(context)
       site = context.registers[:site]
       converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
-      summary = self.sanitize(converter.convert(@text), :elements => ["b", "code", "em", "i", "img", "kbd", "span", "strong", "sub", "sup"])
+      summary = sanitize(converter.convert(@text), :elements => ["b", "code", "em", "i", "img", "kbd", "span", "strong", "sub", "sup"])
       details = converter.convert(super(context))
       <<~EOT
         <details>
