@@ -18,7 +18,8 @@ module CS50
 
   OVERRIDES = {
     "exclude" => [
-      "redirects.json",
+      "Gemfile",
+      "Gemfile.lock",
       "vendor"
     ],
     "kramdown" => {

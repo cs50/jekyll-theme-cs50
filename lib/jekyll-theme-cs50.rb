@@ -1,5 +1,6 @@
 require "cgi"
 require "jekyll"
+require "jekyll-redirect-from"
 require "kramdown/parser/gfm"
 require "kramdown/parser/kramdown/link"
 require "liquid/tag/parser"
@@ -9,6 +10,12 @@ require "uri"
 require "jekyll-theme-cs50/constants"
 
 module CS50
+
+  # Sanitize string, allowing only these tags, which are a (reasonable) subset of
+  # https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Phrasing_content
+  def self.sanitize(s)
+    Sanitize.fragment(s, :elements => ["b", "code", "em", "i", "img", "kbd", "span", "strong", "sub", "sup"]).strip
+  end
 
   class AlertBlock < Liquid::Block
 
@@ -67,15 +74,9 @@ module CS50
 
     def render(context)
       if @height and @src
-        if @args[:ctz] == true
-          <<~EOT
-            <iframe data-calendar="#{@src}" data-ctz style="height: #{@height}px;"></iframe>
-          EOT
-        else
-          <<~EOT
-            <iframe data-calendar="#{@src}" style="height: #{@height}px;"></iframe>
-          EOT
-        end
+        <<~EOT
+          <iframe data-calendar="#{@src}" #{@args[:ctz] ? 'data-ctz' : ''} style="height: #{@height}px;"></iframe>
+        EOT
       else
         <<~EOT
           📅
@@ -98,7 +99,7 @@ module CS50
     def render(context)
       site = context.registers[:site]
       converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
-      button = Sanitize.fragment(converter.convert(@text), :elements => ["b", "code", "em", "i", "img", "span", "strong", "sub", "sup"])
+      button = CS50::sanitize(converter.convert(@text))
       <<~EOT
         <button class="btn btn-dark btn-sm" data-next type="button">#{button}</button>
       EOT
@@ -121,7 +122,7 @@ module CS50
     def render(context)
       site = context.registers[:site]
       converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
-      summary = Sanitize.fragment(converter.convert(@text), :elements => ["b", "code", "em", "i", "img", "span", "strong", "sub", "sup"])
+      summary = CS50::sanitize(converter.convert(@text))
       details = converter.convert(super(context))
       <<~EOT
         <details>
@@ -221,6 +222,26 @@ end
 Jekyll::Hooks.register [:pages, :documents], :post_render do |doc|
 end
 
+# Disable relative_url filter, since we prepend site.baseurl to all absolute paths
+module Jekyll
+  module Filters
+    module URLFilters
+      def relative_url(input)
+        Jekyll.logger.warn "CS50 warning: no need to use relative_url with this theme"
+        input
+      end
+    end
+  end
+end
+
+# Disable redirects.json
+module JekyllRedirectFrom
+  class Generator < Jekyll::Generator
+    def generate_redirects_json
+    end
+  end
+end
+
 module Kramdown
   module Parser
     class GFM < Kramdown::Parser::Kramdown
@@ -233,8 +254,16 @@ module Kramdown
 
         # If absolute path, prepend site.baseurl
         unless current_link.nil? or $site.baseurl.nil?
-          if current_link.attr["href"].start_with?("/")
-              current_link.attr["href"] = $site.baseurl.gsub(/\/\Z/, "") + "/" + current_link.attr["href"].gsub(/\A\//, "")
+
+          # Trim leading whitespace from inline link
+          # https://github.github.com/gfm/#links
+          href = current_link.attr["href"].sub(/\A\s*/, "")  # https://github.github.com/gfm/#whitespace-character
+
+          # If absolute path
+          if href.start_with?("/")
+
+              # Prepend site.baseurl
+              current_link.attr["href"] = $site.baseurl.sub(/\/\Z/, "") + "/" + href.sub(/\A\//, "")
           end
         end
       end

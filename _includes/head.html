@@ -23,21 +23,21 @@
 
 {%- assign time  = site.time | date: '%s' -%}
 
-<link href="{{ '/favicon.ico' | relative_url }}?{{ time }}" rel="icon">
+<link href="{{ '/favicon.ico' | prepend: site.baseurl }}?{{ time }}" rel="icon">
 
 <!-- https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use -->
-<link href="{{ '/assets/@fortawesome/fontawesome-free/css/all.min.css' | relative_url }}?{{ time }}" rel="stylesheet">
+<link href="{{ '/assets/@fortawesome/fontawesome-free/css/all.min.css' | prepend: site.baseurl }}?{{ time }}" rel="stylesheet">
 
-<link href="{{ '/assets/' | append: page.layout | append: '.css' | relative_url }}?{{ time }}" rel="stylesheet">
+<link href="{{ '/assets/' | append: page.layout | append: '.css' | prepend: site.baseurl }}?{{ time }}" rel="stylesheet">
 
 <!-- http://getbootstrap.com/docs/4.3/getting-started/introduction/ -->
-<script src="{{ '/assets/jquery/dist/jquery.min.js' | relative_url }}?{{ time }}"></script>
-<script src="{{ '/assets/popper.js/dist/umd/popper.min.js' | relative_url }}?{{ time }}"></script>
-<script src="{{ '/assets/bootstrap/dist/js/bootstrap.min.js' | relative_url }}?{{ time }}"></script>
+<script src="{{ '/assets/jquery/dist/jquery.min.js' | prepend: site.baseurl }}?{{ time }}"></script>
+<script src="{{ '/assets/popper.js/dist/umd/popper.min.js' | prepend: site.baseurl }}?{{ time }}"></script>
+<script src="{{ '/assets/bootstrap/dist/js/bootstrap.min.js' | prepend: site.baseurl }}?{{ time }}"></script>
 
 <!-- https://github.com/pellepim/jstimezonedetect -->
-<script src="{{ '/assets/jstz.min.js' | relative_url }}?{{ time }}"></script>
+<script src="{{ '/assets/jstz.min.js' | prepend: site.baseurl }}?{{ time }}"></script>
 
-<script src="{{ '/assets/jekyll-theme-cs50.js' | relative_url }}?{{ time }}"></script>
+<script src="{{ '/assets/jekyll-theme-cs50.js' | prepend: site.baseurl }}?{{ time }}"></script>
 
 <title>{{ title }}</title>
