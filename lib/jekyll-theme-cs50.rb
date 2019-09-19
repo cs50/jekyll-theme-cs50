@@ -265,12 +265,13 @@ module Kramdown
 
           # Trim leading whitespace from inline link
           # https://github.github.com/gfm/#links
-          href = current_link.attr["href"].sub(/\A\s*/, "")  # https://github.github.com/gfm/#whitespace-character
+          #href = current_link.attr["href"].sub(/\A\s*/, "")  # https://github.github.com/gfm/#whitespace-character
 
           # If absolute path
           if current_link.attr["href"] =~ /\A\s*\/(.*)\z/
 
               # Prepend site.baseurl
+              puts $1.class
               current_link.attr["href"] = $site.baseurl.sub(/\/+\z/, "") + "/" + $1.sub(/\A\/+/, "")
           end
 
