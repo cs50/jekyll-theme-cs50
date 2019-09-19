@@ -271,6 +271,9 @@ module Kramdown
           if current_link.attr["href"] =~ /\A\s*\/(.*)\z/
 
               # Prepend site.baseurl
+              puts "["
+              puts $1
+              puts "]"
               current_link.attr["href"] = $site.baseurl.sub(/\/+\z/, "") #+ "/" + $1.sub(/\A\/+/, "")
           end
 
