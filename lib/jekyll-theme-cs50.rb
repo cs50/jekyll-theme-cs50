@@ -272,8 +272,8 @@ module Kramdown
 
               # Prepend site.baseurl
               puts "["
-              puts $site.baseurl
-              puts $1
+              puts $site.baseurl.sub
+              puts $1.sub
               puts "]"
               current_link.attr["href"] = $site.baseurl.sub(/\/+\z/, "") + "/" + $1.sub(/\A\/+/, "")
           end
