@@ -228,6 +228,7 @@ module Jekyll
     module URLFilters
       def relative_url(input)
         Jekyll.logger.warn "CS50 warning: no need to use relative_url with this theme"
+        puts caller
         input
       end
     end
