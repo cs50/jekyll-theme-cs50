@@ -1,1 +1,1 @@
-# [{{ site.title }}]({{ "/" | relative_url }})
+# [{{ site.title }}](/)
