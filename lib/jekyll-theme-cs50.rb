@@ -1,5 +1,6 @@
 require "cgi"
 require "jekyll"
+require "jekyll-redirect-from"
 require "kramdown/parser/gfm"
 require "kramdown/parser/kramdown/link"
 require "liquid/tag/parser"
@@ -229,6 +230,14 @@ module Jekyll
         Jekyll.logger.warn "CS50 warning: no need to use relative_url with this theme"
         input
       end
+    end
+  end
+end
+
+# Disable redirects.json
+module JekyllRedirectFrom
+  class Generator < Jekyll::Generator
+    def generate_redirects_json
     end
   end
 end
