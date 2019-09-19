@@ -271,7 +271,12 @@ module Kramdown
           if href.start_with?("/")
 
               # Prepend site.baseurl
-              current_link.attr["href"] = $site.baseurl.sub(/\/\Z/, "") + "/" + href.sub(/\A\//, "")
+              current_link.attr["href"] = $site.baseurl.sub(/\/\z/, "") + "/" + href.sub(/\A\//, "")
+          end
+
+          # If inline link ends with .md
+          if href =~ /\A([^\s]*)\.md(.*)\z/
+            href = $1 + "/" + $2
           end
         end
       end
