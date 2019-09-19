@@ -226,6 +226,7 @@ module Jekyll
     module URLFilters
       def relative_url(input)
         puts "DEPRECATED"
+        input
       end
     end
   end
