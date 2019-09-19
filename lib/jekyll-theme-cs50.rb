@@ -275,8 +275,8 @@ module Kramdown
           end
 
           # If inline link ends with .md
-          if current_link.attr["href"] =~ /\A([^\s]*)\.md(.*)\z/
-            current_link.attr["href"] = $1 + "/" + $2
+          if match = current_link.attr["href"](/\A([^\s]*)\.md(\s+.*)\z/)
+            current_link.attr["href"] = match.captures[0] + "/" + match.captures[1]
           end
         end
       end
