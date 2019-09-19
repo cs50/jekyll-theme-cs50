@@ -205,6 +205,16 @@ module CS50
     Liquid::Template.register_tag("video", self)
 
   end
+
+  # Disable relative_url filter, since we prepend site.baseurl to all absolute paths
+  module Filters
+    def relative_url(input)
+      Jekyll.logger.warn "CS50 warning: no need to use relative_url with this theme"
+      input
+    end
+  end
+  Liquid::Template.register_filter(CS50::Filters)
+
 end
 
 # Configure site
@@ -220,19 +230,6 @@ end
 # https://github.com/jekyll/jekyll-mentions/blob/master/lib/jekyll-mentions.rb and
 # https://github.com/jekyll/jemoji/blob/master/lib/jemoji.rb
 Jekyll::Hooks.register [:pages, :documents], :post_render do |doc|
-end
-
-# Disable relative_url filter, since we prepend site.baseurl to all absolute paths
-module Jekyll
-  module Filters
-    module URLFilters
-      def relative_url(input)
-        Jekyll.logger.warn "CS50 warning: no need to use relative_url with this theme"
-        puts caller
-        input
-      end
-    end
-  end
 end
 
 # Disable redirects.json
