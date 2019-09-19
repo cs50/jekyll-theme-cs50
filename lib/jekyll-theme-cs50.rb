@@ -73,15 +73,9 @@ module CS50
 
     def render(context)
       if @height and @src
-        if @args[:ctz] == true
-          <<~EOT
-            <iframe data-calendar="#{@src}" data-ctz style="height: #{@height}px;"></iframe>
-          EOT
-        else
-          <<~EOT
-            <iframe data-calendar="#{@src}" style="height: #{@height}px;"></iframe>
-          EOT
-        end
+        <<~EOT
+          <iframe data-calendar="#{@src}" #{@args[:ctz] ? 'data-ctz' : ''} style="height: #{@height}px;"></iframe>
+        EOT
       else
         <<~EOT
           📅
