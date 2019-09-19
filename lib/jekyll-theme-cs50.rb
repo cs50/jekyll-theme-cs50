@@ -222,6 +222,7 @@ end
 # Configure site
 Jekyll::Hooks.register :site, :after_reset do |site|
   site.config = Jekyll::Utils.deep_merge_hashes(Jekyll::Utils.deep_merge_hashes(CS50::DEFAULTS, site.config), CS50::OVERRIDES)
+  puts site.config
 end
 
 Jekyll::Hooks.register :site, :pre_render do |site|
