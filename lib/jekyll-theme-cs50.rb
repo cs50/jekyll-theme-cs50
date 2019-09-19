@@ -221,6 +221,7 @@ end
 Jekyll::Hooks.register [:pages, :documents], :post_render do |doc|
 end
 
+# Disable relative_url filter, since we prepend site.baseurl to all absolute paths
 module Jekyll
   module Filters
     module URLFilters
