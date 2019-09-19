@@ -23,7 +23,7 @@
 
 {%- assign time  = site.time | date: '%s' -%}
 
-<link href="{{ '/favicon.ico' | relative_url }}?{{ time }}" rel="icon">
+<link href="{{ '/favicon.ico' | prepend: site.baseurl }}?{{ time }}" rel="icon">
 
 <!-- https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use -->
 <link href="{{ '/assets/@fortawesome/fontawesome-free/css/all.min.css' | relative_url }}?{{ time }}" rel="stylesheet">
