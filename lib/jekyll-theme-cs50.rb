@@ -225,7 +225,7 @@ Jekyll::Hooks.register :site, :after_reset do |site|
   # Disable jekyll-relative-links because it prepends site.baseurl to relative links
   if site.config["plugins"].kind_of?(Array) and site.config["plugins"].include? "jekyll-relative-links"
     site.config["plugins"] = site.config["plugins"] - ["jekyll-relative-links"]
-    Jekyll.logger.warn "CS50 warning: jekyll-relative-links is not supported"
+    Jekyll.logger.warn "CS50 warning: jekyll-relative-links is not supported with this theme"
   end
 
   # Merge in theme's configuration
