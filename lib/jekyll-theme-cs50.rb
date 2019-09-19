@@ -225,7 +225,7 @@ Jekyll::Hooks.register :site, :after_reset do |site|
   # Disable jekyll-relative-links because it prepends site.baseurl to relative links
   if site.config["plugins"].kind_of?(Array) and site.config["plugins"].include? "jekyll-relative-links"
     site.config["plugins"] = site.config["plugins"] - ["jekyll-relative-links"]
-    Jekyll.logger.warn "CS50 warning: jekyll-relative-links is not supported with this theme"
+    Jekyll.logger.warn "CS50 warning: no need to use jekyll-relative-links with this theme"
   end
 
   # Merge in theme's configuration
@@ -262,10 +262,6 @@ module Kramdown
 
         # If absolute path, prepend site.baseurl
         unless current_link.nil? or $site.baseurl.nil?
-
-          # Trim leading whitespace from inline link
-          # https://github.github.com/gfm/#links
-          #href = current_link.attr["href"].sub(/\A\s*/, "")  # https://github.github.com/gfm/#whitespace-character
 
           # If absolute path
           if match = current_link.attr["href"].match(/\A\s*\/(.*)\z/)
