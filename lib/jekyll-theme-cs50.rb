@@ -271,11 +271,7 @@ module Kramdown
           if current_link.attr["href"] =~ /\A\s*\/(.*)\z/
 
               # Prepend site.baseurl
-              puts "["
-              puts $site.baseurl.sub
-              puts $1.sub
-              puts "]"
-              current_link.attr["href"] = $site.baseurl.sub(/\/+\z/, "") + "/" + $1.sub(/\A\/+/, "")
+              current_link.attr["href"] = $site.baseurl.sub(/\/+\z/, "") #+ "/" + $1.sub(/\A\/+/, "")
           end
 
           # If inline link ends with .md
