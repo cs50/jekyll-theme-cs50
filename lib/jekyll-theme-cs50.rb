@@ -105,7 +105,6 @@ module CS50
       site = context.registers[:site]
       converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
       button = CS50::sanitize(converter.convert(@text))
-      puts "[#{button}]"
       <<~EOT
         <button class="btn btn-dark btn-sm" data-next type="button">#{button}</button>
       EOT
