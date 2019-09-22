@@ -191,8 +191,8 @@ module CS50
     def render(context)
       if @v and @src and @ratio
         <<~EOT
-          <div class="embed-responsive embed-responsive-#{@ratio}" data-video>
-              <iframe allowfullscreen class="border embed-responsive-item" src="#{@src}" style="background-image: url('https://img.youtube.com/vi/#{@v}/sddefault.jpg'); background-repeat: no-repeat; background-size: cover;"></iframe>
+          <div class="border embed-responsive embed-responsive-#{@ratio}" data-video>
+              <iframe allowfullscreen class="embed-responsive-item" src="#{@src}" style="background-image: url('https://img.youtube.com/vi/#{@v}/sddefault.jpg'); background-repeat: no-repeat; background-size: cover;"></iframe>
           </div>
         EOT
       else
