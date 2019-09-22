@@ -5,6 +5,12 @@ $font-family-sans-serif: "PT Sans" !default;
 $link-color: #a51c30 !default;
 $link-hover-color: $link-color !default;
 
+// Dark mode
+@media (prefers-color-scheme: light) {
+    $body-color: #fff;
+    $body-bg: #000;
+}
+
 // Import Bootstrap
 @import "bootstrap/scss/bootstrap.scss";
 
@@ -63,4 +69,3 @@ details > summary {
 .markdown-body :last-child:not(.highlight) {
     margin-bottom: 0;
 }
-
