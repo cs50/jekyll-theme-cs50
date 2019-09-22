@@ -21,6 +21,9 @@ $link-hover-color: $link-color !default;
 
 // Dark mode
 @media (prefers-color-scheme: dark) {
+    a {
+        color: lighten($link-color, 25%);
+    }
     body {
         color: #fff;
         background-color: #212529;
