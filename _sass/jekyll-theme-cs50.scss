@@ -6,9 +6,10 @@ $link-color: #a51c30 !default;
 $link-hover-color: $link-color !default;
 
 // Dark mode
-$body-color: #fff !default;
-$body-bg: #000 !default;
-$link-color: lighten($link-color, 50%);
+@media (prefers-color-scheme: dark) {
+    $body-color: #fff !default;
+    $body-bg: #000 !default;
+}
 
 // Import Bootstrap
 @import "bootstrap/scss/bootstrap.scss";
