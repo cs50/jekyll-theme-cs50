@@ -20,6 +20,7 @@ $link-hover-color: $link-color !default;
 @import url("https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700");
 
 // Dark mode
+/*
 @media (prefers-color-scheme: dark) {
     a {
         color: lighten($link-color, 25%);
@@ -29,6 +30,7 @@ $link-hover-color: $link-color !default;
         background-color: #212529;
     }
 }
+*/
 
 //// marker
 
