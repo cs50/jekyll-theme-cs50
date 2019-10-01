@@ -185,7 +185,7 @@ module CS50
         end
 
         # Ensure playlist menu appears
-        if params["list"] or params["playlist"]
+        if not params["list"].empty? or not params["playlist"].empty?
           components["showinfo"] = "1"
         end
 
