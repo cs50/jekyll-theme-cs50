@@ -171,8 +171,9 @@ module CS50
 
         # Default components
         components = {
-          rel: "0",
-          showinfo: "0"
+          "modestbranding" => "1",
+          "rel" => "0",
+          "showinfo" => "0"
         }
 
         # Supported components
@@ -181,6 +182,11 @@ module CS50
             if params.key?(param)
               components[param] = params[param].first
             end
+        end
+
+        # Ensure playlist menu appears
+        if params["list"] or params["playlist"]
+          components["showinfo"] = "1"
         end
 
         # Build URL
