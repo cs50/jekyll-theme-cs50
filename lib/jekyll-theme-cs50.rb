@@ -178,7 +178,7 @@ module CS50
 
         # Supported components
         params = CGI::parse(URI::parse(@args[:argv1]).query || "")
-        ["autoplay", "end", "index", "list", "start", "t"].each do |param|
+        ["autoplay", "end", "index", "list", "muted", "start", "t"].each do |param|
             if params.key?(param)
               components[param] = params[param].first
             end
