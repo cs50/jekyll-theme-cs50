@@ -238,8 +238,19 @@ Jekyll::Hooks.register :site, :after_reset do |site|
   site.config = Jekyll::Utils.deep_merge_hashes(Jekyll::Utils.deep_merge_hashes(CS50::DEFAULTS, site.config), CS50::OVERRIDES)
 end
 
-Jekyll::Hooks.register :site, :pre_render do |site|
+Jekyll::Hooks.register :site, :pre_render do |site, payload|
+
+  # Expose site to Kramdown's monkey patches
   $site = site
+
+  # Promote site.cs50.assign.* to global variables
+  begin
+    site.config["cs50"]["assign"].each do |key, value|
+      payload[key] = value
+    end
+    site.config["cs50"].delete("assign")
+  rescue
+  end
 end
 
 # TODO: In offline mode, base64-encode images, embed CSS (in style tags) and JS (in script tags), a la
