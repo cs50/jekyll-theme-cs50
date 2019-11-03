@@ -72,7 +72,7 @@ details > summary {
     font-weight: bold;
 }
 
-// Suppress bottom margin within parents, but not for highlight
+// Suppress bottom margin within parents, but not for .highlight
 .markdown-body :last-child:not(.highlight) {
     margin-bottom: 0;
 }
