@@ -206,7 +206,7 @@ module CS50
       if @v and @src and @ratio
         <<~EOT
           <div class="border embed-responsive embed-responsive-#{@ratio}" data-video>
-              <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="embed-responsive-item" src="#{@src}" style="background-image: url('https://img.youtube.com/vi/#{@v}/sddefault.jpg'); background-repeat: no-repeat; background-size: cover;"></iframe>
+              <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="embed-responsive-item" src="#{@src}"></iframe>
           </div>
         EOT
       else
