@@ -179,8 +179,16 @@ module CS50
         # Supported components
         params = CGI::parse(URI::parse(@args[:argv1]).query || "")
         ["autoplay", "controls", "end", "index", "list", "mute", "start", "t"].each do |param|
+
+            # If param was provided
             if params.key?(param)
-              components[param] = params[param].first
+
+              # Add to components, but map t= to start=
+              if param == "t" and !params.key?("start")
+                components["start"] = params["t"].first
+              else
+                components[param] = params[param].first
+              end
             end
         end
 
