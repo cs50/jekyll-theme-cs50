@@ -233,11 +233,15 @@ module CS50
 
 end
 
-# Configure site
 Jekyll::Hooks.register :site, :after_reset do |site|
 
+  # Strip trailing slashes from site.baseurl
+  if site.config.key?("baseurl")
+    site.config["baseurl"] = site.config["baseurl"].sub(/\/+$/, "")
+  end
+
   # Disable jekyll-relative-links because it prepends site.baseurl to relative links
-  if site.config["plugins"].kind_of?(Array) and site.config["plugins"].include? "jekyll-relative-links"
+  if site.config.key?("plugins") and site.config["plugins"].kind_of?(Array) and site.config["plugins"].include? "jekyll-relative-links"
     site.config["plugins"] = site.config["plugins"] - ["jekyll-relative-links"]
     Jekyll.logger.warn "CS50 warning: no need to use jekyll-relative-links with this theme"
   end
