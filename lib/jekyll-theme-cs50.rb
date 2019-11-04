@@ -236,7 +236,7 @@ end
 Jekyll::Hooks.register :site, :after_reset do |site|
 
   # Strip trailing slashes from site.baseurl
-  if site.config.key?("baseurl")
+  unless site.config["baseurl"].nil?
     site.config["baseurl"] = site.config["baseurl"].sub(/\/+$/, "")
   end
 
