@@ -1,6 +1,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+{%- if page.refresh -%}
+<meta content="{{ page.refresh }}" http-equiv="refresh">
+{%- endif -%}
+
 <meta property="og:description" content="{{ site.description }}">
 
 <meta property="og:image" content="{{ site.image }}">
