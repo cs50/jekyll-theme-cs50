@@ -167,6 +167,11 @@ main.col-md {
     font-size: inherit; /* Use our size */
 }
 
+// Preserve spaces between backticks
+.markdown-body code {
+    white-space: pre-wrap;
+}
+
 // Add padding above headings to match Primer's padding below headings,
 // to ensure anchors aren't too close to top of viewport
 .markdown-body h1,
