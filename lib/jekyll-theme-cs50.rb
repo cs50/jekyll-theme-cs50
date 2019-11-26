@@ -286,7 +286,7 @@ Jekyll::Hooks.register [:pages], :post_render do |page|
     doc.traverse do |node|
       {"a" => "href", "img" => "src", "link" => "href", "script" => "src"}.each do |name, attribute|
         if node.name == name
-          if node[attribute].start_with?("/")
+          if not node[attribute].nil? and node[attribute].start_with?("/")
             node[attribute] = relative_path(page.dir, node[attribute])
           end
         end
