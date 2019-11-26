@@ -1,13 +1,17 @@
 require "cgi"
+require "css_parser"
 require "jekyll"
 require "jekyll-redirect-from"
 require "kramdown/parser/gfm"
 require "kramdown/parser/kramdown/link"
 require "liquid/tag/parser"
+require "pathname"
 require "sanitize"
 require "uri"
 
 require "jekyll-theme-cs50/constants"
+
+include CssParser
 
 module CS50
 
@@ -264,10 +268,67 @@ Jekyll::Hooks.register :site, :pre_render do |site, payload|
   end
 end
 
-# TODO: In offline mode, base64-encode images, embed CSS (in style tags) and JS (in script tags), a la
-# https://github.com/jekyll/jekyll-mentions/blob/master/lib/jekyll-mentions.rb and
-# https://github.com/jekyll/jemoji/blob/master/lib/jemoji.rb
-Jekyll::Hooks.register [:pages, :documents], :post_render do |doc|
+Jekyll::Hooks.register [:pages], :post_render do |page|
+
+  def relative_path(from, to)
+    path = Pathname.new(to).relative_path_from(Pathname.new(from)).to_s
+    if to.end_with?("/")
+      path + "/"
+    else
+      path
+    end
+  end
+
+  # If HTML
+  if page.output_ext == ".html"
+
+    # Parse page, including its layout
+    doc = Nokogiri::HTML5.parse(page.output)
+  
+    # Resolve absolute paths in attributes to relative paths
+    doc.traverse do |node|
+      {"a" => "href", "img" => "src", "link" => "href", "script" => "src"}.each do |name, attribute|
+        if node.name == name
+          if node[attribute].start_with?("/")
+            node[attribute] = relative_path(page.dir, node[attribute])
+          end
+        end
+      end
+    end
+    page.output = doc.to_html
+
+  # If SCSS
+  elsif page.output_ext == ".css"
+
+    parser = CssParser::Parser.new
+    parser.load_string! page.output
+    parser.instance_variable_get("@rules").each do |rule|
+      rule[:declarations].each do |declaration|
+        puts declaration
+        puts "---"
+      end
+    end
+
+    # Resolve absolute paths in url() to relative paths
+    # https://developer.mozilla.org/en-US/docs/Web/CSS/url()
+    page.output = page.output.gsub(/url\(\s*([^\)]*)\s*\)/) do |s|
+      group = "#{$1}"
+      if match = group.match(/\A'(\/.*)'\z/) # url('/...')
+        "url('" + relative_path(page.dir, match.captures[0]).to_s + "')"
+      elsif match = group.match(/\A"(\/.*)"\z/) # url("/...")
+        'url("' + relative_path(page.dir, match.captures[0]).to_s + '")'
+      elsif match = group.match(/\A(\/(.*[^'"])?)\z/) # url(/...)
+        "url(" + relative_path(page.dir, match.captures[0]).to_s + ")"
+      else
+        s
+      end
+    end
+  end
+
+  # TODO: In offline mode, base64-encode images, embed CSS (in style tags) and JS (in script tags), a la
+  # https://github.com/jekyll/jekyll-mentions/blob/master/lib/jekyll-mentions.rb and
+  # https://github.com/jekyll/jemoji/blob/master/lib/jemoji.rb
+
 end
 
 # Disable redirects.json
@@ -290,13 +351,13 @@ module Kramdown
         unless current_link.nil? 
 
           # If absolute path, prepend site.baseurl
-          unless $site.baseurl.nil?
-              if match = current_link.attr["href"].match(/\A\s*\/(.*)\z/)
-
-                  # Prepend site.baseurl
-                  current_link.attr["href"] = $site.baseurl.sub(/\/+\z/, "") + "/" + match.captures[0].sub(/\A\/+/, "")
-              end
-          end
+          #unless $site.baseurl.nil?
+          #    if match = current_link.attr["href"].match(/\A\s*\/(.*)\z/)
+          #
+          #        # Prepend site.baseurl
+          #        current_link.attr["href"] = $site.baseurl.sub(/\/+\z/, "") + "/" + match.captures[0].sub(/\A\/+/, "")
+          #    end
+          #end
 
           # If inline link ends with .md
           if match = current_link.attr["href"].match(/\A([^\s]*)\.md(\s+.*)\z/)
