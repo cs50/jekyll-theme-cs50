@@ -27,21 +27,21 @@
 
 {%- assign time  = site.time | date: '%s' -%}
 
-<link href="{{ '/favicon.ico' | prepend: site.baseurl }}?{{ time }}" rel="icon">
+<link href="/favicon.ico?{{ time }}" rel="icon">
 
 <!-- https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use -->
-<link href="{{ '/assets/@fortawesome/fontawesome-free/css/all.min.css' | prepend: site.baseurl }}?{{ time }}" rel="stylesheet">
+<link href="/assets/@fortawesome/fontawesome-free/css/all.min.css?{{ time }}" rel="stylesheet">
 
-<link href="{{ '/assets/' | append: page.layout | append: '.css' | prepend: site.baseurl }}?{{ time }}" rel="stylesheet">
+<link href="{{ '/assets/' | append: page.layout | append: '.css' }}?{{ time }}" rel="stylesheet">
 
 <!-- http://getbootstrap.com/docs/4.3/getting-started/introduction/ -->
-<script src="{{ '/assets/jquery/dist/jquery.min.js' | prepend: site.baseurl }}?{{ time }}"></script>
-<script src="{{ '/assets/popper.js/dist/umd/popper.min.js' | prepend: site.baseurl }}?{{ time }}"></script>
-<script src="{{ '/assets/bootstrap/dist/js/bootstrap.min.js' | prepend: site.baseurl }}?{{ time }}"></script>
+<script src="/assets/jquery/dist/jquery.min.js?{{ time }}"></script>
+<script src="/assets/popper.js/dist/umd/popper.min.js?{{ time }}"></script>
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js?{{ time }}"></script>
 
 <!-- https://github.com/pellepim/jstimezonedetect -->
-<script src="{{ '/assets/jstz.min.js' | prepend: site.baseurl }}?{{ time }}"></script>
+<script src="/assets/jstz.min.js?{{ time }}"></script>
 
-<script src="{{ '/assets/jekyll-theme-cs50.js' | prepend: site.baseurl }}?{{ time }}"></script>
+<script src="/assets/jekyll-theme-cs50.js?{{ time }}"></script>
 
 <title>{{ title }}</title>
