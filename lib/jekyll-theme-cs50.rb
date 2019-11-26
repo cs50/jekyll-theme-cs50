@@ -287,15 +287,15 @@ module Kramdown
 
         # Get link
         current_link = @tree.children.select{ |element| [:a].include?(element.type) }.last
+        unless current_link.nil? 
 
-        # If absolute path, prepend site.baseurl
-        unless current_link.nil? or $site.baseurl.nil?
+          # If absolute path, prepend site.baseurl
+          unless $site.baseurl.nil?
+              if match = current_link.attr["href"].match(/\A\s*\/(.*)\z/)
 
-          # If absolute path
-          if match = current_link.attr["href"].match(/\A\s*\/(.*)\z/)
-
-              # Prepend site.baseurl
-              current_link.attr["href"] = $site.baseurl.sub(/\/+\z/, "") + "/" + match.captures[0].sub(/\A\/+/, "")
+                  # Prepend site.baseurl
+                  current_link.attr["href"] = $site.baseurl.sub(/\/+\z/, "") + "/" + match.captures[0].sub(/\A\/+/, "")
+              end
           end
 
           # If inline link ends with .md
