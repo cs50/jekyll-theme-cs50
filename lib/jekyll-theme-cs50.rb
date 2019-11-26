@@ -1,5 +1,4 @@
 require "cgi"
-require "css_parser"
 require "jekyll"
 require "jekyll-redirect-from"
 require "kramdown/parser/gfm"
@@ -10,8 +9,6 @@ require "sanitize"
 require "uri"
 
 require "jekyll-theme-cs50/constants"
-
-include CssParser
 
 module CS50
 
@@ -299,15 +296,6 @@ Jekyll::Hooks.register [:pages], :post_render do |page|
 
   # If SCSS
   elsif page.output_ext == ".css"
-
-    parser = CssParser::Parser.new
-    parser.load_string! page.output
-    parser.instance_variable_get("@rules").each do |rule|
-      rule[:declarations].each do |declaration|
-        puts declaration
-        puts "---"
-      end
-    end
 
     # Resolve absolute paths in url() to relative paths
     # https://developer.mozilla.org/en-US/docs/Web/CSS/url()

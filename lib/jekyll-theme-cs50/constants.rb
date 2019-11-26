@@ -31,6 +31,9 @@ module CS50
     },
     "markdown" => "kramdown",
     "permalink" => "pretty",
+    "sass" => {
+      "style" => "compressed"
+    },
     "theme" => "jekyll-theme-cs50"
   }.freeze
 
