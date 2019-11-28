@@ -331,6 +331,18 @@ module Kramdown
   module Parser
     class GFM < Kramdown::Parser::Kramdown
 
+      def parse_autolink
+        super
+
+        # Get autolink
+        current_link = @tree.children.select{ |element| [:a].include?(element.type) }.last
+        unless current_link.nil? 
+
+            # Hide scheme and trailing slash
+            current_link.children[0].value = current_link.children[0].value.gsub(/^https?:\/\/(www.)?|\/$/, "")
+        end
+      end
+
       def parse_link
         super
 
@@ -338,17 +350,10 @@ module Kramdown
         current_link = @tree.children.select{ |element| [:a].include?(element.type) }.last
         unless current_link.nil? 
 
-          # If absolute path, prepend site.baseurl
-          #unless $site.baseurl.nil?
-          #    if match = current_link.attr["href"].match(/\A\s*\/(.*)\z/)
-          #
-          #        # Prepend site.baseurl
-          #        current_link.attr["href"] = $site.baseurl.sub(/\/+\z/, "") + "/" + match.captures[0].sub(/\A\/+/, "")
-          #    end
-          #end
-
           # If inline link ends with .md
           if match = current_link.attr["href"].match(/\A([^\s]*)\.md(\s+.*)\z/)
+
+            # Rewrite as /, just as jekyll-relative-links does
             current_link.attr["href"] = match.captures[0] + "/" + match.captures[1]
           end
         end
