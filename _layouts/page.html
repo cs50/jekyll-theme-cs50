@@ -43,6 +43,10 @@
 
                 <main class="col-md markdown-body">
 
+                    {% if site.algolia -%}
+                    <div id="searchbox"></div>
+                    {%- endif %}
+
                     {{ content }}
 
                 </main>
