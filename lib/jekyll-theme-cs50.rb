@@ -37,14 +37,13 @@ module CS50
     end
 
     def render(context)
-      site = context.registers[:site]
-      converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
-      message = converter.convert(CS50::strip(super(context)))
-      <<~EOT
-        <div data-after="#{@after}">
-          #{message}
-        </div>
-      EOT
+      text = super
+      message = context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(text).strip
+      if text =~ /^\s*?\r?\n/ and text =~ /\r?\n\s*?$/
+        "\n<div data-after='#{@after}'>#{message}</div>\n"
+      else
+        "<span data-after='#{@after}'>#{message.sub(/^<p>/, '').sub(/<\/p>/, '')}</span>"
+      end
     end
 
     Liquid::Template.register_tag("after", self)
@@ -88,14 +87,13 @@ module CS50
     end
 
     def render(context)
-      site = context.registers[:site]
-      converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
-      message = converter.convert(CS50::strip(super(context)))
-      <<~EOT
-        <div data-before="#{@before}">
-          #{message}
-        </div>
-      EOT
+      text = super
+      message = context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(text).strip
+      if text =~ /^\s*?\r?\n/ and text =~ /\r?\n\s*?$/
+        "\n<div data-before='#{@before}'>#{message}</div>\n"
+      else
+        "<span data-before='#{@before}'>#{message.sub(/^<p>/, '').sub(/<\/p>/, '')}</span>"
+      end
     end
 
     Liquid::Template.register_tag("before", self)
