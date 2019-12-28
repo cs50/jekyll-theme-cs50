@@ -32,10 +32,10 @@
 <!-- https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use -->
 <link href="/assets/@fortawesome/fontawesome-free/css/all.min.css?{{ time }}" rel="stylesheet">
 
-{% if site.algolia %}
+{% if site.algolia -%}
 <!-- https://www.algolia.com/doc/guides/building-search-ui/installation/js/ -->
 <link href="/assets/algolia-min.css?{{ time }}" rel="stylesheet">
-{% endif %}
+{%- endif %}
 
 <link href="{{ '/assets/' | append: page.layout | append: '.css' }}?{{ time }}" rel="stylesheet">
 
@@ -51,11 +51,11 @@
 <script src="/assets/moment.min.js?{{ time }}"></script>
 <script src="/assets/moment-timezone-with-data-10-year-range.min.js?{{ time }}"></script>
 
-{% if site.algolia %}
+{% if site.algolia -%}
 <!-- https://www.algolia.com/doc/guides/building-search-ui/installation/js/ -->
 <script src="/assets/algoliasearchLite.min.js?{{ time }}"></script>
 <script src="/assets/instantsearch.production.min.js?{{ time }}"></script>
-{% endif %}
+{%- endif %}
 
 <script src="/assets/jekyll-theme-cs50.js?{{ time }}"></script>
 
