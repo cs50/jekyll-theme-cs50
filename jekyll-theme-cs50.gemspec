@@ -13,7 +13,6 @@ Gem::Specification.new do |spec|
   spec.version = "1.1.0"
 
   spec.add_runtime_dependency "jekyll", "3.8.6"
-  spec.add_runtime_dependency "jekyll-algolia", "1.6.0"
   spec.add_runtime_dependency "liquid-tag-parser", "1.9.0"
   spec.add_runtime_dependency "sanitize", "5.0.0"
 
