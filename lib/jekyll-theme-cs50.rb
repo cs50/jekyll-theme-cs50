@@ -11,6 +11,8 @@ require "uri"
 
 require "jekyll-theme-cs50/constants"
 
+# Inspired by http://www.glitchwrks.com/2017/07/25/jekyll-plugins, https://github.com/Shopify/liquid/wiki/Liquid-for-Programmers#create-your-own-tag-blocks
+
 module CS50
 
   # Sanitize string, allowing only these tags, which are a (reasonable) subset of
@@ -37,12 +39,19 @@ module CS50
     end
 
     def render(context)
+
+      # Markdown
       text = super
+
+      # HTML
       message = context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(text).strip
+
+      # Infer block-level or span-level
+      # https://kramdown.gettalong.org/syntax.html#html-blocks
       if text =~ /^\s*?\r?\n/ and text =~ /\r?\n\s*?$/
         "\n<div data-after='#{@after}'>#{message}</div>\n"
       else
-        "<span data-after='#{@after}'>#{message.sub(/^<p>/, '').sub(/<\/p>/, '')}</span>"
+        "<span data-after='#{@after}'>#{message.sub(/^<p>/, '').sub(/<\/p>/, '')}</span>" # https://github.com/jekyll/jekyll/issues/3571
       end
     end
 
@@ -87,12 +96,19 @@ module CS50
     end
 
     def render(context)
+
+      # Markdown
       text = super
+
+      # HTML
       message = context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(text).strip
+
+      # Infer block-level or span-level
+      # https://kramdown.gettalong.org/syntax.html#html-blocks
       if text =~ /^\s*?\r?\n/ and text =~ /\r?\n\s*?$/
         "\n<div data-before='#{@before}'>#{message}</div>\n"
       else
-        "<span data-before='#{@before}'>#{message.sub(/^<p>/, '').sub(/<\/p>/, '')}</span>"
+        "<span data-before='#{@before}'>#{message.sub(/^<p>/, '').sub(/<\/p>/, '')}</span>" # https://github.com/jekyll/jekyll/issues/3571
       end
     end
 
