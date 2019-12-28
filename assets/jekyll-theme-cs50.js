@@ -1,5 +1,16 @@
 $(document).on('DOMContentLoaded', function() {
 
+    // Current timestamp
+    const now = moment();
+
+    // data-after
+    $('[data-after]').each(function(index, element) {
+        const after = moment($(element).attr('data-after'));
+        if (!now.isAfter(after)) {
+            $(element).addClass('d-none');
+        }
+    });
+
     // data-alert
     $('[data-alert]').each(function(index, element) {
         if ($(element).attr('data-alert')) {
@@ -11,6 +22,14 @@ $(document).on('DOMContentLoaded', function() {
                     return $('<p>').append($(this).contents()).addClass(tagName.toLowerCase()).addClass('alert-heading');
                 });
             });
+        }
+    });
+
+    // data-before
+    $('[data-before]').each(function(index, element) {
+        const before= moment($(element).attr('data-before'));
+        if (!now.isBefore(before)) {
+            $(element).addClass('d-none');
         }
     });
 

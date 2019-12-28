@@ -9,6 +9,9 @@ module CS50
   }.freeze
 
   DEFAULTS = {
+    "cs50" => {
+      "tz" => "America/New_York"
+    },
     "optional_front_matter" => {
       "remove_originals" => true
     },

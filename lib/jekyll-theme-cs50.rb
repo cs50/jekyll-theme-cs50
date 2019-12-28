@@ -6,6 +6,7 @@ require "kramdown/parser/kramdown/link"
 require "liquid/tag/parser"
 require "pathname"
 require "sanitize"
+require "time"
 require "uri"
 
 require "jekyll-theme-cs50/constants"
@@ -18,12 +19,44 @@ module CS50
     Sanitize.fragment(s, :elements => ["b", "code", "em", "i", "img", "kbd", "span", "strong", "sub", "sup"]).strip
   end
 
+  # Strip leading and trailing newlines from string
+  def self.strip(s)
+    return s.gsub(/^\r?\n/, "").gsub(/\r?\n$/, "")
+  end
+
+  class AfterBlock < Liquid::Block
+
+    def initialize(tag_name, markup, options)
+      super
+      args = Liquid::Tag::Parser.new(markup)
+      begin
+        @after = Time.parse(args[:argv1]).rfc2822
+      rescue
+        raise "Invalid timestamp: #{args[:argv1]}"
+      end
+    end
+
+    def render(context)
+      site = context.registers[:site]
+      converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
+      message = converter.convert(CS50::strip(super(context)))
+      <<~EOT
+        <div data-after="#{@after}">
+          #{message}
+        </div>
+      EOT
+    end
+
+    Liquid::Template.register_tag("after", self)
+
+  end
+
   class AlertBlock < Liquid::Block
 
     def initialize(tag_name, markup, options)
       super
-      @args = Liquid::Tag::Parser.new(markup)
-      alert = @args[:argv1]
+      args = Liquid::Tag::Parser.new(markup)
+      alert = args[:argv1]
       @alert = (["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].include? alert) ? alert : ""
     end
 
@@ -39,6 +72,33 @@ module CS50
     end
 
     Liquid::Template.register_tag("alert", self)
+
+  end
+
+  class BeforeBlock < Liquid::Block
+
+    def initialize(tag_name, markup, options)
+      super
+      args = Liquid::Tag::Parser.new(markup)
+      begin
+        @before = Time.parse(args[:argv1]).rfc2822
+      rescue
+        raise "Invalid timestamp: #{@args[:argv1]}"
+      end
+    end
+
+    def render(context)
+      site = context.registers[:site]
+      converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
+      message = converter.convert(CS50::strip(super(context)))
+      <<~EOT
+        <div data-before="#{@before}">
+          #{message}
+        </div>
+      EOT
+    end
+
+    Liquid::Template.register_tag("before", self)
 
   end
 
@@ -255,6 +315,10 @@ Jekyll::Hooks.register :site, :pre_render do |site, payload|
 
   # Expose site to Kramdown's monkey patches
   $site = site
+
+  # Site's time zone
+  # https://stackoverflow.com/a/58867058/5156190
+  ENV["TZ"] = site.config["cs50"]["tz"]
 
   # Promote site.cs50.assign.* to global variables
   begin
