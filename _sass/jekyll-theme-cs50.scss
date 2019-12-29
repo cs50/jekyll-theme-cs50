@@ -19,19 +19,6 @@ $link-hover-color: $link-color !default;
 // Import Google Fonts
 @import url("https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700");
 
-// Dark mode
-/*
-@media (prefers-color-scheme: dark) {
-    a {
-        color: lighten($link-color, 25%);
-    }
-    body {
-        color: #fff;
-        background-color: #212529;
-    }
-}
-*/
-
 //// marker
 
 // Suppress margin
