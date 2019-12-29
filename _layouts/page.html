@@ -159,11 +159,16 @@
                                 }
 
                                 // Template for hit
-                                return '<h2 class="font-weight-bold">' +
-                                       '<a class="post-link" href="' + url + '">' +
+                                return '<h2 class="font-weight-bold h3 mb-0">' +
+                                       '<a href="' + url + '">' +
                                        title +
                                        '</a>' +
                                        '</h2>' +
+                                       '<p class="mb-0">' +
+                                       '<a class="text-muted" href="' + url + '">' +
+                                       url +
+                                       '</a>' +
+                                       '</p>' +
                                        '<p>' + 
                                        content +
                                        '</p>';

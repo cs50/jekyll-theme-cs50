@@ -5,6 +5,11 @@ html {
     font-size: 16px;
 }
 
+// Wrap long words (and URLs, whether linked or not), especially on mobile
+body {
+    word-break: break-word;
+}
+
 // So that main's height doesn't grow to fill viewport, which breaks addition of margin-bottom for last headings
 body > div.container-fluid > div.row {
     align-items: flex-start;
