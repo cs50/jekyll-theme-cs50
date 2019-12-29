@@ -120,8 +120,14 @@
                             item: function(hit) {
 
                                 // title
-                                if (hit._highlightResult && hit._highlightResult.title) {
+                                if (hit._highlightResult && hit._highlightResult.headings) {
+                                    var title = hit._highlightResult.headings[hit._highlightResult.headings.length - 1].value;
+                                }
+                                else if (hit._highlightResult && hit._highlightResult.title) {
                                     var title = hit._highlightResult.title.value;
+                                }
+                                else if (hit.headings) {
+                                    var title = hit.headings[hit.headings.length - 1].value;
                                 }
                                 else if (hit.title) {
                                     var title = hit.title;
