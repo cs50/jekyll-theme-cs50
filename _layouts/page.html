@@ -61,11 +61,11 @@
 
         {% if site.algolia -%}
         <div aria-hidden="true" aria-labelledby="searchTitle" class="modal" id="search" role="dialog" tabindex="-1">
-            <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <div class="pr-3 w-100" id="searchbox"></div>
-                        <button class="btn btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                        <button class="btn btn-lg btn-secondary" data-dismiss="modal" type="button">Close</button>
                     </div>
                     <div class="modal-body">
                         <div id="hits"></div>
@@ -84,7 +84,16 @@
                 const searchClient = algoliasearch('{{ site.algolia.application_id }}', '{{ site.algolia.search_only_api_key }}');
                 const search = instantsearch({
                     indexName: '{{ site.algolia.index_name }}',
-                    searchClient: searchClient
+                    searchClient: searchClient,
+                    searchFunction: function(helper) { // https://www.algolia.com/doc/guides/building-search-ui/going-further/conditional-display/js/#handling-empty-queries
+                        const hits = $('#hits');
+                        if (helper.state.query === '') {
+                            hits.hide();
+                            return;
+                        }
+                        helper.search();
+                        hits.show();
+                    }
                 });
 
                 // searchBox
@@ -93,7 +102,7 @@
                     instantsearch.widgets.searchBox({
                         container: '#searchbox',
                         cssClasses: {
-                            input: 'form-control'
+                            input: 'form-control form-control-lg'
                         },
                         placeholder: 'Search',
                         showLoadingIndicator: false,
@@ -108,8 +117,30 @@
                     instantsearch.widgets.hits({
                         container: '#hits',
                         templates: {
-                          //item: hitTemplate
+                            item: function(hit) {
+                                if (hit._highlightResult) {
+                                    console.log(hit);
+                                    return '<h2 class="font-weight-bold">' +
+                                           '<a class="post-link" href="' + hit.url + '#' + hit.anchor + '">' +
+                                           hit.title +
+                                           '</a>' +
+                                           '</h2>' +
+                                           '<p>' + 
+                                           hit._highlightResult.content.value +
+                                           '</p>';
+                                }
+                                else {
+                                    return '';
+                                }
+                            }
                         }
+                    })
+                );
+
+                // poweredBy
+                search.addWidget(
+                    instantsearch.widgets.poweredBy({
+                        container: '#search .modal-footer'
                     })
                 );
 

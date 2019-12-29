@@ -166,6 +166,14 @@ main.col-md {
     padding: 4rem 2rem;
 }
 
+// Avoid padding within words
+mark, .mark {
+    padding-bottom: 0.2em;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0.2em;
+}
+
 // Override Primer's family and size for fonts
 .markdown-body {
     font-family: inherit; /* Use our family */
@@ -250,12 +258,15 @@ main.col-md {
     margin-bottom: 16px;
 }
 
-// Fill viewport
+// Fill 80% of viewport
 .modal-dialog {
-    height: calc(100% - 3.5rem);
     max-height: inherit;
     max-width: inherit;
-    margin: 1.75rem;
+    margin: 0 auto;
+    width: 80vw;
+}
+.modal-content {
+    height: 80vh;
 }
 
 // Condense TOC
@@ -263,6 +274,13 @@ main.col-md {
 #markdown-toc ol > li:first-child,
 #markdown-toc ul > li:first-child {
     margin-top: 0;
+}
+
+// Don't number search results
+#search ol {
+    list-style-type: none;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 // On small devices and printers
