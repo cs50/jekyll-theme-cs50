@@ -32,11 +32,6 @@
 <!-- https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use -->
 <link href="/assets/@fortawesome/fontawesome-free/css/all.min.css?{{ time }}" rel="stylesheet">
 
-{% if site.algolia -%}
-<!-- https://www.algolia.com/doc/guides/building-search-ui/installation/js/ -->
-<link href="/assets/algolia-min.css?{{ time }}" rel="stylesheet">
-{%- endif %}
-
 <link href="{{ '/assets/' | append: page.layout | append: '.css' }}?{{ time }}" rel="stylesheet">
 
 <!-- http://getbootstrap.com/docs/4.3/getting-started/introduction/ -->
