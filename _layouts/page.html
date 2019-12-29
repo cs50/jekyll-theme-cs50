@@ -118,20 +118,39 @@
                         container: '#hits',
                         templates: {
                             item: function(hit) {
-                                if (hit._highlightResult) {
-                                    console.log(hit);
-                                    return '<h2 class="font-weight-bold">' +
-                                           '<a class="post-link" href="' + hit.url + '#' + hit.anchor + '">' +
-                                           hit.title +
-                                           '</a>' +
-                                           '</h2>' +
-                                           '<p>' + 
-                                           hit._highlightResult.content.value +
-                                           '</p>';
+
+                                // title
+                                if (hit._highlightResult && hit._highlightResult.title) {
+                                    var title = hit._highlightResult.title.value;
+                                }
+                                else if (hit.title) {
+                                    var title = hit.title;
                                 }
                                 else {
-                                    return '';
+                                    var title = hit.url;
                                 }
+
+                                // content
+                                if (hit._highlightResult && hit._highlightResult.content) {
+                                    var content = hit._highlightResult.content.value;
+                                }
+                                else if (hit._highlightResult && hit._highlightResult.title) {
+                                    var content = hit._highlightResult.title.value;
+                                }
+                                else {
+                                    var content = hit.excerpt_text;
+                                }
+
+                                // Template for hit
+                                console.log(hit);
+                                return '<h2 class="font-weight-bold">' +
+                                       '<a class="post-link" href="' + hit.url + '#' + hit.anchor + '">' +
+                                       title +
+                                       '</a>' +
+                                       '</h2>' +
+                                       '<p>' + 
+                                       content +
+                                       '</p>';
                             }
                         }
                     })
