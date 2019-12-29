@@ -16,8 +16,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "liquid-tag-parser", "1.9.0"
   spec.add_runtime_dependency "sanitize", "5.0.0"
 
-  spec.add_development_dependency "jekyll-algolia", "1.6.0"
-
   CS50::PLUGINS.each do |gem, version|
     spec.add_runtime_dependency gem, version
   end
