@@ -23,7 +23,15 @@
 
                     </header>
 
-                    <button aria-controls="nav" aria-expanded="false" class="btn btn-sm collapsed d-md-none" data-target="aside > nav" data-toggle="collapse">Menu</button>
+                    {% if site.algolia -%}
+                    <button class="btn btn-link pl-0" data-search data-target="#search" data-toggle="modal" type="button">
+                        <i class="fas fa-search pr-2"></i>Search
+                    </button>
+                   {%- endif %}
+
+                    <button aria-controls="nav" aria-expanded="false" class="btn btn-sm collapsed d-md-none" data-target="aside > nav" data-toggle="collapse">
+                        Menu
+                    </button>
 
                     <nav class="collapse d-md-block">
 
@@ -51,6 +59,103 @@
 
         </div>
 
+        {% if site.algolia -%}
+        <div aria-hidden="true" aria-labelledby="searchTitle" class="modal" id="search" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="pr-3 w-100" id="searchbox"></div>
+                        <button class="btn btn-lg btn-secondary" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="hits"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+
+            // Before shwoing searchbox
+            $('#search').on('show.bs.modal', function (e) {
+
+                // Client
+                const searchClient = algoliasearch('{{ site.algolia.application_id }}', '{{ site.algolia.search_only_api_key }}');
+                const search = instantsearch({
+                    indexName: '{{ site.algolia.index_name }}',
+                    searchClient: searchClient,
+                    searchFunction: function(helper) { // https://www.algolia.com/doc/guides/building-search-ui/going-further/conditional-display/js/#handling-empty-queries
+                        const hits = $('#hits');
+                        if (helper.state.query === '') {
+                            hits.hide();
+                            return;
+                        }
+                        helper.search();
+                        hits.show();
+                    }
+                });
+
+                // searchBox
+                // https://www.algolia.com/doc/api-reference/widgets/search-box/js/
+                search.addWidget(
+                    instantsearch.widgets.searchBox({
+                        container: '#searchbox',
+                        cssClasses: {
+                            input: 'form-control form-control-lg'
+                        },
+                        placeholder: 'Search',
+                        showLoadingIndicator: false,
+                        showReset: false,
+                        showSubmit: false
+                    })
+                );
+
+                // hits
+                // https://www.algolia.com/doc/api-reference/widgets/hits/js/
+                search.addWidget(
+                    instantsearch.widgets.hits({
+                        container: '#hits',
+                        templates: {
+                            item: function(hit) {
+                                if (hit._highlightResult) {
+                                    console.log(hit);
+                                    return '<h2 class="font-weight-bold">' +
+                                           '<a class="post-link" href="' + hit.url + '#' + hit.anchor + '">' +
+                                           hit.title +
+                                           '</a>' +
+                                           '</h2>' +
+                                           '<p>' + 
+                                           hit._highlightResult.content.value +
+                                           '</p>';
+                                }
+                                else {
+                                    return '';
+                                }
+                            }
+                        }
+                    })
+                );
+
+                // poweredBy
+                search.addWidget(
+                    instantsearch.widgets.poweredBy({
+                        container: '#search .modal-footer'
+                    })
+                );
+
+                // Let user start searching
+                search.start();
+            });
+
+            // After shwoing searchbox
+            $('#search').on('shown.bs.modal', function (e) {
+                $('#searchbox input[type=search]').focus();
+            });
+
+        </script>
+        {% endif %}
+ 
     </body>
 
 </html>
