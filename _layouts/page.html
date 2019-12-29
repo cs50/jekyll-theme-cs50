@@ -119,6 +119,17 @@
                         templates: {
                             item: function(hit) {
 
+                                // url
+                                if ('{{ site.baseurl }}') {
+                                    var url = '{{ site.baseurl }}' + '/' + hit.url;
+                                }
+                                else {
+                                    var url = hit.url;
+                                }
+                                if (hit.anchor) {
+                                    url += '#' + hit.anchor;
+                                }
+
                                 // title
                                 if (hit._highlightResult && hit._highlightResult.headings) {
                                     var title = hit._highlightResult.headings[hit._highlightResult.headings.length - 1].value;
@@ -133,7 +144,7 @@
                                     var title = hit.title;
                                 }
                                 else {
-                                    var title = hit.url;
+                                    var title = url;
                                 }
 
                                 // content
@@ -148,9 +159,8 @@
                                 }
 
                                 // Template for hit
-                                console.log(hit);
                                 return '<h2 class="font-weight-bold">' +
-                                       '<a class="post-link" href="' + hit.url + '#' + hit.anchor + '">' +
+                                       '<a class="post-link" href="' + url + '">' +
                                        title +
                                        '</a>' +
                                        '</h2>' +
