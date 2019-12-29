@@ -56,6 +56,11 @@ $(document).on('DOMContentLoaded', function() {
         }
     });
 
+    // Return true iff small device (on which aside will be above main)
+    function mobile() {
+        return $('aside').position().top < $('main').position().top;
+    }
+
     // Get next slice of elements
     function next(element) {
 
@@ -233,7 +238,7 @@ $(document).on('DOMContentLoaded', function() {
         if (last.length) {
 
             // On small devices
-            if ($('aside').position().top < $('main').position().top) {
+            if (mobile()) {
                 var margin = $(window).height() - ($('main').outerHeight() + $('aside').outerHeight() - last.offset().top);
             }
 
@@ -244,6 +249,21 @@ $(document).on('DOMContentLoaded', function() {
 
             // Update margin
             $('main').css('margin-bottom', Math.max(0, Math.ceil(margin)) + 'px');
+        }
+
+        // Resize search UI
+        if (mobile()) {
+
+            // Shrink
+            $('#search .form-control').removeClass('form-control-lg');
+            $('#search .btn').removeClass('btn-lg');
+            console.log('shrink');
+        }
+        else {
+            // Grow
+            $('#search .form-control').addClass('form-control-lg');
+            $('#search .btn').addClass('btn-lg');
+            console.log('grow');
         }
     });
     $(window).trigger('resize');
