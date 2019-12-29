@@ -120,8 +120,8 @@
                             item: function(hit) {
 
                                 // url
-                                if ('{{ site.baseurl }}') {
-                                    var url = '{{ site.baseurl }}' + hit.url;
+                                if (window.baseurl) {
+                                    var url = window.baseurl + hit.url;
                                 }
                                 else {
                                     var url = hit.url;

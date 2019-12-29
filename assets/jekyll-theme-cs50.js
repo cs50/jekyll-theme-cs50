@@ -1,3 +1,12 @@
+// Infer baseurl from this file's (known) path
+const a = document.createElement('a');
+a.href = document.currentScript.src;
+const matches = a.pathname.match(/^(.+)\/assets\/jekyll-theme-cs50\.js$/);
+if (matches) {
+    window.baseurl = matches[1];
+}
+
+// On DOMContentLoaded
 $(document).on('DOMContentLoaded', function() {
 
     // Current timestamp

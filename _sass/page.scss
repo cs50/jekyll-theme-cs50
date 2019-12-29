@@ -171,13 +171,12 @@ main.col-md {
     padding: 4rem 2rem;
 }
 
-// Avoid padding within words
+// Mimic Google's highlighting
 mark, .mark {
+    background-color: inherit;
     color: inherit;
-    padding-bottom: 0.2em;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0.2em;
+    font-weight: bold;
+    padding: 0
 }
 
 // Override Primer's family and size for fonts
