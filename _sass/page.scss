@@ -168,6 +168,7 @@ main.col-md {
 
 // Avoid padding within words
 mark, .mark {
+    color: inherit;
     padding-bottom: 0.2em;
     padding-left: 0;
     padding-right: 0;
