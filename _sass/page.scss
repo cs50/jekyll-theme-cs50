@@ -5,11 +5,6 @@ html {
     font-size: 16px;
 }
 
-// Wrap long words (and URLs, whether linked or not), especially on mobile
-body {
-    word-break: break-word;
-}
-
 // So that main's height doesn't grow to fill viewport, which breaks addition of margin-bottom for last headings
 body > div.container-fluid > div.row {
     align-items: flex-start;
@@ -177,6 +172,11 @@ mark, .mark {
     color: inherit;
     font-weight: bold;
     padding: 0
+}
+
+// Wrap long words (and URLs, whether linked or not), especially on mobile
+.markdown-body {
+    word-break: break-word;
 }
 
 // Override Primer's family and size for fonts
