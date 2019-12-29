@@ -90,6 +90,10 @@ aside button[data-toggle=collapse]:hover {
     border-color: rgba(255, 255, 255, .5);
     color: rgba(255, 255, 255, 1);
 }
+aside button[data-toggle=modal],
+aside button[data-toggle=modal]:hover {
+    color: rgba(255, 255, 255, 1);
+}
 
 // Opaque border
 aside button[data-toggle=collapse]:hover {
@@ -119,8 +123,9 @@ footer *:last-child {
     margin-bottom: 0;
 }
 
-// Separate button from header and nav
-aside button[data-toggle=collapse] {
+// Separate buttons from header and nav
+aside button[data-toggle=collapse],
+aside button[data-toggle=modal] {
     margin-top: 1rem;
 }
 
@@ -243,6 +248,14 @@ main.col-md {
 }
 .markdown-body details {
     margin-bottom: 16px;
+}
+
+// Fill viewport
+.modal-dialog {
+    height: calc(100% - 3.5rem);
+    max-height: inherit;
+    max-width: inherit;
+    margin: 1.75rem;
 }
 
 // Condense TOC

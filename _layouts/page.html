@@ -23,7 +23,15 @@
 
                     </header>
 
-                    <button aria-controls="nav" aria-expanded="false" class="btn btn-sm collapsed d-md-none" data-target="aside > nav" data-toggle="collapse">Menu</button>
+                    {% if site.algolia -%}
+                    <button class="btn btn-link pl-0" data-search data-target="#search" data-toggle="modal" type="button">
+                        <i class="fas fa-search pr-2"></i>Search
+                    </button>
+                   {%- endif %}
+
+                    <button aria-controls="nav" aria-expanded="false" class="btn btn-sm collapsed d-md-none" data-target="aside > nav" data-toggle="collapse">
+                        Menu
+                    </button>
 
                     <nav class="collapse d-md-block">
 
@@ -51,6 +59,72 @@
 
         </div>
 
+        {% if site.algolia -%}
+        <div aria-hidden="true" aria-labelledby="searchTitle" class="modal" id="search" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="pr-3 w-100" id="searchbox"></div>
+                        <button class="btn btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="hits"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+
+            // Before shwoing searchbox
+            $('#search').on('show.bs.modal', function (e) {
+
+                // Client
+                const searchClient = algoliasearch('{{ site.algolia.application_id }}', '{{ site.algolia.search_only_api_key }}');
+                const search = instantsearch({
+                    indexName: '{{ site.algolia.index_name }}',
+                    searchClient: searchClient
+                });
+
+                // searchBox
+                // https://www.algolia.com/doc/api-reference/widgets/search-box/js/
+                search.addWidget(
+                    instantsearch.widgets.searchBox({
+                        container: '#searchbox',
+                        cssClasses: {
+                            input: 'form-control'
+                        },
+                        placeholder: 'Search',
+                        showLoadingIndicator: false,
+                        showReset: false,
+                        showSubmit: false
+                    })
+                );
+
+                // hits
+                // https://www.algolia.com/doc/api-reference/widgets/hits/js/
+                search.addWidget(
+                    instantsearch.widgets.hits({
+                        container: '#hits',
+                        templates: {
+                          //item: hitTemplate
+                        }
+                    })
+                );
+
+                // Let user start searching
+                search.start();
+            });
+
+            // After shwoing searchbox
+            $('#search').on('shown.bs.modal', function (e) {
+                $('#searchbox input[type=search]').focus();
+            });
+
+        </script>
+        {% endif %}
+ 
     </body>
 
 </html>
