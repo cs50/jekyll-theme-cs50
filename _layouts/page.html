@@ -186,9 +186,12 @@
 
                 // Let user start searching
                 search.start();
+
+                // Resize form
+                $(window).trigger('resize');
             });
 
-            // After shwoing searchbox
+            // After showing searchbox
             $('#search').on('shown.bs.modal', function (e) {
                 $('#searchbox input[type=search]').focus();
             });

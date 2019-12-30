@@ -257,13 +257,11 @@ $(document).on('DOMContentLoaded', function() {
             // Shrink
             $('#search .form-control').removeClass('form-control-lg');
             $('#search .btn').removeClass('btn-lg');
-            console.log('shrink');
         }
         else {
             // Grow
             $('#search .form-control').addClass('form-control-lg');
             $('#search .btn').addClass('btn-lg');
-            console.log('grow');
         }
     });
     $(window).trigger('resize');
