@@ -247,8 +247,7 @@ module CS50
         # Default components
         components = {
           "modestbranding" => "1",
-          "rel" => "0",
-          "showinfo" => "0"
+          "rel" => "0"
         }
 
         # Supported components
@@ -273,7 +272,8 @@ module CS50
         end
 
         # Build URL
-        @src = URI::HTTPS.build(:host => "www.youtube.com", :path => "/embed/#{@v}", :query => URI.encode_www_form(components))
+        # https://support.google.com/youtube/answer/171780?hl=en
+        @src = URI::HTTPS.build(:host => "www.youtube-nocookie.com", :path => "/embed/#{@v}", :query => URI.encode_www_form(components))
       end
     end
 
