@@ -247,7 +247,8 @@ module CS50
         # Default components
         components = {
           "modestbranding" => "1",
-          "rel" => "0"
+          "rel" => "0",
+          "showinfo" => "0"
         }
 
         # Supported components
