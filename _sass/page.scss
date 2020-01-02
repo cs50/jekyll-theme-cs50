@@ -49,19 +49,21 @@ aside.col-md {
 
 // Fixed width, scroll on larger devices
 @include media-breakpoint-up(md) {
-    aside.col-md {
-        flex: 0 1 20rem;
-        @supports (position: sticky) or (position: -webkit-sticky) {
-            height: 100vh;
-            overflow-y: auto;
-            top: 0;
-            z-index: $zindex-sticky;
-        }
-        @supports (position: sticky) {
-            position: sticky;
-        }
-        @supports (position: -webkit-sticky) {
-            position: -webkit-sticky;
+    @media not print {
+        aside.col-md {
+            flex: 0 1 20rem;
+            @supports (position: sticky) or (position: -webkit-sticky) {
+                height: 100vh;
+                overflow-y: auto;
+                top: 0;
+                z-index: $zindex-sticky;
+            }
+            @supports (position: sticky) {
+                position: sticky;
+            }
+            @supports (position: -webkit-sticky) {
+                position: -webkit-sticky;
+            }
         }
     }
 }
@@ -300,6 +302,11 @@ mark, .mark {
 
 // Also on printers
 @media print {
+
+    // Move aside above main
+    aside.col-md {
+        flex: unset;
+    }
 
     // Hide button above nav
     aside button[data-toggle=collapse] {
