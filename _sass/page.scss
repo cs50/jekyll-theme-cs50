@@ -49,7 +49,7 @@ aside.col-md {
 
 // Fixed width, scroll on larger devices
 @include media-breakpoint-up(md) {
-    @media not print {
+    @media screen {
         aside.col-md {
             flex: 0 1 20rem;
             @supports (position: sticky) or (position: -webkit-sticky) {
