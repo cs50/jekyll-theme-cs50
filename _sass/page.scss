@@ -314,7 +314,12 @@ mark, .mark {
     }
 
     // Only show header
-    nav.collapse:not(.show), footer {
+    nav, footer {
+        display: none !important;
+    }
+
+    // Hide search
+    #search {
         display: none !important;
     }
 
