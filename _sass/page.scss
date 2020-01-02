@@ -314,7 +314,7 @@ mark, .mark {
     }
 
     // Only show header
-    nav, footer {
+    nav.collapse:not(.show), footer {
         display: none !important;
     }
 
