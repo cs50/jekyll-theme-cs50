@@ -181,6 +181,11 @@ mark, .mark {
     word-break: break-word;
 }
 
+// But not in tables, which should instead scroll horizontally
+.markdown-body table {
+    word-break: unset;
+}
+
 // Override Primer's family and size for fonts
 .markdown-body {
     font-family: inherit; /* Use our family */
@@ -326,6 +331,6 @@ mark, .mark {
     // Display links' URLs
     a[href^='http']:after {
         content: ' (' attr(href) ')';
-        word-wrap: break-word;
+        word-break: break-word;
     }
 }
