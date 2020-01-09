@@ -183,7 +183,7 @@ mark, .mark {
 
 // But not in tables, which should instead scroll horizontally
 .markdown-body table {
-    word-break: unset;
+    word-break: normal;
 }
 
 // Override Primer's family and size for fonts
