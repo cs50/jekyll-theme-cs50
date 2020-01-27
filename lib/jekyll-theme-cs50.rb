@@ -274,7 +274,7 @@ module CS50
 
         # Build URL
         # https://support.google.com/youtube/answer/171780?hl=en
-        @src = URI::HTTPS.build(:host => "www.youtube-nocookie.com", :path => "/embed/#{@v}", :query => URI.encode_www_form(components))
+        @src = URI::HTTPS.build(:host => "www.youtube.com", :path => "/embed/#{@v}", :query => URI.encode_www_form(components))
       end
     end
 
