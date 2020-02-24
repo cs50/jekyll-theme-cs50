@@ -163,6 +163,26 @@ module CS50
 
   end
 
+  class LocalTag < Liquid::Tag
+
+    def initialize(tag_name, markup, options)
+      super
+      args = Liquid::Tag::Parser.new(markup)
+      begin
+        @local = Time.parse(args[:argv1]).rfc2822
+      rescue
+        raise "Invalid timestamp: #{@args[:argv1]}"
+      end
+    end
+
+    def render(context)
+        "<span data-local='#{@local}'></span>"
+    end
+
+    Liquid::Template.register_tag("local", self)
+
+  end
+
   class NextTag < Liquid::Tag
 
     def initialize(tag_name, markup, options)

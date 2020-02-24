@@ -56,6 +56,12 @@ $(document).on('DOMContentLoaded', function() {
         }
     });
 
+    // data-local
+    $('[data-local]').each(function(index, element) {
+        const local = moment($(element).attr('data-local'));
+        $(this).html(local.tz(moment.tz.guess(true)).format('llll z'));
+    });
+
     // Return true iff small device (on which aside will be above main)
     function mobile() {
         return $('aside').position().top < $('main').position().top;
