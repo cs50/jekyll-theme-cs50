@@ -273,7 +273,7 @@ module CS50
 
         # Supported components
         params = CGI::parse(URI::parse(@args[:argv1]).query || "")
-        ["autoplay", "controls", "end", "index", "list", "mute", "start", "t"].each do |param|
+        ["autoplay", "controls", "end", "index", "list", "mute", "playlist", "start", "t"].each do |param|
 
             # If param was provided
             if params.key?(param)
