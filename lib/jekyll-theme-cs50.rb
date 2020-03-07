@@ -33,7 +33,7 @@ module CS50
       super
       args = Liquid::Tag::Parser.new(markup)
       begin
-        @after = Time.parse(args[:argv1]).rfc2822
+        @after = Time.parse(args[:argv1]).iso8601
       rescue
         raise "Invalid timestamp: #{args[:argv1]}"
       end
@@ -90,7 +90,7 @@ module CS50
       super
       args = Liquid::Tag::Parser.new(markup)
       begin
-        @before = Time.parse(args[:argv1]).rfc2822
+        @before = Time.parse(args[:argv1]).iso8601
       rescue
         raise "Invalid timestamp: #{@args[:argv1]}"
       end
