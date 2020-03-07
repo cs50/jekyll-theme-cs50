@@ -58,8 +58,24 @@ $(document).on('DOMContentLoaded', function() {
 
     // data-local
     $('[data-local]').each(function(index, element) {
-        const local = moment($(element).attr('data-local'));
-        $(this).html(local.tz(moment.tz.guess(true)).format('llll z'));
+        const local = $(element).attr('data-local').split('/');
+        if (local.length == 2) {
+            const start = moment(local[0]).tz(moment.tz.guess(true));
+            let html = start.format('llll');
+            const end = moment(local[1]).tz(moment.tz.guess(true));
+            if (start.isSame(end, 'date')) {
+                html += "–" + end.format('LT');
+            }
+            else {
+                html += "–" + end.format('llll');
+            }
+            html += ' ' + end.format('z');
+            $(this).html(html);
+        }
+        else {
+            const t = moment(local[0])
+            $(this).html(t.tz(moment.tz.guess(true)).format('llll z'));
+        }
     });
 
     // Return true iff small device (on which aside will be above main)

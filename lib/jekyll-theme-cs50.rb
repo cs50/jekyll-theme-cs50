@@ -6,6 +6,7 @@ require "kramdown/parser/kramdown/link"
 require "liquid/tag/parser"
 require "pathname"
 require "sanitize"
+require "shellwords"
 require "time"
 require "uri"
 
@@ -167,11 +168,28 @@ module CS50
 
     def initialize(tag_name, markup, options)
       super
-      args = Liquid::Tag::Parser.new(markup)
+      args = markup.shellsplit
+      if args.length < 1
+        raise "Too few arguments"
+      elsif args.length > 2
+        raise "Too many arguments: #{markup}"
+      end
       begin
-        @local = Time.parse(args[:argv1]).rfc2822
+        t1 = Time.parse(args[0])
+        @local = t1.iso8601
       rescue
-        raise "Invalid timestamp: #{@args[:argv1]}"
+        raise "Invalid timestamp: #{args[0]}"
+      end
+      if args.length == 2
+        begin
+          t2 = Time.parse(args[1], t1)
+        rescue
+          raise "Invalid timestamp: #{args[1]}"
+        end
+        if t2 < t1
+          raise "Invalid interval: #{markup}"
+        end
+        @local += "/" + t2.iso8601
       end
     end
 
