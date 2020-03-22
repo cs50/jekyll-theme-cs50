@@ -269,29 +269,34 @@ module CS50
       @args = Liquid::Tag::Parser.new(markup)
 
       # Parse YouTube URL
-      if @args[:argv1] and @args[:argv1] =~ /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+      if @args[:argv1] 
+         
+        # Default aspect ratio
+        @ratio = "16by9"
 
-        # Video's ID
-        @v = $1
+        # If YouTube player
+        if @args[:argv1] =~ /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
 
-        # Determine aspect ratio
-        @ratio = "16by9" # Default
-        ["21by9", "4by3", "1by1"].each do |ratio|
-          if @args.args.keys[1].to_s == ratio
-            @ratio = ratio
+          # Video's ID
+          v = $1
+
+          # Determine aspect ratio
+          ["21by9", "4by3", "1by1"].each do |ratio|
+            if @args.args.keys[1].to_s == ratio
+              @ratio = ratio
+            end
           end
-        end
 
-        # Default components
-        components = {
-          "modestbranding" => "1",
-          "rel" => "0",
-          "showinfo" => "0"
-        }
+          # Default components
+          components = {
+            "modestbranding" => "1",
+            "rel" => "0",
+            "showinfo" => "0"
+          }
 
-        # Supported components
-        params = CGI::parse(URI::parse(@args[:argv1]).query || "")
-        ["autoplay", "controls", "end", "index", "list", "mute", "playlist", "start", "t"].each do |param|
+          # Supported components
+          params = CGI::parse(URI::parse(@args[:argv1]).query || "")
+          ["autoplay", "controls", "end", "index", "list", "mute", "playlist", "start", "t"].each do |param|
 
             # If param was provided
             if params.key?(param)
@@ -303,21 +308,26 @@ module CS50
                 components[param] = params[param].first
               end
             end
-        end
+          end
 
-        # Ensure playlist menu appears
-        if not params["list"].empty? or not params["playlist"].empty?
-          components["showinfo"] = "1"
-        end
+          # Ensure playlist menu appears
+          if not params["list"].empty? or not params["playlist"].empty?
+            components["showinfo"] = "1"
+          end
 
-        # Build URL
-        # https://support.google.com/youtube/answer/171780?hl=en
-        @src = URI::HTTPS.build(:host => "www.youtube.com", :path => "/embed/#{@v}", :query => URI.encode_www_form(components))
+          # Build URL
+          # https://support.google.com/youtube/answer/171780?hl=en
+          @src = URI::HTTPS.build(:host => "www.youtube.com", :path => "/embed/#{v}", :query => URI.encode_www_form(components))
+
+        # If CS50 Video Player
+        elsif @args[:argv1] =~ /^https?:\/\/video\.cs50\.io\/([^?]+)/
+          @src = @args[:argv1]
+        end
       end
     end
 
     def render(context)
-      if @v and @src and @ratio
+      if @src and @ratio
         <<~EOT
           <div class="border embed-responsive embed-responsive-#{@ratio}" data-video>
               <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="embed-responsive-item" src="#{@src}"></iframe>
