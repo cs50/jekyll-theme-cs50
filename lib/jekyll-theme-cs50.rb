@@ -478,7 +478,7 @@ module Kramdown
         unless current_link.nil? 
 
           # If inline link ends with .md
-          if match = current_link.attr["href"].match(/\A([^\s]*)\.md(\s+.*)\z/)
+          if match = current_link.attr["href"].match(/\A([^\s]*)\.md(\s*.*)\z/)
 
             # Rewrite as /, just as jekyll-relative-links does
             current_link.attr["href"] = match.captures[0] + "/" + match.captures[1]
