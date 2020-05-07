@@ -254,6 +254,18 @@ module CS50
     # https://gist.github.com/niquepa/4c59b7d52a15dde2367a
     def initialize(tag_name, markup, options)
       super
+      @markup = markup.strip
+    end
+
+    def render(context)
+
+      markup = @markup
+      if markup =~ /\{\{\s*([\w\-\.]+)\s*\}\}/
+        if context[$1].nil?
+          raise ArgumentError.new("No variable #{$1} was found in video tag")
+        end
+        markup = context[$1].strip
+      end
 
       # Allow unquoted URLs in argv1
       begin
@@ -324,9 +336,7 @@ module CS50
           @src = @args[:argv1]
         end
       end
-    end
 
-    def render(context)
       if @src and @ratio
         <<~EOT
           <div class="border embed-responsive embed-responsive-#{@ratio}" data-video>
