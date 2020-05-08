@@ -22,11 +22,6 @@ module CS50
     Sanitize.fragment(s, :elements => ["b", "code", "em", "i", "img", "kbd", "span", "strong", "sub", "sup"]).strip
   end
 
-  # Strip leading and trailing newlines from string
-  def self.strip(s)
-    return s.gsub(/^\r?\n/, "").gsub(/\r?\n$/, "")
-  end
-
   class AfterBlock < Liquid::Block
 
     def initialize(tag_name, markup, options)
