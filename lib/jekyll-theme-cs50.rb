@@ -3,7 +3,6 @@ require "jekyll"
 require "jekyll-redirect-from"
 require "kramdown/parser/gfm"
 require "kramdown/parser/kramdown/link"
-require "liquid/tag/parser"
 require "pathname"
 require "sanitize"
 require "shellwords"
@@ -22,55 +21,86 @@ module CS50
     Sanitize.fragment(s, :elements => ["b", "code", "em", "i", "img", "kbd", "span", "strong", "sub", "sup"]).strip
   end
 
-  class AfterBlock < Liquid::Block
-
+  module Mixins
     def initialize(tag_name, markup, options)
+      @tag_name = tag_name
+      @markup = markup
       super
-      args = Liquid::Tag::Parser.new(markup)
-      begin
-        @after = Time.parse(args[:argv1]).iso8601
-      rescue
-        raise "Invalid timestamp: #{args[:argv1]}"
-      end
     end
+    def render(context)
+      @args = @markup.strip.scan(/"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|[^\s]+/) # https://stackoverflow.com/a/249937
+      @args.each_with_index do |value, index|
+        if value.match(/^(?:".*")|(?:'.*')$/)
+          @args[index] = value[1..-2]
+        else # https://stackoverflow.com/a/45393697
+          steps = value.split(".")
+          if steps and context[steps[0]]
+            result = context
+            steps.each do |step|
+              result = result[step] if result
+            end
+            @args[index] = result
+          end
+        end
+      end
+      super
+    end
+  end
+
+  class Tag < Liquid::Tag
+    include Mixins
+  end
+
+  class Block < Liquid::Block
+    include Mixins
+  end
+
+  class TestTag < Tag
+    def render(context)
+        super
+        puts @args.inspect
+    end
+    Liquid::Template.register_tag("test", self)
+  end
+
+  class AfterBeforeBlock < Block
 
     def render(context)
-
-      # Markdown
-      text = super
+      markdown = super
 
       # HTML
-      message = context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(text).strip
+      html = context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(markdown).strip
+
+      # Parse timestamp
+      begin
+        iso8601 = Time.parse(@args[0]).iso8601
+      rescue
+        raise "Invalid timestamp: #{@args[0]}"
+      end
 
       # Infer block-level or span-level
       # https://kramdown.gettalong.org/syntax.html#html-blocks
-      if text =~ /^\s*?\r?\n/ and text =~ /\r?\n\s*?$/
-        "\n<div data-after='#{@after}'>#{message}</div>\n"
+      if html =~ /^\s*?\r?\n/ and html =~ /\r?\n\s*?$/
+        "\n<div data-#{@tag_name}='#{iso8601}'>#{html}</div>\n"
       else
-        "<span data-after='#{@after}'>#{message.sub(/^<p>/, '').sub(/<\/p>/, '')}</span>" # https://github.com/jekyll/jekyll/issues/3571
+        "<span data-#{@tag_name}='#{iso8601}'>#{html.sub(/^<p>/, '').sub(/<\/p>/, '')}</span>" # https://github.com/jekyll/jekyll/issues/3571
       end
     end
 
     Liquid::Template.register_tag("after", self)
+    Liquid::Template.register_tag("before", self)
 
   end
 
-  class AlertBlock < Liquid::Block
-
-    def initialize(tag_name, markup, options)
-      super
-      args = Liquid::Tag::Parser.new(markup)
-      alert = args[:argv1]
-      @alert = (["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].include? alert) ? alert : ""
-    end
+  class AlertBlock < Block
 
     def render(context)
-      site = context.registers[:site]
-      converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
-      message = converter.convert(super(context))
+      markdown = super
+      html = context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(markdown).strip
+      alert = (["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].include? @args[0]) ? @args[0] : ""
       <<~EOT
-        <div class="alert" data-alert="#{@alert}" role="alert">
-          #{message}
+        <div class="alert" data-alert="#{alert}" role="alert">
+          #{html}
         </div>
       EOT
     end
@@ -79,55 +109,25 @@ module CS50
 
   end
 
-  class BeforeBlock < Liquid::Block
-
-    def initialize(tag_name, markup, options)
-      super
-      args = Liquid::Tag::Parser.new(markup)
-      begin
-        @before = Time.parse(args[:argv1]).iso8601
-      rescue
-        raise "Invalid timestamp: #{@args[:argv1]}"
-      end
-    end
-
-    def render(context)
-
-      # Markdown
-      text = super
-
-      # HTML
-      message = context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(text).strip
-
-      # Infer block-level or span-level
-      # https://kramdown.gettalong.org/syntax.html#html-blocks
-      if text =~ /^\s*?\r?\n/ and text =~ /\r?\n\s*?$/
-        "\n<div data-before='#{@before}'>#{message}</div>\n"
-      else
-        "<span data-before='#{@before}'>#{message.sub(/^<p>/, '').sub(/<\/p>/, '')}</span>" # https://github.com/jekyll/jekyll/issues/3571
-      end
-    end
-
-    Liquid::Template.register_tag("before", self)
-
-  end
-
-  class CalendarTag < Liquid::Tag
+  class CalendarTag < Tag
 
     # https://gist.github.com/niquepa/4c59b7d52a15dde2367a
     def initialize(tag_name, markup, options)
       super
 
-      # Parse arguments
-      @args = Liquid::Tag::Parser.new(markup)
+    end
+
+    def render(context)
+      super
 
       # Calendar's height
-      @height = @args[:height] || "480"
+      height = @args[1] || "480"
 
       # Default components
       components = {
-        height: @height,
-        mode: @args[:mode] || "AGENDA",
+        height: height,
+        #mode: @args[:mode] || "AGENDA",
+        mode: "AGENDA",
         showCalendars: "0",
         showDate: "0",
         showNav: "0",
@@ -135,79 +135,64 @@ module CS50
         showTabs: "0",
         showTitle: "0",
         showTz: "1",
-        src: @args[:argv1]
+        src: @args[0]
       }
 
       # Build URL
-      @src = URI::HTTPS.build(:host => "calendar.google.com", :path => "/calendar/embed", :query => URI.encode_www_form(components))
+      src = URI::HTTPS.build(:host => "calendar.google.com", :path => "/calendar/embed", :query => URI.encode_www_form(components))
 
-    end
-
-    def render(context)
-      if @height and @src
-        <<~EOT
-          <iframe data-calendar="#{@src}" #{@args[:ctz] ? 'data-ctz' : ''} style="height: #{@height}px;"></iframe>
-        EOT
-      else
-        <<~EOT
-          📅
-        EOT
-      end
+      # Render calendar
+      #<<~EOT
+      #  <iframe data-calendar="#{@src}" #{@args[:ctz] ? 'data-ctz' : ''} style="height: #{@height}px;"></iframe>
+      #EOT
+      <<~EOT
+        <iframe data-calendar="#{src}" style="height: #{height}px;"></iframe>
+      EOT
     end
 
     Liquid::Template.register_tag("calendar", self)
 
   end
 
-  class LocalTag < Liquid::Tag
-
-    def initialize(tag_name, markup, options)
-      super
-      args = markup.shellsplit
-      if args.length < 1
-        raise "Too few arguments"
-      elsif args.length > 2
-        raise "Too many arguments: #{markup}"
-      end
-      begin
-        t1 = Time.parse(args[0])
-        @local = t1.iso8601
-      rescue
-        raise "Invalid timestamp: #{args[0]}"
-      end
-      if args.length == 2
-        begin
-          t2 = Time.parse(args[1], t1)
-        rescue
-          raise "Invalid timestamp: #{args[1]}"
-        end
-        if t2 < t1
-          raise "Invalid interval: #{markup}"
-        end
-        @local += "/" + t2.iso8601
-      end
-    end
+  class LocalTag < Tag
 
     def render(context)
-        "<span data-local='#{@local}'></span>"
+      super
+      if @args.length < 1
+        raise "Too few arguments"
+      elsif @args.length > 2
+        raise "Too many arguments: #{@markup}"
+      end
+      begin
+        t1 = Time.parse(@args[0])
+        local = t1.iso8601
+      rescue
+        raise "Invalid timestamp: #{@args[0]}"
+      end
+      if @args.length == 2
+        begin
+          t2 = Time.parse(@args[1], t1)
+        rescue
+          raise "Invalid timestamp: #{@args[1]}"
+        end
+        if t2 < t1
+          raise "Invalid interval: #{@markup}"
+        end
+        local += "/" + t2.iso8601
+      end
+      "<span data-local='#{local}'></span>"
     end
 
     Liquid::Template.register_tag("local", self)
 
   end
 
-  class NextTag < Liquid::Tag
-
-    def initialize(tag_name, markup, options)
-      super
-      @args = Liquid::Tag::Parser.new(markup)
-      @text = (@args[:argv1]) ? CGI.escapeHTML(@args[:argv1]) : "Next"
-    end
+  class NextTag < Tag
 
     def render(context)
-      site = context.registers[:site]
-      converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
-      button = CS50::sanitize(converter.convert(@text))
+      super
+      markdown = (@args[0]) ? CGI.escapeHTML(@args[0]) : "Next"
+      button = CS50::sanitize(context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(markdown).strip)
       <<~EOT
         <button class="btn btn-dark btn-sm" data-next type="button">#{button}</button>
       EOT
@@ -217,25 +202,19 @@ module CS50
 
   end
 
-  class SpoilerBlock < Liquid::Block
-
-    def initialize(tag_name, markup, options)
-      super
-      @args = Liquid::Tag::Parser.new(markup)
-      @text = (@args[:argv1]) ? CGI.escapeHTML(@args[:argv1]) : "Spoiler"
-    end
+  class SpoilerBlock < Block
 
     # https://stackoverflow.com/q/19169849/5156190
     # https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button (re phrasing, but not interactive, content)
     def render(context)
-      site = context.registers[:site]
-      converter = site.find_converter_instance(::Jekyll::Converters::Markdown)
-      summary = CS50::sanitize(converter.convert(@text))
-      details = converter.convert(super(context))
+      markdown = super
+      html = context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(markdown).strip
+      text = (@args[0]) ? CGI.escapeHTML(@args[0]) : "Spoiler"
+      summary = CS50::sanitize(context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(text).strip)
       <<~EOT
         <details>
             <summary>#{summary}</summary>
-            #{details}
+            #{html}
         </details>
       EOT
     end
@@ -244,53 +223,28 @@ module CS50
 
   end
 
-  class VideoTag < Liquid::Tag
-
-    # https://gist.github.com/niquepa/4c59b7d52a15dde2367a
-    def initialize(tag_name, markup, options)
-      super
-      @markup = markup.strip
-    end
+  # Inspired by https://gist.github.com/niquepa/4c59b7d52a15dde2367a
+  class VideoTag < Tag
 
     def render(context)
-
-      markup = @markup
-      if markup =~ /\{\{\s*([\w\-\.]+)\s*\}\}/
-        if context[$1].nil?
-          raise ArgumentError.new("No variable #{$1} was found in video tag")
-        end
-        markup = context[$1].strip
-      end
-
-      # Allow unquoted URLs in argv1
-      begin
-        tokens = markup.split(" ", 2)
-        uri = URI.parse(tokens[0])
-        if uri.kind_of?(URI::HTTP) or uri.kind_of?(URI::HTTPS)
-          markup = "'#{tokens[0]}' #{tokens[1]}"
-        end
-      rescue
-      end
-
-      # Parse arguments
-      @args = Liquid::Tag::Parser.new(markup)
+      super
 
       # Parse YouTube URL
-      if @args[:argv1] 
+      if @args[0] 
          
         # Default aspect ratio
-        @ratio = "16by9"
+        ratio = "16by9"
 
         # If YouTube player
-        if @args[:argv1] =~ /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+        if @args[0] =~ /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
 
           # Video's ID
           v = $1
 
           # Determine aspect ratio
-          ["21by9", "4by3", "1by1"].each do |ratio|
-            if @args.args.keys[1].to_s == ratio
-              @ratio = ratio
+          ["21by9", "4by3", "1by1"].each do |r|
+            if @args[1] == r
+              ratio = r
             end
           end
 
@@ -302,7 +256,7 @@ module CS50
           }
 
           # Supported components
-          params = CGI::parse(URI::parse(@args[:argv1]).query || "")
+          params = CGI::parse(URI::parse(@args[0]).query || "")
           ["autoplay", "controls", "end", "index", "list", "mute", "playlist", "start", "t"].each do |param|
 
             # If param was provided
@@ -324,18 +278,18 @@ module CS50
 
           # Build URL
           # https://support.google.com/youtube/answer/171780?hl=en
-          @src = URI::HTTPS.build(:host => "www.youtube.com", :path => "/embed/#{v}", :query => URI.encode_www_form(components))
+          src = URI::HTTPS.build(:host => "www.youtube.com", :path => "/embed/#{v}", :query => URI.encode_www_form(components))
 
         # If CS50 Video Player
-        elsif @args[:argv1] =~ /^https?:\/\/video\.cs50\.io\/([^?]+)/
-          @src = @args[:argv1]
+        elsif @args[0] =~ /^https?:\/\/video\.cs50\.io\/([^?]+)/
+          src = @args[0]
         end
       end
 
-      if @src and @ratio
+      if src
         <<~EOT
-          <div class="border embed-responsive embed-responsive-#{@ratio}" data-video>
-              <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="embed-responsive-item" src="#{@src}"></iframe>
+          <div class="border embed-responsive embed-responsive-#{ratio}" data-video>
+              <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="embed-responsive-item" src="#{src}"></iframe>
           </div>
         EOT
       else
