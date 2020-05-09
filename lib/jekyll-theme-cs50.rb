@@ -3,6 +3,7 @@ require "jekyll"
 require "jekyll-redirect-from"
 require "kramdown/parser/gfm"
 require "kramdown/parser/kramdown/link"
+require "liquid/tag/parser"
 require "pathname"
 require "sanitize"
 require "shellwords"
@@ -22,27 +23,40 @@ module CS50
   end
 
   module Mixins
+
     def initialize(tag_name, markup, options)
       @tag_name = tag_name
       @markup = markup
       super
     end
+
     def render(context)
-      @args = @markup.strip.scan(/"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|[^\s]+/) # https://stackoverflow.com/a/249937
-      @args.each_with_index do |value, index|
-        if value.match(/^(?:".*")|(?:'.*')$/)
-          @args[index] = value[1..-2]
-        else # https://stackoverflow.com/a/45393697
-          steps = value.split(".")
-          if steps and context[steps[0]]
-            result = context
-            steps.each do |step|
-              result = result[step] if result
-            end
-            @args[index] = result
+
+      # Interpolate any variables
+      output = @markup.gsub(/\{\{\s*(\S*?)\s*\}\}/) do |s|
+        steps = "#{$1}".split(".")
+        if steps and context[steps[0]]
+          result = context
+          steps.each do |step|
+            result = result[step] if result
           end
+          result
         end
       end
+
+      # Parse any arguments
+      @args, @kwargs = [], {}
+      Liquid::Tag::Parser.new(output).args.each do |key, value|
+        if key == :argv1 
+          @args.push(value)
+        elsif value.nil?
+          @args.push(key.to_s)
+        else
+          @kwargs[key.to_s] = value
+        end
+      end
+
+      # Return any content
       super
     end
   end
@@ -53,14 +67,6 @@ module CS50
 
   class Block < Liquid::Block
     include Mixins
-  end
-
-  class TestTag < Tag
-    def render(context)
-        super
-        puts @args.inspect
-    end
-    Liquid::Template.register_tag("test", self)
   end
 
   class AfterBeforeBlock < Block
@@ -121,13 +127,12 @@ module CS50
       super
 
       # Calendar's height
-      height = @args[1] || "480"
+      height = @kwargs["height"] || "480"
 
       # Default components
       components = {
         height: height,
-        #mode: @args[:mode] || "AGENDA",
-        mode: "AGENDA",
+        mode: @kwargs["mode"] || "AGENDA",
         showCalendars: "0",
         showDate: "0",
         showNav: "0",
@@ -142,11 +147,8 @@ module CS50
       src = URI::HTTPS.build(:host => "calendar.google.com", :path => "/calendar/embed", :query => URI.encode_www_form(components))
 
       # Render calendar
-      #<<~EOT
-      #  <iframe data-calendar="#{@src}" #{@args[:ctz] ? 'data-ctz' : ''} style="height: #{@height}px;"></iframe>
-      #EOT
       <<~EOT
-        <iframe data-calendar="#{src}" style="height: #{height}px;"></iframe>
+        <iframe data-calendar="#{src}" #{@kwargs["ctz"] ? "data-ctz" : ""} style="height: #{height}px;"></iframe>
       EOT
     end
 
