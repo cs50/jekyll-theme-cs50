@@ -6,7 +6,6 @@ require "kramdown/parser/kramdown/link"
 require "liquid/tag/parser"
 require "pathname"
 require "sanitize"
-require "shellwords"
 require "time"
 require "uri"
 
@@ -42,6 +41,15 @@ module CS50
           end
           result
         end
+      end
+
+      # Quote unquoted URLs
+      output = output.gsub(/(\S+\s*=\s*".*"|\S+\s*=\s*'.*'|".*"|'.*'|\S+)/) do |s|
+          if s =~ /^#{URI::regexp}$/
+            "\"#{s}\""
+          else
+            s
+          end
       end
 
       # Parse any arguments
