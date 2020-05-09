@@ -240,21 +240,14 @@ module CS50
       # Parse YouTube URL
       if @args[0] 
          
-        # Default aspect ratio
-        ratio = "16by9"
+        # Determine aspect ratio
+        ratio = ["21by9", "4by3", "1by1"].include?(@args[1]) ? @args[1] : "16by9"
 
         # If YouTube player
         if @args[0] =~ /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
 
           # Video's ID
           v = $1
-
-          # Determine aspect ratio
-          ["21by9", "4by3", "1by1"].each do |r|
-            if @args[1] == r
-              ratio = r
-            end
-          end
 
           # Default components
           components = {
