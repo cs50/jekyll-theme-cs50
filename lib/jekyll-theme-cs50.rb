@@ -92,13 +92,11 @@ module CS50
         raise "Invalid timestamp: #{@args[0]}"
       end
 
-      # Infer block-level or span-level
-      # https://kramdown.gettalong.org/syntax.html#html-blocks
-      if html =~ /^\s*?\r?\n/ and html =~ /\r?\n\s*?$/
-        "\n<div data-#{@tag_name}='#{iso8601}'>#{html}</div>\n"
-      else
-        "<span data-#{@tag_name}='#{iso8601}'>#{html.sub(/^<p>/, '').sub(/<\/p>/, '')}</span>" # https://github.com/jekyll/jekyll/issues/3571
-      end
+      # Render HTML
+      <<~EOT
+        <div data-#{@tag_name}='#{iso8601}'>#{html}</div>
+      EOT
+
     end
 
     Liquid::Template.register_tag("after", self)
@@ -154,7 +152,7 @@ module CS50
       # Build URL
       src = URI::HTTPS.build(:host => "calendar.google.com", :path => "/calendar/embed", :query => URI.encode_www_form(components))
 
-      # Render calendar
+      # Render HTML
       <<~EOT
         <iframe data-calendar="#{src}" #{@kwargs["ctz"] ? "data-ctz" : ""} style="height: #{height}px;"></iframe>
       EOT

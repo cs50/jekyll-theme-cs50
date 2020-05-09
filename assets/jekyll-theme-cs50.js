@@ -36,9 +36,55 @@ $(document).on('DOMContentLoaded', function() {
 
     // data-before
     $('[data-before]').each(function(index, element) {
-        const before= moment($(element).attr('data-before'));
-        if (!now.isBefore(before)) {
-            $(element).addClass('d-none');
+
+        // Return true iff element should be removed
+        const remove = function() {
+            if (data = $(element).attr('data-before')) {
+                return !now.isBefore(moment($(element).attr('data-before')));
+            }
+            else if (data = $(element).attr('data-after')) {
+                return !now.isAfter(moment($(element).attr('data-after')));
+            }
+        };
+
+        // Remember element's siblings
+        const $prev = $(element).prev(), $next = $(element).next();
+
+        // Siblings to be merged
+        const SIBLINGS = ['DL', 'OL', 'UL'];
+
+        // If element should be removed
+        if (remove()) {
+
+            // Remove element
+            $(element).remove();
+
+            // Merge siblings
+            if (SIBLINGS.includes($prev.prop('tagName')) && $prev.prop('tagName') === $next.prop('tagName')) {
+                $prev.append($next.children());
+                $next.remove();
+            }
+        }
+        else {
+
+            // Unwrap element
+            const $children = $(element).children().unwrap();
+
+            // If element had one child
+            if ($children.length === 1) {
+            
+                // Merge siblings
+                if (SIBLINGS.includes($children.prop('tagName'))) {
+                    if ($prev.prop('tagName') === $children.prop('tagName')) {
+                        $children.prepend($prev.children());
+                        $prev.remove();
+                    }
+                    if ($children.prop('tagName') == $next.prop('tagName')) {
+                        $children.append($next.children());
+                        $next.remove();
+                    }
+                }
+            }
         }
     });
 
