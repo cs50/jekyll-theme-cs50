@@ -1,9 +1,9 @@
 {
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.9.0",
-    "bootstrap": "4.3.1",
-    "jquery": "3.3.1",
-    "popper.js": "1.15.0",
+    "@fortawesome/fontawesome-free": "5.13.0",
+    "bootstrap": "4.4.1",
+    "jquery": "3.4.1",
+    "popper.js": "1.16.0",
     "primer-markdown": "4.0.0"
   },
   "scripts": {
