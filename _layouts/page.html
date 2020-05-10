@@ -33,7 +33,7 @@
                         Menu
                     </button>
 
-                    <nav class="collapse d-md-block">
+                    <nav class="collapse d-md-block" id="nav">
 
                         {%- capture nav -%}{%- include nav.md -%}{%- endcapture -%}
                         {{- nav | markdownify | replace: " id=", " data-id=" | strip -}}
