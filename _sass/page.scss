@@ -35,6 +35,11 @@ img {
     width: fit-content;
 }
 
+// Box shadows
+#alert, aside {
+    box-shadow: .5rem .5rem 1rem rgba($black, .20); // https://github.com/twbs/bootstrap/blob/master/scss/_variables.scss
+}
+
 // Crimson background, transparent text
 aside {
     background-color: $link-color;
