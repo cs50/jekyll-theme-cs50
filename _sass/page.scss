@@ -56,7 +56,7 @@ aside.col-md {
                 height: 100vh;
                 overflow-y: auto;
                 top: 0;
-                z-index: $zindex-sticky;
+                z-index: $zindex-sticky - 1;
             }
             @supports (position: sticky) {
                 position: sticky;
@@ -119,6 +119,7 @@ nav > *:first-child {
 }
 
 // Mimic Primer
+#alert *:last-child,
 header *:last-child,
 nav *:last-child,
 footer *:last-child {

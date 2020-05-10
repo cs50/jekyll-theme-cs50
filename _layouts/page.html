@@ -10,6 +10,16 @@
 
     <body>
 
+        {% if site.cs50.alert %}
+        {% assign alerts = "primary,secondary,success,danger,warning,info,light,dark" | split: "," %}
+        {% if alerts contains site.cs50.alert %}
+        <div class="alert alert-{{ site.cs50.alert }} mb-0 shadow sticky-top" id="alert" role="alert">
+            {%- capture alert -%}{%- include alert.md -%}{%- endcapture -%}
+            {{- alert | markdownify | replace: " id=", " data-id=" | strip -}}
+        </div>
+        {% endif %}
+        {% endif %}
+
         <div class="container-fluid">
 
             <div class="row">
