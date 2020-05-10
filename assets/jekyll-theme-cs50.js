@@ -319,10 +319,20 @@ $(document).on('DOMContentLoaded', function() {
             $('#search .btn').removeClass('btn-lg');
         }
         else {
+
             // Grow
             $('#search .form-control').addClass('form-control-lg');
             $('#search .btn').addClass('btn-lg');
         }
+
+        // Position aside below alert, if any
+        if (mobile()) {
+            $('aside').css('height', '');
+        }
+        else {
+            $('aside').css('height', ($(window).height() - $('#alert').outerHeight(true)) + 'px');
+        }
+        $('aside').css('top', $('#alert').outerHeight(true) + 'px');
     });
     $(window).trigger('resize');
 
