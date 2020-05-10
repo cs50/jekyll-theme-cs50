@@ -31,16 +31,10 @@ module CS50
 
     def render(context)
 
-      # Interpolate any variables
-      output = @markup.gsub(/\{\{\s*(\S*?)\s*\}\}/) do |s|
-        steps = "#{$1}".split(".")
-        if steps and context[steps[0]]
-          result = context
-          steps.each do |step|
-            result = result[step] if result
-          end
-          result
-        end
+      # Interpolate any variables, a la render_variable in
+      # https://github.com/jekyll/jekyll/blob/master/lib/jekyll/tags/include.rb
+      output = @markup.gsub(/\{\{.*?\}\}/) do |s|
+        Liquid::Template.parse(s).render(context)
       end
 
       # Quote unquoted URLs
@@ -75,6 +69,14 @@ module CS50
 
   class Block < Liquid::Block
     include Mixins
+  end
+
+  class TestTag < Tag	
+    def render(context)	
+        super	
+        puts @args.inspect	
+    end	
+    Liquid::Template.register_tag("test", self)	
   end
 
   class AfterBeforeBlock < Block
