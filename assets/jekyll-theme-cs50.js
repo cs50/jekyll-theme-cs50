@@ -326,13 +326,18 @@ $(document).on('DOMContentLoaded', function() {
         }
 
         // Position aside below alert, if any
-        if (mobile()) {
-            $('aside').css('height', '');
+        if ($('#alert')) {
+            const height = $('#alert').outerHeight(true);
+            if (mobile()) {
+                $('aside').css('height', '');
+                $('main').css('margin-top', '');
+            }
+            else {
+                $('aside').css('height', ($(window).height() - height) + 'px');
+                $('main').css('margin-top', height + 'px');
+            }
+            $('aside').css('top', height + 'px');
         }
-        else {
-            $('aside').css('height', ($(window).height() - $('#alert').outerHeight(true)) + 'px');
-        }
-        $('aside').css('top', $('#alert').outerHeight(true) + 'px');
     });
     $(window).trigger('resize');
 
