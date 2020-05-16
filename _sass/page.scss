@@ -309,6 +309,11 @@ mark, .mark {
     small, .small {
         font-size: 90%;
     }
+
+    // Less padding
+    main.col-md {
+        padding: 2rem 2rem;
+    }
 }
 
 // Also on printers

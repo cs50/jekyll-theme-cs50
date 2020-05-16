@@ -282,7 +282,7 @@ $(document).on('DOMContentLoaded', function() {
     });
     $(window).trigger('hashchange');
 
-    // Ensure last heading can be anchored atop page
+    // Listen for resize
     $(window).resize(function() {
 
         // Get headings
@@ -293,7 +293,7 @@ $(document).on('DOMContentLoaded', function() {
             'main.markdown-body h5:not(.next)',
             'main.markdown-body h6:not(.next)'].join(','));
 
-        // Get last heading
+        // Ensure last heading can be anchored atop page
         let last = headings.last();
         if (last.length) {
 
@@ -330,7 +330,7 @@ $(document).on('DOMContentLoaded', function() {
             const height = $('#alert').outerHeight(true);
             if (mobile()) {
                 $('aside').css('height', '');
-                $('main').css('margin-top', '');
+                $('main').css('margin-top', height + 'px');
             }
             else {
                 $('aside').css('height', ($(window).height() - height) + 'px');
