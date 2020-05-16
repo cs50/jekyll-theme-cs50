@@ -1,1 +1,1 @@
-# [{{ site.title }}](/)
+# [{{ site.cs50.title }}](/)
