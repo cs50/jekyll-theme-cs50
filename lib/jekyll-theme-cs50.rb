@@ -354,7 +354,7 @@ Jekyll::Hooks.register :site, :pre_render do |site, payload|
   end
 end
 
-Jekyll::Hooks.register [:pages], :post_render do |page|
+Jekyll::Hooks.register [:site], :post_render do |site|
 
   def relative_path(from, to)
     path = Pathname.new(to).relative_path_from(Pathname.new(from)).to_s
@@ -365,47 +365,86 @@ Jekyll::Hooks.register [:pages], :post_render do |page|
     end
   end
 
-  # If HTML
-  if page.output_ext == ".html"
+  # Paths of pages
+  paths = site.pages.map { |page| page.url }
 
-    # Parse page, including its layout
-    doc = Nokogiri::HTML5.parse(page.output)
+  # For each page
+  site.pages.each do |page|
+
+    # If HTML
+    if page.output_ext == ".html"
+
+      # Parse page, including its layout
+      doc = Nokogiri::HTML5.parse(page.output)
   
-    # Resolve absolute paths in attributes to relative paths
-    doc.traverse do |node|
-      {"a" => "href", "img" => "src", "link" => "href", "script" => "src"}.each do |name, attribute|
-        if node.name == name
-          if not node[attribute].nil? and node[attribute].start_with?("/")
-            node[attribute] = relative_path(page.dir, node[attribute])
+      # For each node in DOM
+      doc.traverse do |node|
+
+        # If one of these elements
+        {"a" => "href", "img" => "src", "link" => "href", "script" => "src"}.each do |name, attribute|
+          if node.name == name
+
+            # With a non-nil attribute
+            if not node[attribute].nil?
+
+              # Resolve absolute path to relative path
+              if node[attribute].start_with?("/")
+                node[attribute] = relative_path(page.dir, node[attribute])
+              end
+
+              # If not a URI (and thus a local path)
+              if node[attribute] !~ /^#{URI::regexp}$/
+
+                # If path doesn't end with a trailing slash (before any query or fragment)
+                if match = node[attribute].match(/\A([^\?#]+[^\?\/#])([\?#].*)?\z/)
+
+                  # Construct absolute path
+                  path = match.captures[0] + "/"
+                  if not path.start_with?("/")
+                    path = page.dir + path
+                  end
+
+                  # If it should have a trailing slash
+                  if paths.include?(path)
+
+                    # Append trailing slash (plus any query or fragment)
+                    node[attribute] = match.captures[0] + "/"
+                    if not match.captures[1].nil?
+                      node[attribute] += match.captures[1]
+                    end
+                  end
+                end
+              end
+            end
           end
         end
       end
-    end
-    page.output = doc.to_html
+      page.output = doc.to_html
 
-  # If SCSS
-  elsif page.output_ext == ".css"
+    # If SCSS
+    elsif page.output_ext == ".css"
 
-    # Resolve absolute paths in url() to relative paths
-    # https://developer.mozilla.org/en-US/docs/Web/CSS/url()
-    page.output = page.output.gsub(/url\(\s*([^\)]*)\s*\)/) do |s|
-      group = "#{$1}"
-      if match = group.match(/\A'(\/.*)'\z/) # url('/...')
-        "url('" + relative_path(page.dir, match.captures[0]).to_s + "')"
-      elsif match = group.match(/\A"(\/.*)"\z/) # url("/...")
-        'url("' + relative_path(page.dir, match.captures[0]).to_s + '")'
-      elsif match = group.match(/\A(\/(.*[^'"])?)\z/) # url(/...)
-        "url(" + relative_path(page.dir, match.captures[0]).to_s + ")"
-      else
-        s
+      # Resolve absolute paths in url() to relative paths
+      # https://developer.mozilla.org/en-US/docs/Web/CSS/url()
+      page.output = page.output.gsub(/url\(\s*([^\)]*)\s*\)/) do |s|
+        group = "#{$1}"
+        if match = group.match(/\A'(\/.*)'\z/) # url('/...')
+          "url('" + relative_path(page.dir, match.captures[0]).to_s + "')"
+        elsif match = group.match(/\A"(\/.*)"\z/) # url("/...")
+          'url("' + relative_path(page.dir, match.captures[0]).to_s + '")'
+        elsif match = group.match(/\A(\/(.*[^'"])?)\z/) # url(/...)
+          "url(" + relative_path(page.dir, match.captures[0]).to_s + ")"
+        else
+          s
+        end
       end
     end
+
+    # TODO: In offline mode, base64-encode images, embed CSS (in style tags) and JS (in script tags), a la
+    # https://github.com/jekyll/jekyll-mentions/blob/master/lib/jekyll-mentions.rb and
+    # https://github.com/jekyll/jemoji/blob/master/lib/jemoji.rb
+
   end
-
-  # TODO: In offline mode, base64-encode images, embed CSS (in style tags) and JS (in script tags), a la
-  # https://github.com/jekyll/jekyll-mentions/blob/master/lib/jekyll-mentions.rb and
-  # https://github.com/jekyll/jemoji/blob/master/lib/jemoji.rb
-
 end
 
 # Disable redirects.json
