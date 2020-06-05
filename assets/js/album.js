@@ -1,4 +1,6 @@
-$(document).ready(function() {
+$(window).on('load', function() {
+
+    const LIMIT = 8
 
     // A gloabl variable to hold a dictionary of JSON album objects
     // This implementation avoid the need of using JSON local storage
@@ -50,7 +52,7 @@ $(document).ready(function() {
         renderGallery(albumId)
     }
 
-    function renderGallery(albumId, limit = 8) {
+    function renderGallery(albumId, limit = LIMIT) {
 
         // Retrieve a JSON image array from a particular album
         imgArray = albumJSONDict[albumId]['imgArray']
@@ -70,28 +72,21 @@ $(document).ready(function() {
                 break
             }
             row = document.createElement("div")
-            row.className = ("row")
+            row.className = ("d-flex justify-content-center")
             for (j = 0; j < cols; j++) {
                 col = document.createElement("div")
-                col.className = ("col")
-                col.style="padding-left:5px; padding-right:5px; margin-top: 10px;"
+                col.className = ("mx-2 my-2")
+                col.style="width: 22vw; height: 22vW"
                 a = document.createElement("a")
-                div = document.createElement("div")
                 image = imgArray.shift()
-                if (image == undefined) {
-                    imageUrl = "#"
-                } else {
-                    imageUrl = image["src"]
+                if (image != undefined) {
                     a.href = image["fbImgLink"]
+                    img = document.createElement("img")
+                    img.src = image["src"]
+                    img.setAttribute("loading", "lazy")
+                    img.style = "object-fit: cover; width: 100%; height:100%"
+                    a.appendChild(img)
                 }
-                div.style = `height:100%;
-                             padding-top: 100%;
-                             width: 100%;
-                             display: block;
-                             background-size: cover;
-                             background-position: 50% 25%;
-                             background-image: url(${imageUrl});`
-                a.appendChild(div)
                 col.appendChild(a)
                 row.appendChild(col)
                 counter++
@@ -111,7 +106,7 @@ $(document).ready(function() {
 
     // API Call to get a album and its images (for development usage only)
     // In production, we expect the apiCall to get the acutal JSON object containing multiple albums
-    let apiCall =  "https://graph.facebook.com/v7.0/108341874213151?fields=photos{images,album,link},link&access_token=EAAVl5gvKOaQBANpxwgaVXZA4oZCZCy5mDMt4ZC9WotukGCtvVOp78D87i4xzXw6iIhRB9s4uZC2hNoQuEGB9liabJAD1hiPsZA4pZCDQazNGnq7BAlZBPkeMzmuITsK3Dh6GZCXZCZCfdZARzSwtBgjQwHz76xqyyJybhdSjZA1QzQFxqU5Olgg9K5EQdYj5V1nCD2koHmuOIbYnUhQZDZD"
+    let apiCall =  "https://graph.facebook.com/v7.0/108341874213151?fields=photos{images,album,link},link&access_token=EAAVl5gvKOaQBADqtqIXx3cpw2ntGp43bmTPO7s7bib9GeuounqDL1Bqohuc92jSnMetIG85cWwIepx4Vdn2ZARgo9D411mfKBjYMEcEiFpWZAGQeiaBEwlHXLWz3Bt3HoSExHcfy7hwGreecSZCxgS1V7NDex9Fa0FzQktHjw4pZAHWRSH9mJ5LzgRW97vxVfZC6WycMziAZDZD"
     $.ajax({url: apiCall, success: function(response){
 
         // Construct a single album JSON object (for development usage only)
