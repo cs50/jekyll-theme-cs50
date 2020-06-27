@@ -50,7 +50,7 @@ $(document).on('DOMContentLoaded', function() {
 
             // If element had one child
             if ($children.length === 1) {
-            
+
                 // Merge siblings
                 if (SIBLINGS.includes($children.prop('tagName'))) {
                     if ($prev.prop('tagName') === $children.prop('tagName')) {
@@ -87,33 +87,85 @@ $(document).on('DOMContentLoaded', function() {
         // https://stackoverflow.com/a/32511510/5156190
         if ($(element).attr('data-calendar')) {
             let src = $(element).attr('data-calendar');
-            if ($(element).attr('data-ctz') !== undefined) {
-                src += '&ctz=' + jstz.determine().name();
-            }
+            src += '&ctz=' + luxon.DateTime.local().zoneName;
             $(element).attr('src', src);
         }
     });
 
     // data-local
     $('[data-local]').each(function(index, element) {
+
+        // HTML to display
+        let html;
+
+        // Parse attribute
         const local = $(element).attr('data-local').split('/');
+
+        // If range
         if (local.length == 2) {
-            const start = moment(local[0]).tz(moment.tz.guess(true));
-            let html = start.format('llll');
-            const end = moment(local[1]).tz(moment.tz.guess(true));
-            if (start.isSame(end, 'date')) {
-                html += "–" + end.format('LT');
+
+            // Parse start
+            const start = luxon.DateTime.fromISO(local[0]);
+
+            // Format start without time zone
+            html = start.toLocaleString({
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                month: 'long',
+                weekday: 'long',
+                year: 'numeric'
+            });
+
+            // Parse end
+            const end = luxon.DateTime.fromISO(local[1]);
+
+            // If start and end on same date
+            if (start.toLocaleString(luxon.DateTime.DATE_SHORT) === end.toLocaleString(luxon.DateTime.DATE_SHORT)) {
+
+                // Format end without date
+                html += '–' + end.toLocaleString({
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    timeZoneName: 'long'
+                });
             }
+
+            // If start and end on different dates
             else {
-                html += "–" + end.format('llll');
+
+                // Format end without date
+                // https://english.stackexchange.com/a/100754
+                html += ' – ' + end.toLocaleString({
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    month: 'long',
+                    timeZoneName: 'long',
+                    weekday: 'long',
+                    year: 'numeric'
+                });
             }
-            html += ' ' + end.format('z');
-            $(this).html(html);
         }
         else {
-            const t = moment(local[0])
-            $(this).html(t.tz(moment.tz.guess(true)).format('llll z'));
+
+            // Parse start
+            const start = luxon.DateTime.fromISO(local[0]);
+
+            // Format start
+            html = start.toLocaleString({
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                month: 'long',
+                timeZoneName: 'long',
+                weekday: 'long',
+                year: 'numeric'
+            });
         }
+
+        // Display HTML
+        $(this).html(html);
     });
 
     // Return true iff small device (on which aside will be above main)
