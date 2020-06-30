@@ -140,6 +140,7 @@ module CS50
       # Default components
       components = {
         height: height,
+        hl: "en_US",
         mode: @kwargs["mode"] || "AGENDA",
         showCalendars: "0",
         showDate: "0",
