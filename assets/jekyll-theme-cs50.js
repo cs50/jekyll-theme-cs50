@@ -302,6 +302,7 @@ $(document).on('DOMContentLoaded', function() {
             }
 
             // Relocate id to an anchor (so that it can be invisibly positioned below any alert)
+            // https://stackoverflow.com/a/13184714
             $(element).before($('<a data-id id="' + $(element).attr('id') + '"></a>'))
             $(element).removeAttr('id');
         }
@@ -399,6 +400,7 @@ $(document).on('DOMContentLoaded', function() {
             $('aside').css('top', height + 'px');
 
             // Position headings' anchors below alert
+            // https://stackoverflow.com/a/13184714
             $('a[data-id][id]').css('top', '-' + height + 'px');
         }
     });
