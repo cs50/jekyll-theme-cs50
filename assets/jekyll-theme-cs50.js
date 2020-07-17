@@ -291,11 +291,19 @@ $(document).on('DOMContentLoaded', function() {
         'main.markdown-body h4',
         'main.markdown-body h5',
         'main.markdown-body h6'].join(','));
-
-    // Add anchors to headings
     headings.each(function(index, element) {
-        if ($(element).attr('id') && $(element).has('a').length === 0) {
-            $(element).wrapInner($('<a data-id href="#' + $(element).attr('id') + '"></a>'));
+
+        // If it has an id
+        if ($(element).attr('id')) {
+
+            // Add anchor to heading
+            if ($(element).has('a').length === 0) {
+                $(element).wrapInner($('<a data-id href="#' + $(element).attr('id') + '"></a>'));
+            }
+
+            // Relocate id to an anchor (so that it can be invisibly positioned below any alert)
+            $(element).before($('<a data-id id="' + $(element).attr('id') + '"></a>'))
+            $(element).removeAttr('id');
         }
     });
 
@@ -327,10 +335,6 @@ $(document).on('DOMContentLoaded', function() {
 
         // Next siblings
         next(heading).removeClass('next');
-
-        // Scroll to heading
-        const top = Math.floor(heading.offset().top - parseInt(heading.css('marginTop')));
-        scroll(top);
     });
     $(window).trigger('hashchange');
 
@@ -377,9 +381,13 @@ $(document).on('DOMContentLoaded', function() {
             $('#search .btn').addClass('btn-lg');
         }
 
-        // Position aside below alert, if any
+        // If there's an alert
         if ($('#alert')) {
+
+            // Calculate alert's height
             const height = $('#alert').outerHeight(true);
+
+            // Position aside below alert, if any
             if (mobile()) {
                 $('aside').css('height', '');
                 $('main').css('margin-top', height + 'px');
@@ -389,6 +397,9 @@ $(document).on('DOMContentLoaded', function() {
                 $('main').css('margin-top', height + 'px');
             }
             $('aside').css('top', height + 'px');
+
+            // Position headings' anchors below alert
+            $('a[data-id][id]').css('top', '-' + height + 'px');
         }
     });
     $(window).trigger('resize');

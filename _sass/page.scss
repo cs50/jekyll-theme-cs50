@@ -238,6 +238,13 @@ mark, .mark {
     text-decoration: none;
 }
 
+// Offsets for headings when there's an alert
+.markdown-body a[data-id][id] {
+    display: block;
+    position: relative;
+    visibility: hidden;
+}
+
 // Fix inconsistency in Primer
 // https://github.com/primer/primer/pull/563
 .markdown-body ol > li:first-child,
