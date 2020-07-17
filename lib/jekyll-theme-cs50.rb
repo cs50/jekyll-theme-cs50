@@ -134,6 +134,11 @@ module CS50
     def render(context)
       super
 
+      # Deprecated @ctz
+      if @kwargs.key?("ctz")
+        Jekyll.logger.warn "CS50 warning: no need for @ctz anymore"
+      end
+
       # Calendar's height
       height = @kwargs["height"] || "480"
 
