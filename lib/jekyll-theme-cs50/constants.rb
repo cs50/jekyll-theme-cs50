@@ -16,7 +16,10 @@ module CS50
     "optional_front_matter" => {
       "remove_originals" => true
     },
-    "plugins"  => CS50::PLUGINS.keys
+    "plugins"  => CS50::PLUGINS.keys,
+    "redirect_from" => {
+      "json" => false
+    }
   }.freeze
 
   OVERRIDES = {

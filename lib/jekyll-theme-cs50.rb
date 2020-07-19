@@ -453,14 +453,6 @@ Jekyll::Hooks.register [:site], :post_render do |site|
   end
 end
 
-# Disable redirects.json
-module JekyllRedirectFrom
-  class Generator < Jekyll::Generator
-    def generate_redirects_json
-    end
-  end
-end
-
 module Kramdown
   module Parser
     class GFM < Kramdown::Parser::Kramdown
