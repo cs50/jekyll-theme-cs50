@@ -362,17 +362,43 @@ end
 
 Jekyll::Hooks.register [:site], :post_render do |site|
 
-  def relative_path(from, to)
-    path = Pathname.new(to).relative_path_from(Pathname.new(from)).to_s
-    if to.end_with?("/")
-      path + "/"
-    else
-      path
-    end
-  end
-
   # Paths of pages
-  paths = site.pages.map { |page| page.url }
+  $paths = site.pages.map { |page| page.url }
+
+  def relative_path(from, to)
+
+    # Resolve to relative path
+    relative = Pathname.new(to).relative_path_from(Pathname.new(from)).to_s
+
+    # If not a URI (and thus a local path)
+    if relative !~ /^#{URI::regexp}$/
+
+      # If path doesn't end with a trailing slash (before any query or fragment)
+      if match = relative.match(/\A([^\?#]+[^\?\/#])([\?#].*)?\z/)
+
+        # Construct absolute path
+        absolute = match.captures[0] + "/"
+        if not absolute.start_with?("/")
+          absolute = from + absolute
+        end
+        absolute = Pathname.new(absolute).cleanpath.to_s + "/"
+
+        # If it should have a trailing slash
+        if $paths.include?(absolute)
+
+          # Append trailing slash (plus any query or fragment)
+          relative = match.captures[0] + "/"
+          if not match.captures[1].nil?
+            relative += match.captures[1]
+          end
+
+        end
+      end
+    end
+
+    # Return path
+    relative
+  end
 
   # For each page
   site.pages.each do |page|
@@ -386,6 +412,13 @@ Jekyll::Hooks.register [:site], :post_render do |site|
       # For each node in DOM
       doc.traverse do |node|
 
+        # If meta
+        if node.name == "meta"
+          if node["content"] =~ /^(\d+;\s*url=["']?)(.+)(["']?)$/i
+            node["content"] = $1 + relative_path(page.dir, $2) + $3
+          end
+        end
+
         # If one of these elements
         {"a" => "href", "img" => "src", "link" => "href", "script" => "src"}.each do |name, attribute|
           if node.name == name
@@ -398,30 +431,7 @@ Jekyll::Hooks.register [:site], :post_render do |site|
                 node[attribute] = relative_path(page.dir, node[attribute])
               end
 
-              # If not a URI (and thus a local path)
-              if node[attribute] !~ /^#{URI::regexp}$/
-
-                # If path doesn't end with a trailing slash (before any query or fragment)
-                if match = node[attribute].match(/\A([^\?#]+[^\?\/#])([\?#].*)?\z/)
-
-                  # Construct absolute path
-                  path = match.captures[0] + "/"
-                  if not path.start_with?("/")
-                    path = page.dir + path
-                  end
-
-                  # If it should have a trailing slash
-                  if paths.include?(path)
-
-                    # Append trailing slash (plus any query or fragment)
-                    node[attribute] = match.captures[0] + "/"
-                    if not match.captures[1].nil?
-                      node[attribute] += match.captures[1]
-                    end
-                  end
-                end
-              end
-            end
+           end
           end
         end
       end
