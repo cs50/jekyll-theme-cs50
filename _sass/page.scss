@@ -170,7 +170,7 @@ footer:empty {
 // Override column's padding, width
 main.col-md {
     max-width: 80rem;
-    overflow: auto; /* https://stackoverflow.com/a/26523355 */
+    overflow: auto; // https://stackoverflow.com/a/26523355
     padding: 4rem 2rem;
 }
 
@@ -187,15 +187,17 @@ mark, .mark {
     word-break: break-word;
 }
 
-// But not in tables, which should instead scroll horizontally
-.markdown-body table {
-    word-break: normal;
+// But not in buttons and not in tables, which should instead scroll horizontally
+.markdown-body {
+    button, table {
+        word-break: normal;
+    }
 }
 
 // Override Primer's family and size for fonts
 .markdown-body {
-    font-family: inherit; /* Use our family */
-    font-size: inherit; /* Use our size */
+    font-family: inherit; // Use our family
+    font-size: inherit; // Use our size
 }
 
 // Preserve spaces between backticks
