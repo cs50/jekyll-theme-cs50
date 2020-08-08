@@ -227,10 +227,15 @@ $(document).on('DOMContentLoaded', function() {
 
     // Ensure tables are responsive
     // https://bootstrap-table.com/docs/extensions/mobile/
-    $('.markdown-body table').bootstrapTable({
-        classes: 'table',
-        minWidth: 992, // https://getbootstrap.com/docs/4.5/layout/overview/#responsive-breakpoints
-        mobileResponsive: true
+    $('.markdown-body table').each(function(index, element) {
+        try {
+            $(element).bootstrapTable({
+                classes: 'table',
+                minWidth: 992, // https://getbootstrap.com/docs/4.5/layout/overview/#responsive-breakpoints
+                mobileResponsive: true
+            });
+        }
+        catch(err) {} // In case no theader
     });
 
     // Return true iff small device (on which aside will be above main)

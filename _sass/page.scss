@@ -275,13 +275,10 @@ mark, .mark {
 }
 
 // Mimic p
-.markdown-body .embed-responsive {
-    margin-bottom: 16px;
-}
+.markdown-body .bootstrap-table,
+.markdown-body .embed-responsive,
+.markdown-body details,
 .markdown-body summary {
-    margin-bottom: 16px;
-}
-.markdown-body details {
     margin-bottom: 16px;
 }
 
