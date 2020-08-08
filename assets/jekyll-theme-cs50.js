@@ -216,8 +216,11 @@ $(document).on('DOMContentLoaded', function() {
         }
     });
 
-    // Re-enable tooltips after tables have responded
+    // Re-attach tooltips after tables have responded
     // https://github.com/wenzhixin/bootstrap-table/issues/572#issuecomment-76503607
+    $('.markdown-body table').on('pre-body.bs.table', function() {
+        $('.markdown-body table [data-toggle="tooltip"]').tooltip('dispose');
+    });
     $('.markdown-body table').on('post-body.bs.table', function() {
         $('.markdown-body table [data-toggle="tooltip"]').tooltip({container: 'body'});
     });
