@@ -57,18 +57,6 @@ aside.col-md {
     @media screen {
         aside.col-md {
             flex: 0 1 20rem;
-            @supports (position: sticky) or (position: -webkit-sticky) {
-                height: 100vh;
-                overflow-y: auto;
-                top: 0;
-                z-index: $zindex-sticky - 1;
-            }
-            @supports (position: sticky) {
-                position: sticky;
-            }
-            @supports (position: -webkit-sticky) {
-                position: -webkit-sticky;
-            }
         }
     }
 }
