@@ -127,7 +127,7 @@ $(document).on('DOMContentLoaded', function() {
                 html += '–' + end.toLocaleString({
                     hour: 'numeric',
                     minute: 'numeric',
-                    timeZoneName: 'long'
+                    timeZoneName: 'short'
                 });
             }
 
@@ -140,9 +140,9 @@ $(document).on('DOMContentLoaded', function() {
                     day: 'numeric',
                     hour: 'numeric',
                     minute: 'numeric',
-                    month: 'long',
-                    timeZoneName: 'long',
-                    weekday: 'long',
+                    month: 'short',
+                    timeZoneName: 'short',
+                    weekday: 'short',
                     year: 'numeric'
                 });
             }
@@ -157,9 +157,9 @@ $(document).on('DOMContentLoaded', function() {
                 day: 'numeric',
                 hour: 'numeric',
                 minute: 'numeric',
-                month: 'long',
-                timeZoneName: 'long',
-                weekday: 'long',
+                month: 'short',
+                timeZoneName: 'short',
+                weekday: 'short',
                 year: 'numeric'
             });
         }
