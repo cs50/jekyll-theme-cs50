@@ -452,27 +452,23 @@ $(document).on('DOMContentLoaded', function() {
             $('#search .btn').addClass('btn-lg');
         }
 
-        // If there's an alert
-        if ($('#alert')) {
+        // Calculate alert's height
+        const height = $('#alert').outerHeight(true) || 0;
 
-            // Calculate alert's height
-            const height = $('#alert').outerHeight(true);
-
-            // Position aside below alert, if any
-            if (mobile()) {
-                $('aside').css('height', '');
-                $('main').css('margin-top', height + 'px');
-            }
-            else {
-                $('aside').css('height', ($(window).height() - height) + 'px');
-                $('main').css('margin-top', height + 'px');
-            }
-            $('aside').css('top', height + 'px');
-
-            // Position headings' anchors below alert
-            // https://stackoverflow.com/a/13184714
-            $('a[data-id][id]').css('top', '-' + height + 'px');
+        // Position aside below alert, if any
+        if (mobile()) {
+            $('aside').css('height', '');
+            $('main').css('margin-top', height + 'px');
         }
+        else {
+            $('aside').css('height', ($(window).height() - height) + 'px');
+            $('main').css('margin-top', height + 'px');
+        }
+        $('aside').css('top', height + 'px');
+
+        // Position headings' anchors below alert
+        // https://stackoverflow.com/a/13184714
+        $('a[data-id][id]').css('top', '-' + height + 'px');
     });
     $(window).trigger('resize');
 
