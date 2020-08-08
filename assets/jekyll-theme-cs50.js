@@ -93,10 +93,11 @@ $(document).on('DOMContentLoaded', function() {
     });
 
     // data-local
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat#Syntax
     $('[data-local]').each(function(index, element) {
 
         // HTML to display
-        let html;
+        let short, long;
 
         // Parse attribute
         const local = $(element).attr('data-local').split('/');
@@ -108,7 +109,15 @@ $(document).on('DOMContentLoaded', function() {
             const start = luxon.DateTime.fromISO(local[0]);
 
             // Format start without time zone
-            html = start.toLocaleString({
+            short = start.toLocaleString({
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                month: 'short',
+                weekday: 'short',
+                year: 'numeric'
+            });
+            long = start.toLocaleString({
                 day: 'numeric',
                 hour: 'numeric',
                 minute: 'numeric',
@@ -124,10 +133,15 @@ $(document).on('DOMContentLoaded', function() {
             if (start.toLocaleString(luxon.DateTime.DATE_SHORT) === end.toLocaleString(luxon.DateTime.DATE_SHORT)) {
 
                 // Format end without date
-                html += '–' + end.toLocaleString({
+                short += '–' + end.toLocaleString({
                     hour: 'numeric',
                     minute: 'numeric',
                     timeZoneName: 'short'
+                });
+                long += '–' + end.toLocaleString({
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    timeZoneName: 'long'
                 });
             }
 
@@ -136,13 +150,22 @@ $(document).on('DOMContentLoaded', function() {
 
                 // Format end without date
                 // https://english.stackexchange.com/a/100754
-                html += ' – ' + end.toLocaleString({
+                short += ' – ' + end.toLocaleString({
                     day: 'numeric',
                     hour: 'numeric',
                     minute: 'numeric',
                     month: 'short',
                     timeZoneName: 'short',
                     weekday: 'short',
+                    year: 'numeric'
+                });
+                long += ' – ' + end.toLocaleString({
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    month: 'long',
+                    timeZoneName: 'long',
+                    weekday: 'long',
                     year: 'numeric'
                 });
             }
@@ -153,7 +176,7 @@ $(document).on('DOMContentLoaded', function() {
             const start = luxon.DateTime.fromISO(local[0]);
 
             // Format start
-            html = start.toLocaleString({
+            short = start.toLocaleString({
                 day: 'numeric',
                 hour: 'numeric',
                 minute: 'numeric',
@@ -162,10 +185,36 @@ $(document).on('DOMContentLoaded', function() {
                 weekday: 'short',
                 year: 'numeric'
             });
+            long = start.toLocaleString({
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                month: 'long',
+                timeZoneName: 'long',
+                weekday: 'long',
+                year: 'numeric'
+            });
         }
 
         // Display HTML
-        $(this).html(html);
+        $(this).html(short);
+
+        // If not already linked
+        // ddAdd tooltip if not linked already
+        if ($(this).closest('a').length === 0) {
+
+            // If no title already
+            // https://stackoverflow.com/a/12161190
+            if (typeof $(this).attr('title') === 'undefined') {
+
+                // Add tooltip
+                $(this).attr('data-toggle', 'tooltip').attr('title', long).tooltip({trigger: 'focus'});
+
+                // Ensure focusable
+                // https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
+                $(this).attr('tabindex', '0');
+            }
+        }
     });
 
     // Return true iff small device (on which aside will be above main)

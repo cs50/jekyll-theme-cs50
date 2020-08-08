@@ -26,6 +26,13 @@ $link-hover-color: $link-color !default;
     margin-left: 0;
 }
 
+// local
+[data-local] {
+    border-bottom-style: dotted;
+    border-bottom-width: thin;
+    cursor: help;
+}
+
 // + and -
 [data-marker="+"], [data-marker="-"] {
     cursor: pointer;
