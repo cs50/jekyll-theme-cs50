@@ -27,6 +27,13 @@ assets/bootstrap/dist/*
 assets/bootstrap/dist/js/*
 !assets/bootstrap/dist/js/bootstrap.min.js
 
+assets/bootstrap-table/*
+!assets/bootstrap-table/LICENSE
+!assets/bootstrap-table/dist/
+assets/bootstrap-table/dist/*
+!assets/bootstrap-table/dist/bootstrap-table.min.css
+!assets/bootstrap-table/dist/bootstrap-table.min.js
+
 assets/@fortawesome/*
 !assets/@fortawesome/fontawesome-free/
 assets/@fortawesome/fontawesome-free/*

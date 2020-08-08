@@ -285,6 +285,11 @@ mark, .mark {
     margin-bottom: 16px;
 }
 
+// Ensure tables are responsive
+.markdown-body table {
+    display: table;
+}
+
 // Fill 80% of viewport
 .modal-dialog {
     max-height: inherit;
@@ -311,7 +316,7 @@ mark, .mark {
 }
 
 // On small devices and printers
-// https://getbootstrap.com/docs/4.2/layout/overview/#responsive-breakpoints
+// https://getbootstrap.com/docs/4.5/layout/overview/#responsive-breakpoints
 @media (max-width: 767.98px), print {
 
     // Don't shrink fonts as much
