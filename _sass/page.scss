@@ -57,6 +57,8 @@ aside.col-md {
     @media screen {
         aside.col-md {
             flex: 0 1 20rem;
+            overflow-y: auto;	
+            z-index: $zindex-sticky - 1;	
         }
     }
 }
