@@ -96,8 +96,8 @@ $(document).on('DOMContentLoaded', function() {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat#Syntax
     $('[data-local]').each(function(index, element) {
 
-        // HTML to display
-        let short, long;
+        // Locale strings
+        let shorter, longer;
 
         // Parse attribute
         const local = $(element).attr('data-local').split('/');
@@ -109,20 +109,12 @@ $(document).on('DOMContentLoaded', function() {
             const start = luxon.DateTime.fromISO(local[0]);
 
             // Format start without time zone
-            short = start.toLocaleString({
+            longer = shorter = start.toLocaleString({
                 day: 'numeric',
                 hour: 'numeric',
                 minute: 'numeric',
                 month: 'short',
                 weekday: 'short',
-                year: 'numeric'
-            });
-            long = start.toLocaleString({
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                month: 'long',
-                weekday: 'long',
                 year: 'numeric'
             });
 
@@ -133,12 +125,12 @@ $(document).on('DOMContentLoaded', function() {
             if (start.toLocaleString(luxon.DateTime.DATE_SHORT) === end.toLocaleString(luxon.DateTime.DATE_SHORT)) {
 
                 // Format end without date
-                short += '–' + end.toLocaleString({
+                shorter += '–' + end.toLocaleString({
                     hour: 'numeric',
                     minute: 'numeric',
                     timeZoneName: 'short'
                 });
-                long += '–' + end.toLocaleString({
+                longer += '–' + end.toLocaleString({
                     hour: 'numeric',
                     minute: 'numeric',
                     timeZoneName: 'long'
@@ -150,7 +142,7 @@ $(document).on('DOMContentLoaded', function() {
 
                 // Format end without date
                 // https://english.stackexchange.com/a/100754
-                short += ' – ' + end.toLocaleString({
+                shorter += ' – ' + end.toLocaleString({
                     day: 'numeric',
                     hour: 'numeric',
                     minute: 'numeric',
@@ -159,13 +151,13 @@ $(document).on('DOMContentLoaded', function() {
                     weekday: 'short',
                     year: 'numeric'
                 });
-                long += ' – ' + end.toLocaleString({
+                longer += ' – ' + end.toLocaleString({
                     day: 'numeric',
                     hour: 'numeric',
                     minute: 'numeric',
-                    month: 'long',
+                    month: 'short',
                     timeZoneName: 'long',
-                    weekday: 'long',
+                    weekday: 'short',
                     year: 'numeric'
                 });
             }
@@ -176,7 +168,7 @@ $(document).on('DOMContentLoaded', function() {
             const start = luxon.DateTime.fromISO(local[0]);
 
             // Format start
-            short = start.toLocaleString({
+            shorter = start.toLocaleString({
                 day: 'numeric',
                 hour: 'numeric',
                 minute: 'numeric',
@@ -185,40 +177,40 @@ $(document).on('DOMContentLoaded', function() {
                 weekday: 'short',
                 year: 'numeric'
             });
-            long = start.toLocaleString({
+            longer = start.toLocaleString({
                 day: 'numeric',
                 hour: 'numeric',
                 minute: 'numeric',
-                month: 'long',
+                month: 'short',
                 timeZoneName: 'long',
-                weekday: 'long',
+                weekday: 'short',
                 year: 'numeric'
             });
         }
 
-        // Display HTML
-        $(this).html(short);
+        // Get difference between strings
+        // https://stackoverflow.com/a/60548426
+        const getStrDifference = function(s1, s2) {
+            const a1 = s1.split(' ');
+            const a2 = s2.split(' ');
+            return a2.reduce((diff, word, pos) => (word != a1[pos] && diff.push(word), diff), []).join(' ');
+        };
+        const short = getStrDifference(longer, shorter);
+        const long = getStrDifference(shorter, longer);
+
+        // Wrap short timeZoneName with span
+        $(this).html(shorter.replace(short, '<span>' + short + '</span>'));
+        const $span = $(this).children('span');
 
         // If not already linked
         if ($(this).closest('a').length === 0) {
 
-            // If no title already
-            // https://stackoverflow.com/a/12161190
-            if (typeof $(this).attr('title') === 'undefined') {
+            // Add tooltip
+            $span.attr('data-toggle', 'tooltip').attr('data-trigger', 'focus').attr('title', long).tooltip();
 
-                // Add tooltip
-                $(this).attr('data-toggle', 'tooltip').attr('data-trigger', 'focus').attr('title', long).tooltip();
-
-                // Don't allow span to wrap, else popovers will be centered between span's overall width
-                // https://getbootstrap.com/docs/4.5/components/popovers/#overview
-                // https://github.com/popperjs/popper-core/issues/609
-                // https://github.com/popperjs/popper-core/issues/9
-                $(this).addClass('text-nowrap');
-
-                // Ensure focusable
-                // https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
-                $(this).attr('tabindex', '0');
-            }
+            // Ensure focusable
+            // https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
+            $span.attr('tabindex', '0');
         }
     });
 
