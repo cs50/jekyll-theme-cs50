@@ -414,29 +414,33 @@ $(document).on('DOMContentLoaded', function() {
 
         // Get headings
         const headings = $([
+            '.markdown-body h1:not(.next)',
             '.markdown-body h2:not(.next)',
             '.markdown-body h3:not(.next)',
             '.markdown-body h4:not(.next)',
             '.markdown-body h5:not(.next)',
             '.markdown-body h6:not(.next)'].join(','));
 
-        // Ensure last heading can be anchored atop page
-        let last = headings.last();
-        if (last.length) {
-
-            // On small devices
-            if (mobile()) {
-                var margin = $(window).height() - ($('main').outerHeight() + $('aside').outerHeight() - last.offset().top);
-            }
-
-            // On large devices
-            else {
-                var margin = $(window).height() - ($('main').outerHeight() - last.offset().top);
-            }
-
-            // Update margin
-            $('main').css('margin-bottom', Math.max(0, Math.ceil(margin)) + 'px');
+        // Ensure last heading, if any, can be anchored atop page
+        if (headings.last().offset()) {
+            var top = headings.last().offset().top;
         }
+        else {
+            var top = 0;
+        }
+
+        // On small devices
+        if (mobile()) {
+            var margin = $(window).height() - ($('main').outerHeight() + $('aside').outerHeight() - top);
+        }
+
+        // On large devices
+        else {
+            var margin = $(window).height() - ($('main').outerHeight() - top);
+        }
+
+        // Update margin
+        $('main').css('margin-bottom', Math.max(0, Math.ceil(margin)) + 'px');
 
         // Resize search UI
         if (mobile()) {
@@ -452,19 +456,22 @@ $(document).on('DOMContentLoaded', function() {
             $('#search .btn').addClass('btn-lg');
         }
 
-        // Calculate alert's height
+        // Calculate height of alert, if any
         const height = $('#alert').outerHeight(true) || 0;
 
-        // Position aside below alert, if any
+        // Position aside
         if (mobile()) {
             $('aside').css('height', '');
-            $('main').css('margin-top', height + 'px');
+            $('aside').css('margin-top', height + 'px');
+            $('aside').css('top', '');
+            $('main').css('margin-top', '');
         }
         else {
             $('aside').css('height', ($(window).height() - height) + 'px');
+            $('aside').css('margin-top', '');
+            $('aside').css('top', height + 'px');
             $('main').css('margin-top', height + 'px');
         }
-        $('aside').css('top', height + 'px');
 
         // Position headings' anchors below alert
         // https://stackoverflow.com/a/13184714
