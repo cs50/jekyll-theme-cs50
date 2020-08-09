@@ -207,7 +207,13 @@ $(document).on('DOMContentLoaded', function() {
             if (typeof $(this).attr('title') === 'undefined') {
 
                 // Add tooltip
-                $(this).attr('data-toggle', 'tooltip').attr('data-trigger', 'focus').attr('title', long).tooltip({});
+                $(this).attr('data-toggle', 'tooltip').attr('data-trigger', 'focus').attr('title', long).tooltip();
+
+                // Don't allow span to wrap, else popovers will be centered between span's overall width
+                // https://getbootstrap.com/docs/4.5/components/popovers/#overview
+                // https://github.com/popperjs/popper-core/issues/609
+                // https://github.com/popperjs/popper-core/issues/9
+                $(this).addClass('text-nowrap');
 
                 // Ensure focusable
                 // https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
@@ -222,7 +228,7 @@ $(document).on('DOMContentLoaded', function() {
         $('.markdown-body table [data-toggle="tooltip"]').tooltip('dispose');
     });
     $('.markdown-body table').on('post-body.bs.table', function() {
-        $('.markdown-body table [data-toggle="tooltip"]').tooltip({container: 'body'});
+        $('.markdown-body table [data-toggle="tooltip"]').tooltip();
     });
 
     // Ensure tables are responsive
