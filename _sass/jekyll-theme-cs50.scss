@@ -27,7 +27,7 @@ $link-hover-color: $link-color !default;
 }
 
 // local
-[data-local] > [data-toggle="tooltip"] {
+[data-local] {
     border-bottom-style: dotted;
     border-bottom-width: thin;
     cursor: help;
