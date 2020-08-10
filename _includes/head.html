@@ -27,11 +27,6 @@
 
 <link href="/favicon.ico?{{ time }}" rel="icon">
 
-<!-- https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use -->
-<link href="/assets/@fortawesome/fontawesome-free/css/all.min.css?{{ time }}" rel="stylesheet">
-
-<link href="{{ '/assets/' | append: page.layout | append: '.css' }}?{{ time }}" rel="stylesheet">
-
 <!-- http://getbootstrap.com/docs/4.5/getting-started/introduction/ -->
 <script src="/assets/jquery/dist/jquery.min.js?{{ time }}"></script>
 <script src="/assets/popper.js/dist/umd/popper.min.js?{{ time }}"></script>
@@ -41,6 +36,9 @@
 <link href="/assets/bootstrap-table/dist/bootstrap-table.min.css?{{ time }}" rel="stylesheet">
 <script src="/assets/bootstrap-table/dist/bootstrap-table.min.js?{{ time }}"></script>
 <script src="/assets/bootstrap-table/dist/extensions/mobile/bootstrap-table-mobile.min.js?{{ time }}"></script>
+
+<!-- https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use -->
+<link href="/assets/@fortawesome/fontawesome-free/css/all.min.css?{{ time }}" rel="stylesheet">
 
 <!-- https://momentjs.com/, https://momentjs.com/timezone/ -->
 <script src="/assets/moment.min.js?{{ time }}"></script>
@@ -53,6 +51,7 @@
 <script src="/assets/instantsearch.production.min.js?{{ time }}"></script>
 {%- endif %}
 
+<link href="{{ '/assets/' | append: page.layout | append: '.css' }}?{{ time }}" rel="stylesheet">
 <script src="/assets/jekyll-theme-cs50.js?{{ time }}"></script>
 
 <title>{{ title }}</title>

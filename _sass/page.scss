@@ -81,20 +81,6 @@ aside .fa-ul {
     margin-left: 0;
 }
 
-// Format tables like paragraphs
-main .bootstrap-table {
-    margin-bottom: 1rem;
-    .fixed-table-container .table {
-        width: auto;
-    }
-    .table td, .table th {
-        padding: .5rem .75rem;
-    }
-}
-main .bootstrap-table {
-    width: auto;
-}
-
 // Separate nav button (or header) and footer, applying margins to children to avoid flicker when uncollapsing
 nav > *:first-child {
     margin-top: 1rem;

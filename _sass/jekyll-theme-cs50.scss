@@ -30,6 +30,21 @@ $headings-font-weight: bold;
     vertical-align: middle;
 }
 
+// Format tables like paragraphs
+.bootstrap-table {
+    margin-bottom: 1rem;
+
+    // Only fill viewport's width in card view
+    .fixed-table-container:not(.has-card-view) .table {
+        width: auto;
+    }
+
+    // A la GitHub's tables
+    .table td, .table th {
+        padding: .5rem .75rem;
+    }
+}
+
 // Confine borders to images
 .img-thumbnail {
     width: fit-content;
@@ -55,7 +70,7 @@ $headings-font-weight: bold;
 // but not in buttons and not in tables, which should instead scroll horizontally
 * {
     word-break: break-word;
-    button, table {
+    button, table * {
         word-break: normal;
     }
 }
@@ -174,4 +189,11 @@ ol > li {
 
 details > summary {
     font-weight: bold;
+}
+
+//// video
+
+// Format videos like paragraphs
+[data-video] {
+    margin-bottom: 1rem;
 }
