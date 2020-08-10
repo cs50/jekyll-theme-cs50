@@ -66,6 +66,13 @@ aside {
     }
 }
 
+// Compact lists
+aside {
+    li:first-child, li + li {
+        margin-top: 0;
+    }
+}
+
 // Compact small paragraphs
 aside p.small {
     line-height: 1.25;

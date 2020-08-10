@@ -39,7 +39,7 @@ $headings-font-weight: bold;
         width: auto;
     }
 
-    // A la GitHub's tables
+    // A la GitHub
     .table td, .table th {
         padding: .5rem .75rem;
     }
@@ -84,6 +84,14 @@ blockquote {
     padding-left: 1rem;
 }
 
+// A la GitHub
+code.highlighter-rouge {
+    background-color: $gray-200;
+    border-radius: .25rem;
+    color: inherit;
+    padding: .2rem;
+}
+
 // Headings
 h1, h2 {
     border-bottom-color: $gray-200;
@@ -123,6 +131,11 @@ img {
     max-width: 100%;
 }
 
+// A la GitHub
+li:first-child, li + li {
+    margin-top: .25rem;
+}
+
 // Mimic Google's highlighting
 mark, .mark {
     background-color: inherit;
@@ -136,6 +149,12 @@ ol > li {
     padding-left: .5rem;
 }
 
+// A la GitHub
+pre {
+    background-color: $gray-100;
+    border-radius: .25rem;
+    padding: 1rem;
+}
 
 //// alert
 
