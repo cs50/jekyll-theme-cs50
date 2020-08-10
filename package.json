@@ -4,11 +4,10 @@
     "bootstrap": "4.5.2",
     "bootstrap-table": "1.17.1",
     "jquery": "3.5.1",
-    "popper.js": "1.16.1",
-    "primer-markdown": "4.0.0"
+    "popper.js": "1.16.1"
   },
   "scripts": {
-    "install": "cp -r node_modules/bootstrap node_modules/bootstrap-table node_modules/@fortawesome node_modules/jquery node_modules/popper.js assets/ && cp -r node_modules/bootstrap node_modules/primer-markdown _sass/ && mv _sass/primer-markdown/build/build.css _sass/primer-markdown/build/build.scss && rm -rf node_modules && rougify style github > _sass/rouge.scss",
-    "preinstall": "rm -rf node_modules && rm -rf _sass/bootstrap _sass/bootstrap-table _sass/jquery _sass/popper.js _sass/primer-markdown _sass/rouge.scss"
+    "install": "cp -r node_modules/bootstrap node_modules/bootstrap-table node_modules/@fortawesome node_modules/jquery node_modules/popper.js assets/ && cp -r node_modules/bootstrap _sass/ && rm -rf node_modules && rougify style github > _sass/rouge.scss",
+    "preinstall": "rm -rf node_modules && rm -rf _sass/bootstrap _sass/bootstrap-table _sass/jquery _sass/popper.js _sass/rouge.scss"
   }
 }
