@@ -5,33 +5,139 @@ $font-family-sans-serif: "PT Sans" !default;
 $link-color: #a51c30 !default;
 $link-hover-color: $link-color !default;
 
+// Headings
+// https://github.com/primer/css/blob/master/src/markdown/headings.scss
+$h1-font-size: 2rem;
+$h2-font-size: 1.5rem;
+$h3-font-size: 1.25rem;
+$h4-font-size: 1rem;
+$h5-font-size: 0.875rem;
+$h6-font-size: 0.85rem;
+$headings-font-weight: bold;
+
 // Import Bootstrap
 @import "bootstrap/scss/bootstrap.scss";
-
-// Import build of primer-markdown after renaming build.css to build.scss via package.json so that we can import, per
-// https://stackoverflow.com/questions/7111610/import-regular-css-file-in-scss-file/36166487#36166487
-@import "primer-markdown/build/build.scss";
 
 // GitHub syntax highlighter color scheme for Pygments
 // https://github.com/PhilipTrauner/pygments-github-css/blob/master/github.css
 @import "rouge";
 
-// Import Google Fonts
-@import url("https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700");
+// https://fonts.google.com/specimen/PT+Sans?query=PT+Sans&sidebar.open=true&selection.family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-//// marker
-
-// Suppress margin
-.fa-ul {
-    margin-left: 0;
+// Align badges
+.badge {
+    vertical-align: middle;
 }
 
-// local
+// Confine borders to images
+.img-thumbnail {
+    width: fit-content;
+}
+
+// Fill 80% of viewport
+.modal-dialog {
+    max-height: inherit;
+    max-width: inherit;
+    margin: 0 auto;
+    width: 80vw;
+}
+.modal-content {
+    height: 80vh;
+}
+
+// Suppress bottom margin within parents, but not for .highlight
+:last-child:not(.highlight) {
+    margin-bottom: 0;
+}
+
+// Wrap long words (and URLs, whether linked or not), especially on mobile,
+// but not in buttons and not in tables, which should instead scroll horizontally
+* {
+    word-break: break-word;
+    button, table {
+        word-break: normal;
+    }
+}
+
+// A la GitHub
+blockquote {
+    border-left-color: $gray-200;
+    border-left-style: solid;
+    border-left-width: thick;
+    color: $text-muted;
+    padding-left: 1rem;
+}
+
+// Headings
+h1, h2 {
+    border-bottom-color: $gray-200;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    margin-bottom: 1rem;
+    padding-bottom: .5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    padding-top: 1rem;
+
+    // Subtle anchors
+    a[data-id] {
+        color: inherit;
+        text-decoration: none;
+    }
+}
+
+// Defaults for iframes
+iframe {
+    border: 0;
+    display: block; // Else defaults to inline, which adds whitespace below margin-bottom
+    height: 480px;
+    margin-bottom: 16px;
+}
+
+// Ensure responsive in Safari on iOS (for, e.g., Google Calendars), per
+// https://stackoverflow.com/a/23083463/5156190
+iframe {
+    min-width: 100%;
+    width: 1px;
+}
+
+// Confine images to parent
+img {
+    max-width: 100%;
+}
+
+// Mimic Google's highlighting
+mark, .mark {
+    background-color: inherit;
+    color: inherit;
+    font-weight: bold;
+    padding: 0
+}
+
+// Padding after numbers
+ol > li {
+    padding-left: .5rem;
+}
+
+
+//// alert
+
+// Box shadows
+#alert, aside {
+    box-shadow: .5rem .5rem 1rem rgba($black, .20); // https://github.com/twbs/bootstrap/blob/master/scss/_variables.scss
+}
+
+
+//// local
+
 [data-local] {
     border-bottom-style: dotted;
     border-bottom-width: thin;
     cursor: help;
 }
+
 
 // + and -
 [data-marker="+"], [data-marker="-"] {
@@ -56,17 +162,16 @@ $link-hover-color: $link-color !default;
     vertical-align: 40%;
 }
 
-// next
+
+//// next
+
 .next {
     display: none;
 }
 
-// spoiler
+
+//// spoiler
+
 details > summary {
     font-weight: bold;
-}
-
-// Suppress bottom margin within parents, but not for .highlight
-.markdown-body :last-child:not(.highlight) {
-    margin-bottom: 0;
 }

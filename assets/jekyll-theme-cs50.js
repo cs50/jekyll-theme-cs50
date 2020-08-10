@@ -224,19 +224,19 @@ $(document).on('DOMContentLoaded', function() {
 
     // Re-attach tooltips after tables have responded
     // https://github.com/wenzhixin/bootstrap-table/issues/572#issuecomment-76503607
-    $('.markdown-body table').on('pre-body.bs.table', function() {
-        $('.markdown-body table [data-toggle="tooltip"]').tooltip('dispose');
+    $('main table').on('pre-body.bs.table', function() {
+        $('main table [data-toggle="tooltip"]').tooltip('dispose');
     });
-    $('.markdown-body table').on('post-body.bs.table', function() {
-        $('.markdown-body table [data-toggle="tooltip"]').tooltip();
+    $('main table').on('post-body.bs.table', function() {
+        $('main table [data-toggle="tooltip"]').tooltip();
     });
 
     // Ensure tables are responsive
     // https://bootstrap-table.com/docs/extensions/mobile/
-    $('.markdown-body table').each(function(index, element) {
+    $('main table').each(function(index, element) {
         try {
             $(element).bootstrapTable({
-                classes: 'table',
+                classes: 'table table-bordered table-striped',
                 minWidth: 992, // https://getbootstrap.com/docs/4.5/layout/overview/#responsive-breakpoints
                 mobileResponsive: true
             });
@@ -325,6 +325,9 @@ $(document).on('DOMContentLoaded', function() {
         }
     });
 
+    // Also add .fa-ul to TOC, if any, for consistency
+    $('.markdown-toc').addClass('fa-ul');
+
     // data-next
     $('[data-next]').each(function(index, element) {
 
@@ -361,12 +364,12 @@ $(document).on('DOMContentLoaded', function() {
 
     // Get headings
     let headings = $([
-        '.markdown-body h1',
-        '.markdown-body h2',
-        '.markdown-body h3',
-        '.markdown-body h4',
-        '.markdown-body h5',
-        '.markdown-body h6'].join(','));
+        'main h1',
+        'main h2',
+        'main h3',
+        'main h4',
+        'main h5',
+        'main h6'].join(','));
     headings.each(function(index, element) {
 
         // If it has an id
@@ -420,12 +423,12 @@ $(document).on('DOMContentLoaded', function() {
 
         // Get headings
         const headings = $([
-            '.markdown-body h1:not(.next)',
-            '.markdown-body h2:not(.next)',
-            '.markdown-body h3:not(.next)',
-            '.markdown-body h4:not(.next)',
-            '.markdown-body h5:not(.next)',
-            '.markdown-body h6:not(.next)'].join(','));
+            'main h1:not(.next)',
+            'main h2:not(.next)',
+            'main h3:not(.next)',
+            'main h4:not(.next)',
+            'main h5:not(.next)',
+            'main h6:not(.next)'].join(','));
 
         // Ensure last heading, if any, can be anchored atop page
         if (headings.last().offset()) {

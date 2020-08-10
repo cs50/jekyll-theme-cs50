@@ -10,36 +10,6 @@ body > div.container-fluid > div.row {
     align-items: flex-start;
 }
 
-// Defaults for iframes
-iframe {
-    border: 0;
-    display: block; // Else defaults to inline, which adds whitespace below margin-bottom
-    height: 480px;
-    margin-bottom: 16px;
-}
-
-// Ensure responsive in Safari on iOS (for, e.g., Google Calendars), per 
-// https://stackoverflow.com/a/23083463/5156190
-iframe {
-    min-width: 100%;
-    width: 1px;
-}
-
-// Confine images to parent
-img {
-    max-width: 100%;
-}
-
-// Confine borders to images
-.img-thumbnail {
-    width: fit-content;
-}
-
-// Box shadows
-#alert, aside {
-    box-shadow: .5rem .5rem 1rem rgba($black, .20); // https://github.com/twbs/bootstrap/blob/master/scss/_variables.scss
-}
-
 // Crimson background, transparent text
 aside {
     background-color: $link-color;
@@ -62,21 +32,6 @@ aside.col-md {
             z-index: $zindex-sticky - 1;	
         }
     }
-}
-
-// Align badges
-aside .badge {
-    vertical-align: middle;
-}
-
-// Bold headings
-aside h1, 
-aside h2, 
-aside h3, 
-aside h4, 
-aside h5, 
-aside h6 {
-    font-weight: bold;
 }
 
 // Opaque text
@@ -104,9 +59,40 @@ aside button[data-toggle=collapse]:not(.collapsed) {
     color: $link-color;
 }
 
+// Larger heading
+aside h1 {
+    font-size: 2.5rem;
+}
+
+// No borders
+aside {
+    h1, h2 {
+        border-bottom: 0;
+    }
+}
+
 // Compact small paragraphs
 aside p.small {
     line-height: 1.25;
+}
+
+// Left-align menu
+aside .fa-ul {
+    margin-left: 0;
+}
+
+// Format tables like paragraphs
+main .bootstrap-table {
+    margin-bottom: 1rem;
+    .fixed-table-container .table {
+        width: auto;
+    }
+    .table td, .table th {
+        padding: .5rem .75rem;
+    }
+}
+main .bootstrap-table {
+    width: auto;
 }
 
 // Separate nav button (or header) and footer, applying margins to children to avoid flicker when uncollapsing
@@ -114,6 +100,7 @@ nav > *:first-child {
     margin-top: 1rem;
 }
 
+/*
 // Mimic Primer
 #alert *:last-child,
 header *:last-child,
@@ -121,6 +108,7 @@ nav *:last-child,
 footer *:last-child {
     margin-bottom: 0;
 }
+*/
 
 // Separate buttons from header and nav
 aside button[data-toggle=collapse],
@@ -165,37 +153,22 @@ main.col-md {
     padding: 4rem 2rem;
 }
 
-// Mimic Google's highlighting
-mark, .mark {
-    background-color: inherit;
-    color: inherit;
-    font-weight: bold;
-    padding: 0
-}
-
-// Wrap long words (and URLs, whether linked or not), especially on mobile
-.markdown-body {
-    word-break: break-word;
-}
-
-// But not in buttons and not in tables, which should instead scroll horizontally
-.markdown-body {
-    button, table {
-        word-break: normal;
-    }
-}
-
+/*
 // Override Primer's family and size for fonts
 .markdown-body {
     font-family: inherit; // Use our family
     font-size: inherit; // Use our size
 }
+*/
 
+/*
 // Preserve spaces between backticks
 .markdown-body code {
     white-space: pre-wrap;
 }
+*/
 
+/*
 // Add padding above headings to match Primer's padding below headings,
 // to ensure anchors aren't too close to top of viewport
 .markdown-body h1,
@@ -207,7 +180,9 @@ mark, .mark {
     margin-top: 0;
     padding-top: 16px;
 }
+*/
 
+/*
 // Mute emphasized text in headings
 .markdown-body h1 > em,
 .markdown-body h2 > em,
@@ -219,32 +194,25 @@ mark, .mark {
     @extend .text-muted;
     font-style: normal;
 }
-
-// Subtle anchors in headings 
-.markdown-body h1 a[data-id],
-.markdown-body h2 a[data-id],
-.markdown-body h3 a[data-id],
-.markdown-body h4 a[data-id],
-.markdown-body h5 a[data-id],
-.markdown-body h6 a[data-id] {
-    color: inherit;
-    text-decoration: none;
-}
+*/
 
 // Offsets for headings when there's an alert
-.markdown-body a[data-id][id] {
+main a[data-id][id] {
     display: block;
     position: relative;
     visibility: hidden;
 }
 
+/*
 // Fix inconsistency in Primer
 // https://github.com/primer/primer/pull/563
 .markdown-body ol > li:first-child,
 .markdown-body ul > li:first-child {
     margin-top: .25em;   
 }
+*/
 
+/*
 // Mimic li's margin-top
 .markdown-body li > blockquote,
 .markdown-body li > div > div.highlight,
@@ -252,19 +220,25 @@ mark, .mark {
 .markdown-body li > pre {
     margin-top: .25em;
 }
+*/
 
+/*
 // Mimic li's margin-bottom, not p's margin-bottom
 .markdown-body li > div > div.highlight {
     margin-bottom: 0;
 }
+*/
 
+/*
 // Mimic h1's bottom border
 .markdown-body hr {
     background-color: #eaecef;
     height: 1px;
     margin: 16px 0;
 }
+*/
 
+/*
 // Mimic p
 .markdown-body .bootstrap-table,
 .markdown-body .embed-responsive,
@@ -272,24 +246,16 @@ mark, .mark {
 .markdown-body summary {
     margin-bottom: 16px;
 }
+*/
 
-// Fill 80% of viewport
-.modal-dialog {
-    max-height: inherit;
-    max-width: inherit;
-    margin: 0 auto;
-    width: 80vw;
-}
-.modal-content {
-    height: 80vh;
-}
-
+/*
 // Condense TOC
 #markdown-toc li + li,
 #markdown-toc ol > li:first-child,
 #markdown-toc ul > li:first-child {
     margin-top: 0;
 }
+*/
 
 // Don't number search results
 #search ol {
@@ -316,21 +282,6 @@ mark, .mark {
 // Also on printers
 @media print {
 
-    // Move aside above main
-    aside.col-md {
-        flex: unset;
-    }
-
-    // Hide button above nav
-    aside button[data-toggle=collapse] {
-        display: none;
-    }
-
-    // Only show header
-    nav.collapse:not(.show), footer {
-        display: none !important;
-    }
-
     // Hide alert
     #alert {
         display: none !important;
@@ -345,5 +296,20 @@ mark, .mark {
     a[href^='http']:after {
         content: ' (' attr(href) ')';
         word-break: break-word;
+    }
+
+    // Move aside above main
+    aside.col-md {
+        flex: unset;
+    }
+
+    // Hide button above nav
+    aside button[data-toggle=collapse] {
+        display: none;
+    }
+
+    // Only show header
+    nav.collapse:not(.show), footer {
+        display: none !important;
     }
 }
