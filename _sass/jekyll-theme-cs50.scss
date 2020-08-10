@@ -135,7 +135,7 @@ img {
 li:first-child, li + li {
     margin-top: .25rem;
 }
-.markdown-toc { // But not in TOC
+#markdown-toc { // But not in TOC
     li:first-child, li + li {
         margin-top: 0;
     }
