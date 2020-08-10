@@ -59,11 +59,6 @@ aside button[data-toggle=collapse]:not(.collapsed) {
     color: $link-color;
 }
 
-// Larger heading
-aside h1 {
-    font-size: 2.5rem;
-}
-
 // No borders
 aside {
     h1, h2 {
@@ -79,6 +74,13 @@ aside p.small {
 // Left-align menu
 aside .fa-ul {
     margin-left: 0;
+}
+
+// Title
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: .5rem;
+    padding-bottom: 0;
 }
 
 // Separate nav button (or header) and footer, applying margins to children to avoid flicker when uncollapsing
