@@ -207,7 +207,8 @@ $(document).on('DOMContentLoaded', function() {
             if (typeof $(this).attr('title') === 'undefined') {
 
                 // Add tooltip
-                $(this).attr('data-toggle', 'tooltip').attr('data-trigger', 'focus').attr('title', long).tooltip();
+                // https://github.com/popperjs/popper-core/issues/276
+                $(this).attr('data-boundary', 'window').attr('data-toggle', 'tooltip').attr('data-trigger', 'focus').attr('title', long).tooltip();
 
                 // Don't allow span to wrap, else popovers will be centered between span's overall width
                 // https://getbootstrap.com/docs/4.5/components/popovers/#overview
