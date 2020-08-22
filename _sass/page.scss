@@ -97,16 +97,6 @@ nav > *:first-child {
     margin-top: 1rem;
 }
 
-/*
-// Mimic Primer
-#alert *:last-child,
-header *:last-child,
-nav *:last-child,
-footer *:last-child {
-    margin-bottom: 0;
-}
-*/
-
 // Separate buttons from header and nav
 aside button[data-toggle=collapse],
 aside button[data-toggle=modal] {
@@ -150,109 +140,12 @@ main.col-md {
     padding: 4rem 2rem;
 }
 
-/*
-// Override Primer's family and size for fonts
-.markdown-body {
-    font-family: inherit; // Use our family
-    font-size: inherit; // Use our size
-}
-*/
-
-/*
-// Preserve spaces between backticks
-.markdown-body code {
-    white-space: pre-wrap;
-}
-*/
-
-/*
-// Add padding above headings to match Primer's padding below headings,
-// to ensure anchors aren't too close to top of viewport
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4,
-.markdown-body h5,
-.markdown-body h6 {
-    margin-top: 0;
-    padding-top: 16px;
-}
-*/
-
-/*
-// Mute emphasized text in headings
-.markdown-body h1 > em,
-.markdown-body h2 > em,
-.markdown-body h3 > em,
-.markdown-body h4 > em,
-.markdown-body h5 > em,
-.markdown-body h6 > em {
-    @extend .font-weight-normal;
-    @extend .text-muted;
-    font-style: normal;
-}
-*/
-
 // Offsets for headings when there's an alert
 main a[data-id][id] {
     display: block;
     position: relative;
     visibility: hidden;
 }
-
-/*
-// Fix inconsistency in Primer
-// https://github.com/primer/primer/pull/563
-.markdown-body ol > li:first-child,
-.markdown-body ul > li:first-child {
-    margin-top: .25em;   
-}
-*/
-
-/*
-// Mimic li's margin-top
-.markdown-body li > blockquote,
-.markdown-body li > div > div.highlight,
-.markdown-body li > img,
-.markdown-body li > pre {
-    margin-top: .25em;
-}
-*/
-
-/*
-// Mimic li's margin-bottom, not p's margin-bottom
-.markdown-body li > div > div.highlight {
-    margin-bottom: 0;
-}
-*/
-
-/*
-// Mimic h1's bottom border
-.markdown-body hr {
-    background-color: #eaecef;
-    height: 1px;
-    margin: 16px 0;
-}
-*/
-
-/*
-// Mimic p
-.markdown-body .bootstrap-table,
-.markdown-body .embed-responsive,
-.markdown-body details,
-.markdown-body summary {
-    margin-bottom: 16px;
-}
-*/
-
-/*
-// Condense TOC
-#markdown-toc li + li,
-#markdown-toc ol > li:first-child,
-#markdown-toc ul > li:first-child {
-    margin-top: 0;
-}
-*/
 
 // Don't number search results
 #search ol {
