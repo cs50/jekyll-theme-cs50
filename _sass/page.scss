@@ -61,7 +61,7 @@ aside button[data-toggle=collapse]:not(.collapsed) {
 
 // No borders
 aside {
-    h1, h2 {
+    h1, h2, .h1, .h2 {
         border-bottom: 0;
     }
 }
@@ -84,10 +84,12 @@ aside .fa-ul {
 }
 
 // Title
-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: .5rem;
-    padding-bottom: 0;
+header {
+    h1, .h1 {
+        font-size: 2.5rem;
+        margin-bottom: .5rem;
+        padding-bottom: 0;
+    }
 }
 
 // Separate nav button (or header) and footer, applying margins to children to avoid flicker when uncollapsing

@@ -93,14 +93,7 @@ code.highlighter-rouge {
 }
 
 // Headings
-h1, h2 {
-    border-bottom-color: $gray-200;
-    border-bottom-style: solid;
-    border-bottom-width: thin;
-    margin-bottom: 1rem;
-    padding-bottom: .5rem;
-}
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-weight: bold;
     padding-top: 1rem;
 
@@ -109,6 +102,16 @@ h1, h2, h3, h4, h5, h6 {
         color: inherit;
         text-decoration: none;
     }
+}
+h1, h2, .h1, .h2 {
+    border-bottom-color: $gray-200;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    margin-bottom: .5rem;
+    padding-bottom: .5rem;
+}
+h3, h4, h5, h6, .h3, .h4, .h5, .h6 {
+    margin-bottom: 1rem;
 }
 
 // Defaults for iframes
