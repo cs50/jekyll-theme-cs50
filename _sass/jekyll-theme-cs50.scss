@@ -110,9 +110,13 @@ h1, h2, .h1, .h2 {
     border-bottom-width: thin;
     padding-bottom: .5rem;
 }
-
-h1 + a[data-id] + h2, h1 + a[data-id] + .h2, .h1 + a[data-id] + h2, .h1 + a[data-id] + .h2 {
-    margin-top: -.5rem;
+@for $i from 1 through 6 {
+    h#{$i} + a[data-id],
+    h#{$i} + a[data-id],
+    .h#{$i} + a[data-id],
+    .h#{$i} + a[data-id] {
+        margin-top: -.5rem;
+    }
 }
 
 // Defaults for iframes
