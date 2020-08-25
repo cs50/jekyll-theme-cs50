@@ -95,6 +95,7 @@ code.highlighter-rouge {
 // Headings
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-weight: bold;
+    margin-bottom: 1rem;
     padding-top: 1rem;
 
     // Subtle anchors
@@ -107,11 +108,11 @@ h1, h2, .h1, .h2 {
     border-bottom-color: $gray-200;
     border-bottom-style: solid;
     border-bottom-width: thin;
-    margin-bottom: .5rem;
     padding-bottom: .5rem;
 }
-h3, h4, h5, h6, .h3, .h4, .h5, .h6 {
-    margin-bottom: 1rem;
+
+h1 + a[data-id] + h2, h1 + a[data-id] + .h2, .h1 + a[data-id] + h2, .h1 + a[data-id] + .h2 {
+    margin-top: -.5rem;
 }
 
 // Defaults for iframes
