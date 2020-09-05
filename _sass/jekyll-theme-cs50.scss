@@ -153,6 +153,9 @@ li:first-child, li + li {
         margin-top: 0;
     }
 }
+li > p {
+    margin-top: 1rem;
+}
 
 // Mimic Google's highlighting
 mark, .mark {
