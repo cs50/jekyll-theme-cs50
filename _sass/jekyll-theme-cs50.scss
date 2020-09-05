@@ -171,6 +171,14 @@ ol > li {
 }
 
 // A la GitHub
+ol ol, ul ol {
+    list-style-type: lower-roman;
+}
+ol ol ol, ol ul ol, ul ol ol, ul ul ol {
+    list-style-type: lower-alpha;
+}
+
+// A la GitHub
 pre {
     background-color: $gray-100;
     border-radius: .25rem;
