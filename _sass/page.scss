@@ -178,7 +178,7 @@ main a[data-id][id] {
     }
 
     // Hide search
-    #search {
+    #search, [data-search] {
         display: none !important;
     }
 
@@ -191,6 +191,7 @@ main a[data-id][id] {
     // Move aside above main
     aside.col-md {
         flex: unset;
+        height: auto !important; // To override JavaScript
     }
 
     // Hide button above nav
