@@ -1,4 +1,5 @@
 require "cgi"
+require "deep_merge"
 require "jekyll"
 require "jekyll-redirect-from"
 require "kramdown/parser/gfm"
@@ -339,7 +340,8 @@ Jekyll::Hooks.register :site, :after_reset do |site|
   end
 
   # Merge in theme's configuration
-  site.config = Jekyll::Utils.deep_merge_hashes(Jekyll::Utils.deep_merge_hashes(CS50::DEFAULTS, site.config), CS50::OVERRIDES)
+  site.config = CS50::DEFAULTS.dup.deep_merge!(site.config).deep_merge(CS50::OVERRIDES)
+
 end
 
 Jekyll::Hooks.register :site, :pre_render do |site, payload|

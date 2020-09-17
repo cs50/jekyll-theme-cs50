@@ -13,16 +13,6 @@ module CS50
     "cs50" => {
       "tz" => "America/New_York"
     },
-    "optional_front_matter" => {
-      "remove_originals" => true
-    },
-    "plugins"  => CS50::PLUGINS.keys,
-    "redirect_from" => {
-      "json" => false
-    }
-  }.freeze
-
-  OVERRIDES = {
     "exclude" => [
       "Gemfile",
       "Gemfile.lock",
@@ -31,6 +21,13 @@ module CS50
     "include" => [
       "license.md" # For OCW
     ],
+    "optional_front_matter" => {
+      "remove_originals" => true
+    },
+    "plugins"  => CS50::PLUGINS.keys
+  }.freeze
+
+  OVERRIDES = {
     "kramdown" => {
       "gfm_quirks" => "paragraph_end",
       "hard_wrap" => false,
@@ -41,6 +38,9 @@ module CS50
     },
     "markdown" => "kramdown",
     "permalink" => "pretty",
+    "redirect_from" => {
+      "json" => false
+    },
     "sass" => {
       "style" => "compressed"
     },
