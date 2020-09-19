@@ -70,9 +70,9 @@ $headings-font-weight: bold;
 // but not in buttons and not in tables, which should instead scroll horizontally
 * {
     word-break: break-word;
-    button, table * {
-        word-break: normal;
-    }
+}
+button, table * {
+    word-break: normal;
 }
 
 // A la GitHub
