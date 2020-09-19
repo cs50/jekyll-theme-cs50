@@ -185,6 +185,11 @@ pre {
     padding: 1rem;
 }
 
+// Ensure syntax-highlighted code scrolls on iOS
+pre code span {
+    white-space: nowrap;
+}
+
 //// alert
 
 // Box shadows
