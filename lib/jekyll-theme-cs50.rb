@@ -416,8 +416,16 @@ Jekyll::Hooks.register [:site], :post_render do |site|
 
         # If meta
         if node.name == "meta"
+
+          # Parse url
           if node["content"] =~ /^(\d+;\s*url=["']?)(.+)(["']?)$/i
-            node["content"] = $1 + relative_path(page.dir, $2) + $3
+
+            # If relative
+            if $2 !~ /^#{URI::regexp}$/
+
+              # Rewrite path
+              node["content"] = $1 + relative_path(page.dir, $2) + $3
+            end
           end
         end
 
