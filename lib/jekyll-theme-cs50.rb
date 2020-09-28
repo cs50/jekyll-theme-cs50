@@ -260,7 +260,7 @@ module CS50
 
           # Default components
           components = {
-            "modestbranding" => "1",
+            "modestbranding" => "0",
             "rel" => "0",
             "showinfo" => "0"
           }
