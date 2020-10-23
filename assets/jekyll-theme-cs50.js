@@ -280,10 +280,10 @@ $(document).on('DOMContentLoaded', function() {
         // Add .fa-ul to parent ul
         $(element).parent().addClass('fa-ul');
 
-        // Icons
-        const plus = $('<span class="fa-li"><i class="far fa-plus-square"></i></span>');
-        const minus = $('<span class="fa-li"><i class="far fa-minus-square"></i></span>');
-        const circle = $('<span class="fa-li"><i class="fas fa-circle"></i></span>');
+        // Filter
+        const filter = function() {
+            return !$(this).is('ol, ul');
+        };
 
         // Listener
         const click = function(eventObject) {
@@ -298,26 +298,34 @@ $(document).on('DOMContentLoaded', function() {
                 const marker = $(element).attr('data-marker');
                 if (marker === '+') {
                     $(element).attr('data-marker', '-');
-                    $(element).children('.fa-li').replaceWith(minus);
+                    $(element).find('> .fa-li > .fa-plus-square').removeClass('fa-plus-square').addClass('fa-minus-square');
                 }
                 else if (marker === '-') {
                     $(element).attr('data-marker', '+');
-                    $(element).children('.fa-li').replaceWith(plus);
+                    $(element).find('> .fa-li > .fa-minus-square').removeClass('fa-minus-square').addClass('fa-plus-square');
                 }
                 $(window).trigger('resize');
             }
         };
 
+        // Icons
+        const plus = $('<span class="fa-li"><i class="far fa-plus-square"></i></span>').click(click);
+        const minus = $('<span class="fa-li"><i class="far fa-minus-square"></i></span>').click(click);
+        const circle = $('<span class="fa-li"><i class="fas fa-circle"></i></span>');
+
+        // Wrapper
+        const $span = $('<span>').click(click);
+
         // If +
         if ($(element).attr('data-marker') === '+') {
+            $(element).contents().filter(filter).wrap($span);
             $(element).prepend(plus);
-            $(element).on('click', click);
         }
 
         // If -
         else if ($(element).attr('data-marker') === '-') {
+            $(element).contents().filter(filter).wrap($span);
             $(element).prepend(minus);
-            $(element).on('click', click);
         }
 
         // If *

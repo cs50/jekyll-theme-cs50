@@ -212,7 +212,7 @@ pre code span {
 
 
 // + and -
-[data-marker="+"], [data-marker="-"] {
+[data-marker="+"] > span, [data-marker="-"] > span {
     cursor: pointer;
 }
 [data-marker="+"] > .fa-li, [data-marker="-"] > .fa-li {
@@ -229,7 +229,6 @@ pre code span {
 
 // *
 [data-marker="*"] > .fa-li > .fa-circle {
-    cursor: pointer;
     font-size: 40%;
     vertical-align: 40%;
 }
