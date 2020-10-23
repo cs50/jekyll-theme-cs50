@@ -344,8 +344,7 @@ Jekyll::Hooks.register :site, :after_reset do |site|
   end
 
   # Merge in theme's configuration
-  site.config = CS50::DEFAULTS.dup.deep_merge!(site.config).deep_merge(CS50::OVERRIDES)
-
+  site.config = CS50::DEFAULTS.dup.deep_merge!(site.config).deep_merge!(CS50::OVERRIDES)
 end
 
 Jekyll::Hooks.register :site, :pre_render do |site, payload|
