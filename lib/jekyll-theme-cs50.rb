@@ -4,7 +4,6 @@ require "jekyll"
 require "jekyll-redirect-from"
 require "kramdown/parser/gfm"
 require "kramdown/parser/kramdown/link"
-require "liquid/tag/parser"
 require "pathname"
 require "sanitize"
 require "time"
@@ -49,13 +48,18 @@ module CS50
 
       # Parse any arguments
       @args, @kwargs = [], {}
-      Liquid::Tag::Parser.new(output).args.each do |key, value|
-        if key == :argv1 
-          @args.push(value)
-        elsif value.nil?
-          @args.push(key.to_s)
+      output.scan(/"[^"]*"|'[^']'|\S+\s*=\s*"[^"]*"|\S+\s*=\s*'[^']*'|\S+\s*=\s*\S+|\S+/).each do |s|
+        if s.start_with?("'")
+          @args.push(s.gsub(/^'|'$/, ""))
+        elsif s.start_with?('"')
+          @args.push(s.gsub(/^"|"$/, ""))
         else
-          @kwargs[key.to_s] = value
+          key , value = s.split("=", 2)
+          if value.nil?
+            @args.push(key)
+          else
+            @kwargs[key] = value
+          end
         end
       end
 
