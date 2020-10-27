@@ -94,6 +94,7 @@ $(document).on('DOMContentLoaded', function() {
 
     // data-local
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat#Syntax
+    // https://english.stackexchange.com/a/100754
     $('[data-local]').each(function(index, element) {
 
         // HTML to display
@@ -108,40 +109,35 @@ $(document).on('DOMContentLoaded', function() {
             // Parse start
             const start = luxon.DateTime.fromISO(local[0]);
 
-            // Format start without time zone
-            short = start.toLocaleString({
+            // Parse end
+            const end = luxon.DateTime.fromISO(local[1]);
+
+            // Options for formatting start
+            const opts = {
                 day: 'numeric',
                 hour: 'numeric',
                 minute: 'numeric',
                 month: 'short',
                 weekday: 'short',
                 year: 'numeric'
-            });
-            long = start.toLocaleString({
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                month: 'long',
-                weekday: 'long',
-                year: 'numeric'
-            });
+            };
 
-            // Parse end
-            const end = luxon.DateTime.fromISO(local[1]);
+            // If start and end on different dates or if clocks change between start and end
+            if (start.toLocaleString(luxon.DateTime.DATE_SHORT) !== end.toLocaleString(luxon.DateTime.DATE_SHORT) ||
+                start.toLocal().offsetNameLong !== end.toLocal().offsetNameLong) {
+
+                // Add time zone to start
+                opts.timeZoneName = 'short';
+            }
 
             // If start and end on same date
             if (start.toLocaleString(luxon.DateTime.DATE_SHORT) === end.toLocaleString(luxon.DateTime.DATE_SHORT)) {
 
                 // Format end without date
-                short += '–' + end.toLocaleString({
+                short = start.toLocaleString(opts) + ' – ' + end.toLocaleString({
                     hour: 'numeric',
                     minute: 'numeric',
                     timeZoneName: 'short'
-                });
-                long += '–' + end.toLocaleString({
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    timeZoneName: 'long'
                 });
             }
 
@@ -149,8 +145,7 @@ $(document).on('DOMContentLoaded', function() {
             else {
 
                 // Format end without date
-                // https://english.stackexchange.com/a/100754
-                short += ' – ' + end.toLocaleString({
+                short = start.toLocaleString(opts) + ' – ' + end.toLocaleString({
                     day: 'numeric',
                     hour: 'numeric',
                     minute: 'numeric',
@@ -159,15 +154,16 @@ $(document).on('DOMContentLoaded', function() {
                     weekday: 'short',
                     year: 'numeric'
                 });
-                long += ' – ' + end.toLocaleString({
-                    day: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    month: 'long',
-                    timeZoneName: 'long',
-                    weekday: 'long',
-                    year: 'numeric'
-                });
+            }
+
+            // Format start's time zone
+            long = start.toLocal().offsetNameLong;
+
+            // If clocks change between start and end
+            if (start.toLocal().offsetNameLong !== end.toLocal().offsetNameLong) {
+
+                // Add end's time zone
+                long += ' – ' + end.toLocal().offsetNameLong;
             }
         }
         else {
@@ -185,15 +181,7 @@ $(document).on('DOMContentLoaded', function() {
                 weekday: 'short',
                 year: 'numeric'
             });
-            long = start.toLocaleString({
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                month: 'long',
-                timeZoneName: 'long',
-                weekday: 'long',
-                year: 'numeric'
-            });
+            long = start.toLocal().offsetNameLong;
         }
 
         // Display HTML
