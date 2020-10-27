@@ -85,7 +85,7 @@ blockquote {
 }
 
 // A la GitHub
-code.highlighter-rouge {
+code, code.highlighter-rouge {
     background-color: $gray-200;
     border-radius: .25rem;
     color: inherit;
@@ -168,14 +168,6 @@ mark, .mark {
 // Padding after numbers
 ol > li {
     padding-left: .5rem;
-}
-
-// A la GitHub
-ol ol, ul ol {
-    list-style-type: lower-roman;
-}
-ol ol ol, ol ul ol, ul ol ol, ul ul ol {
-    list-style-type: lower-alpha;
 }
 
 // A la GitHub
