@@ -529,11 +529,20 @@ module Kramdown
       # Remember list markers
       def parse_list
         super
+
+        # Get list
         current_list = @tree.children.select{ |element| [:ul].include?(element.type) }.last
         unless current_list.nil?
+
+          # For each li
           current_list.children.each do |li|
+
+            # Line number of li
             location = li.options[:location]
-            li.attr["data-marker"] = @source.lines[location-1].lstrip[0]
+
+            # Determine marker, might be nested inside of a blockquote
+            # https://kramdown.gettalong.org/syntax.html#blockquotes
+            li.attr["data-marker"] = @source.lines[location-1].sub(/^[\s>]*/, "")[0]
           end
         end
         true
