@@ -176,8 +176,11 @@ pre {
     border-radius: .25rem;
     padding: 1rem;
 }
+pre code {
+    background-color: inherit; // Don't darken further within pre
+}
 
-/* Ensure syntax-highlighted code scrolls on iOS, https://stackoverflow.com/a/49592093 */
+// Ensure syntax-highlighted code scrolls on iOS, https://stackoverflow.com/a/49592093
 pre code {
     white-space: pre;
     word-wrap: normal;
