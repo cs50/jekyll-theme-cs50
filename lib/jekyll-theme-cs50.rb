@@ -96,6 +96,7 @@ module CS50
       # Parse timestamp
       begin
         iso8601 = Chronic.parse(@args[0]).iso8601
+        raise if iso8601.nil?
       rescue
         begin
           iso8601 = Time.parse(@args[0]).iso8601
@@ -191,6 +192,7 @@ module CS50
       end
       begin
         t1 = Chronic.parse(@args[0])
+        raise if t1.nil?
         local = t1.iso8601
       rescue
         begin
@@ -203,6 +205,7 @@ module CS50
       if @args.length == 2
         begin
           t2 = Chronic.parse(@args[1])
+          raise if t2.nil?
         rescue
           begin
             t2 = Time.parse(@args[1])
@@ -210,6 +213,10 @@ module CS50
             raise "Invalid timestamp: #{@args[1]}"
           end
         end
+        puts "---"
+        puts @args
+        puts t1
+        puts t2
         if t2 < t1
           raise "Invalid interval: #{@markup}"
         end
