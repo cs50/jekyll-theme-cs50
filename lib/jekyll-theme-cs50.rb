@@ -1,4 +1,5 @@
 require "cgi"
+require "chronic"
 require "deep_merge"
 require "jekyll"
 require "jekyll-redirect-from"
@@ -6,7 +7,6 @@ require "kramdown/parser/gfm"
 require "kramdown/parser/kramdown/link"
 require "pathname"
 require "sanitize"
-require "time"
 require "uri"
 
 require "jekyll-theme-cs50/constants"
@@ -94,7 +94,7 @@ module CS50
 
       # Parse timestamp
       begin
-        iso8601 = Time.parse(@args[0]).iso8601
+        iso8601 = Chronic.parse(@args[0]).iso8601
       rescue
         raise "Invalid timestamp: #{@args[0]}"
       end
@@ -185,14 +185,14 @@ module CS50
         raise "Too many arguments: #{@markup}"
       end
       begin
-        t1 = Time.parse(@args[0])
+        t1 = Chronic.parse(@args[0])
         local = t1.iso8601
       rescue
         raise "Invalid timestamp: #{@args[0]}"
       end
       if @args.length == 2
         begin
-          t2 = Time.parse(@args[1], t1)
+          t2 = Chronic.parse(@args[1], t1)
         rescue
           raise "Invalid timestamp: #{@args[1]}"
         end
