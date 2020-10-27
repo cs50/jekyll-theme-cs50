@@ -7,6 +7,7 @@ require "kramdown/parser/gfm"
 require "kramdown/parser/kramdown/link"
 require "pathname"
 require "sanitize"
+require "time"
 require "uri"
 
 require "jekyll-theme-cs50/constants"
@@ -96,7 +97,11 @@ module CS50
       begin
         iso8601 = Chronic.parse(@args[0]).iso8601
       rescue
-        raise "Invalid timestamp: #{@args[0]}"
+        begin
+          iso8601 = Time.parse(@args[0]).iso8601
+        rescue
+          raise "Invalid timestamp: #{@args[0]}"
+        end
       end
 
       # Render HTML
@@ -188,13 +193,22 @@ module CS50
         t1 = Chronic.parse(@args[0])
         local = t1.iso8601
       rescue
-        raise "Invalid timestamp: #{@args[0]}"
+        begin
+          t1 = Time.parse(@args[0])
+          local = t1.iso8601
+        rescue
+          raise "Invalid timestamp: #{@args[0]}"
+        end
       end
       if @args.length == 2
         begin
-          t2 = Chronic.parse(@args[1], t1)
+          t2 = Chronic.parse(@args[1])
         rescue
-          raise "Invalid timestamp: #{@args[1]}"
+          begin
+            t2 = Time.parse(@args[1])
+          rescue
+            raise "Invalid timestamp: #{@args[1]}"
+          end
         end
         if t2 < t1
           raise "Invalid interval: #{@markup}"
