@@ -95,8 +95,9 @@ module CS50
 
       # Parse timestamp
       begin
-        iso8601 = Chronic.parse(@args[0]).iso8601
-        raise if iso8601.nil?
+        t = Chronic.parse(@args[0], :context => :past)
+        raise if t.nil?
+        iso8601 = t.iso8601
       rescue
         begin
           iso8601 = Time.parse(@args[0]).iso8601
@@ -191,7 +192,7 @@ module CS50
         raise "Too many arguments: #{@markup}"
       end
       begin
-        t1 = Chronic.parse(@args[0])
+        t1 = Chronic.parse(@args[0], :context => :past)
         raise if t1.nil?
         local = t1.iso8601
       rescue
@@ -204,7 +205,7 @@ module CS50
       end
       if @args.length == 2
         begin
-          t2 = Chronic.parse(@args[1])
+          t2 = Chronic.parse(@args[1], :context => :past)
           raise if t2.nil?
         rescue
           begin
@@ -213,10 +214,6 @@ module CS50
             raise "Invalid timestamp: #{@args[1]}"
           end
         end
-        puts "---"
-        puts @args
-        puts t1
-        puts t2
         if t2 < t1
           raise "Invalid interval: #{@markup}"
         end
