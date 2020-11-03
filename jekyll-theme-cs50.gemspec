@@ -12,7 +12,6 @@ Gem::Specification.new do |spec|
   spec.summary = "This is CS50's theme for Jekyll."
   spec.version = "1.1.0"
 
-  spec.add_runtime_dependency "chronic", "0.10.2"
   spec.add_runtime_dependency "deep_merge", "1.2.1"
   spec.add_runtime_dependency "jekyll", "3.8.7"
   spec.add_runtime_dependency "sanitize", "5.2.1"

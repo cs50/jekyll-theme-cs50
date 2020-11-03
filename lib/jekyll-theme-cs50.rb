@@ -1,5 +1,4 @@
 require "cgi"
-require "chronic"
 require "deep_merge"
 require "jekyll"
 require "jekyll-redirect-from"
@@ -184,41 +183,43 @@ module CS50
 
   class LocalTag < Tag
 
+    @@regex = "\d{4}-\d{2}-\d{2} \d{1,2}:\d{2}(:\d{2})?"
+
     def render(context)
       super
+
+      # Parse YYYY-MM-DD HH:MM:SS or YYYY-MM-DD HH:MM
+      def parse(s)
+        begin
+          Time.strptime(s, "%Y-%m-%d %H:%M:%S")
+        rescue
+          begin
+            Time.strptime(s, "%Y-%m-%d %H:%M")
+          rescue
+            raise "Invalid datetime: #{s}"
+          end
+        end
+      end
+
+      # Parse required argument
       if @args.length < 1
         raise "Too few arguments"
       elsif @args.length > 2
         raise "Too many arguments: #{@markup}"
       end
-      begin
-        t1 = Chronic.parse(@args[0], :context => :past)
-        raise if t1.nil?
-        local = t1.iso8601
-      rescue
-        begin
-          t1 = Time.parse(@args[0])
-          local = t1.iso8601
-        rescue
-          raise "Invalid timestamp: #{@args[0]}"
-        end
-      end
+      t1 = parse(@args[0])
+      local = t1.iso8601
+
+      # Parse optional argument
       if @args.length == 2
-        begin
-          t2 = Chronic.parse(@args[1], :context => :past)
-          raise if t2.nil?
-        rescue
-          begin
-            t2 = Time.parse(@args[1])
-          rescue
-            raise "Invalid timestamp: #{@args[1]}"
-          end
-        end
+        t2 = parse(@args[1])
         if t2 < t1
           raise "Invalid interval: #{@markup}"
         end
         local += "/" + t2.iso8601
       end
+
+      # Return
       "<span data-local='#{local}'></span>"
     end
 
