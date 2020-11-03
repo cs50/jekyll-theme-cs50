@@ -230,7 +230,7 @@ $(document).on('DOMContentLoaded', function() {
                 mobileResponsive: true
             });
         }
-        catch(err) {} // In case no theader
+        catch(err) {} // In case no thead
     });
 
     // Return true iff small device (on which aside will be above main)
