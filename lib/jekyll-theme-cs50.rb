@@ -21,6 +21,19 @@ module CS50
     Sanitize.fragment(s, :elements => ["b", "code", "em", "i", "img", "kbd", "span", "strong", "sub", "sup"]).strip
   end
 
+  # Parse YYYY-MM-DD HH:MM:SS or YYYY-MM-DD HH:MM
+  def self.strptime(s)
+    begin
+      Time.strptime(s, "%Y-%m-%d %H:%M:%S")
+    rescue
+      begin
+        Time.strptime(s, "%Y-%m-%d %H:%M")
+      rescue
+        raise "Invalid datetime: #{s}"
+      end
+    end
+  end
+
   module Mixins
 
     def initialize(tag_name, markup, options)
@@ -93,17 +106,7 @@ module CS50
       html = context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(markdown).strip
 
       # Parse timestamp
-      begin
-        t = Chronic.parse(@args[0], :context => :past)
-        raise if t.nil?
-        iso8601 = t.iso8601
-      rescue
-        begin
-          iso8601 = Time.parse(@args[0]).iso8601
-        rescue
-          raise "Invalid timestamp: #{@args[0]}"
-        end
-      end
+      iso8601 = CS50::strptime(@args[0]).iso8601
 
       # Render HTML
       <<~EOT
@@ -188,31 +191,18 @@ module CS50
     def render(context)
       super
 
-      # Parse YYYY-MM-DD HH:MM:SS or YYYY-MM-DD HH:MM
-      def parse(s)
-        begin
-          Time.strptime(s, "%Y-%m-%d %H:%M:%S")
-        rescue
-          begin
-            Time.strptime(s, "%Y-%m-%d %H:%M")
-          rescue
-            raise "Invalid datetime: #{s}"
-          end
-        end
-      end
-
       # Parse required argument
       if @args.length < 1
         raise "Too few arguments"
       elsif @args.length > 2
         raise "Too many arguments: #{@markup}"
       end
-      t1 = parse(@args[0])
+      t1 = CS50::strptime(@args[0])
       local = t1.iso8601
 
       # Parse optional argument
       if @args.length == 2
-        t2 = parse(@args[1])
+        t2 = CS50::strptime(@args[2])
         if t2 < t1
           raise "Invalid interval: #{@markup}"
         end
