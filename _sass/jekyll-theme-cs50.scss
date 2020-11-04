@@ -61,8 +61,8 @@ $headings-font-weight: bold;
     height: 80vh;
 }
 
-// Suppress bottom margin within parents, but not for .highlight
-:last-child:not(.highlight) {
+// Suppress bottom margin within parents
+:last-child {
     margin-bottom: 0;
 }
 
@@ -85,11 +85,13 @@ blockquote {
 }
 
 // A la GitHub
-code, code.highlighter-rouge {
-    background-color: $gray-200;
-    border-radius: .25rem;
+code {
     color: inherit;
-    padding: .2rem;
+}
+code.highlighter-rouge {
+    background-color: $gray-100;
+    @extend .border;
+    padding: calc(.2rem - 1px) .2rem;
 }
 
 // Details, summaries
@@ -156,6 +158,12 @@ li:first-child, li + li {
 li > p {
     margin-top: 1rem;
 }
+li > div.highlighter-rouge {
+    margin-top: .25rem;
+}
+li > img {
+    margin-top: .25rem;
+}
 
 // Mimic Google's highlighting
 mark, .mark {
@@ -172,21 +180,12 @@ ol > li {
 
 // A la GitHub
 pre {
+    @extend .border;
     background-color: $gray-100;
-    border-radius: .25rem;
-    padding: 1rem;
+    padding: $table-cell-padding;
 }
-pre code {
-    background-color: inherit; // Don't darken further within pre
-}
-
-// Ensure syntax-highlighted code scrolls on iOS, https://stackoverflow.com/a/49592093
-pre code {
-    white-space: pre;
-    word-wrap: normal;
-}
-pre code span {
-    white-space: nowrap;
+li pre:last-child {
+    margin-bottom: 0;
 }
 
 //// alert
