@@ -155,14 +155,13 @@ li:first-child, li + li {
         margin-top: 0;
     }
 }
-li > p {
-    margin-top: 1rem;
-}
-li > div.highlighter-rouge {
-    margin-top: .25rem;
-}
+li > blockquote,
+li > div.highlighter-rouge,
 li > img {
     margin-top: .25rem;
+}
+li > p {
+    margin-top: 1rem;
 }
 
 // Mimic Google's highlighting
