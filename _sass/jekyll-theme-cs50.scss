@@ -213,11 +213,11 @@ li pre:last-child {
 //// marker
 
 // Don't indent top-level lists
-ol.fa-ul, ul.fa-ul {
+ol, ul.fa-ul {
     margin-left: 1.25em;
 }
-ol.fa-ul, ul.fa-ul {
-    ol.fa-ul, ul.fa-ul {
+ol, ul.fa-ul {
+    ol, ul.fa-ul {
         margin-left: 2.5em;
     }
 }
