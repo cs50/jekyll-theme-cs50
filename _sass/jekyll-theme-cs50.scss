@@ -150,6 +150,9 @@ img {
 }
 
 // A la GitHub
+dd:first-child, dd + dd {
+    margin-top: .25rem;
+}
 li:first-child, li + li {
     margin-top: .25rem;
 }
