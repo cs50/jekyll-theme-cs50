@@ -93,6 +93,9 @@ code.highlighter-rouge {
     @extend .border;
     padding: calc(.2rem - 1px) .2rem;
 }
+div.highlighter-rouge {
+    margin-bottom: 1rem;
+}
 
 // Details, summaries
 details, summary {
