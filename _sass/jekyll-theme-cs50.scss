@@ -189,6 +189,11 @@ pre {
     background-color: $gray-100;
     padding: $table-cell-padding;
 }
+
+// Prevent wrapping on iOS
+pre code span {
+    white-space: nowrap;
+}
 li pre:last-child {
     margin-bottom: 0;
 }
