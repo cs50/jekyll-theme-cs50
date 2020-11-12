@@ -192,7 +192,7 @@ pre {
 
 // Prevent wrapping on iOS
 pre code span {
-    white-space: nowrap;
+    white-space: pre;
 }
 li pre:last-child {
     margin-bottom: 0;
