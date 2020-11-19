@@ -109,10 +109,7 @@ module CS50
       iso8601 = CS50::strptime(@args[0]).iso8601
 
       # Render HTML
-      <<~EOT
-        <div data-#{@tag_name}='#{iso8601}'>#{html}</div>
-      EOT
-
+      "<div data-#{@tag_name}='#{iso8601}'>#{html}</div>"
     end
 
     Liquid::Template.register_tag("after", self)
@@ -126,11 +123,9 @@ module CS50
       markdown = super
       html = context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(markdown).strip
       alert = (["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].include? @args[0]) ? @args[0] : ""
-      <<~EOT
-        <div class="alert" data-alert="#{alert}" role="alert">
-          #{html}
-        </div>
-      EOT
+      "<div class='alert' data-alert='#{alert}' role='alert'>" \
+        "#{html}" \
+      "</div>"
     end
 
     Liquid::Template.register_tag("alert", self)
@@ -175,9 +170,7 @@ module CS50
       src = URI::HTTPS.build(:host => "calendar.google.com", :path => "/calendar/embed", :query => URI.encode_www_form(components))
 
       # Render HTML
-      <<~EOT
-        <iframe data-calendar="#{src}" #{@kwargs["ctz"] ? "data-ctz" : ""} style="height: #{height}px;"></iframe>
-      EOT
+      "<iframe data-calendar='#{src}' #{@kwargs['ctz'] ? 'data-ctz' : ''} style='height: #{height}px;'></iframe>"
     end
 
     Liquid::Template.register_tag("calendar", self)
@@ -223,9 +216,7 @@ module CS50
       super
       markdown = (@args[0]) ? CGI.escapeHTML(@args[0]) : "Next"
       button = CS50::sanitize(context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(markdown).strip)
-      <<~EOT
-        <button class="btn btn-dark btn-sm" data-next type="button">#{button}</button>
-      EOT
+      "<button class='btn btn-dark btn-sm' data-next type='button'>#{button}</button>"
     end
 
     Liquid::Template.register_tag("next", self)
@@ -241,12 +232,10 @@ module CS50
       html = context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(markdown).strip
       text = (@args[0]) ? CGI.escapeHTML(@args[0]) : "Spoiler"
       summary = CS50::sanitize(context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(text).strip)
-      <<~EOT
-        <details>
-            <summary>#{summary}</summary>
-            #{html}
-        </details>
-      EOT
+      "<details>" \
+        "<summary>#{summary}</summary>" \
+        "#{html}" \
+      "</details>"
     end
 
     Liquid::Template.register_tag("spoiler", self)
@@ -310,15 +299,11 @@ module CS50
       end
 
       if src
-        <<~EOT
-          <div class="border embed-responsive embed-responsive-#{ratio}" data-video>
-              <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="embed-responsive-item" src="#{src}"></iframe>
-          </div>
-        EOT
+        "<div class='border embed-responsive embed-responsive-#{ratio}' data-video>" \
+          "<iframe allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='embed-responsive-item' src='#{src}'></iframe>" \
+        "</div>"
       else
-        <<~EOT
-          <p><img alt="static" class="border" data-video src="https://i.imgur.com/xnZ5A2u.gif"></p>
-        EOT
+        "<p><img alt='static' class='border' data-video src='https://i.imgur.com/xnZ5A2u.gif'></p>"
       end
     end
 
