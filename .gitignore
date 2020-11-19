@@ -25,7 +25,7 @@ assets/bootstrap/*
 assets/bootstrap/dist/*
 !assets/bootstrap/dist/js/
 assets/bootstrap/dist/js/*
-!assets/bootstrap/dist/js/bootstrap.min.js
+!assets/bootstrap/dist/js/bootstrap.bundle.min.js
 
 assets/bootstrap-table/*
 !assets/bootstrap-table/LICENSE
