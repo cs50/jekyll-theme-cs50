@@ -54,4 +54,11 @@
 <link href="{{ '/assets/' | append: page.layout | append: '.css' }}?{{ time }}" rel="stylesheet">
 <script src="/assets/jekyll-theme-cs50.js?{{ time }}"></script>
 
+<script>
+    window.CS50 = {
+        locale: {{ site.cs50.locale | jsonify }},
+        tz: {{ site.cs50.tz | jsonify }}
+    };
+</script>
+
 <title>{{ title }}</title>

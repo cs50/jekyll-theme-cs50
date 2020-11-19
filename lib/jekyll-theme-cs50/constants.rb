@@ -11,6 +11,7 @@ module CS50
 
   DEFAULTS = {
     "cs50" => {
+      "locale" => "en",
       "tz" => "America/New_York"
     },
     "exclude" => [

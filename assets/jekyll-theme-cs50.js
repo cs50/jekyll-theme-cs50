@@ -114,10 +114,10 @@ $(document).on('DOMContentLoaded', function() {
         if (local.length == 2) {
 
             // Parse start
-            const start = luxon.DateTime.fromISO(local[0]);
+            const start = luxon.DateTime.fromISO(local[0]).setLocale(CS50.locale);
 
             // Parse end
-            const end = luxon.DateTime.fromISO(local[1]);
+            const end = luxon.DateTime.fromISO(local[1]).setLocale(CS50.locale);
 
             // Options for formatting start
             const opts = {
@@ -137,8 +137,8 @@ $(document).on('DOMContentLoaded', function() {
                 opts.timeZoneName = 'short';
             }
 
-            // If start and end on same date
-            if (start.toLocaleString(luxon.DateTime.DATE_SHORT) === end.toLocaleString(luxon.DateTime.DATE_SHORT)) {
+            // If start and end on same date (and English locale)
+            if (CS50.locale === 'en' && start.toLocaleString(luxon.DateTime.DATE_SHORT) === end.toLocaleString(luxon.DateTime.DATE_SHORT)) {
 
                 // Format end without date
                 short = start.toLocaleString(opts) + ' – ' + end.toLocaleString({
@@ -176,7 +176,7 @@ $(document).on('DOMContentLoaded', function() {
         else {
 
             // Parse start
-            const start = luxon.DateTime.fromISO(local[0]);
+            const start = luxon.DateTime.fromISO(local[0]).setLocale(CS50.locale);
 
             // Format start
             short = start.toLocaleString({
