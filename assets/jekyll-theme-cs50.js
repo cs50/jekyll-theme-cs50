@@ -6,6 +6,13 @@ if (matches) {
     window.baseurl = matches[1];
 }
 
+// https://github.com/typekit/webfontloader#get-started
+WebFont.load({
+    google: {
+        families: ['PT Sans', 'PT Sans:bold', 'PT Sans:ital']
+    }
+});
+
 // On DOMContentLoaded
 $(document).on('DOMContentLoaded', function() {
 
@@ -213,16 +220,16 @@ $(document).on('DOMContentLoaded', function() {
 
     // Re-attach tooltips after tables have responded
     // https://github.com/wenzhixin/bootstrap-table/issues/572#issuecomment-76503607
-    $('main table').on('pre-body.bs.table', function() {
+    $('table').on('pre-body.bs.table', function() {
         $('main table [data-toggle="tooltip"]').tooltip('dispose');
     });
-    $('main table').on('post-body.bs.table', function() {
-        $('main table [data-toggle="tooltip"]').tooltip();
+    $('table').on('post-body.bs.table', function() {
+        $('table [data-toggle="tooltip"]').tooltip();
     });
 
     // Ensure tables are responsive
     // https://bootstrap-table.com/docs/extensions/mobile/
-    $('main table').each(function(index, element) {
+    $('table').each(function(index, element) {
         try {
             $(element).bootstrapTable({
                 classes: 'table table-bordered table-striped',
@@ -232,30 +239,6 @@ $(document).on('DOMContentLoaded', function() {
         }
         catch(err) {} // In case no thead
     });
-
-    // Return true iff small device (on which aside will be above main)
-    function mobile() {
-        return $('aside').position().top < $('main').position().top;
-    }
-
-    // Get next slice of elements
-    function next(element) {
-
-        // Next siblings
-        const siblings = element.nextAll();
-
-        // First sibling after this element
-        const start = siblings.index(element) + 1;
-
-        // Following buttons
-        const buttons = siblings.slice(start).find('[data-next]');
-
-        // Last sibling before next button
-        let end = (buttons.length > 0) ? siblings.index(buttons[0]) : siblings.length;
-
-        // Next slice
-        return siblings.slice(start, end);
-    }
 
     // data-markers
     $('[data-marker]').each(function(index, element) {
@@ -320,6 +303,25 @@ $(document).on('DOMContentLoaded', function() {
     // Also add .fa-ul to TOC, if any, for consistency
     $('.markdown-toc').addClass('fa-ul');
 
+    // Get next slice of elements
+    function next(element) {
+
+        // Next siblings
+        const siblings = element.nextAll();
+
+        // First sibling after this element
+        const start = siblings.index(element) + 1;
+
+        // Following buttons
+        const buttons = siblings.slice(start).find('[data-next]');
+
+        // Last sibling before next button
+        let end = (buttons.length > 0) ? siblings.index(buttons[0]) : siblings.length;
+
+        // Next slice
+        return siblings.slice(start, end);
+    }
+
     // data-next
     $('[data-next]').each(function(index, element) {
 
@@ -379,13 +381,6 @@ $(document).on('DOMContentLoaded', function() {
         }
     });
 
-    // Previous slice(s) of elements
-    function previous(element) {
-
-        // Previous siblings
-        return element.prevAll();
-    }
-
     // Listen for hashchange
     $(window).on('hashchange', function() {
 
@@ -400,7 +395,7 @@ $(document).on('DOMContentLoaded', function() {
         }
 
         // Previous siblings
-        previous(heading).removeClass('next').find('[data-next]').prop('disabled', true);
+        heading.prevAll().removeClass('next').find('[data-next]').prop('disabled', true);
 
         // This heading
         heading.removeClass('next');
@@ -412,6 +407,11 @@ $(document).on('DOMContentLoaded', function() {
 
     // Listen for resize
     $(window).resize(function() {
+
+        // Return true iff small device (on which aside will be above main)
+        const mobile = function() {
+            return $('aside').position().top < $('main').position().top;
+        };
 
         // Get headings
         const headings = $([
@@ -493,4 +493,7 @@ $(document).on('DOMContentLoaded', function() {
             }
         }
     });
+
+    // Reveal page
+    $('body').removeClass('d-none');
 });
