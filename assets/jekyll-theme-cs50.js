@@ -10,7 +10,7 @@ if (matches) {
 $(document).on('DOMContentLoaded', function() {
 
     // Current timestamp
-    const now = moment();
+    const now = luxon.DateTime.local();
 
     // data-after, data-before
     $('[data-after], [data-before]').each(function(index, element) {
@@ -18,10 +18,10 @@ $(document).on('DOMContentLoaded', function() {
         // Return true iff element should be removed
         const remove = function() {
             if (data = $(element).attr('data-before')) {
-                return !now.isBefore(moment($(element).attr('data-before')));
+                return !(now < luxon.DateTime.fromISO($(element).attr('data-before')));
             }
             else if (data = $(element).attr('data-after')) {
-                return !now.isAfter(moment($(element).attr('data-after')));
+                return !(now > luxon.DateTime.fromISO($(element).attr('data-after')));
             }
         };
 
