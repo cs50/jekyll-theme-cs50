@@ -93,6 +93,11 @@ code.highlighter-rouge {
 div.highlighter-rouge {
     margin-bottom: 1rem;
 }
+li {
+    div.highlighter-rouge {
+        margin-bottom: 0;
+    }
+}
 
 // Details, summaries
 details, summary {
