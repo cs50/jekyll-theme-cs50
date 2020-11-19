@@ -8,6 +8,6 @@
   },
   "scripts": {
     "install": "cp -r node_modules/bootstrap node_modules/bootstrap-table node_modules/@fortawesome node_modules/jquery node_modules/luxon/build/global/luxon.min.js assets/ && cp -r node_modules/bootstrap _sass/ && rm -rf node_modules && rougify style igorpro > _sass/rouge.scss",
-    "preinstall": "rm -rf node_modules && rm -rf _sass/bootstrap _sass/bootstrap-table _sass/jquery _sass/rouge.scss"
+    "preinstall": "rm -rf node_modules && rm -rf assets/bootstrap assets/bootstrap-table assets/jquery _sass/rouge.scss"
   }
 }
