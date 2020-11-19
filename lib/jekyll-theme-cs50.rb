@@ -15,9 +15,11 @@ require "jekyll-theme-cs50/constants"
 
 module CS50
 
-  # Remove leading whitespace from multiline string
-  def self.lstrip(s)
-    s.gsub(/\n\s+/, "\n")
+  # Unindent multiline string
+  # https://github.com/mynyml/unindent/blob/master/lib/unindent.rb
+  def self.unindent(s)
+    indent = s.split("\n").select {|line| !line.strip.empty? }.map {|line| line.index(/[^\s]/) }.compact.min || 0
+    s.gsub(/^[[:blank:]]{#{indent}}/, "")
   end
 
   # Sanitize string, allowing only these tags, which are a (reasonable) subset of
@@ -105,7 +107,7 @@ module CS50
   class AfterBeforeBlock < Block
 
     def render(context)
-      markdown = CS50::lstrip(super)
+      markdown = CS50::unindent(super)
 
       # HTML
       html = context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(markdown).strip
@@ -125,7 +127,7 @@ module CS50
   class AlertBlock < Block
 
     def render(context)
-      markdown = CS50::lstrip(super)
+      markdown = CS50::unindent(super)
       html = context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(markdown).strip
       alert = (["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].include? @args[0]) ? @args[0] : ""
       "<div class='alert' data-alert='#{alert}' role='alert'>" \
@@ -233,16 +235,19 @@ module CS50
     # https://stackoverflow.com/q/19169849/5156190
     # https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button (re phrasing, but not interactive, content)
     def render(context)
-      markdown = CS50::lstrip(super)
-      html = context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(markdown).strip
+      markdown = CS50::unindent(super)
+      puts "MARKDOWN IS"
+      puts "[[[#{markdown}]]]"
+      html = context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(markdown)
+      html2 = context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(markdown).strip
+      puts "HTML IS"
+      puts "[[[#{html}]]]"
+      puts "STRIPPED HTML IS"
+      puts "[[[#{html2}]]]"
       text = (@args[0]) ? CGI.escapeHTML(@args[0]) : "Spoiler"
       summary = CS50::sanitize(context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(text).strip)
-      "<details>" \
-        "<summary>#{summary}</summary>" \
-        "#{html}" \
-      "</details>"
+      "<details><summary>#{summary}</summary>#{html2}</details>"
     end
-
     Liquid::Template.register_tag("spoiler", self)
 
   end
