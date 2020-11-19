@@ -257,11 +257,6 @@ $(document).on('DOMContentLoaded', function() {
         return siblings.slice(start, end);
     }
 
-    // Scroll to y
-    function scroll(y) {
-        $('html, body').animate({scrollTop: y}, 500);
-    }
-
     // data-markers
     $('[data-marker]').each(function(index, element) {
 
@@ -345,7 +340,7 @@ $(document).on('DOMContentLoaded', function() {
             let bottom = top + $(this).parent().outerHeight(true);
 
             // Scroll to next elements
-            scroll(bottom + 1);
+            $('html, body').animate({scrollTop: bottom + 1}, 500);
 
             // Disable button
             $(this).prop('disabled', true);
