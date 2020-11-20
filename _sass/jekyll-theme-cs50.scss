@@ -164,10 +164,10 @@ li:first-child, li + li {
     }
 }
 li > blockquote,
-li > div.highlighter-rouge,
 li > img {
     margin-top: .25rem;
 }
+li > div.highlighter-rouge,
 li > p {
     margin-top: 1rem;
 }
@@ -190,6 +190,11 @@ pre {
     @extend .border;
     background-color: $gray-100;
     padding: $table-cell-padding;
+}
+
+// Ensure number appears when li contains pre
+pre {
+    overflow: initial;
 }
 
 // Prevent wrapping on iOS
