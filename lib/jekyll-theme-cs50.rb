@@ -15,11 +15,16 @@ require "jekyll-theme-cs50/constants"
 
 module CS50
 
-  # Unindent multiline string
-  # https://github.com/mynyml/unindent/blob/master/lib/unindent.rb
-  def self.unindent(s)
-    indent = s.split("\n").select {|line| !line.strip.empty? }.map {|line| line.index(/[^\s]/) }.compact.min || 0
-    s.gsub(/^[[:blank:]]{#{indent}}/, "")
+  # Convert Markdown to HTML, preserving indentation (so that it can still be stripped elsewhere in pipeline)
+  def self.convert(s)
+    markdown, indentation = CS50::unindent(s)
+    html = $site.find_converter_instance(::Jekyll::Converters::Markdown).convert(markdown).strip
+    CS50::indent(html, indentation)
+  end
+
+  # Indent multiline string
+  def self.indent(s, n)
+    s.gsub(/^/, " " * n)
   end
 
   # Sanitize string, allowing only these tags, which are a (reasonable) subset of
@@ -39,6 +44,14 @@ module CS50
         raise "Invalid datetime: #{s}"
       end
     end
+  end
+
+  # Unindent multiline string
+  # https://github.com/mynyml/unindent/blob/master/lib/unindent.rb
+  def self.unindent(s)
+    n = s.split("\n").select {|line| !line.strip.empty? }.map {|line| line.index(/[^\s]/) }.compact.min || 0
+    s = s.gsub(/^[[:blank:]]{#{n}}/, "")
+    return s, n
   end
 
   module Mixins
@@ -107,10 +120,7 @@ module CS50
   class AfterBeforeBlock < Block
 
     def render(context)
-      markdown = CS50::unindent(super)
-
-      # HTML
-      html = context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(markdown).strip
+      html = CS50::convert(super)
 
       # Parse timestamp
       iso8601 = CS50::strptime(@args[0]).iso8601
@@ -127,8 +137,7 @@ module CS50
   class AlertBlock < Block
 
     def render(context)
-      markdown = CS50::unindent(super)
-      html = context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(markdown).strip
+      html = CS50::convert(super)
       alert = (["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"].include? @args[0]) ? @args[0] : ""
       "<div class='alert' data-alert='#{alert}' role='alert'>" \
         "#{html}" \
@@ -221,8 +230,7 @@ module CS50
 
     def render(context)
       super
-      markdown = (@args[0]) ? CGI.escapeHTML(@args[0]) : "Next"
-      button = CS50::sanitize(context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(markdown).strip)
+      button = CS50::sanitize(CS50::convert((@args[0]) ? CGI.escapeHTML(@args[0]) : "Next"))
       "<button class='btn btn-dark btn-sm' data-next type='button'>#{button}</button>"
     end
 
@@ -235,18 +243,12 @@ module CS50
     # https://stackoverflow.com/q/19169849/5156190
     # https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button (re phrasing, but not interactive, content)
     def render(context)
-      markdown = CS50::unindent(super)
-      puts "MARKDOWN IS"
-      puts "[[[#{markdown}]]]"
-      html = context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(markdown)
-      html2 = context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(markdown).strip
-      puts "HTML IS"
-      puts "[[[#{html}]]]"
-      puts "STRIPPED HTML IS"
-      puts "[[[#{html2}]]]"
-      text = (@args[0]) ? CGI.escapeHTML(@args[0]) : "Spoiler"
-      summary = CS50::sanitize(context.registers[:site].find_converter_instance(::Jekyll::Converters::Markdown).convert(text).strip)
-      "<details><summary>#{summary}</summary>#{html2}</details>"
+      html = CS50::convert(super)
+      summary = CS50::sanitize(CS50::convert((@args[0]) ? CGI.escapeHTML(@args[0]) : "Spoiler"))
+      "<details>" \
+        "<summary>#{summary}</summary>" \
+        "#{html}" \
+      "</details>"
     end
     Liquid::Template.register_tag("spoiler", self)
 
