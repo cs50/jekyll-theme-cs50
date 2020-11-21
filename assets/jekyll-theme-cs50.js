@@ -495,5 +495,5 @@ $(document).on('DOMContentLoaded', function() {
     });
 
     // Reveal page
-    $('body').removeClass('d-none');
+    $('body').removeClass('invisible');
 });
