@@ -192,10 +192,12 @@ pre {
     padding: $table-cell-padding;
 }
 
+/* Safari issue
 // Ensure number appears when li contains pre
 pre {
     overflow: initial;
 }
+*/
 
 // Prevent wrapping on iOS
 pre code span {

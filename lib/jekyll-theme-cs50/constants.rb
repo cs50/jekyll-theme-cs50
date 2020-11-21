@@ -5,8 +5,7 @@ module CS50
     "jekyll-default-layout" => "0.1.4",
     "jekyll-optional-front-matter" => "0.3.2",
     "jekyll-redirect-from" => "0.16.0",
-    "jekyll-titles-from-headings" => "0.5.3",
-    "jemoji" => "0.12.0"
+    "jekyll-titles-from-headings" => "0.5.3"
   }.freeze
 
   DEFAULTS = {
