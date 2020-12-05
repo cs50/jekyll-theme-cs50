@@ -230,6 +230,11 @@ $(document).on('DOMContentLoaded', function() {
     // Ensure tables are responsive
     // https://bootstrap-table.com/docs/extensions/mobile/
     $('table').each(function(index, element) {
+
+        // Remove thead temporarily, per https://github.com/wenzhixin/bootstrap-table/issues/5470
+        $(element).find('thead').replaceWith($(element).find('thead').contents());
+
+        // Enable bootstrap-table
         try {
             $(element).bootstrapTable({
                 classes: 'table table-bordered table-striped',
