@@ -49,6 +49,10 @@
 <!-- https://www.jsdelivr.com/package/npm/mathjax?path=es5 -->
 <script crossorigin="anonymous" integrity="sha256-+nfSJ1LiSvANSK3wvi6FjM+oFwoIQvURU1frozp5z6o=" src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-chtml.js"></script>
 
+<!-- temporary, per https://github.com/wenzhixin/bootstrap-table/issues/5470 -->
+<!-- https://www.npmjs.com/package/style-to-object -->
+<script src="https://unpkg.com/style-to-object@latest/dist/style-to-object.min.js"></script>
+
 {% if site.algolia -%}
 <!-- https://www.algolia.com/doc/guides/building-search-ui/installation/js/ -->
 <script src="/assets/algoliasearchLite.min.js?{{ time }}"></script>
