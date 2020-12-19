@@ -231,17 +231,11 @@ $(document).on('DOMContentLoaded', function() {
     // https://bootstrap-table.com/docs/extensions/mobile/
     $('table').each(function(index, element) {
 
-        // Remember thead's CSS for now, per https://github.com/wenzhixin/bootstrap-table/issues/5470
+        // Workaround for https://github.com/wenzhixin/bootstrap-table/issues/5470
         $(element).find('thead td, thead th').each(function(index, element) {
-            const $div = $('<div>');
-            if ($(element).attr('class')) {
-                $div.attr('data-classses', $(element).attr('class'));
+            if ($(element).css('text-align')) {
+                $(element).wrapInner('<div style="text-align: ' + $(element).css('text-align') + '">');
             }
-            if ($(element).attr('style')) {
-                $div.attr('data-css', JSON.stringify(window.StyleToObject($(element).attr('style'))));
-            }
-            $(element).wrapInner($div);
-            $(element).attr('data-cell-style', 'cellStyle');
         });
 
         // Enable bootstrap-table
@@ -512,24 +506,3 @@ $(document).on('DOMContentLoaded', function() {
     // Reveal page
     $('body').removeClass('invisible');
 });
-
-function cellStyle(value, row, index, field) {
-    let classes;
-    try {
-        classes = $(value).attr('data-classes');
-    }
-    catch (e) {
-        classes = '';
-    }
-    let css;
-    try {
-        css = JSON.parse($(value).attr('data-css'));
-    }
-    catch (e) {
-        css = {};
-    }
-    return {
-        classes: classes,
-        css: css
-    };
-}

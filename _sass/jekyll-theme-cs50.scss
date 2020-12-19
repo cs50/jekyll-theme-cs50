@@ -40,6 +40,11 @@ $headings-font-weight: bold;
     .table td, .table th {
         padding: .5rem .75rem;
     }
+
+    // Boldface headings in card view
+    .card-view:first-child {
+        font-weight: bold;
+    }
 }
 
 // Confine borders to images
