@@ -10,6 +10,12 @@ body > div.container-fluid > div.row {
     align-items: flex-start;
 }
 
+// Match .alert's padding-left and padding-right
+#alert {
+    padding-bottom: 1.25rem;
+    padding-top: 1.25rem;
+}
+
 // Crimson background, transparent text
 aside {
     background-color: $link-color;
