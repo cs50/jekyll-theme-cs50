@@ -73,6 +73,21 @@ $(document).on('DOMContentLoaded', function() {
         }
     });
 
+    // Listen for dismissal of fixed-top alert
+    $('#alert').on('closed.bs.alert', function() {
+
+        // Resize UI if alert is dismissed
+        $(window).trigger('resize');
+
+        // Don't show alert again for this session
+        sessionStorage.setItem('alert', true);
+    });
+
+    // Remove fixed-top alert if already dismissed
+    if (sessionStorage.getItem('alert')) {
+        $('#alert').remove();
+    }
+
     // data-alert
     $('[data-alert]').each(function(index, element) {
         if ($(element).attr('data-alert')) {
