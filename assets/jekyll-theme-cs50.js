@@ -76,7 +76,7 @@ $(document).on('DOMContentLoaded', function() {
     // Listen for dismissal of fixed-top alert
     $('#alert').on('closed.bs.alert', function() {
 
-        // Resize UI if alert is dismissed
+        // Resize UI
         $(window).trigger('resize');
 
         // Don't show alert again for this session
@@ -88,10 +88,10 @@ $(document).on('DOMContentLoaded', function() {
         $('#alert').remove();
     }
 
-    // Listen for clicks on summaries in fixed-top alert
-    $('#alert summary').on('click', function() {
+    // Listen for details in fixed-top alert
+    $('#alert details').on('toggle', function() {
 
-        // Resize UI if summary was clicked
+        // Resize UI
         $(window).trigger('resize');
     });
 
