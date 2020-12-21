@@ -104,7 +104,7 @@ nav > *:first-child {
 // Separate buttons from header and nav
 aside button[data-toggle=collapse],
 aside button[data-toggle=modal] {
-    margin-top: 1rem;
+    margin-top: 1.25rem; // 0.25rem more than p tag, since button's text has 0.25rem padding
 }
 
 // Truncate list items
