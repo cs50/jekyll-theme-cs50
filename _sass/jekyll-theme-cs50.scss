@@ -105,8 +105,11 @@ li {
 }
 
 // Details, summaries
-details, summary {
+details {
     margin-bottom: 1rem;
+}
+summary + * {
+    margin-top: 1rem; // Because no pseudo-class for detecting when details are open
 }
 
 // Headings
