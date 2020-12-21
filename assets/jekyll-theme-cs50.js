@@ -88,6 +88,13 @@ $(document).on('DOMContentLoaded', function() {
         $('#alert').remove();
     }
 
+    // Listen for clicks on summaries in fixed-top alert
+    $('#alert summary').on('click', function() {
+
+        // Resize UI if summary was clicked
+        $(window).trigger('resize');
+    });
+
     // data-alert
     $('[data-alert]').each(function(index, element) {
         if ($(element).attr('data-alert')) {
