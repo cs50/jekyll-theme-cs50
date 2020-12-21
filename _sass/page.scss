@@ -17,6 +17,20 @@ aside {
     font-size: 1.125rem;
 }
 
+// No borders
+aside {
+    h1, h2, .h1, .h2 {
+        border-bottom: 0;
+    }
+}
+
+// Compact lists
+aside {
+    li:first-child, li + li {
+        margin-top: 0;
+    }
+}
+
 // Override column's padding
 aside.col-md {
     padding: 2rem 2rem;
@@ -59,18 +73,8 @@ aside button[data-toggle=collapse]:not(.collapsed) {
     color: $link-color;
 }
 
-// No borders
-aside {
-    h1, h2, .h1, .h2 {
-        border-bottom: 0;
-    }
-}
-
-// Compact lists
-aside {
-    li:first-child, li + li {
-        margin-top: 0;
-    }
+aside hr {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 // Compact small paragraphs
