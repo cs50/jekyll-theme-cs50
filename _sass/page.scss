@@ -100,6 +100,11 @@ header {
         margin-bottom: .5rem;
         padding-bottom: 0;
     }
+    h2, .h2 {
+        font-size: 1.25rem;
+        font-weight: normal;
+        padding-top: 0;
+    }
 }
 
 // Separate nav button (or header) and footer, applying margins to children to avoid flicker when uncollapsing
