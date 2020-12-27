@@ -10,11 +10,6 @@ body > div.container-fluid > div.row {
     align-items: flex-start;
 }
 
-// Align × with first line of text in alert
-#alert button[data-dismiss="alert"] {
-    padding-top: 1rem;
-}
-
 // Crimson background, transparent text
 aside {
     background-color: $link-color;
