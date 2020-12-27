@@ -379,30 +379,28 @@ Jekyll::Hooks.register [:site], :post_render do |site|
   def relative_path(from, to)
 
     # Resolve to relative path
+    if !to.start_with?("/")
+      to = from + to
+    end
     relative = Pathname.new(to).relative_path_from(Pathname.new(from)).to_s
 
-    # If not a URI (and thus a local path)
-    if relative !~ /^#{URI::regexp}$/
+    # If path doesn't end with a trailing slash (before any query or fragment)
+    if match = relative.match(/\A([^\?#]+)([\?#].*)?\z/)
 
-      # If path doesn't end with a trailing slash (before any query or fragment)
-      if match = relative.match(/\A([^\?#]+[^\?\/#])([\?#].*)?\z/)
+      # Construct absolute path
+      absolute = match.captures[0] + "/"
+      if not absolute.start_with?("/")
+        absolute = from + absolute
+      end
+      absolute = Pathname.new(absolute).cleanpath.to_s + "/"
 
-        # Construct absolute path
-        absolute = match.captures[0] + "/"
-        if not absolute.start_with?("/")
-          absolute = from + absolute
-        end
-        absolute = Pathname.new(absolute).cleanpath.to_s + "/"
+      # If it should have a trailing slash
+      if $paths.include?(absolute)
 
-        # If it should have a trailing slash
-        if $paths.include?(absolute)
-
-          # Append trailing slash (plus any query or fragment)
-          relative = match.captures[0] + "/"
-          if not match.captures[1].nil?
-            relative += match.captures[1]
-          end
-
+        # Append trailing slash (plus any query or fragment)
+        relative = match.captures[0] + "/"
+        if not match.captures[1].nil?
+          relative += match.captures[1]
         end
       end
     end
@@ -445,8 +443,8 @@ Jekyll::Hooks.register [:site], :post_render do |site|
             # With a non-nil attribute
             if not node[attribute].nil?
 
-              # Resolve absolute path to relative path
-              if node[attribute].start_with?("/")
+              # If not a URI (and thus a local path), resolve to relative path
+              if node[attribute] !~ /^#{URI::regexp}$/
                 node[attribute] = relative_path(page.dir, node[attribute])
               end
 
@@ -456,7 +454,7 @@ Jekyll::Hooks.register [:site], :post_render do |site|
       end
       page.output = doc.to_html
 
-    # If SCSS
+    # If CSS
     elsif page.output_ext == ".css"
 
       # Resolve absolute paths in url() to relative paths
