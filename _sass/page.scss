@@ -101,20 +101,25 @@ header {
     }
 }
 
-// Separate nav button (or header) and footer, applying margins to children to avoid flicker when uncollapsing
-nav > *:first-child {
-    margin-top: 1rem;
-}
-
 // Separate buttons from header and nav
 aside button[data-toggle=collapse],
 aside button[data-toggle=modal] {
     margin-top: 1.25rem; // 0.25rem more than p tag, since button's text has 0.25rem padding
 }
 
+// Separate nav button (or header) and footer, applying margins to children to avoid flicker when uncollapsing
+nav > *:first-child {
+    margin-top: 1rem;
+}
+
 // Truncate list items
 nav ol li, nav ul li {
     @include text-truncate;
+}
+
+// Left-align ordered lists
+nav ol li {
+    padding-left: 0;
 }
 
 // Left-align unordered lists, without bullets
