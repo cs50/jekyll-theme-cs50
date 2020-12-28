@@ -527,7 +527,4 @@ $(document).on('DOMContentLoaded', function() {
 
     // Reveal page
     $('body').removeClass('invisible');
-
-    // Force thumbnail to redraw
-    $('[data-video]').css('width', '1px').css('width', '');
 });
