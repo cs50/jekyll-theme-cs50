@@ -380,9 +380,6 @@ $(document).on('DOMContentLoaded', function() {
         });
     });
 
-    // Force thumbnail to redraw
-    $('[data-video]').css('width', '0').css('width', '');
-
     // Ensure iframes responsive in Safari on iOS (for, e.g., Google Calendars), per https://stackoverflow.com/a/23083463/5156190
     $('iframe').each(function(index, element) {
         if (!$(this).attr('scrolling')) {
@@ -530,4 +527,7 @@ $(document).on('DOMContentLoaded', function() {
 
     // Reveal page
     $('body').removeClass('invisible');
+
+    // Force thumbnail to redraw
+    $('[data-video]').css('width', '1px').css('width', '');
 });
