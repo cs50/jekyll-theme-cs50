@@ -380,6 +380,9 @@ $(document).on('DOMContentLoaded', function() {
         });
     });
 
+    // Remove vh-100 from embeds
+    $('[data-video]').removeClass('vh-100');
+
     // Ensure iframes responsive in Safari on iOS (for, e.g., Google Calendars), per https://stackoverflow.com/a/23083463/5156190
     $('iframe').each(function(index, element) {
         if (!$(this).attr('scrolling')) {
