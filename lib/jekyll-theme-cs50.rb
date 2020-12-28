@@ -312,7 +312,7 @@ module CS50
 
       if src
         "<div class='border embed-responsive embed-responsive-#{ratio}' data-video>" \
-          "<iframe allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='embed-responsive-item' src='#{src}'></iframe>" \
+          "<iframe allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen src='#{src}'></iframe>" \
         "</div>"
       else
         "<p><img alt='static' class='border' data-video src='https://i.imgur.com/xnZ5A2u.gif'></p>"
