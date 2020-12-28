@@ -311,7 +311,7 @@ module CS50
       end
 
       if src
-        "<div class='border embed-responsive embed-responsive-#{ratio} vh-100' data-video>" \
+        "<div class='border embed-responsive embed-responsive-#{ratio}' data-video>" \
           "<iframe allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='embed-responsive-item' src='#{src}'></iframe>" \
         "</div>"
       else
