@@ -296,7 +296,7 @@ module CS50
           end
 
           # Ensure playlist menu appears
-          if not params["list"].empty? or not params["playlist"].empty?
+          if !params["list"].empty? or !params["playlist"].empty?
             components["showinfo"] = "1"
           end
 
@@ -389,7 +389,7 @@ Jekyll::Hooks.register [:site], :post_render do |site|
 
       # Construct absolute path
       absolute = match.captures[0] + "/"
-      if not absolute.start_with?("/")
+      if !absolute.start_with?("/")
         absolute = from + absolute
       end
       absolute = Pathname.new(absolute).cleanpath.to_s + "/"
@@ -399,7 +399,7 @@ Jekyll::Hooks.register [:site], :post_render do |site|
 
         # Append trailing slash (plus any query or fragment)
         relative = match.captures[0] + "/"
-        if not match.captures[1].nil?
+        if !match.captures[1].nil?
           relative += match.captures[1]
         end
       end
@@ -441,7 +441,7 @@ Jekyll::Hooks.register [:site], :post_render do |site|
           if node.name == name
 
             # With a non-nil attribute
-            if not node[attribute].nil?
+            if !node[attribute].nil?
 
               # If not a URI (and thus a local path), resolve to relative path
               if node[attribute] !~ /^#{URI::regexp}$/
