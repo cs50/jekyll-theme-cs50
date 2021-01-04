@@ -428,7 +428,7 @@ Jekyll::Hooks.register [:site], :post_render do |site|
           if node["content"] =~ /^(\d+;\s*url=["']?)(.+)(["']?)$/i
 
             # If relative
-            if $2 !~ /^#{URI::regexp}$/
+            if !/^#{URI::regexp}$/.match?($2)
 
               # Rewrite path
               node["content"] = $1 + relative_path(page.dir, $2) + $3
