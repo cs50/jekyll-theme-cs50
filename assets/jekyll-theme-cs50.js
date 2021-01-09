@@ -159,8 +159,11 @@ $(document).on('DOMContentLoaded', function() {
                 opts.timeZoneName = 'short';
             }
 
-            // If start and end on same date (and English locale)
-            if (CS50.locale === 'en' && start.toLocaleString(luxon.DateTime.DATE_SHORT) === end.toLocaleString(luxon.DateTime.DATE_SHORT)) {
+            // If start and end on same date (and English locale), or if end on midnight of start
+            if (CS50.locale === 'en' && (
+                start.toLocaleString(luxon.DateTime.DATE_SHORT) === end.toLocaleString(luxon.DateTime.DATE_SHORT) ||
+                end.toLocaleString(luxon.DateTime.TIME_24_WITH_SECONDS) === '24:00:00' &&
+                    start.toLocaleString(luxon.DateTime.DATE_SHORT) == end.plus({days: -1}).toLocaleString(luxon.DateTime.DATE_SHORT))) {
 
                 // Format end without date
                 short = start.toLocaleString(opts) + ' – ' + end.toLocaleString({
