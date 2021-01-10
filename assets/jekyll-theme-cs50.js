@@ -163,7 +163,7 @@ $(document).on('DOMContentLoaded', function() {
             if (CS50.locale === 'en' && (
                 start.toLocaleString(luxon.DateTime.DATE_SHORT) === end.toLocaleString(luxon.DateTime.DATE_SHORT) ||
                 end.toLocaleString(luxon.DateTime.TIME_24_WITH_SECONDS) === '24:00:00' &&
-                    start.toLocaleString(luxon.DateTime.DATE_SHORT) == end.plus({days: -1}).toLocaleString(luxon.DateTime.DATE_SHORT))) {
+                    start.toLocaleString(luxon.DateTime.DATE_SHORT) == end.minus({days: 1}).toLocaleString(luxon.DateTime.DATE_SHORT))) {
 
                 // Format end without date
                 short = start.toLocaleString(opts) + ' – ' + end.toLocaleString({
