@@ -528,13 +528,13 @@ $(document).on('DOMContentLoaded', function() {
         }
     });
 
+    // Reveal page
+    $('body').removeClass('invisible');
+
     // Re-render thumbnails of iframed videos
     // https://support.google.com/youtube/thread/8920318
     // http://controlc.com/1403fe47
     $('[data-video] iframe').each(function(index, element) {
         $(element).attr('src', $(element).attr('src'));
     });
-
-    // Reveal page
-    $('body').removeClass('invisible');
 });
