@@ -223,17 +223,6 @@ li pre:last-child {
 }
 
 
-//// local
-
-[data-local] {
-    border-bottom-style: dotted;
-    border-bottom-width: thin;
-    cursor: help;
-}
-[data-local]:hover {
-    text-decoration: none;
-}
-
 //// marker
 
 // Don't indent top-level lists
