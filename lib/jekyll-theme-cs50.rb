@@ -218,7 +218,8 @@ module CS50
         raise "Too many arguments: #{@markup}"
       end
       t1 = CS50::strptime(@args[0])
-      local = CS50::format(t1)
+      local = t1.iso8601
+      href = "https://time.cs50.io/" + CS50::format(t1)
 
       # Parse optional argument
       if @args.length == 2
@@ -226,11 +227,12 @@ module CS50
         if t2 < t1
           raise "Invalid interval: #{@markup}"
         end
-        local += "/" + CS50::format(t2)
+        local += "/" + t2.iso8601
+        href += "/" + CS50::format(t2)
       end
 
       # Return
-      "<a data-local='#{local}' href='https://time.cs50.io/#{local}'></a>"
+      "<a data-local='#{local}' href='#{href}'></a>"
     end
 
     Liquid::Template.register_tag("local", self)
