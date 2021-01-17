@@ -22,6 +22,17 @@ module CS50
     CS50::indent(html, indentation)
   end
 
+  # Format Time for time.cs50.io
+  # https://stackoverflow.com/a/19329068/5156190
+  def self.format(t)
+    old = ENV["TZ"]
+    ENV["TZ"] = "US/Eastern"
+    z = t.strftime("%z")
+    s = t.strftime("%Y%m%dT%H%M%S%z").sub(/#{z}$/, "").sub(/\+0000/, "Z")
+    ENV["TZ"] = old
+    s
+  end
+
   # Indent multiline string
   def self.indent(s, n)
     s.gsub(/^/, " " * n)
@@ -207,7 +218,7 @@ module CS50
         raise "Too many arguments: #{@markup}"
       end
       t1 = CS50::strptime(@args[0])
-      local = t1.iso8601
+      local = CS50::format(t1)
 
       # Parse optional argument
       if @args.length == 2
@@ -215,11 +226,11 @@ module CS50
         if t2 < t1
           raise "Invalid interval: #{@markup}"
         end
-        local += "/" + t2.iso8601
+        local += "/" + CS50::format(t2)
       end
 
       # Return
-      "<span data-local='#{local}'></span>"
+      "<a data-local='#{local}' href='https://time.cs50.io/#{local}'></a>"
     end
 
     Liquid::Template.register_tag("local", self)

@@ -127,7 +127,7 @@ $(document).on('DOMContentLoaded', function() {
     $('[data-local]').each(function(index, element) {
 
         // HTML to display
-        let short, long;
+        let html;
 
         // Parse attribute
         const local = $(element).attr('data-local').split('/');
@@ -166,7 +166,7 @@ $(document).on('DOMContentLoaded', function() {
                     start.toLocaleString(luxon.DateTime.DATE_SHORT) == end.minus({days: 1}).toLocaleString(luxon.DateTime.DATE_SHORT))) {
 
                 // Format end without date
-                short = start.toLocaleString(opts) + ' – ' + end.toLocaleString({
+                html = start.toLocaleString(opts) + ' – ' + end.toLocaleString({
                     hour: 'numeric',
                     minute: 'numeric',
                     timeZoneName: 'short'
@@ -177,7 +177,7 @@ $(document).on('DOMContentLoaded', function() {
             else {
 
                 // Format end without date
-                short = start.toLocaleString(opts) + ' – ' + end.toLocaleString({
+                html = start.toLocaleString(opts) + ' – ' + end.toLocaleString({
                     day: 'numeric',
                     hour: 'numeric',
                     minute: 'numeric',
@@ -187,16 +187,6 @@ $(document).on('DOMContentLoaded', function() {
                     year: 'numeric'
                 });
             }
-
-            // Format start's time zone
-            long = start.toLocal().offsetNameLong;
-
-            // If clocks change between start and end
-            if (start.toLocal().offsetNameLong !== end.toLocal().offsetNameLong) {
-
-                // Add end's time zone
-                long += ' – ' + end.toLocal().offsetNameLong;
-            }
         }
         else {
 
@@ -204,7 +194,7 @@ $(document).on('DOMContentLoaded', function() {
             const start = luxon.DateTime.fromISO(local[0]).setLocale(CS50.locale);
 
             // Format start
-            short = start.toLocaleString({
+            html = start.toLocaleString({
                 day: 'numeric',
                 hour: 'numeric',
                 minute: 'numeric',
@@ -213,34 +203,10 @@ $(document).on('DOMContentLoaded', function() {
                 weekday: 'short',
                 year: 'numeric'
             });
-            long = start.toLocal().offsetNameLong;
         }
 
         // Display HTML
-        $(this).html(short);
-
-        // If not already linked
-        if ($(this).closest('a').length === 0) {
-
-            // If no title already
-            // https://stackoverflow.com/a/12161190
-            if (typeof $(this).attr('title') === 'undefined') {
-
-                // Add tooltip
-                // https://github.com/popperjs/popper-core/issues/276
-                $(this).attr('data-boundary', 'window').attr('data-toggle', 'tooltip').attr('data-trigger', 'focus').attr('title', long).tooltip();
-
-                // Don't allow span to wrap, else popovers will be centered between span's overall width
-                // https://getbootstrap.com/docs/4.5/components/popovers/#overview
-                // https://github.com/popperjs/popper-core/issues/609
-                // https://github.com/popperjs/popper-core/issues/9
-                $(this).addClass('text-nowrap');
-
-                // Ensure focusable
-                // https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
-                $(this).attr('tabindex', '0');
-            }
-        }
+        $(this).html(html);
     });
 
     // Re-attach tooltips after tables have responded

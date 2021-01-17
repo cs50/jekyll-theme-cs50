@@ -230,7 +230,9 @@ li pre:last-child {
     border-bottom-width: thin;
     cursor: help;
 }
-
+[data-local]:hover {
+    text-decoration: none;
+}
 
 //// marker
 
