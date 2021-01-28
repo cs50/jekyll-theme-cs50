@@ -1,13 +1,14 @@
 {
   "dependencies": {
-    "@fortawesome/fontawesome-free": "5.15.1",
-    "bootstrap": "4.5.3",
-    "bootstrap-table": "1.18.0",
+    "@fortawesome/fontawesome-free": "5.15.2",
+    "bootstrap": "4.6.0",
+    "bootstrap-table": "1.18.2",
     "jquery": "3.5.1",
     "luxon": "1.25.0"
   },
   "scripts": {
-    "install": "cp -r node_modules/bootstrap node_modules/bootstrap-table node_modules/@fortawesome node_modules/jquery node_modules/luxon/build/global/luxon.min.js assets/ && cp -r node_modules/bootstrap _sass/ && rm -rf node_modules && rougify style igorpro > _sass/rouge.scss",
-    "preinstall": "rm -rf node_modules && rm -rf assets/bootstrap assets/bootstrap-table assets/jquery _sass/rouge.scss"
+    "install": "cp -r node_modules/bootstrap node_modules/bootstrap-table node_modules/@fortawesome node_modules/jquery node_modules/luxon/build/global/luxon.min.js assets/ && cp -r node_modules/bootstrap _sass/ && rougify style igorpro > _sass/rouge.scss",
+    "preinstall": "rm -rf assets/bootstrap assets/bootstrap-table assets/@fortawesome assets/jquery assets/luxon.min.js _sass/rouge.scss",
+    "postinstall": "rm -rf node_modules"
   }
 }
