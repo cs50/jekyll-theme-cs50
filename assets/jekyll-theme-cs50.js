@@ -233,7 +233,7 @@ $(document).on('DOMContentLoaded', function() {
         try {
             $(element).bootstrapTable({
                 classes: 'table table-bordered table-striped',
-                minWidth: 992, // https://getbootstrap.com/docs/4.5/layout/overview/#responsive-breakpoints
+                minWidth: 992, // https://getbootstrap.com/docs/4.6/layout/overview/#responsive-breakpoints
                 mobileResponsive: true
             });
         }
@@ -356,12 +356,13 @@ $(document).on('DOMContentLoaded', function() {
         }
     });
 
-    // If H1 is immediately followed by H2, treat latter as subtitle, relocating in DOM as customized heading
+    // If H1 is immediately followed H2 (and no other H2 siblings),
+    // treat H1 as title and H2 as subtitle, relocating in DOM as customized heading
     // https://getbootstrap.com/docs/4.6/content/typography/#customizing-headings
     const $title = $('main h1');
-    const $subtitle = $title.next('h2').detach();
-    if ($title.length && $subtitle.length) {
-        $title.append(' ').append($('<small>').addClass('text-muted').append($subtitle.contents()));
+    const $subtitle = $title.next('h2');
+    if ($title.length && $subtitle.length && !$subtitle.next('h2').next().length) {
+        $title.append(' ').append($('<small>').addClass('text-muted').append($subtitle.detach().contents()));
     }
 
     // Get headings
