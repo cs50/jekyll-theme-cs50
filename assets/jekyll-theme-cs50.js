@@ -359,7 +359,7 @@ $(document).on('DOMContentLoaded', function() {
     // If H1 is immediately followed H2 (and no other H2 siblings),
     // treat H1 as title and H2 as subtitle, relocating in DOM as customized heading
     // https://getbootstrap.com/docs/4.6/content/typography/#customizing-headings
-    const $title = $('main h1');
+    const $title = $('main h1').first();
     const $subtitle = $title.next('h2');
     if ($title.length && $subtitle.length && !$subtitle.nextAll('h2').length) {
         $title.append(' ').append($('<small>').addClass('text-muted').append($subtitle.detach().contents()));
