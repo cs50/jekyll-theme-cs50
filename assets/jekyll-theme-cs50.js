@@ -361,7 +361,7 @@ $(document).on('DOMContentLoaded', function() {
     // https://getbootstrap.com/docs/4.6/content/typography/#customizing-headings
     const $title = $('main h1');
     const $subtitle = $title.next('h2');
-    if ($title.length && $subtitle.length && !$subtitle.next('h2').next().length) {
+    if ($title.length && $subtitle.length && !$subtitle.nextAll('h2').length) {
         $title.append(' ').append($('<small>').addClass('text-muted').append($subtitle.detach().contents()));
     }
 
