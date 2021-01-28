@@ -356,8 +356,16 @@ $(document).on('DOMContentLoaded', function() {
         }
     });
 
+    // If H1 is immediately followed by H2, treat latter as subtitle, relocating in DOM as customized heading
+    // https://getbootstrap.com/docs/4.6/content/typography/#customizing-headings
+    const $title = $('main h1');
+    const $subtitle = $title.next('h2').detach();
+    if ($title.length && $subtitle.length) {
+        $title.append(' ').append($('<small>').addClass('text-muted').append($subtitle.contents()));
+    }
+
     // Get headings
-    let headings = $([
+    const headings = $([
         'main h1',
         'main h2',
         'main h3',
