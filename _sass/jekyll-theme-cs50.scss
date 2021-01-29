@@ -231,20 +231,6 @@ li pre:last-child {
 
 //// marker
 
-// Don't indent top-level lists
-ul.fa-ul {
-    margin-left: 1.25em;
-}
-ul.fa-ul {
-    ul.fa-ul {
-        margin-left: 2.5em;
-    }
-}
-ol {
-    margin-left: 1.25rem;
-    padding-left: 0;
-}
-
 // + and -
 [data-marker="+"] > span, [data-marker="-"] > span {
     cursor: pointer;
