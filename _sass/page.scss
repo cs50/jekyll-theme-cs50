@@ -122,6 +122,9 @@ nav ol {
     list-style-position: inside;
     padding-left: 0;
 }
+nav ol li {
+    padding-left: 0;
+}
 
 // Left-align unordered lists, without bullets
 nav ul {
@@ -132,12 +135,6 @@ nav ul {
 // Preserve bullets for nested unordered lists
 nav ul ul {
     list-style: inside;
-}
-
-// Left-align ordered lists
-nav ol {
-    list-style-position: inside;
-    margin-left: 0;
 }
 
 // Separate footer from nav unless empty
