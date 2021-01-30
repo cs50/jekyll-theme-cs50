@@ -118,7 +118,8 @@ nav ol li, nav ul li {
 }
 
 // Left-align ordered lists
-nav ol li {
+nav ol {
+    list-style-position: inside;
     padding-left: 0;
 }
 
