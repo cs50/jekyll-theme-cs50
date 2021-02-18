@@ -25,12 +25,7 @@ module CS50
   # Format Time for time.cs50.io
   # https://stackoverflow.com/a/19329068/5156190
   def self.format(t)
-    old = ENV["TZ"]
-    ENV["TZ"] = "US/Eastern"
-    z = t.strftime("%z")
-    s = t.strftime("%Y%m%dT%H%M%S%z").sub(/#{z}$/, "").sub(/\+0000/, "Z")
-    ENV["TZ"] = old
-    s
+    t.strftime("%Y%m%dT%H%M%S%z").sub(/\+0000/, "Z")
   end
 
   # Indent multiline string
