@@ -486,7 +486,8 @@ $(document).on('DOMContentLoaded', function() {
         // Position headings' anchors below alert
         // https://stackoverflow.com/a/13184714
         $('a[data-id][id]').css('top', '-' + height + 'px');
-    });
+
+   });
     $(window).trigger('resize');
 
     // Listen for highlights
@@ -501,6 +502,11 @@ $(document).on('DOMContentLoaded', function() {
                 history.replaceState(null, null, '');
             }
         }
+    });
+
+    // Resize iframes dynamically
+    $('iframe').on('load', function() {
+        $(this).iFrameResize();
     });
 
     // Reveal page

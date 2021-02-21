@@ -271,9 +271,6 @@ module CS50
       # Parse YouTube URL
       if @args[0] 
          
-        # Determine aspect ratio
-        ratio = ["21by9", "4by3", "1by1"].include?(@args[1]) ? @args[1] : "16by9"
-
         # If YouTube player
         if @args[0] =~ /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
 
@@ -319,9 +316,7 @@ module CS50
       end
 
       if src
-        "<div class='border embed-responsive embed-responsive-#{ratio}' data-video>" \
-          "<iframe allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='embed-responsive-item' src='#{src}'></iframe>" \
-        "</div>"
+        "<iframe allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='border' data-video src='#{src}'></iframe>"
       else
         "<p><img alt='static' class='border' data-video src='https://i.imgur.com/xnZ5A2u.gif'></p>"
       end
