@@ -415,7 +415,7 @@ $(document).on('DOMContentLoaded', function() {
     $(window).trigger('hashchange');
 
     // Listen for resize
-    $(window).resize(function() {
+    $(window).on('resize', function() {
 
         // Return true iff small device (on which aside will be above main)
         const mobile = function() {
