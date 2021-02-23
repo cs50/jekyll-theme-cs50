@@ -80,7 +80,18 @@ button, table * {
 // Offset links' underline
 a:hover {
     text-decoration-line: underline;
-    text-underline-offset: 2px;
+    text-underline-offset: 3px;
+    text-decoration-style: solid;
+    text-decoration-thickness: from-font;
+}
+a[data-local] {
+    color: inherit;
+    text-decoration-line: underline;
+    text-underline-offset: 3px;
+    text-decoration-style: dotted;
+    text-decoration-thickness: from-font;
+}
+a[data-local]:hover {
     text-decoration-style: solid;
 }
 
