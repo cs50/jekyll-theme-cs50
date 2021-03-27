@@ -97,16 +97,33 @@ $(document).on('DOMContentLoaded', function() {
 
     // data-alert
     $('[data-alert]').each(function(index, element) {
-        if ($(element).attr('data-alert')) {
-            $(element).addClass('alert-' + $(element).attr('data-alert'));
-            $(element).find('a').addClass('alert-link');
-            $(element).find('h1, h2, h3, h4, h5, h6').each(function(index, element) {
-                const tagName = $(element).prop('tagName');
-                $(element).replaceWith(function() {
-                    return $('<p>').append($(this).contents()).addClass(tagName.toLowerCase()).addClass('alert-heading');
-                });
-            });
+
+        // Split data-alert on whitespace
+        for (let alert of $(element).attr('data-alert').split(/ +/)) {
+
+            // If valid class
+            if (['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'dismissible'].includes(alert)) {
+
+                // Add it to element
+                $(element).addClass('alert-' + alert);
+            }
         }
+
+        // If dismissible, reveal button
+        if ($(element).hasClass('alert-dismissible')) {
+            $(element).children('[data-dismiss]').removeClass('d-none');
+        }
+
+        // Add .alert-link to links
+        $(element).find('a').addClass('alert-link');
+
+        // Add .alert-heading to headings
+        $(element).find('h1, h2, h3, h4, h5, h6').each(function(index, element) {
+            const tagName = $(element).prop('tagName');
+            $(element).replaceWith(function() {
+                return $('<p>').append($(this).contents()).addClass(tagName.toLowerCase()).addClass('alert-heading');
+            });
+        });
     });
 
     // data-calendar

@@ -11,16 +11,13 @@
     <body class="invisible">
 
         {% if site.cs50.alert %}
-        {% assign alerts = "primary,secondary,success,danger,warning,info,light,dark" | split: "," %}
-        {% if alerts contains site.cs50.alert %}
         {%- capture alert -%}{%- include alert.md -%}{%- endcapture -%}
-        <div class="alert alert-dismissible fixed-top mb-0 rounded-0 shadow" data-alert="{{ site.cs50.alert }}" data-hash="{{ alert | md5 }}" id="alert" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <div class="alert fixed-top mb-0 rounded-0 shadow" data-alert="{{ site.cs50.alert }}" data-hash="{{ alert | md5 }}" id="alert" role="alert">
+            <button aria-label="Close" class="close d-none" data-dismiss="alert" type="button">
                 <span aria-hidden="true">&times;</span>
             </button>
             {{- alert | markdownify | replace: " id=", " data-id=" | strip -}}
         </div>
-        {% endif %}
         {% endif %}
 
         <div class="container-fluid">
