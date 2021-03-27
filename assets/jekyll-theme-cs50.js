@@ -79,12 +79,12 @@ $(document).on('DOMContentLoaded', function() {
         // Resize UI
         $(window).trigger('resize');
 
-        // Don't show alert again for this session
-        sessionStorage.setItem('alert', true);
+        // Don't show alert if already dismissed
+        localStorage.setItem('alert', $(this).attr('data-hash'));
     });
 
     // Remove fixed-top alert if already dismissed
-    if (sessionStorage.getItem('alert')) {
+    if (localStorage.getItem('alert') === $('#alert').attr('data-hash')) {
         $('#alert').remove();
     }
 

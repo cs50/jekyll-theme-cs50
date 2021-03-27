@@ -1,5 +1,6 @@
 require "cgi"
 require "deep_merge"
+require "digest/md5"
 require "jekyll"
 require "jekyll-redirect-from"
 require "kramdown/parser/gfm"
@@ -59,6 +60,14 @@ module CS50
     s = s.gsub(/^[[:blank:]]{#{n}}/, "")
     return s, n
   end
+
+  # https://github.com/pathawks/liquid-md5/blob/master/lib/liquid-md5.rb
+  module MDhash
+    def md5(input)
+      Digest::MD5.hexdigest input.strip
+    end
+  end
+  Liquid::Template.register_filter(MDhash)
 
   module Mixins
 
