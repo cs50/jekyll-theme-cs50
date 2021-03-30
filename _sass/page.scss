@@ -87,6 +87,12 @@ aside .fa-ul {
     margin-left: 0;
 }
 
+// Separate buttons from header and nav
+aside button[data-toggle=collapse],
+aside button[data-toggle=modal] {
+    margin-top: 1.25rem; // 0.25rem more than p tag, since button's text has 0.25rem padding
+}
+
 // Title
 header {
     h1, .h1 {
@@ -99,12 +105,6 @@ header {
         font-weight: normal;
         padding-top: 0;
     }
-}
-
-// Separate buttons from header and nav
-aside button[data-toggle=collapse],
-aside button[data-toggle=modal] {
-    margin-top: 1.25rem; // 0.25rem more than p tag, since button's text has 0.25rem padding
 }
 
 // Separate nav button (or header) and footer, applying margins to children to avoid flicker when uncollapsing
@@ -157,6 +157,11 @@ main a[data-id][id] {
     display: block;
     position: relative;
     visibility: hidden;
+}
+
+// Align bullets with those outside alert
+main .alert .fa-ul {
+    margin-left: 1.25em;
 }
 
 // Don't number search results
