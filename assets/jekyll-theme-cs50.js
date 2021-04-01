@@ -373,6 +373,14 @@ $(document).on('DOMContentLoaded', function() {
         }
     });
 
+    // Render Scratch blocks
+    $('pre code.language-scratch').each(function(index, element) {
+        $(element).parent().replaceWith($('<code>').addClass('blocks').text($(element).text()));
+    });
+    scratchblocks.renderMatching('code.blocks', {
+        style: 'scratch3'
+    });
+
     // If H1 is immediately followed H2 (and no other H2 siblings),
     // treat H1 as title and H2 as subtitle, relocating in DOM as customized heading
     // https://getbootstrap.com/docs/4.6/content/typography/#customizing-headings
