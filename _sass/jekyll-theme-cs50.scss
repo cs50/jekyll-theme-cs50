@@ -121,6 +121,12 @@ li {
     }
 }
 
+// Shrink Scratch blocks, a la http://scratchblocks.github.io/
+code.blocks svg {
+    transform: scale(0.675);
+    transform-origin: 0 0;
+}
+
 // Details, summaries
 details {
     margin-bottom: 1rem;
