@@ -73,18 +73,47 @@ $(document).on('DOMContentLoaded', function() {
         }
     });
 
+    // Remembers that alert with hash has been dismissed by storing hash in localStorage
+    const dismiss = function(hash) {
+        let alert;
+        try {
+            alert = JSON.parse(localStorage.getItem('alert'));
+            if (!Array.isArray(alert)) {
+                throw new Error();
+            }
+        }
+        catch (err) {
+            alert = [];
+        }
+        if (!alert.includes(hash)) {
+            alert.push(hash);
+        }
+        localStorage.setItem('alert', JSON.stringify(alert));
+    };
+
+    // Returns true iff alert with hash has already been dismissed
+    const dismissed = function(hash) {
+        try {
+            const alert = JSON.parse(localStorage.getItem('alert'));
+            return Array.isArray(alert) && alert.includes(hash);
+        }
+        catch (err) {
+            return false;
+        }
+    };
+
     // Listen for dismissal of fixed-top alert
     $('#alert').on('closed.bs.alert', function() {
 
         // Resize UI
         $(window).trigger('resize');
 
-        // Don't show alert if already dismissed
-        localStorage.setItem('alert', $(this).attr('data-hash'));
+        // Remember that alert has been dismissed
+        dismiss($(this).attr('data-hash'));
     });
 
     // Remove fixed-top alert if already dismissed
-    if (localStorage.getItem('alert') === $('#alert').attr('data-hash')) {
+    if (dismissed($('#alert').attr('data-hash'))) {
         $('#alert').remove();
     }
 
