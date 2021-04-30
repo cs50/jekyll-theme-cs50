@@ -63,8 +63,9 @@ $headings-font-weight: bold;
     height: 80vh;
 }
 
-// Suppress bottom margin within parents
-:last-child {
+// Suppress bottom margin within parents, except for pre tags
+// (whose padding otherwise creates illusion that they're closer to siblings than they are)
+:last-child:not(pre) {
     margin-bottom: 0;
 }
 
@@ -122,7 +123,7 @@ li {
 }
 
 // Shrink Scratch blocks, a la http://scratchblocks.github.io/
-code.blocks svg {
+div.scratchblocks svg {
     transform: scale(0.675);
     transform-origin: 0 0;
 }
@@ -198,9 +199,11 @@ li > blockquote,
 li > img {
     margin-top: .25rem;
 }
-li > div.highlighter-rouge,
-li > p {
-    margin-top: 1rem;
+li > div.scratchblocks,
+li > p,
+li pre {
+    margin-bottom: .5rem;
+    margin-top: .5rem;
 }
 
 // Mimic Google's highlighting
@@ -220,22 +223,12 @@ ol > li {
 pre {
     @extend .border;
     background-color: $gray-100;
-    padding: $table-cell-padding;
+    padding: $table-cell-padding calc(#{$table-cell-padding} - 2ch); // Subtract 2ch that Kramdown seems to output in pre blocks
 }
-
-/* Safari issue
-// Ensure number appears when li contains pre
-pre {
-    overflow: initial;
-}
-*/
 
 // Prevent wrapping on iOS
 pre code span {
     white-space: pre;
-}
-li pre:last-child {
-    margin-bottom: 0;
 }
 
 //// alert
