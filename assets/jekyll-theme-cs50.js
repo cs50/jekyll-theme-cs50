@@ -412,11 +412,13 @@ $(document).on('DOMContentLoaded', function() {
         $(element).parent().replaceWith($(element).children());
     });
 
-    // Fix height of SVG blocks, without adding height= and width= attributes to SVG elements (which clipped bottom of some blocks)
+    // Fix height of SVG blocks
     // https://github.com/scratchblocks/scratchblocks/pull/301#issuecomment-829428605
     $('.scratchblocks svg').each(function(index, element) {
         const bbox = element.getBBox();
-        $(element).parent().css('height', Math.ceil(element.getBoundingClientRect().height) + 'px');
+        $(element).attr('width', bbox.width + 'px');
+        $(element).attr('height', bbox.height + 'px');
+        $(element).parent().css('height', element.getBoundingClientRect().height + 'px');
     });
 
     // If H1 is immediately followed H2 (and no other H2 siblings),
