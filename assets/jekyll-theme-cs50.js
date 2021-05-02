@@ -416,9 +416,10 @@ $(document).on('DOMContentLoaded', function() {
     // https://github.com/scratchblocks/scratchblocks/pull/301#issuecomment-829428605
     $('.scratchblocks svg').each(function(index, element) {
         const bbox = element.getBBox();
-        $(element).attr('width', bbox.width + 'px');
-        $(element).attr('height', bbox.height + 'px');
-        $(element).parent().css('height', element.getBoundingClientRect().height + 'px');
+        const height = Math.floor(bbox.height) + 2; // Prevents clipping of bottom of some blocks
+        $(element).attr('width', bbox.width);
+        $(element).attr('height', height);
+        $(element).parent().css('height', Math.ceil(element.getBoundingClientRect().height) + 'px');
     });
 
     // If H1 is immediately followed H2 (and no other H2 siblings),
