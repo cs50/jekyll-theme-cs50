@@ -223,7 +223,7 @@ ol > li {
 pre {
     @extend .border;
     background-color: $gray-100;
-    padding: $table-cell-padding calc(#{$table-cell-padding} - 2ch); // Subtract 2ch that Kramdown seems to output in pre blocks
+    padding: $table-cell-padding;
 }
 
 // Prevent wrapping on iOS
