@@ -4,7 +4,88 @@
 
     <head>
 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        {%- if page.refresh -%}
+        <meta content="{{ page.refresh }}" http-equiv="refresh">
+        {%- endif -%}
+
+        <meta property="og:description" content="{{ page.description | default: site.cs50.description }}">
+
+        <meta property="og:image" content="{{ page.image | default: site.cs50.image }}">
+
+        {%- capture title -%}
+            {%- if page.title -%}
+                {{- page.title -}}
+            {%- endif -%}
+            {%- if site.cs50.title -%}
+                {%- unless site.github and site.cs50.title == site.github.repository_name -%}
+                    {%- if page.title %} - {% endif -%}
+                    {{- site.cs50.title -}}
+                {%- endunless -%}
+            {%- endif -%}
+        {%- endcapture -%}
+
+        <meta property="og:title" content="{{ title }}">
+
         {%- include head.html -%}
+
+        {%- assign time = site.time | date: '%s' -%}
+
+        <link href="/favicon.ico?{{ time }}" rel="icon">
+
+        <!-- https://fonts.google.com/specimen/PT+Sans?query=PT+Sans&selection.family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+
+        <!-- http://getbootstrap.com/docs/4.6/getting-started/introduction/ -->
+        <script src="/assets/jquery/dist/jquery.min.js?{{ time }}"></script>
+        <script src="/assets/bootstrap/dist/js/bootstrap.bundle.min.js?{{ time }}"></script>
+
+        <!-- https://bootstrap-table.com/docs/getting-started/introduction/ -->
+        <link href="/assets/bootstrap-table/dist/bootstrap-table.min.css?{{ time }}" rel="stylesheet">
+        <script src="/assets/bootstrap-table/dist/bootstrap-table.min.js?{{ time }}"></script>
+        <script src="/assets/bootstrap-table/dist/extensions/mobile/bootstrap-table-mobile.min.js?{{ time }}"></script>
+
+        <!-- https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use -->
+        <link href="/assets/@fortawesome/fontawesome-free/css/all.min.css?{{ time }}" rel="stylesheet">
+
+        <!-- https://moment.github.io/luxon/ -->
+        <script src="/assets/luxon.min.js?{{ time }}"></script>
+
+        <!-- http://docs.mathjax.org/ -->
+        <!-- https://www.jsdelivr.com/package/npm/mathjax?path=es5 -->
+        <script crossorigin="anonymous" integrity="sha256-+nfSJ1LiSvANSK3wvi6FjM+oFwoIQvURU1frozp5z6o=" src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-chtml.js"></script>
+
+        <!-- https://github.com/verlok/vanilla-lazyload -->
+        <script src="https://cdn.jsdelivr.net/npm/intersection-observer@0.7.0/intersection-observer.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.0/dist/lazyload.min.js"></script>
+
+        <!-- https://github.com/davidjbradshaw/iframe-resizer -->
+        <!-- https://www.jsdelivr.com/package/npm/iframe-resizer?path=js -->
+        <script crossorigin="anonymous" integrity="sha256-S8f0Q/V9VcfrqYgWo9EFS9zuDMdPTBMC+CBW0RjxQbs=" src="https://cdn.jsdelivr.net/npm/iframe-resizer@4.3.1/js/iframeResizer.min.js"></script>
+
+        <!-- https://github.com/scratchblocks/scratchblocks -->
+        <script src="https://scratchblocks.github.io/js/scratchblocks-v3.5-min.js"></script>
+
+        {% if site.algolia -%}
+        <!-- https://www.algolia.com/doc/guides/building-search-ui/installation/js/ -->
+        <script src="/assets/algoliasearchLite.min.js?{{ time }}"></script>
+        <script src="/assets/instantsearch.production.min.js?{{ time }}"></script>
+        {%- endif %}
+
+        <link href="{{ '/assets/' | append: page.layout | append: '.css' }}?{{ time }}" rel="stylesheet">
+        <script src="/assets/jekyll-theme-cs50.js?{{ time }}"></script>
+
+        <script>
+            window.CS50 = {
+                locale: {{ site.cs50.locale | jsonify }},
+                tz: {{ site.cs50.tz | jsonify }}
+            };
+        </script>
+
+        <title>{{ title }}</title>
+
 
     </head>
 
