@@ -223,7 +223,7 @@ ol > li {
 pre {
     @extend .border;
     background-color: $gray-100;
-    padding: $table-cell-padding;
+    padding: $table-cell-padding-y $table-cell-padding-x;
 }
 
 // Prevent wrapping on iOS
