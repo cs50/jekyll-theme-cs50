@@ -19,6 +19,11 @@ _sass/primer-markdown/build/*
 
 _site/
 
+assets/algoliasearch/*
+!assets/algoliasearch/dist/
+assets/algoliasearch/dist/*
+!assets/algoliasearch/dist/algoliasearch-lite.umd.js
+
 assets/bootstrap/*
 !assets/bootstrap/LICENSE
 !assets/bootstrap/dist/
@@ -46,6 +51,12 @@ assets/@fortawesome/fontawesome-free/*
 assets/@fortawesome/fontawesome-free/css/*
 !assets/@fortawesome/fontawesome-free/css/all.min.css
 !assets/@fortawesome/fontawesome-free/webfonts/
+
+assets/instantsearch.js/*
+!assets/instantsearch.js/LICENSE
+!assets/instantsearch.js/dist/
+assets/instantsearch.js/dist/*
+!assets/instantsearch.js/dist/instantsearch.production.min.js
 
 assets/jquery/*
 !assets/jquery/LICENSE.txt

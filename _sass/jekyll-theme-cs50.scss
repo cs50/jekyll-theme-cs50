@@ -79,7 +79,10 @@ button, table * {
 }
 
 // Offset links' underline
-a:hover {
+a, .btn-link {
+    text-decoration: none;
+}
+a:hover, .btn-link:hover {
     text-decoration-line: underline;
     text-underline-offset: 3px;
     text-decoration-style: solid;
@@ -223,7 +226,7 @@ ol > li {
 pre {
     @extend .border;
     background-color: $gray-100;
-    padding: $table-cell-padding-y $table-cell-padding-x;
+    padding: .5rem .75rem;
 }
 
 // Prevent wrapping on iOS

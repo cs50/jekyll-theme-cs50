@@ -66,12 +66,12 @@
         <script crossorigin="anonymous" integrity="sha256-S8f0Q/V9VcfrqYgWo9EFS9zuDMdPTBMC+CBW0RjxQbs=" src="https://cdn.jsdelivr.net/npm/iframe-resizer@4.3.1/js/iframeResizer.min.js"></script>
 
         <!-- https://github.com/scratchblocks/scratchblocks -->
-        <script src="https://scratchblocks.github.io/js/scratchblocks-v3.5-min.js"></script>
+        <script src="/assets/scratchblocks-v3.5.2-min.js?{{ time }}"></script>
 
         {% if site.algolia -%}
         <!-- https://www.algolia.com/doc/guides/building-search-ui/installation/js/ -->
-        <script src="/assets/algoliasearchLite.min.js?{{ time }}"></script>
-        <script src="/assets/instantsearch.production.min.js?{{ time }}"></script>
+        <script src="/assets/algoliasearch/dist/algoliasearch-lite.umd.js?{{ time }}"></script>
+        <script src="/assets/instantsearch.js/dist/instantsearch.production.min.js?{{ time }}"></script>
         {%- endif %}
 
         <link href="{{ '/assets/' | append: page.layout | append: '.css' }}?{{ time }}" rel="stylesheet">
@@ -94,9 +94,7 @@
         {% if site.cs50.alert %}
         {%- capture alert -%}{%- include alert.md -%}{%- endcapture -%}
         <div class="alert fixed-top mb-0 rounded-0 shadow" data-alert="{{ site.cs50.alert }}" data-hash="{{ alert | md5 }}" id="alert" role="alert">
-            <button aria-label="Close" class="close d-none" data-dismiss="alert" type="button">
-                <span aria-hidden="true">&times;</span>
-            </button>
+            <button aria-label="Close" class="btn-close d-none" data-bs-dismiss="alert" type="button"></button>
             {{- alert | markdownify | replace: " id=", " data-id=" | strip -}}
         </div>
         {% endif %}
@@ -115,12 +113,12 @@
                     </header>
 
                     {% if site.algolia -%}
-                    <button class="btn btn-link d-block pl-0 pt-0" data-search data-target="#search" data-toggle="modal" type="button">
-                        <i class="fas fa-search pr-2"></i>Search
+                    <button class="btn btn-link d-block ps-0 pt-0" data-search data-bs-target="#search" data-bs-toggle="modal" type="button">
+                        <i class="fas fa-search pe-2"></i>Search
                     </button>
                    {%- endif %}
 
-                    <button aria-controls="nav" aria-expanded="false" class="btn btn-sm collapsed d-md-none" data-target="aside > nav" data-toggle="collapse">
+                    <button aria-controls="nav" aria-expanded="false" class="btn btn-sm collapsed d-md-none" data-bs-target="aside > nav" data-bs-toggle="collapse">
                         Menu
                     </button>
 
@@ -155,8 +153,8 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <div class="pr-3 w-100" id="searchbox"></div>
-                        <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                        <div class="pe-3 w-100" id="searchbox"></div>
+                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
                     </div>
                     <div class="modal-body">
                         <div id="hits"></div>

@@ -51,24 +51,24 @@ aside.col-md {
 // Opaque text
 aside a,
 aside a:hover,
-aside button[data-toggle=collapse],
-aside button[data-toggle=collapse]:hover {
+aside button[data-bs-toggle=collapse],
+aside button[data-bs-toggle=collapse]:hover {
     background-color: inherit;
     border-color: rgba(255, 255, 255, .5);
     color: rgba(255, 255, 255, 1);
 }
-aside button[data-toggle=modal],
-aside button[data-toggle=modal]:hover {
+aside button[data-bs-toggle=modal],
+aside button[data-bs-toggle=modal]:hover {
     color: rgba(255, 255, 255, 1);
 }
 
 // Opaque border
-aside button[data-toggle=collapse]:hover {
+aside button[data-bs-toggle=collapse]:hover {
     border-color: rgba(255, 255, 255, 1);
 }
 
 // Invert colors when not collapsed
-aside button[data-toggle=collapse]:not(.collapsed) {
+aside button[data-bs-toggle=collapse]:not(.collapsed) {
     background-color: rgba(255, 255, 255, 1);
     color: $link-color;
 }
@@ -88,8 +88,8 @@ aside .fa-ul {
 }
 
 // Separate buttons from header and nav
-aside button[data-toggle=collapse],
-aside button[data-toggle=modal] {
+aside button[data-bs-toggle=collapse],
+aside button[data-bs-toggle=modal] {
     margin-top: 1.25rem; // 0.25rem more than p tag, since button's text has 0.25rem padding
 }
 
@@ -212,7 +212,7 @@ main .alert .fa-ul {
     }
 
     // Hide button above nav
-    aside button[data-toggle=collapse] {
+    aside button[data-bs-toggle=collapse] {
         display: none;
     }
 

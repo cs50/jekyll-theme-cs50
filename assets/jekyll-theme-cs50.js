@@ -140,7 +140,7 @@ $(document).on('DOMContentLoaded', function() {
 
         // If dismissible, reveal button
         if ($(element).hasClass('alert-dismissible')) {
-            $(element).children('[data-dismiss]').removeClass('d-none');
+            $(element).children('[data-bs-dismiss]').removeClass('d-none');
         }
 
         // Add .alert-link to links
@@ -412,7 +412,6 @@ $(document).on('DOMContentLoaded', function() {
         $(element).parent().replaceWith($(element).children());
     });
 
-    // Fix height of SVG blocks
     // https://github.com/scratchblocks/scratchblocks/pull/301#issuecomment-829428605
     $('.scratchblocks svg').each(function(index, element) {
         const bbox = element.getBBox();
