@@ -82,10 +82,10 @@ button, table * {
 a, .btn-link {
     text-decoration: none;
 }
-a:hover, .btn-link:hover {
+a:hover:not(.btn), .btn-link:hover {
     text-decoration-line: underline;
-    text-underline-offset: 3px;
     text-decoration-style: solid;
+    text-underline-offset: 3px;
 }
 a[data-local] {
     color: inherit;
