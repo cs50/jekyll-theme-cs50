@@ -463,6 +463,11 @@ $(document).on('DOMContentLoaded', function() {
         if (!id) {
             return false;
         }
+        // Check to see if a text fragment
+        // If so, return false
+        if (id.slice(0, 3) === ":~:") {
+            return false;
+        }
         const heading = $('#' + id);
         if (!heading.length) {
             return false;
