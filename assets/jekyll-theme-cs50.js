@@ -463,12 +463,16 @@ $(document).on('DOMContentLoaded', function() {
         if (!id) {
             return false;
         }
-        // Check to see if a text fragment
-        // If so, return false
-        if (id.slice(0, 3) === ":~:") {
+        if (id.startsWith('#:~:text=')) { // In case text fragment link
+            return false;
+        }        
+        let heading;
+        try {
+            heading = $('#' + id); // In case syntactically invalid ID
+        }
+        catch (err) {
             return false;
         }
-        const heading = $('#' + id);
         if (!heading.length) {
             return false;
         }
