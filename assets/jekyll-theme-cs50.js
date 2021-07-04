@@ -463,7 +463,16 @@ $(document).on('DOMContentLoaded', function() {
         if (!id) {
             return false;
         }
-        const heading = $('#' + id);
+        if (id.startsWith('#:~:text=')) { // In case text fragment link
+            return false;
+        }        
+        let heading;
+        try {
+            heading = $('#' + id); // In case syntactically invalid ID
+        }
+        catch (err) {
+            return false;
+        }
         if (!heading.length) {
             return false;
         }
