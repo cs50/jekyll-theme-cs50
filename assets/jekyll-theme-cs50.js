@@ -459,16 +459,9 @@ $(document).on('DOMContentLoaded', function() {
     $(window).on('hashchange', function() {
 
         // Find heading
-        const id = window.location.hash.slice(1);
-        if (!id) {
-            return false;
-        }
-        if (id.startsWith('#:~:text=')) { // In case text fragment link
-            return false;
-        }        
         let heading;
         try {
-            heading = $('#' + id); // In case syntactically invalid ID
+            heading = $(window.location.hash); // In case syntactically invalid ID
         }
         catch (err) {
             return false;
