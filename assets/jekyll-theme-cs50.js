@@ -173,7 +173,8 @@ $(document).on('DOMContentLoaded', function() {
             $(this).removeClass('far').addClass('fas');
         }).on('mouseout', function() {
             $(this).removeClass('fas').addClass('far');
-        }).on('click', function(eventObject) {
+        });
+        .on('click', function(eventObject) {
             eventObject.stopPropagation();
         });;
     });
@@ -301,7 +302,7 @@ $(document).on('DOMContentLoaded', function() {
         catch(err) {} // In case no thead
     });
 
-    // data-markers
+    // data-marker
     $('[data-marker]').each(function(index, element) {
 
         // Add .fa-ul to parent ul
