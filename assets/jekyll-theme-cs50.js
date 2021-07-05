@@ -572,20 +572,6 @@ $(document).on('DOMContentLoaded', function() {
    });
     $(window).trigger('resize');
 
-    // Listen for highlights
-    // https://chromestatus.com/feature/4733392803332096
-    $(document).on('click keyup', function(e) {
-        const s = window.getSelection().toString().trim();
-        if (s) {
-            history.replaceState(null, null, '#:~:text=' + s);
-        }
-        else {
-            if (window.location.hash.startsWith('#:~:text=') || !window.location.hash) {
-                history.replaceState(null, null, '');
-            }
-        }
-    });
-
     // Resize iframes dynamically
     $('iframe').on('load', function() {
         $(this).iFrameResize();
