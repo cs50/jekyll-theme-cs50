@@ -223,7 +223,7 @@ module CS50
       end
       t1 = CS50::strptime(@args[0])
       local = t1.iso8601
-      href = "https://time.cs50.io/" + CS50::format(t1)
+      path = CS50::format(t1)
 
       # Parse optional argument
       if @args.length == 2
@@ -232,11 +232,11 @@ module CS50
           raise "Invalid interval: #{@markup}"
         end
         local += "/" + t2.iso8601
-        href += "/" + CS50::format(t2)
+        path += "/" + CS50::format(t2)
       end
 
       # Return
-      "<a data-local='#{local}' href='#{href}'></a>"
+      "<span data-local='#{local}'>#{path}</span><a data-clock data-bs-toggle='tooltip' href='https://time.cs50.io/#{path}' title='CS50 Time Converter'><i class='fas fa-clock'></i></a>"
     end
 
     Liquid::Template.register_tag("local", self)

@@ -255,13 +255,17 @@ $(document).on('DOMContentLoaded', function() {
         $(this).html(html);
     });
 
+    // Enable tooltips
+    $('[data-bs-toggle="tooltip"]').each(function(index, element) {
+        new bootstrap.Tooltip(element);
+    });
+
     // Re-attach tooltips after tables have responded
     // https://github.com/wenzhixin/bootstrap-table/issues/572#issuecomment-76503607
-    $('table').on('pre-body.bs.table', function() {
-        $('main table [data-toggle="tooltip"]').tooltip('dispose');
-    });
     $('table').on('post-body.bs.table', function() {
-        $('table [data-toggle="tooltip"]').tooltip();
+        $('table [data-toggle="tooltip"]').each(function(index, element) {
+            new bootstrap.Tooltip(element);
+        });
     });
 
     // Ensure tables are responsive
@@ -443,10 +447,8 @@ $(document).on('DOMContentLoaded', function() {
         // If it has an id
         if ($(element).attr('id')) {
 
-            // Add anchor to heading
-            if ($(element).has('a').length === 0) {
-                $(element).wrapInner($('<a data-id href="#' + $(element).attr('id') + '"></a>'));
-            }
+            // Link heading's children to heading (unless already linked)
+            $(element).children().not('a').wrapAll($('<a data-id href="#' + $(element).attr('id') + '"></a>'));
 
             // Relocate id to an anchor (so that it can be invisibly positioned below any alert)
             // https://stackoverflow.com/a/13184714

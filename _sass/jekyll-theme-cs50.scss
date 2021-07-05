@@ -87,15 +87,9 @@ a:hover:not(.btn), .btn-link:hover {
     text-decoration-style: solid;
     text-underline-offset: 3px;
 }
-a[data-local] {
+a[data-clock] {
     color: inherit;
-    text-decoration-line: underline;
-    text-underline-offset: 3px;
-    text-decoration-style: dotted;
-    text-decoration-thickness: from-font;
-}
-a[data-local]:hover {
-    text-decoration-style: solid;
+    margin-left: .25rem;
 }
 
 // A la GitHub
@@ -148,6 +142,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     // Subtle anchors
     a[data-id] {
         color: inherit;
+    }
+    a[data-id]:hover {
         text-decoration: none;
     }
 }
