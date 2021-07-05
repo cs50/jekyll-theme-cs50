@@ -169,7 +169,7 @@ $(document).on('DOMContentLoaded', function() {
 
     // data-clock
     $('[data-clock]').each(function(index, element) {
-        $(element).children('.far .fa-clock').on('mouseover', function() {
+        $(element).find('.far.fa-clock').on('mouseover', function() {
             $(this).removeClass('far').addClass('fas');
         }).on('mouseout', function() {
             $(this).removeClass('fas').addClass('far');

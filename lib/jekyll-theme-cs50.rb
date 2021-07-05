@@ -236,7 +236,7 @@ module CS50
       end
 
       # Return
-      "<span data-local='#{local}'>#{path}</span><a data-clock data-bs-toggle='tooltip' href='https://time.cs50.io/#{path}' title='CS50 Time Converter'><i class='far fa-clock'></i></a>"
+      "<span data-local='#{local}'>#{path}</span><a data-clock href='https://time.cs50.io/#{path}'><i class='far fa-clock'></i></a>"
     end
 
     Liquid::Template.register_tag("local", self)
