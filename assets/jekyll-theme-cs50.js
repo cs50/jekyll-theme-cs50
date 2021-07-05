@@ -448,7 +448,11 @@ $(document).on('DOMContentLoaded', function() {
         if ($(element).attr('id')) {
 
             // Link heading's children to heading (unless already linked)
-            $(element).children().not('a').wrapAll($('<a data-id href="#' + $(element).attr('id') + '"></a>'));
+            $(element).contents().each(function(index, node) {
+                if (!$(node).is('a')) {
+                    $(node).wrapAll($('<a data-id href="#' + $(element).attr('id') + '"></a>'));
+                }
+            });
 
             // Relocate id to an anchor (so that it can be invisibly positioned below any alert)
             // https://stackoverflow.com/a/13184714
