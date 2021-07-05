@@ -173,10 +173,9 @@ $(document).on('DOMContentLoaded', function() {
             $(this).removeClass('far').addClass('fas');
         }).on('mouseout', function() {
             $(this).removeClass('fas').addClass('far');
-        });
-        .on('click', function(eventObject) {
+        }).on('click', function(eventObject) {
             eventObject.stopPropagation();
-        });;
+        });
     });
 
     // data-local
