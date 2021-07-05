@@ -167,6 +167,15 @@ $(document).on('DOMContentLoaded', function() {
         }
     });
 
+    // data-clock
+    $('[data-clock]').each(function(index, element) {
+        $(element).children('.far .fa-clock').on('mouseover', function() {
+            $(this).removeClass('far').addClass('fas');
+        }).on('mouseout', function() {
+            $(this).removeClass('fas').addClass('far');
+        });
+    });
+
     // data-local
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat#Syntax
     // https://english.stackexchange.com/a/100754
