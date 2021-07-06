@@ -169,11 +169,13 @@ $(document).on('DOMContentLoaded', function() {
 
     // data-clock
     $('[data-clock]').each(function(index, element) {
-        $(element).find('.far.fa-clock').on('mouseover', function() {
-            $(this).removeClass('far').addClass('fas');
-        }).on('mouseout', function() {
-            $(this).removeClass('fas').addClass('far');
-        }).on('click', function(eventObject) {
+        $(element).on('mouseover', function() {
+            $(element).find('.far.fa-clock').removeClass('far').addClass('fas');
+        });
+        $(element).on('mouseout', function() {
+            $(element).find('.fas.fa-clock').removeClass('fas').addClass('far');
+        });
+        $(element).on('click', function(eventObject) {
             eventObject.stopPropagation();
         });
     });
