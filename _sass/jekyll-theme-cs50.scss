@@ -89,7 +89,12 @@ a:hover:not(.btn), .btn-link:hover {
 }
 a[data-clock] {
     color: inherit;
-    margin-left: .25rem;
+}
+a[data-clock]::before {
+    content: ' ';
+}
+a[data-clock]:hover {
+    text-decoration: none;
 }
 
 // A la GitHub
