@@ -11,6 +11,7 @@ jobs:
         bundler-cache: true
     - name: Check for Sass errors
       run: |
+        sudo npm install -g sass
         sass --stop-on-error _sass/page.scss _sass/jekyll-theme-cs50.scss
     - name: Check for JS errors
       run: |
