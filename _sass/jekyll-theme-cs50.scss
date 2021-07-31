@@ -90,6 +90,9 @@ a:hover:not(.btn), .btn-link:hover {
 a[data-clock] {
     color: inherit;
 }
+a[data-clock]::before {
+    content: ' ';
+}
 a[data-clock]:hover {
     text-decoration: none;
 }
