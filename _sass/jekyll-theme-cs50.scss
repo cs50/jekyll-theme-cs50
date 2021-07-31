@@ -90,6 +90,9 @@ a:hover:not(.btn), .btn-link:hover {
 a[data-clock] {
     color: inherit;
 }
+a[data-clock] .fa-clock {
+    display: inline;
+}
 a[data-clock]::before {
     content: ' ';
 }
