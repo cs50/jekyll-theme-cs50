@@ -93,11 +93,11 @@ a[data-clock] {
 a[data-clock] .fa-clock {
     display: inline;
 }
-a[data-clock]::before {
-    content: '\00a0';
-}
 a[data-clock]:hover {
     text-decoration: none;
+}
+a[data-local]::after {
+    content: '\00a0';
 }
 
 // A la GitHub
