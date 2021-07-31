@@ -94,7 +94,7 @@ a[data-clock] .fa-clock {
     display: inline;
 }
 a[data-clock]::before {
-    content: ' ';
+    content: '\00a0';
 }
 a[data-clock]:hover {
     text-decoration: none;
