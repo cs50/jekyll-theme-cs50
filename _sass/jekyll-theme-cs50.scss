@@ -91,7 +91,7 @@ a[data-clock] {
     color: inherit;
 }
 a[data-clock]::before {
-    content: ' ';
+    content: '&nbsp;';
 }
 a[data-clock]:hover {
     text-decoration: none;
