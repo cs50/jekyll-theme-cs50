@@ -175,9 +175,6 @@ $(document).on('DOMContentLoaded', function() {
         $(element).on('mouseout', function() {
             $(element).find('.fas.fa-clock').removeClass('fas').addClass('far');
         });
-        $(element).on('click', function(eventObject) {
-            eventObject.stopPropagation();
-        });
     });
 
     // data-local
