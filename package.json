@@ -1,12 +1,12 @@
 {
   "dependencies": {
-    "@fortawesome/fontawesome-free": "5.15.3",
+    "@fortawesome/fontawesome-free": "5.15.4",
     "algoliasearch": "4.10.3",
-    "bootstrap": "5.0.2",
+    "bootstrap": "5.1.0",
     "bootstrap-table": "1.18.3",
-    "instantsearch.js": "4.24.3",
+    "instantsearch.js": "4.25.3",
     "jquery": "3.6.0",
-    "luxon": "1.27.0"
+    "luxon": "2.0.1"
   },
   "scripts": {
     "install": "cp -r node_modules/algoliasearch node_modules/bootstrap node_modules/bootstrap-table node_modules/@fortawesome node_modules/instantsearch.js node_modules/jquery node_modules/luxon/build/global/luxon.min.js assets/ && cp -r node_modules/bootstrap _sass/ && rougify style igorpro > _sass/rouge.scss",
