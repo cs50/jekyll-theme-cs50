@@ -12,8 +12,8 @@ jobs:
     - if: ${{ github.ref == 'refs/heads/demo' }}
       run: |
         cd _site
-        git branch --delete gh-pages || true
-        git checkout --branch gh-pages
+        git branch --delete --quiet gh-pages || true
+        git checkout -b gh-pages
         git add --all --force
         git commit --allow-empty --allow-empty-message
         git push --force origin gh-pages
