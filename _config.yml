@@ -1,0 +1,7 @@
+cs50:
+  alert: warning
+  description: This is a site's description
+  image: /static/cat.jpg
+  locale: en
+  title: This is a site's title
+  tz: America/New_York
