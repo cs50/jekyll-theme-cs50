@@ -9,7 +9,7 @@ jobs:
         bundler-cache: true
         ruby-version: 3.0
     - run: bundle exec jekyll build
-    - if: ${{ github.ref == 'demo' }}
+    - if: ${{ github.ref == 'refs/heads/demo' }}
       run: |
         cd _site
         git branch --delete gh-pages || true
