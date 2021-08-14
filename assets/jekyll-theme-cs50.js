@@ -293,8 +293,13 @@ $(document).on('DOMContentLoaded', function() {
         try {
             $(element).bootstrapTable({
                 classes: 'table table-bordered table-striped',
-                minWidth: 992, // https://getbootstrap.com/docs/4.6/layout/overview/#responsive-breakpoints
-                mobileResponsive: true
+                minWidth: 992, // https://getbootstrap.com/docs/5.0/layout/breakpoints/#available-breakpoints
+                mobileResponsive: true,
+                onPostBody: function(data) {
+
+                    // Left-align cards on mobile
+                    $(element).find('.card-view-title, .card-view-title > *, .card-view-value').css('text-align', 'left');
+                }
             });
         }
         catch(err) {} // In case no thead
