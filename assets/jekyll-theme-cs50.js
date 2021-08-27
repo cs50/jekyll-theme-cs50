@@ -167,16 +167,6 @@ $(document).on('DOMContentLoaded', function() {
         }
     });
 
-    // data-clock
-    $('[data-clock]').each(function(index, element) {
-        $(element).on('mouseover', function() {
-            $(element).find('.far.fa-clock').removeClass('far').addClass('fas');
-        });
-        $(element).on('mouseout', function() {
-            $(element).find('.fas.fa-clock').removeClass('fas').addClass('far');
-        });
-    });
-
     // data-local
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat#Syntax
     // https://english.stackexchange.com/a/100754
@@ -262,20 +252,35 @@ $(document).on('DOMContentLoaded', function() {
         }
 
         // Display HTML
-        $(this).html(html);
+        $(this).html(html).after('<a data-clock href="https://time.cs50.io/' + local + '"><i class="far fa-clock" title="CS50 Time Converter"></i></a>');
     });
 
+    // Toggle clocks on hover
+    const enableClocks = function(element) {
+        $('[data-clock]').each(function(index, element) {
+            $(element).on('mouseover', function() {
+                $(element).find('.fa-clock').removeClass('far').addClass('fas');
+            });
+            $(element).on('mouseout', function() {
+                $(element).find('.fa-clock').removeClass('fas').addClass('far');
+            });
+        });
+    };
+    enableClocks();
+
     // Enable tooltips
-    $('[data-bs-toggle="tooltip"]').each(function(index, element) {
-        new bootstrap.Tooltip(element);
-    });
+    const enableTooltips = function() {
+        $('[data-bs-toggle="tooltip"]').each(function(index, element) {
+            new bootstrap.Tooltip(element);
+        });
+    };
+    enableTooltips();
 
     // Re-attach tooltips after tables have responded
     // https://github.com/wenzhixin/bootstrap-table/issues/572#issuecomment-76503607
     $('table').on('post-body.bs.table', function() {
-        $('table [data-toggle="tooltip"]').each(function(index, element) {
-            new bootstrap.Tooltip(element);
-        });
+        enableClocks();
+        enableTooltips();
     });
 
     // Ensure tables are responsive
