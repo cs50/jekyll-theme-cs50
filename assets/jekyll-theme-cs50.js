@@ -176,16 +176,17 @@ $(document).on('DOMContentLoaded', function() {
         let html;
 
         // Parse attribute
-        const local = $(element).attr('data-local').split('/');
+        const local = $(element).attr('data-local');
+        const locals = local.split('/');
 
         // If range
-        if (local.length == 2) {
+        if (locals.length == 2) {
 
             // Parse start
-            const start = luxon.DateTime.fromISO(local[0]).setLocale(CS50.locale);
+            const start = luxon.DateTime.fromISO(locals[0]).setLocale(CS50.locale);
 
             // Parse end
-            const end = luxon.DateTime.fromISO(local[1]).setLocale(CS50.locale);
+            const end = luxon.DateTime.fromISO(locals[1]).setLocale(CS50.locale);
 
             // Options for formatting start
             const opts = {
@@ -237,7 +238,7 @@ $(document).on('DOMContentLoaded', function() {
         else {
 
             // Parse start
-            const start = luxon.DateTime.fromISO(local[0]).setLocale(CS50.locale);
+            const start = luxon.DateTime.fromISO(locals[0]).setLocale(CS50.locale);
 
             // Format start
             html = start.toLocaleString({
