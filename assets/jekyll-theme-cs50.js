@@ -253,7 +253,17 @@ $(document).on('DOMContentLoaded', function() {
         }
 
         // Display HTML
-        $(this).html(html).after('<a data-clock href="https://time.cs50.io/' + local + '"><i class="far fa-clock" title="CS50 Time Converter"></i></a>');
+        $(this).html(html);
+
+        // Inject clock after date-local (and, if date-local is inside a link, outside that link)
+        const $clock = $('<a data-clock href="https://time.cs50.io/' + local + '"><i class="far fa-clock" title="CS50 Time Converter"></i></a>');
+        const $closest = $(this).closest('a');
+        if ($closest.length) {
+            $closest.after($clock);
+        }
+        else {
+            $(this).after($clock);
+        }
     });
 
     // Toggle clocks on hover

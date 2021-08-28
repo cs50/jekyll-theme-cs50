@@ -96,7 +96,7 @@ a[data-clock] .fa-clock {
 a[data-clock]:hover {
     text-decoration: none;
 }
-[data-local]::after {
+[data-clock]::before {
     content: '\00a0';
 }
 
