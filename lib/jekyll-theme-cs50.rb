@@ -319,7 +319,7 @@ module CS50
           src = URI::HTTPS.build(:host => "www.youtube.com", :path => "/embed/#{v}", :query => URI.encode_www_form(components))
 
           # Return HTML
-          return "<div class='embed-responsive embed-responsive-16by9'><iframe allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='border embed-responsive-item' data-video src='#{src}'></iframe></div>"
+          return "<div class='embed-responsive embed-responsive-16by9' data-video><iframe allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='border embed-responsive-item' data-video src='#{src}'></iframe></div>"
 
         # If CS50 Video Player
         elsif @args[0] =~ /^https?:\/\/video\.cs50\.io\/([^?]+)/
