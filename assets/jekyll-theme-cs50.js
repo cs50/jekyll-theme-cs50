@@ -358,7 +358,7 @@ $(document).on('DOMContentLoaded', function() {
         // Icons
         const plus = $('<span class="fa-li"><i class="far fa-plus-square"></i></span>').click(click);
         const minus = $('<span class="fa-li"><i class="far fa-minus-square"></i></span>').click(click);
-        const circle = $('<span class="fa-li"><i class="fas fa-circle"></i></span>');
+        const square = $('<span class="fa-li"><i class="fas fa-square"></i></span>');
 
         // Wrapper
         const $span = $('<span>').click(click);
@@ -377,7 +377,7 @@ $(document).on('DOMContentLoaded', function() {
 
         // If *
         else if ($(element).attr('data-marker') === '*') {
-            $(element).prepend(circle);
+            $(element).prepend(square);
         }
     });
 
