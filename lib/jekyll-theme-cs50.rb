@@ -12,6 +12,13 @@ require "uri"
 
 require "jekyll-theme-cs50/constants"
 
+# https://stackoverflow.com/a/68039635/5156190
+class Hash 
+  def deep_compact
+    compact.transform_values{|vl| vl.is_a?(Hash) ? vl.deep_compact : vl }
+  end
+end
+
 # Inspired by http://www.glitchwrks.com/2017/07/25/jekyll-plugins, https://github.com/Shopify/liquid/wiki/Liquid-for-Programmers#create-your-own-tag-blocks
 
 module CS50
@@ -362,7 +369,8 @@ Jekyll::Hooks.register :site, :after_reset do |site|
   end
 
   # Merge in theme's configuration
-  site.config = CS50::DEFAULTS.dup.deep_merge!(site.config).deep_merge!(CS50::OVERRIDES)
+  site.config = CS50::DEFAULTS.dup.deep_merge!(site.config, {:merge_nil_values => true}).deep_merge!(CS50::OVERRIDES, {:merge_nil_values => true})
+  site.config["cs50"] = site.config["cs50"].deep_compact
 end
 
 Jekyll::Hooks.register :site, :pre_render do |site, payload|

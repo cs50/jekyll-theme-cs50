@@ -79,6 +79,7 @@
 
         <script>
             window.CS50 = {
+                local: {{ site.cs50.local | jsonify }},
                 locale: {{ site.cs50.locale | jsonify }},
                 tz: {{ site.cs50.tz | jsonify }}
             };

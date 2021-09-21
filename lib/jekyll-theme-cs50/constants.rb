@@ -10,6 +10,15 @@ module CS50
 
   DEFAULTS = {
     "cs50" => {
+      "local" => {
+        "day" => "numeric",
+        "hour" => "numeric",
+        "minute" => "numeric",
+        "month" => "short",
+        "timeZoneName" => "short",
+        "weekday" => "short",
+        "year" => "numeric"
+      },
       "locale" => "en",
       "tz" => "America/New_York"
     },

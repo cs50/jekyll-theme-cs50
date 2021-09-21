@@ -190,12 +190,12 @@ $(document).on('DOMContentLoaded', function() {
 
             // Options for formatting start
             const opts = {
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                month: 'short',
-                weekday: 'short',
-                year: 'numeric'
+                day: CS50.local.day,
+                hour: CS50.local.hour,
+                minute: CS50.local.minute,
+                month: CS50.local.month,
+                weekday: CS50.local.weekday,
+                year: CS50.local.year
             };
 
             // If start and end on different dates or if clocks change between start and end
@@ -203,7 +203,7 @@ $(document).on('DOMContentLoaded', function() {
                 start.toLocal().offsetNameLong !== end.toLocal().offsetNameLong) {
 
                 // Add time zone to start
-                opts.timeZoneName = 'short';
+                opts.timeZoneName = CS50.local.timeZoneName;
             }
 
             // If start and end on same date (and English locale), or if end on midnight of start
@@ -214,9 +214,9 @@ $(document).on('DOMContentLoaded', function() {
 
                 // Format end without date
                 html = start.toLocaleString(opts) + ' – ' + end.toLocaleString({
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    timeZoneName: 'short'
+                    hour: CS50.local.hour,
+                    minute: CS50.local.minute,
+                    timeZoneName: CS50.local.timeZoneName
                 });
             }
 
@@ -225,13 +225,13 @@ $(document).on('DOMContentLoaded', function() {
 
                 // Format end without date
                 html = start.toLocaleString(opts) + ' – ' + end.toLocaleString({
-                    day: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    month: 'short',
-                    timeZoneName: 'short',
-                    weekday: 'short',
-                    year: 'numeric'
+                    day: CS50.local.day,
+                    hour: CS50.local.hour,
+                    minute: CS50.local.minute,
+                    month: CS50.local.month,
+                    timeZoneName: CS50.local.timeZoneName,
+                    weekday: CS50.local.weekday,
+                    year: CS50.local.year
                 });
             }
         }
@@ -242,13 +242,13 @@ $(document).on('DOMContentLoaded', function() {
 
             // Format start
             html = start.toLocaleString({
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                month: 'short',
-                timeZoneName: 'short',
-                weekday: 'short',
-                year: 'numeric'
+                day: CS50.local.day,
+                hour: CS50.local.hour,
+                minute: CS50.local.minute,
+                month: CS50.local.month,
+                timeZoneName: CS50.local.timeZoneName,
+                weekday: CS50.local.weekday,
+                year: CS50.local.year
             });
         }
 
