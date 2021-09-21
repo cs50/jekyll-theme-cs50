@@ -272,7 +272,7 @@ $(document).on('DOMContentLoaded', function() {
             $(element).on('mouseover', function() {
                 $(element).find('.fa-clock').removeClass('far').addClass('fas');
             });
-            $(element).on('mouseout', function() {
+            $(element).on('click mouseout', function() {
                 $(element).find('.fa-clock').removeClass('fas').addClass('far');
             });
         });
