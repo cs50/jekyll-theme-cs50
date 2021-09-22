@@ -14,9 +14,9 @@ module CS50
         "day" => "numeric",
         "hour" => "numeric",
         "minute" => "numeric",
-        "month" => "short",
+        "month" => "long",
         "timeZoneName" => "short",
-        "weekday" => "short",
+        "weekday" => "long",
         "year" => "numeric"
       },
       "locale" => "en",
