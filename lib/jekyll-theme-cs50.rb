@@ -326,7 +326,7 @@ module CS50
           src = URI::HTTPS.build(:host => "www.youtube.com", :path => "/embed/#{v}", :query => URI.encode_www_form(components))
 
           # Return HTML
-          return "<div class='embed-responsive embed-responsive-16by9' data-video><iframe allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='border embed-responsive-item' data-video src='#{src}'></iframe></div>"
+          return "<div class='ratio ratio-16x9' data-video><iframe allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='border' data-video src='#{src}'></iframe></div>"
 
         # If CS50 Video Player
         elsif @args[0] =~ /^https?:\/\/video\.cs50\.io\/([^?]+)/
@@ -335,7 +335,7 @@ module CS50
       end
 
       # Static
-      return "<div class='embed-responsive embed-responsive-16by9'><img alt='static' class='border embed-responsive-item' data-video src='https://i.imgur.com/xnZ5A2u.gif'></div>"
+      return "<div class='ratio ratio-16x9'><img alt='static' class='border' data-video src='https://i.imgur.com/xnZ5A2u.gif'></div>"
     end
 
     Liquid::Template.register_tag("video", self)
