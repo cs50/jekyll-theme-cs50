@@ -14,6 +14,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "deep_merge", "1.2.1"
   spec.add_runtime_dependency "jekyll", "4.2.1"
+  spec.add_runtime_dependency "jekyll-algolia", "1.7.1"
   spec.add_runtime_dependency "sanitize", "6.0.0"
   spec.add_runtime_dependency "webrick", "1.7.0" # https://github.com/jekyll/jekyll/issues/8523
 
