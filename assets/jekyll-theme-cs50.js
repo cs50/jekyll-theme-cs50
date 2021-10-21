@@ -591,7 +591,7 @@ $(document).on('DOMContentLoaded', function() {
         // https://stackoverflow.com/a/13184714
         $('a[data-id][id]').css('top', '-' + height + 'px');
 
-   });
+    });
     $(window).trigger('resize');
 
     // Resize iframes dynamically
