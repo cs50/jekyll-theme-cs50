@@ -1,0 +1,40 @@
+on: push
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Re-deploy depdendents
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.DEPLOY50_PAT }}
+          script: |
+            const dependents = [
+                ['ap', '2022'],
+                ['beyond', '2019/x'],
+                ['business', '2017/x'],
+                ['business', '2022/spring'],
+                ['harvard', '2021/x'],
+                ['harvard', '2021/fall'],
+                ['harvard', '2022/spring'],
+                ['games', '2018/x'],
+                ['games', '2021/fall'],
+                ['hbs', '2022/spring'],
+                ['hls', '2022/winter'],
+                ['law', '2019/x'],
+                ['mobile', '2018/x'],
+                ['scratch', '2021/x'],
+                ['technology', '2017/x'],
+                ['technology', '2021/fall'],
+                ['web', '2020/x'],
+                ['web', '2021/fall'],
+                ['web', '2022/spring']
+            ];
+            for (let dependent of dependents) {
+                await github.rest.actions.createWorkflowDispatch({
+                  owner: 'cs50',
+                  repo: dependent[0],
+                  workflow_id: 'main.yml',
+                  ref: dependent[1]
+                });
+            }
