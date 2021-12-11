@@ -4,7 +4,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Re-deploy depdendents
-        if: ${{ github.ref == 'refs/heads/main' }}
+        if: ${{ github.ref == 'refs/heads/develop' }}
         uses: actions/github-script@v5
         with:
           github-token: ${{ secrets.DEPLOY50_PAT }}
