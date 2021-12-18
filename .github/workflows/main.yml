@@ -14,6 +14,7 @@ jobs:
                 ['beyond', '2019/x'],
                 ['business', '2017/x'],
                 ['business', '2022/spring'],
+                ['cs50.tf', 'main'],
                 ['harvard', '2021/x'],
                 ['harvard', '2021/fall'],
                 ['harvard', '2022/spring'],
