@@ -47,15 +47,38 @@ module CS50
     Sanitize.fragment(s, :elements => ["b", "code", "em", "i", "img", "kbd", "span", "strong", "sub", "sup"]).strip
   end
 
-  # Parse YYYY-MM-DD HH:MM:SS or YYYY-MM-DD HH:MM
-  def self.strptime(s)
+  # Parse time
+  def self.strptime(s, now = nil)
+
+    # Try YYYY-MM-DD HH:MM:SS
     begin
       Time.strptime(s, "%Y-%m-%d %H:%M:%S")
     rescue
+
+      # Try YYYY-MM-DD HH:MM
       begin
         Time.strptime(s, "%Y-%m-%d %H:%M")
       rescue
-        raise "Invalid datetime: #{s}"
+
+        # Try HH:MM:SS, relative to now
+        begin
+          t = Time.strptime(s, "%H:%M:%S", now)
+        rescue
+
+          # Try HH:MM, relative to now
+          begin
+            t = Time.strptime(s, "%H:%M", now)
+          rescue
+            raise "Invalid datetime: #{s}"
+          end
+        end
+
+        # Because Time.strptime parses relative to now's date,
+        # not now's date plus time, add one day if t is in past
+        if t < now
+          t += 24 * 60 * 60
+        end
+        t
       end
     end
   end
@@ -234,11 +257,9 @@ module CS50
 
       # Parse optional argument
       if @args.length == 2
-        begin 
-          t2 = CS50::strptime(@args[1])
-        rescue
-          t2 = CS50::strptime(t1.strftime("%Y-%m-%d") + " " + @args[1])
-        end
+        t2 = CS50::strptime(@args[1], t1)
+        puts t1
+        puts t2
         if t2 < t1
           raise "Invalid interval: #{@markup}"
         end
