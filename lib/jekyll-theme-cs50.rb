@@ -234,7 +234,11 @@ module CS50
 
       # Parse optional argument
       if @args.length == 2
-        t2 = CS50::strptime(@args[1])
+        begin 
+          t2 = CS50::strptime(@args[1])
+        rescue
+          t2 = CS50::strptime(t1.strftime("%Y-%m-%d") + " " + @args[1])
+        end
         if t2 < t1
           raise "Invalid interval: #{@markup}"
         end
