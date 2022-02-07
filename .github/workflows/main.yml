@@ -10,7 +10,7 @@ jobs:
           github-token: ${{ secrets.DEPLOY50_PAT }}
           script: |
             const dependents = [
-                ['ai', '2020'],
+                ['ai', '2020/x'],
                 ['ai', '2022/spring'],
                 ['ap', '2022'],
                 ['beyond', '2019/x'],
