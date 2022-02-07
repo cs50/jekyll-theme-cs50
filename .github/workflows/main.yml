@@ -10,28 +10,23 @@ jobs:
           github-token: ${{ secrets.DEPLOY50_PAT }}
           script: |
             const dependents = [
+                ['ai', '2020'],
+                ['ai', '2022/spring'],
                 ['ap', '2022'],
                 ['beyond', '2019/x'],
                 ['business', '2017/x'],
                 ['business', '2022/spring'],
                 ['cs50.tf', 'main'],
-                ['harvard', '2021/fall'],
                 ['harvard', '2022/spring'],
-                ['harvard', '2021/x'],
                 ['harvard', '2022/x'],
                 ['games', '2018/x'],
-                ['games', '2021/fall'],
                 ['hbs', '2022/spring'],
-                ['hls', '2022/winter'],
                 ['law', '2019/x'],
                 ['mobile', '2018/x'],
                 ['scratch', '2021/x'],
                 ['technology', '2017/x'],
-                ['technology', '2021/fall'],
                 ['web', '2020/x'],
-                ['web', '2021/fall'],
-                ['web', '2022/spring'],
-                ['yale', '2021/fall']
+                ['web', '2022/spring']
             ];
             for (let dependent of dependents) {
                 await github.rest.actions.createWorkflowDispatch({
