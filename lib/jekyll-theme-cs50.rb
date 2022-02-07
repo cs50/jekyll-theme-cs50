@@ -429,8 +429,8 @@ Jekyll::Hooks.register [:site], :post_render do |site|
     end
     relative = Pathname.new(to).relative_path_from(Pathname.new(from)).to_s
 
-    # If path doesn't end with a trailing slash (before any query or fragment)
-    if match = relative.match(/\A([^\?#]+[^\/])([\?#].*)?\z/)
+    # If path doesn't end with a trailing slash (before any fragment or query)
+    if match = relative.match(/\A([^#\?]*[^#\/\?])([#\?].*)?\z/)
 
       # Construct absolute path
       absolute = match.captures[0] + "/"
