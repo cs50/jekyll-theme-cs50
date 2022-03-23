@@ -24,6 +24,7 @@ jobs:
                 ['games', '2018/x'],
                 ['law', '2019/x'],
                 ['mobile', '2018/x'],
+                ['python', '2022/x'],
                 ['scratch', '2021/x'],
                 ['technology', '2017/x'],
                 ['technology', '2022/fall'],
