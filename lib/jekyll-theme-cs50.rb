@@ -258,8 +258,6 @@ module CS50
       # Parse optional argument
       if @args.length == 2
         t2 = CS50::strptime(@args[1], t1)
-        puts t1
-        puts t2
         if t2 < t1
           raise "Invalid interval: #{@markup}"
         end
