@@ -21,6 +21,7 @@ jobs:
                 ['harvard', '2022/spring'],
                 ['harvard', '2022/fall'],
                 ['harvard', '2022/x'],
+                ['hbap.io', 'main'],
                 ['games', '2018/x'],
                 ['law', '2019/x'],
                 ['mobile', '2018/x'],
