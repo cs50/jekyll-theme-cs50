@@ -127,6 +127,11 @@ li {
     }
 }
 
+// Shrink Mermaid charts
+div.mermaid svg {
+    max-height: 100vh;
+}
+
 // Shrink Scratch blocks, a la http://scratchblocks.github.io/
 div.scratchblocks svg {
     transform: scale(0.675);
