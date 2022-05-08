@@ -380,6 +380,9 @@ end
 
 Jekyll::Hooks.register :site, :after_reset do |site|
 
+  # Override site.url so that jekyll-redirect-from doesn't prepend it
+  site.config["url"] = nil
+
   # Strip trailing slashes from site.baseurl
   unless site.config["baseurl"].nil?
     site.config["baseurl"] = site.config["baseurl"].sub(/\/+$/, "")
@@ -522,6 +525,23 @@ Jekyll::Hooks.register [:site], :post_render do |site|
     # https://github.com/jekyll/jekyll-mentions/blob/master/lib/jekyll-mentions.rb and
     # https://github.com/jekyll/jemoji/blob/master/lib/jemoji.rb
 
+  end
+end
+
+# https://github.com/jekyll/jekyll-redirect-from/blob/master/lib/jekyll-redirect-from/redirect_page.rb
+module JekyllRedirectFrom
+  class RedirectPage < Jekyll::Page
+    def set_paths(from, to)
+      @context ||= context
+      from = ensure_leading_slash(from)
+      data.merge!(
+        "permalink" => from,
+        "redirect" => {
+          "from" => from,
+          "to" => to # Omit call to absolute_url, else redirect_to misinterprets relative URLs as absolute from /
+        }
+      )
+    end
   end
 end
 
