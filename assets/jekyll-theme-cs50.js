@@ -437,6 +437,22 @@ $(document).on('DOMContentLoaded', function() {
         }
     });
 
+    // Render Mermaid charts
+    $('code[class="language-mermaid"]').each(function(index, element) {
+
+        // Replace pre > code with div
+        const $element = $(element);
+        const $div = $('<div class="mermaid">').text($element.text());
+        $element.parent().replaceWith($div);
+
+        // Render chart
+        mermaid.init({}, $div.get(0));
+
+        // Left-align Mermaid, until https://github.com/mermaid-js/mermaid/issues/1983
+        // https://stackoverflow.com/a/6322799/5156190
+        $div.children('svg').attr('preserveAspectRatio', 'xMinYMin meet');
+    });
+
     // Render Scratch blocks
     scratchblocks.renderMatching('pre code.language-scratch', {
         style: 'scratch3'
