@@ -470,10 +470,10 @@ Jekyll::Hooks.register [:site], :post_render do |site|
           # Parse url
           if node["content"] =~ /^(\d+;\s*url=["']?)(.+)(["']?)$/i
 
-            # If relative
-            if !/^#{URI::regexp}$/.match?($2)
+            # If a local path
+            if !/^#{URI::regexp}$/.match?($2) and !$2.start_with?("//")
 
-              # Rewrite path
+              # Resolve as relative path
               node["content"] = $1 + relative_path(page.dir, $2) + $3
             end
           end
@@ -486,8 +486,10 @@ Jekyll::Hooks.register [:site], :post_render do |site|
             # With a non-nil attribute
             if !node[attribute].nil?
 
-              # If not a URI (and thus a local path), resolve to relative path
-              if node[attribute] !~ /^#{URI::regexp}$/
+              # If a local path
+              if node[attribute] !~ /^#{URI::regexp}$/ and !node[attribute].start_with?("//")
+
+                # Resolve as relative path
                 node[attribute] = relative_path(page.dir, node[attribute])
               end
 
