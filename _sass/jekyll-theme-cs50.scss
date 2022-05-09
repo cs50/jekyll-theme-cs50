@@ -129,6 +129,7 @@ li {
 
 // Shrink Mermaid charts
 div.mermaid svg {
+    height: auto;
     max-height: 100vh;
 }
 
