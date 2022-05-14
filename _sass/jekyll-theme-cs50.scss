@@ -22,6 +22,11 @@ $headings-font-weight: bold;
 // https://github.com/PhilipTrauner/pygments-github-css/blob/master/github.css
 @import "rouge";
 
+// Else overlaps floats
+.alert {
+    position: inherit;
+}
+
 // Align badges
 .badge {
     vertical-align: middle;
