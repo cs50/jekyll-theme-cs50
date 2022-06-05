@@ -32,7 +32,7 @@ aside {
 }
 
 // No underlining
-aside a {
+aside a, aside .btn-link {
     text-decoration: none;
 }
 
