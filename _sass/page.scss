@@ -13,7 +13,7 @@ body > div.container-fluid > div.row {
 // Crimson background, transparent text
 aside {
     background-color: $link-color;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba($body-bg, 0.5);
     font-size: 1.125rem;
 }
 
@@ -29,6 +29,11 @@ aside {
     li:first-child, li + li {
         margin-top: 0;
     }
+}
+
+// No underlining
+aside a {
+    text-decoration: none;
 }
 
 // Override column's padding
@@ -54,27 +59,27 @@ aside a:hover,
 aside button[data-bs-toggle=collapse],
 aside button[data-bs-toggle=collapse]:hover {
     background-color: inherit;
-    border-color: rgba(255, 255, 255, .5);
-    color: rgba(255, 255, 255, 1);
+    border-color: rgba($body-bg, .5);
+    color: $body-bg;
 }
 aside button[data-bs-toggle=modal],
 aside button[data-bs-toggle=modal]:hover {
-    color: rgba(255, 255, 255, 1);
+    color: $body-bg;
 }
 
 // Opaque border
 aside button[data-bs-toggle=collapse]:hover {
-    border-color: rgba(255, 255, 255, 1);
+    border-color: $body-bg;
 }
 
 // Invert colors when not collapsed
 aside button[data-bs-toggle=collapse]:not(.collapsed) {
-    background-color: rgba(255, 255, 255, 1);
+    background-color: $body-bg;
     color: $link-color;
 }
 
 aside hr {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba($body-bg, 0.1);
 }
 
 // Compact small paragraphs

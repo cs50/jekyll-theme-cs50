@@ -80,15 +80,14 @@ button, table * {
 
 // Offset links' underline
 a, .btn-link {
-    text-decoration: none;
-}
-a:hover:not(.btn), .btn-link:hover {
     text-decoration-line: underline;
     text-decoration-style: solid;
-    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
 }
 a[data-clock] {
     color: inherit;
+    text-decoration: none;
 }
 a[data-clock] .fa-clock {
     display: inline;
@@ -156,9 +155,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     // Subtle anchors
     a[data-id] {
         color: inherit;
+        text-decoration: none;
     }
     a[data-id]:hover {
-        text-decoration: none;
+        color: inherit;
     }
 }
 h1, h2, .h1, .h2 {
