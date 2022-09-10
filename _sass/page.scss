@@ -88,8 +88,8 @@ aside .fa-ul {
 }
 
 // Separate buttons from header and nav
-aside button[data-bs-toggle=collapse],
-aside button[data-bs-toggle=modal] {
+aside .btn[data-bs-toggle=collapse],
+aside .btn[data-bs-toggle=modal] {
     margin-top: 1.25rem; // 0.25rem more than p tag, since button's text has 0.25rem padding
 }
 
@@ -212,7 +212,7 @@ main .alert .fa-ul {
     }
 
     // Hide button above nav
-    aside button[data-bs-toggle=collapse] {
+    aside .btn[data-bs-toggle=collapse] {
         display: none;
     }
 
