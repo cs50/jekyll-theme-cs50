@@ -56,24 +56,19 @@ aside.col-md {
 // Opaque text
 aside a,
 aside a:hover,
-aside button[data-bs-toggle=collapse],
-aside button[data-bs-toggle=collapse]:hover {
+aside .btn[data-bs-toggle=collapse],
+aside .btn[data-bs-toggle=collapse]:hover {
     background-color: inherit;
-    border-color: rgba($body-bg, .5);
-    color: $body-bg;
-}
-aside button[data-bs-toggle=modal],
-aside button[data-bs-toggle=modal]:hover {
-    color: $body-bg;
-}
-
-// Opaque border
-aside button[data-bs-toggle=collapse]:hover {
     border-color: $body-bg;
+    color: $body-bg;
+}
+aside .btn[data-bs-toggle=modal],
+aside .btn[data-bs-toggle=modal]:hover {
+    color: $body-bg;
 }
 
 // Invert colors when not collapsed
-aside button[data-bs-toggle=collapse]:not(.collapsed) {
+aside .btn[data-bs-toggle=collapse]:not(.collapsed) {
     background-color: $body-bg;
     color: $link-color;
 }
