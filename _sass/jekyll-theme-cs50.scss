@@ -160,6 +160,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     a[data-id]:hover {
         color: inherit;
     }
+
+    // Subtitles
+    em {
+        @extend .small;
+        @extend .text-muted;
+        font-style: normal;
+    }
 }
 h1, h2, .h1, .h2 {
     border-bottom-color: $gray-200;
