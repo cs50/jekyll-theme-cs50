@@ -2,14 +2,14 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "algoliasearch": "4.14.2",
-    "bootstrap": "5.2.1",
-    "bootstrap-table": "1.21.0",
-    "instantsearch.js": "4.45.1",
+    "bootstrap": "5.2.2",
+    "bootstrap-table": "1.21.1",
+    "instantsearch.js": "4.48.0",
     "jquery": "3.6.1",
-    "luxon": "3.0.3"
+    "luxon": "3.0.4"
   },
   "scripts": {
-    "install": "cp -r node_modules/algoliasearch node_modules/bootstrap node_modules/bootstrap-table node_modules/@fortawesome node_modules/instantsearch.js node_modules/jquery node_modules/luxon/build/global/luxon.min.js assets/ && wget https://scratchblocks.github.io/js/scratchblocks-v3.6.0-min.js -O assets/scratchblocks.min.js && wget https://scratchblocks.github.io/js/scratchblocks-v3.6.0-min.js.map -O assets/scratchblocks.min.js.map && cp -r node_modules/bootstrap _sass/ && rougify style igorpro > _sass/rouge.scss",
+    "install": "cp -r node_modules/algoliasearch node_modules/bootstrap node_modules/bootstrap-table node_modules/@fortawesome node_modules/instantsearch.js node_modules/jquery node_modules/luxon/build/global/luxon.min.js assets/ && wget https://scratchblocks.github.io/js/scratchblocks-v3.6.1-min.js -O assets/scratchblocks.min.js && wget https://scratchblocks.github.io/js/scratchblocks-v3.6.1-min.js.map -O assets/scratchblocks.min.js.map && cp -r node_modules/bootstrap _sass/ && rougify style igorpro > _sass/rouge.scss",
     "preinstall": "rm -rf assets/algoliasearch assets/bootstrap assets/bootstrap-table assets/@fortawesome assets/instantsearch.js assets/jquery assets/luxon.min.js assets/scratchblocks.min.js assets/scratchblocks.min.js.map _sass/rouge.scss",
     "postinstall": "rm -rf node_modules"
   }
