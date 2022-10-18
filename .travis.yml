@@ -1,7 +1,0 @@
-deploy:
-  api_key: "$API_KEY"
-  before_deploy: "chmod -R a+rX *"
-  on:
-    branch: master
-  provider: rubygems
-script: gem build jekyll-theme-cs50.gemspec
