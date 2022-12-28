@@ -28,10 +28,10 @@ jobs:
                 ['python', '2022/x'],
                 ['scratch', '2021/x'],
                 ['technology', '2017/x'],
-                //['technology', '2022/fall'],
+                ['technology', '2022/fall'],
                 ['web', '2020/x'],
                 ['web', '2023/spring'],
-                //['yale', '2022/fall']
+                ['yale', '2022/fall']
             ];
             for (let dependent of dependents) {
                 await github.rest.actions.createWorkflowDispatch({
