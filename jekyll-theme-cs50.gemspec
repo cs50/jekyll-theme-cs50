@@ -13,9 +13,9 @@ Gem::Specification.new do |spec|
   spec.version = "1.1.0"
 
   spec.add_runtime_dependency "deep_merge", "1.2.2"
-  spec.add_runtime_dependency "jekyll", "4.2.2"
+  spec.add_runtime_dependency "jekyll", "4.3.1"
   spec.add_runtime_dependency "sanitize", "6.0.0"
-  spec.add_runtime_dependency "webrick", "1.7.0" # https://github.com/jekyll/jekyll/issues/8523
+  #spec.add_runtime_dependency "webrick", "1.7.0" # https://github.com/jekyll/jekyll/issues/8523
 
   CS50::PLUGINS.each do |gem, version|
     spec.add_runtime_dependency gem, version
