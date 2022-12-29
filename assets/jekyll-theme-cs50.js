@@ -254,30 +254,7 @@ $(document).on('DOMContentLoaded', function() {
 
         // Display HTML
         $(this).html(html);
-
-        // Inject clock after date-local (and, if date-local is inside a link, outside that link)
-        const $clock = $('<a data-clock href="https://time.cs50.io/' + local + '"><i class="far fa-clock" title="CS50 Time Converter"></i></a>');
-        const $closest = $(this).closest('a');
-        if ($closest.length) {
-            $closest.after($clock);
-        }
-        else {
-            $(this).after($clock);
-        }
     });
-
-    // Toggle clocks on hover
-    const enableClocks = function(element) {
-        $('[data-clock]').each(function(index, element) {
-            $(element).on('mouseover', function() {
-                $(element).find('.fa-clock').removeClass('far').addClass('fas');
-            });
-            $(element).on('click mouseout', function() {
-                $(element).find('.fa-clock').removeClass('fas').addClass('far');
-            });
-        });
-    };
-    enableClocks();
 
     // Enable tooltips
     const enableTooltips = function() {
@@ -290,7 +267,6 @@ $(document).on('DOMContentLoaded', function() {
     // Re-attach tooltips after tables have responded
     // https://github.com/wenzhixin/bootstrap-table/issues/572#issuecomment-76503607
     $('table').on('post-body.bs.table', function() {
-        enableClocks();
         enableTooltips();
     });
 

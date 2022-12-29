@@ -83,20 +83,10 @@ a, .btn-link {
     text-decoration-line: underline;
     text-decoration-style: solid;
     text-decoration-thickness: 1px;
-    text-underline-offset: 2px;
+    text-underline-offset: 3px;
 }
-a[data-clock] {
+a[data-local] {
     color: inherit;
-    text-decoration: none;
-}
-a[data-clock] .fa-clock {
-    display: inline;
-}
-a[data-clock]:hover {
-    text-decoration: none;
-}
-[data-clock]::before {
-    content: '\00a0';
 }
 
 // A la GitHub

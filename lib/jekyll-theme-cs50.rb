@@ -268,7 +268,7 @@ module CS50
       # Return element
       # Even though text node will be replaced by JavaScript, ensures Kramdown can
       # assign an ID if this element is used as a heading
-      "<span data-local='#{local}'>#{local}</span>"
+      "<a data-local='#{local}' href='https://time.cs50.io/#{path}'>#{local}</a>"
     end
 
     Liquid::Template.register_tag("local", self)
