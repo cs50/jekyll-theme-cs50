@@ -23,10 +23,20 @@ $color-mode-type: media-query;
 
 // Import Bootstrap
 @import "bootstrap/scss/bootstrap.scss";
+@import "_syntax.scss";
 
 // GitHub syntax highlighter color scheme for Pygments
 // https://github.com/PhilipTrauner/pygments-github-css/blob/master/github.css
-@import "rouge";
+@media (prefers-color-scheme: dark) {
+    .highlight {
+        //@import "github-dark";
+    }
+}
+@media (prefers-color-scheme: light) {
+    .highlight {
+        //@import "xcode";
+    }
+}
 
 // Align badges
 .badge {
@@ -105,14 +115,6 @@ blockquote {
 }
 
 // A la GitHub
-code {
-    color: inherit;
-}
-code.highlighter-rouge {
-    background-color: $gray-100;
-    @extend .border;
-    padding: calc(.2rem - 1px) .2rem;
-}
 div.highlighter-rouge {
     margin-bottom: 1rem;
 }
@@ -238,7 +240,6 @@ ol > li {
 // A la GitHub
 pre {
     @extend .border;
-    background-color: $gray-100;
     padding: .5rem .75rem;
 }
 
