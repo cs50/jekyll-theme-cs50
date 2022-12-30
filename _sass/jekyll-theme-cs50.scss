@@ -23,20 +23,10 @@ $color-mode-type: media-query;
 
 // Import Bootstrap
 @import "bootstrap/scss/bootstrap.scss";
-@import "_syntax.scss";
 
-// GitHub syntax highlighter color scheme for Pygments
-// https://github.com/PhilipTrauner/pygments-github-css/blob/master/github.css
-@media (prefers-color-scheme: dark) {
-    .highlight {
-        //@import "github-dark";
-    }
-}
-@media (prefers-color-scheme: light) {
-    .highlight {
-        //@import "xcode";
-    }
-}
+// Syntax highlighting from Bootstrap's documentation
+// https://github.com/twbs/bootstrap/blob/main/site/assets/scss/_syntax.scss
+@import "_syntax.scss";
 
 // Align badges
 .badge {
@@ -112,6 +102,15 @@ blockquote {
     border-left-width: thick;
     color: $text-muted;
     padding-left: 1rem;
+}
+code {
+    @extend .border;
+    @extend .p-1;
+    color: inherit;
+}
+pre code {
+    border: initial !important;
+    padding: initial !important;
 }
 
 // A la GitHub
