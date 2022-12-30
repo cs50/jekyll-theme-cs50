@@ -3,9 +3,9 @@ $font-family-sans-serif: "PT Sans" !default;
 
 // Crimson links
 $link-color: #a51c30 !default;
-$link-color-dark: #f2415c !default; // Complementary, per https://color.adobe.com/create/color-wheel
+$link-color-dark: #ef9aa4 !default; // Passing lightness of #a51c30 foreground, against #212529 background, per https://webaim.org/resources/contrastchecker/
 $link-hover-color: $link-color !default;
-$link-hover-color-dark: $link-color !default;
+$link-hover-color-dark: $link-color-dark !default;
 
 // Headings
 // https://github.com/primer/css/blob/master/src/markdown/headings.scss
