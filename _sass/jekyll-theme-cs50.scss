@@ -103,14 +103,12 @@ blockquote {
     color: $text-muted;
     padding-left: 1rem;
 }
-code {
+
+// A la GitHub
+code.highlighter-rouge {
     @extend .border;
-    @extend .p-1;
     color: inherit;
-}
-pre code {
-    border: initial !important;
-    padding: initial !important;
+    padding: calc(.2rem - 1px) .2rem;
 }
 
 // A la GitHub
