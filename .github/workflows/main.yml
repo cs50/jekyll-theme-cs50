@@ -20,6 +20,7 @@ jobs:
                 ['games', '2018/x'],
                 ['games', '2023/spring'],
                 ['harvard', '2023/spring'],
+                ['harvard', '2022/x'],
                 ['harvard', '2023/x'],
                 ['hbap.io', 'main'],
                 ['hbs', '2023/spring'],
