@@ -3,7 +3,9 @@ $font-family-sans-serif: "PT Sans" !default;
 
 // Crimson links
 $link-color: #a51c30 !default;
+$link-color-dark: #f2415c !default; // Complementary, per https://color.adobe.com/create/color-wheel
 $link-hover-color: $link-color !default;
+$link-hover-color-dark: $link-color !default;
 
 // Headings
 // https://github.com/primer/css/blob/master/src/markdown/headings.scss
@@ -14,6 +16,10 @@ $h4-font-size: 1rem;
 $h5-font-size: 0.875rem;
 $h6-font-size: 0.85rem;
 $headings-font-weight: bold;
+
+// Dark mode
+// https://getbootstrap.com/docs/5.3/customize/color-modes/#building-with-sass
+$color-mode-type: media-query;
 
 // Import Bootstrap
 @import "bootstrap/scss/bootstrap.scss";
