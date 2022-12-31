@@ -414,6 +414,9 @@ $(document).on('DOMContentLoaded', function() {
     });
 
     // Render Mermaid charts
+    mermaid.initialize({
+        theme: (window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'default'
+    });
     $('code[class="language-mermaid"]').each(function(index, element) {
 
         // Replace pre > code with div
