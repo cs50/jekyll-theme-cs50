@@ -181,6 +181,10 @@ main .alert .fa-ul {
     }
 
     // Less padding
+    aside.col-md {
+        padding-bottom: 1rem;
+        padding-top: 1rem;
+    }
     main.col-md {
         padding: 2rem 2rem;
     }
