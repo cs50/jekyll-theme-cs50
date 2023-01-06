@@ -24,9 +24,18 @@ $color-mode-type: media-query;
 // Import Bootstrap
 @import "bootstrap/scss/bootstrap.scss";
 
-// Syntax highlighting from Bootstrap's documentation
-// https://github.com/twbs/bootstrap/blob/main/site/assets/scss/_syntax.scss
-@import "_syntax.scss";
+// Syntax highlighting from Pygments
+// https://pygments.org/styles/
+@media (prefers-color-scheme: dark) {
+    .highlight {
+        @import "github-dark";
+    }
+}
+@media (prefers-color-scheme: light) {
+    .highlight {
+        @import "xcode";
+    }
+}
 
 // Align badges
 .badge {
