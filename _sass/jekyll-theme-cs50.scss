@@ -33,7 +33,7 @@ $color-mode-type: media-query;
 }
 @media (prefers-color-scheme: light) {
     .highlight {
-        @import "xcode";
+        @import "default";
     }
 }
 

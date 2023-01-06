@@ -9,7 +9,7 @@
     "luxon": "^3.2.0"
   },
   "scripts": {
-    "install": "cp -r node_modules/algoliasearch node_modules/bootstrap node_modules/bootstrap-table node_modules/@fortawesome node_modules/instantsearch.js node_modules/jquery node_modules/luxon/build/global/luxon.min.js assets/ && wget https://scratchblocks.github.io/js/scratchblocks-v3.6.1-min.js -O assets/scratchblocks.min.js && wget https://scratchblocks.github.io/js/scratchblocks-v3.6.1-min.js.map -O assets/scratchblocks.min.js.map && cp -r node_modules/bootstrap _sass/ && wget https://raw.githubusercontent.com/twbs/bootstrap/main/site/assets/scss/_syntax.scss -O _sass/_syntax.scss",
+    "install": "cp -r node_modules/algoliasearch node_modules/bootstrap node_modules/bootstrap-table node_modules/@fortawesome node_modules/instantsearch.js node_modules/jquery node_modules/luxon/build/global/luxon.min.js assets/ && wget https://scratchblocks.github.io/js/scratchblocks-v3.6.1-min.js -O assets/scratchblocks.min.js && wget https://scratchblocks.github.io/js/scratchblocks-v3.6.1-min.js.map -O assets/scratchblocks.min.js.map && cp -r node_modules/bootstrap _sass/ && pygmentize -S default -f html -a .highlight > _sass/default.scss && pygmentize -S github-dark -f html -a .highlight > _sass/github-dark.scss",
     "preinstall": "rm -rf _sass/_syntax.scss, assets/algoliasearch assets/bootstrap assets/bootstrap-table assets/@fortawesome assets/instantsearch.js assets/jquery assets/luxon.min.js assets/scratchblocks.min.js assets/scratchblocks.min.js.map",
     "postinstall": "rm -rf node_modules"
   }
