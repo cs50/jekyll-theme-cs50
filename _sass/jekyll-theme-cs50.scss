@@ -251,6 +251,7 @@ pre {
 
 // Prevent wrapping on iOS
 pre code span {
+    font-style: normal !important; // Override Pygments' italics
     white-space: pre;
 }
 
