@@ -5,7 +5,7 @@ jobs:
     steps:
       - name: Re-deploy depdendents
         if: ${{ github.ref == 'refs/heads/develop' }}
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.DEPLOY50_PAT }}
           script: |
