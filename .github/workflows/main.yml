@@ -20,7 +20,6 @@ jobs:
                 ['games', '2018/x'],
                 ['games', '2023/spring'],
                 ['harvard', '2023/spring'],
-                ['harvard', '2022/x'],
                 ['harvard', '2023/x'],
                 ['hbap.io', 'main'],
                 ['hbs', '2023/spring'],
@@ -31,7 +30,6 @@ jobs:
                 ['python', '2022/x'],
                 ['scratch', '2021/x'],
                 ['technology', '2017/x'],
-                ['technology', '2022/fall'],
                 ['web', '2020/x'],
                 ['web', '2023/spring'],
                 ['yale', '2022/fall']
