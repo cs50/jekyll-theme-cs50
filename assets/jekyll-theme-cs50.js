@@ -192,6 +192,7 @@ $(document).on('DOMContentLoaded', function() {
             const opts = {
                 day: CS50.local.day,
                 hour: CS50.local.hour,
+                hour12: CS50.local.hour12,
                 minute: CS50.local.minute,
                 month: CS50.local.month,
                 weekday: CS50.local.weekday,
@@ -215,6 +216,7 @@ $(document).on('DOMContentLoaded', function() {
                 // Format end without date
                 html = start.toLocaleString(opts) + ' – ' + end.toLocaleString({
                     hour: CS50.local.hour,
+                    hour12: CS50.local.hour12,
                     minute: CS50.local.minute,
                     timeZoneName: CS50.local.timeZoneName
                 });
@@ -227,6 +229,7 @@ $(document).on('DOMContentLoaded', function() {
                 html = start.toLocaleString(opts) + ' – ' + end.toLocaleString({
                     day: CS50.local.day,
                     hour: CS50.local.hour,
+                    hour12: CS50.local.hour12,
                     minute: CS50.local.minute,
                     month: CS50.local.month,
                     timeZoneName: CS50.local.timeZoneName,
@@ -244,6 +247,7 @@ $(document).on('DOMContentLoaded', function() {
             html = start.toLocaleString({
                 day: CS50.local.day,
                 hour: CS50.local.hour,
+                hour12: CS50.local.hour12,
                 minute: CS50.local.minute,
                 month: CS50.local.month,
                 timeZoneName: CS50.local.timeZoneName,
