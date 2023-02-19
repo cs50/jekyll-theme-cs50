@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "deep_merge", "1.2.2"
   spec.add_runtime_dependency "jekyll", "4.3.2"
   spec.add_runtime_dependency "jekyll-sass-converter", "2.2.0" # https://github.com/jekyll/jekyll-sass-converter#dropped-support-of-importing-files-with-the-same-filename-as-their-parent-file
-  spec.add_runtime_dependency "sanitize", "6.0.0"
+  spec.add_runtime_dependency "sanitize", "6.0.1"
 
   CS50::PLUGINS.each do |gem, version|
     spec.add_runtime_dependency gem, version
