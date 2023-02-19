@@ -4,13 +4,15 @@
     "algoliasearch": "^4.14.3",
     "bootstrap": "^5.3.0-alpha1",
     "bootstrap-table": "^1.21.2",
-    "instantsearch.js": "^4.49.2",
+    "instantsearch.js": "^4.51.0",
     "jquery": "^3.6.3",
-    "luxon": "^3.2.0"
+    "luxon": "^3.2.1",
+    "mermaid": "^9.4.0",
+    "twemoji": "^14.0.2"
   },
   "scripts": {
-    "install": "cp -r node_modules/algoliasearch node_modules/bootstrap node_modules/bootstrap-table node_modules/@fortawesome node_modules/instantsearch.js node_modules/jquery node_modules/luxon/build/global/luxon.min.js assets/ && wget https://scratchblocks.github.io/js/scratchblocks-v3.6.1-min.js -O assets/scratchblocks.min.js && wget https://scratchblocks.github.io/js/scratchblocks-v3.6.1-min.js.map -O assets/scratchblocks.min.js.map && cp -r node_modules/bootstrap _sass/ && pygmentize -S default -f html -a .highlight > _sass/default.scss && pygmentize -S github-dark -f html -a .highlight > _sass/github-dark.scss",
-    "preinstall": "rm -rf _sass/_syntax.scss, assets/algoliasearch assets/bootstrap assets/bootstrap-table assets/@fortawesome assets/instantsearch.js assets/jquery assets/luxon.min.js assets/scratchblocks.min.js assets/scratchblocks.min.js.map",
+    "install": "cp -r node_modules/algoliasearch node_modules/bootstrap node_modules/bootstrap-table node_modules/@fortawesome node_modules/instantsearch.js node_modules/jquery node_modules/luxon/build/global/luxon.min.js node_modules/twemoji/dist/twemoji.min.js assets/ && wget https://scratchblocks.github.io/js/scratchblocks-v3.6.1-min.js -O assets/scratchblocks.min.js && wget https://scratchblocks.github.io/js/scratchblocks-v3.6.1-min.js.map -O assets/scratchblocks.min.js.map && cp -r node_modules/bootstrap _sass/ && pygmentize -S default -f html -a .highlight > _sass/default.scss && pygmentize -S github-dark -f html -a .highlight > _sass/github-dark.scss",
+    "preinstall": "rm -rf _sass/_default.scss _sass/bootstrap _sass/github-dark.scss assets/algoliasearch assets/bootstrap assets/bootstrap-table assets/@fortawesome assets/instantsearch.js assets/jquery assets/luxon.min.js assets/twemoji.min.js assets/scratchblocks.min.js assets/scratchblocks.min.js.map",
     "postinstall": "rm -rf node_modules"
   }
 }

@@ -589,6 +589,9 @@ $(document).on('DOMContentLoaded', function() {
         $(this).iFrameResize();
     });
 
+    // Parse emoji
+    twemoji.parse(document.body);
+
     // Reveal page
     $('body').removeClass('invisible');
 });

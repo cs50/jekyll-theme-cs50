@@ -207,6 +207,15 @@ img {
     max-width: 100%;
 }
 
+// Size the emoji according to the surrounding text
+// https://github.com/twitter/twemoji#inline-styles
+img.emoji {
+    height: 1em;
+    margin: 0 .05em 0 .1em;
+    vertical-align: -0.1em;
+    width: 1em;
+}
+
 // A la GitHub
 dt + dd, dd + dd {
     margin-top: .25rem;
