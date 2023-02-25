@@ -121,7 +121,7 @@
 
             <div class="row">
 
-                <aside class="col-md">
+                <aside class="col-lg">
  
                     <header>
 
@@ -136,11 +136,11 @@
                     </button>
                    {%- endif %}
 
-                    <button aria-controls="nav" aria-expanded="false" class="btn btn-sm collapsed d-md-none" data-bs-target="aside > nav" data-bs-toggle="collapse">
+                    <button aria-controls="nav" aria-expanded="false" class="btn btn-sm collapsed d-lg-none" data-bs-target="aside > nav" data-bs-toggle="collapse">
                         Menu
                     </button>
 
-                    <nav class="collapse d-md-block" id="nav">
+                    <nav class="collapse d-lg-block" id="nav">
 
                         {%- capture nav -%}{%- include nav.md -%}{%- endcapture -%}
                         {{- nav | markdownify | replace: " id=", " data-id=" | strip -}}
@@ -156,7 +156,7 @@
 
                 </aside>
 
-                <main class="col-md">
+                <main class="col-lg">
 
                     {{ content }}
 

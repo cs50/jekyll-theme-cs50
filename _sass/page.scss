@@ -37,14 +37,14 @@ aside a, aside .btn-link {
 }
 
 // Override column's padding
-aside.col-md {
+aside.col-lg {
     padding: 2rem 2rem;
 }
 
 // Fixed width, scroll on larger devices
-@include media-breakpoint-up(md) {
+@include media-breakpoint-up(lg) {
     @media screen {
-        aside.col-md {
+        aside.col-lg {
             flex: 0 1 20rem;
             overflow-y: auto;
             position: sticky;
@@ -146,7 +146,7 @@ footer:empty {
 }
 
 // Override column's padding, width
-main.col-md {
+main.col-lg {
     max-width: 80rem;
     overflow: auto; // https://stackoverflow.com/a/26523355
     padding: 4rem 2rem;
@@ -172,8 +172,8 @@ main .alert .fa-ul {
 }
 
 // On small devices and printers
-// https://getbootstrap.com/docs/4.5/layout/overview/#responsive-breakpoints
-@media (max-width: 767.98px), print {
+// https://getbootstrap.com/docs/5.3/layout/breakpoints/
+@media (max-width: 991.98px), print {
 
     // Don't shrink fonts as much
     small, .small {
@@ -181,10 +181,10 @@ main .alert .fa-ul {
     }
 
     // Less padding
-    aside.col-md {
+    aside.col-lg {
         padding-top: 1rem;
     }
-    main.col-md {
+    main.col-lg {
         padding: 2rem 2rem;
     }
 }
@@ -209,7 +209,7 @@ main .alert .fa-ul {
     }
 
     // Move aside above main
-    aside.col-md {
+    aside.col-lg {
         flex: unset;
         height: auto !important; // To override JavaScript
     }
