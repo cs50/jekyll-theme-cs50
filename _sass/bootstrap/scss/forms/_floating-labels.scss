@@ -1,7 +1,7 @@
 .form-floating {
   position: relative;
 
-  &:not(.form-control:disabled)::before {
+  &::before:not(.form-control:disabled) {
     position: absolute;
     top: $input-border-width;
     left: $input-border-width;

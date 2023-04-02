@@ -165,6 +165,7 @@
   margin-right: $carousel-control-width;
   margin-bottom: 1rem;
   margin-left: $carousel-control-width;
+  list-style: none;
 
   [data-bs-target] {
     box-sizing: content-box;
@@ -230,8 +231,7 @@
 
 @if $enable-dark-mode {
   @include color-mode(dark) {
-    .carousel,
-    &.carousel {
+    .carousel {
       @include carousel-dark();
     }
   }
