@@ -240,8 +240,6 @@ module CS50
 
   class LocalTag < Tag
 
-    @@regex = "\d{4}-\d{2}-\d{2} \d{1,2}:\d{2}(:\d{2})?"
-
     def render(context)
       super
 
@@ -380,6 +378,18 @@ module CS50
 
 end
 
+Jekyll::Hooks.register :pages, :pre_render do |page|
+
+  # Set page's time zone
+  # https://stackoverflow.com/a/58867058/5156190
+  begin
+    ENV["TZ"] = page.data["cs50"]["tz"] 
+  rescue
+    ENV["TZ"] = $site.config["cs50"]["tz"]
+  end
+
+end
+
 Jekyll::Hooks.register :site, :after_reset do |site|
 
   # Override site.url so that jekyll-redirect-from doesn't prepend it
@@ -405,10 +415,6 @@ Jekyll::Hooks.register :site, :pre_render do |site, payload|
 
   # Expose site to Kramdown's monkey patches
   $site = site
-
-  # Site's time zone
-  # https://stackoverflow.com/a/58867058/5156190
-  ENV["TZ"] = site.config["cs50"]["tz"]
 
   # Promote site.cs50.assign.* to global variables
   begin
