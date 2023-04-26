@@ -119,6 +119,9 @@ code.highlighter-rouge {
     color: inherit;
     padding: calc(.2rem - 1px) .2rem;
 }
+.alert code.highlighter-rouge {
+    border-color: var(--bs-alert-border-color) !important;
+}
 
 // A la GitHub
 div.highlighter-rouge {
