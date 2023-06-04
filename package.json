@@ -1,13 +1,13 @@
 {
   "dependencies": {
     "@fortawesome/fontawesome-free": "6.4.0",
-    "algoliasearch": "4.16.0",
-    "bootstrap": "5.3.0-alpha3",
+    "algoliasearch": "4.17.1",
+    "bootstrap": "5.3.0",
     "bootstrap-table": "1.21.4",
-    "instantsearch.js": "4.53.0",
-    "jquery": "3.6.4",
+    "instantsearch.js": "4.56.1",
+    "jquery": "3.7.0",
     "luxon": "3.3.0",
-    "mermaid": "10.0.2",
+    "mermaid": "10.2.2",
     "twemoji": "14.0.2"
   },
   "scripts": {
