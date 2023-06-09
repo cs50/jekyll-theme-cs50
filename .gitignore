@@ -53,6 +53,12 @@ assets/@fortawesome/fontawesome-free/css/*
 !assets/@fortawesome/fontawesome-free/css/all.min.css
 !assets/@fortawesome/fontawesome-free/webfonts/
 
+assets/iframe-resizer/*
+!assets/iframe-resizer/LICENSE
+!assets/iframe-resizer/js/
+assets/iframe-resizer/js/*
+!assets/iframe-resizer/js/iframeResizer.min.js
+
 assets/instantsearch.js/*
 !assets/instantsearch.js/LICENSE
 !assets/instantsearch.js/dist/
@@ -60,11 +66,35 @@ assets/instantsearch.js/dist/*
 !assets/instantsearch.js/dist/instantsearch.production.min.js
 !assets/instantsearch.js/dist/instantsearch.production.min.js.map
 
+assets/intersection-observer/*
+!assets/intersection-observer/intersection-observer.js
+!assets/intersection-observer/package.json
+
 assets/jquery/*
 !assets/jquery/LICENSE.txt
 !assets/jquery/dist/
 assets/jquery/dist/*
 !assets/jquery/dist/jquery.min.js
+
+assets/luxon/*
+!assets/luxon/LICENSE.md
+!assets/luxon/build/
+assets/luxon/build/*
+!assets/luxon/build/global/
+assets/luxon/build/global/*
+!assets/luxon/build/global/luxon.min.js
+
+assets/mathjax/*
+!assets/mathjax/LICENSE
+!assets/mathjax/es5/
+assets/mathjax/es5/*
+!assets/mathjax/es5/jtex-chtml.jsquery.min.js
+
+assets/mermaid/*
+!assets/mermaid/package.json
+!assets/mermaid/dist/
+assets/mermaid/dist/*
+!assets/mermaid/dist/mermaid.min.js
 
 assets/popper.js/*
 !assets/popper.js/dist/
@@ -72,5 +102,17 @@ assets/popper.js/dist/*
 !assets/popper.js/dist/umd/
 assets/popper.js/dist/umd/*
 !assets/popper.js/dist/umd/popper.min.js
+
+assets/twemoji/*
+!assets/twemoji/LICENSE
+!assets/twemoji/dist/
+assets/twemoji/dist/*
+!assets/twemoji/dist/twemoji.min.js
+
+assets/vanilla-lazyload/*
+!assets/vanilla-lazyload/LICENSE.txt
+!assets/vanilla-lazyload/js/
+assets/vanilla-lazyload/js/*
+!assets/vanilla-lazyload/js/lazyload.min.js
 
 node_modules/
