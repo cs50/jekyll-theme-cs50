@@ -88,7 +88,7 @@ assets/mathjax/*
 !assets/mathjax/LICENSE
 !assets/mathjax/es5/
 assets/mathjax/es5/*
-!assets/mathjax/es5/jtex-chtml.jsquery.min.js
+!assets/mathjax/es5/tex-chtml.js
 
 assets/mermaid/*
 !assets/mermaid/package.json
@@ -110,9 +110,9 @@ assets/twemoji/dist/*
 !assets/twemoji/dist/twemoji.min.js
 
 assets/vanilla-lazyload/*
-!assets/vanilla-lazyload/LICENSE.txt
-!assets/vanilla-lazyload/js/
-assets/vanilla-lazyload/js/*
-!assets/vanilla-lazyload/js/lazyload.min.js
+!assets/vanilla-lazyload/LICENSE
+!assets/vanilla-lazyload/dist/
+assets/vanilla-lazyload/dist/*
+!assets/vanilla-lazyload/dist/lazyload.min.js
 
 node_modules/

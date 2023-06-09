@@ -12,7 +12,7 @@
     "mathjax": "3.2.2",
     "mermaid": "10.2.3",
     "twemoji": "14.0.2",
-    "vanilla-lazyload": "17.8.3"
+    "vanilla-lazyload": "^17.8.3"
   },
   "scripts": {
     "install": "cp -r node_modules/algoliasearch node_modules/bootstrap node_modules/bootstrap-table node_modules/@fortawesome node_modules/iframe-resizer node_modules/instantsearch.js node_modules/intersection-observer node_modules/jquery node_modules/luxon node_modules/mathjax node_modules/mermaid node_modules/twemoji node_modules/vanilla-lazyload assets/ && wget https://scratchblocks.github.io/js/scratchblocks-v3.6.1-min.js -O assets/scratchblocks.min.js && wget https://scratchblocks.github.io/js/scratchblocks-v3.6.1-min.js.map -O assets/scratchblocks.min.js.map && cp -r node_modules/bootstrap _sass/ && pygmentize -S default -f html -a .highlight > _sass/default.scss && pygmentize -S github-dark -f html -a .highlight > _sass/github-dark.scss",
