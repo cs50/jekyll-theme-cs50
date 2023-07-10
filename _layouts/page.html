@@ -48,7 +48,11 @@
         <script src="/assets/bootstrap-table/dist/extensions/mobile/bootstrap-table-mobile.min.js?{{ time }}"></script>
 
         <!-- https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use -->
+        {% if site.cs50.fontawesome %}
+        <link crossorigin="anonymous" href="https://kit.fontawesome.com/{{ site.cs50.fontawesome }}.css" rel="stylesheet">
+        {% else %}
         <link href="/assets/@fortawesome/fontawesome-free/css/all.min.css?{{ time }}" rel="stylesheet">
+        {% endif %}
 
         <!-- https://moment.github.io/luxon/ -->
         <script src="/assets/luxon/build/global/luxon.min.js?{{ time }}"></script>
