@@ -1,21 +1,21 @@
 {
   "dependencies": {
     "@fortawesome/fontawesome-free": "6.4.0",
-    "algoliasearch": "4.17.1",
+    "algoliasearch": "4.18.0",
     "bootstrap": "5.3.0",
-    "bootstrap-table": "1.21.4",
+    "bootstrap-table": "1.22.1",
     "iframe-resizer": "4.3.6",
-    "instantsearch.js": "4.56.1",
+    "instantsearch.js": "4.56.4",
     "intersection-observer": "0.12.2",
     "jquery": "3.7.0",
-    "luxon": "^3.3.0",
+    "luxon": "3.3.0",
     "mathjax": "3.2.2",
-    "mermaid": "10.2.3",
+    "mermaid": "10.2.4",
     "twemoji": "14.0.2",
-    "vanilla-lazyload": "^17.8.3"
+    "vanilla-lazyload": "17.8.3"
   },
   "scripts": {
-    "install": "cp -r node_modules/algoliasearch node_modules/bootstrap node_modules/bootstrap-table node_modules/@fortawesome node_modules/iframe-resizer node_modules/instantsearch.js node_modules/intersection-observer node_modules/jquery node_modules/luxon node_modules/mathjax node_modules/mermaid node_modules/twemoji node_modules/vanilla-lazyload assets/ && wget https://scratchblocks.github.io/js/scratchblocks-v3.6.1-min.js -O assets/scratchblocks.min.js && wget https://scratchblocks.github.io/js/scratchblocks-v3.6.1-min.js.map -O assets/scratchblocks.min.js.map && cp -r node_modules/bootstrap _sass/ && pygmentize -S default -f html -a .highlight > _sass/default.scss && pygmentize -S github-dark -f html -a .highlight > _sass/github-dark.scss",
+    "install": "cp -r node_modules/algoliasearch node_modules/bootstrap node_modules/bootstrap-table node_modules/@fortawesome node_modules/iframe-resizer node_modules/instantsearch.js node_modules/intersection-observer node_modules/jquery node_modules/luxon node_modules/mathjax node_modules/mermaid node_modules/twemoji node_modules/vanilla-lazyload assets/ && wget https://scratchblocks.github.io/js/scratchblocks-v3.6.2-min.js -O assets/scratchblocks.min.js && wget https://scratchblocks.github.io/js/scratchblocks-v3.6.2-min.js.map -O assets/scratchblocks.min.js.map && cp -r node_modules/bootstrap _sass/ && pygmentize -S default -f html -a .highlight > _sass/default.scss && pygmentize -S github-dark -f html -a .highlight > _sass/github-dark.scss",
     "preinstall": "rm -rf _sass/_default.scss _sass/bootstrap _sass/github-dark.scss assets/algoliasearch assets/bootstrap assets/bootstrap-table assets/@fortawesome assets/iframe-resizer assets/instantsearch.js assets/intersection-observer assets/jquery assets/luxon assets/mathjax assets/mermaid assets/twemoji assets/vanilla-lazyload assets/scratchblocks.min.js assets/scratchblocks.min.js.map",
     "postinstall": "rm -rf node_modules"
   }
