@@ -124,7 +124,7 @@ code.highlighter-rouge {
 }
 
 // A la GitHub
-div.highlighter-rouge {
+div.highlighter-rouge, div.scratchblocks {
     margin-bottom: 1rem;
 }
 li {
@@ -137,12 +137,6 @@ li {
 div.mermaid svg {
     height: auto;
     max-height: 100vh;
-}
-
-// Shrink Scratch blocks, a la http://scratchblocks.github.io/
-div.scratchblocks svg {
-    transform: scale(0.675);
-    transform-origin: 0 0;
 }
 
 // Details, summaries

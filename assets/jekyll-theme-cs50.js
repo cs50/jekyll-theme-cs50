@@ -438,21 +438,13 @@ $(document).on('DOMContentLoaded', function() {
 
     // Render Scratch blocks
     scratchblocks.renderMatching('pre code.language-scratch', {
+        scale: 0.675,
         style: 'scratch3'
     });
 
     // Remove PRE wrapper, since not actually preformatted text
     $('pre code.language-scratch').each(function(index, element) {
         $(element).parent().replaceWith($(element).children());
-    });
-
-    // https://github.com/scratchblocks/scratchblocks/pull/301#issuecomment-829428605
-    $('.scratchblocks svg').each(function(index, element) {
-        const bbox = element.getBBox();
-        const height = Math.floor(bbox.height) + 2; // Prevents clipping of bottom of some blocks
-        $(element).attr('width', bbox.width);
-        $(element).attr('height', height);
-        $(element).parent().css('height', Math.ceil(element.getBoundingClientRect().height) + 'px');
     });
 
     // Get headings
