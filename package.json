@@ -1,8 +1,8 @@
 {
   "dependencies": {
-    "@fortawesome/fontawesome-free": "6.4.0",
+    "@fortawesome/fontawesome-free": "6.4.2",
     "algoliasearch": "4.18.0",
-    "bootstrap": "5.3.0",
+    "bootstrap": "5.3.1",
     "bootstrap-table": "1.22.1",
     "iframe-resizer": "4.3.6",
     "instantsearch.js": "4.56.4",
