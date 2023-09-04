@@ -11,21 +11,16 @@ jobs:
           script: |
             const dependents = [
                 ['ai', '2020/x'],
-                ['ai', '2023/summer'],
                 ['ai', '2023/fall'],
                 ['ap', '2022'],
                 ['beyond', '2019/x'],
                 ['business', '2017/x'],
                 ['business', '2023/fall'],
-                ['business', '2023/summer'],
                 ['cs50.tf', 'main'],
                 ['cybersecurity', '2023/fall'],
                 ['cybersecurity', '2023/x'],
                 ['games', '2018/x'],
-                ['games', '2023/fall'],
-                ['games', '2023/summer'],
                 ['harvard', '2023/fall'],
-                ['harvard', '2023/summer'],
                 ['harvard', '2023/x'],
                 ['hbap.io', 'main'],
                 ['law', '2019/x'],
@@ -37,7 +32,6 @@ jobs:
                 ['technology', '2017/x'],
                 ['web', '2020/x'],
                 ['web', '2023/fall'],
-                ['web', '2023/summer'],
                 ['yale', '2023/fall']
             ];
             for (let dependent of dependents) {
