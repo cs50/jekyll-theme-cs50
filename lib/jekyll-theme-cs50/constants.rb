@@ -3,6 +3,7 @@ module CS50
   PLUGINS = {
     "jekyll-algolia" => "1.7.1",
     "jekyll-default-layout" => "0.1.5",
+    "jekyll-drafts-as-metadata" => "0.0.5",
     "jekyll-optional-front-matter" => "0.3.2",
     "jekyll-redirect-from" => "0.16.0",
     "jekyll-titles-from-headings" => "0.5.3"
