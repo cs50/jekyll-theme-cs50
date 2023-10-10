@@ -89,6 +89,15 @@ assets/mathjax/*
 !assets/mathjax/es5/
 assets/mathjax/es5/*
 !assets/mathjax/es5/tex-chtml.js
+!assets/mathjax/es5/output/
+assets/mathjax/es5/output/*
+!assets/mathjax/es5/output/chtml/
+assets/mathjax/es5/output/chtml/*
+!assets/mathjax/es5/output/chtml/fonts/
+assets/mathjax/es5/output/chtml/fonts/*
+!assets/mathjax/es5/output/chtml/fonts/woff-v2/
+assets/mathjax/es5/output/chtml/fonts/woff-v2/*
+!assets/mathjax/es5/output/chtml/fonts/woff-v2/*.woff
 
 assets/mermaid/*
 !assets/mermaid/package.json
