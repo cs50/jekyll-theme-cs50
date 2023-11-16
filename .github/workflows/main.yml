@@ -3,7 +3,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Re-deploy depdendents
+      - name: Re-deploy dependents 
         if: ${{ github.ref == 'refs/heads/develop' }}
         uses: actions/github-script@v6
         with:
