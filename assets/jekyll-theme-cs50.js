@@ -417,24 +417,39 @@ $(document).on('DOMContentLoaded', function() {
         }
     });
 
-    // Render Mermaid charts
-    mermaid.initialize({
-        theme: (window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'default'
-    });
+    // Convert Jekyll's code blocks to Mermaid's format
     $('code[class="language-mermaid"]').each(function(index, element) {
 
         // Replace pre > code with div
         const $element = $(element);
         const $div = $('<div class="mermaid">').text($element.text());
+        $div.attr('data-original-code', $element.text()); // https://github.com/mermaid-js/mermaid/issues/1945#issuecomment-1661264708
         $element.parent().replaceWith($div);
-
-        // Render chart
-        mermaid.init({}, $div.get(0));
-
-        // Left-align Mermaid, until https://github.com/mermaid-js/mermaid/issues/1983
-        // https://stackoverflow.com/a/6322799/5156190
-        $div.children('svg').attr('preserveAspectRatio', 'xMinYMin meet');
     });
+    (function() {
+
+        // Allow for theme changing
+        const init = function() {
+
+            // Render chart
+            const theme = (window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'default';
+            $('div.mermaid').each(function(index, element) {
+
+                // Workaround for now, per https://github.com/mermaid-js/mermaid/issues/1945#issuecomment-1661264708
+                $(element).removeAttr('data-processed');
+                $(element).html($(element).attr('data-original-code'));
+
+                // (Re-)initialize chart
+                mermaid.init({theme: theme}, element);
+
+                // Left-align Mermaid, until https://github.com/mermaid-js/mermaid/issues/1983
+                // https://stackoverflow.com/a/6322799/5156190
+                $(element).children('svg').attr('preserveAspectRatio', 'xMinYMin meet');
+            });
+        };
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', init);
+        init();
+    })();
 
     // Render Scratch blocks
     scratchblocks.renderMatching('pre code.language-scratch', {
