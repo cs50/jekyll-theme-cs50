@@ -28,7 +28,7 @@ jobs:
                 ['mobile', '2018/x'],
                 ['python', '2022/x'],
                 ['r', '2024/x'],
-                ['scratch', '2021/x'],
+                ['scratch', '2024/x'],
                 ['sql', '2024/x'],
                 ['sql', '2024/spring'],
                 ['technology', '2017/x'],
