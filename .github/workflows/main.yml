@@ -12,29 +12,37 @@ jobs:
             const dependents = [
                 ['ai', '2024/x'],
                 ['ai', '2024/spring'],
+                ['ai', '2024/summer'],
                 ['ap', '2022'],
                 ['beyond', '2019/x'],
                 ['business', '2017/x'],
                 ['business', '2024/spring'],
+                ['business', '2024/summer'],
                 ['cs50.tf', 'main'],
                 ['cybersecurity', '2023/x'],
                 ['cybersecurity', '2024/spring'],
+                ['cybersecurity', '2024/summer'],
                 ['games', '2018/x'],
                 ['games', '2024/spring'],
+                ['games', '2024/summer'],
                 ['harvard', '2024/x'],
                 ['harvard', '2024/spring'],
+                ['harvard', '2024/summer'],
                 ['hbap.io', 'main'],
                 ['law', '2019/x'],
                 ['mobile', '2018/x'],
                 ['python', '2022/x'],
                 ['r', '2024/x'],
+                ['r', '2024/summer'],
                 ['scratch', '2024/x'],
                 ['sql', '2024/x'],
                 ['sql', '2024/spring'],
+                ['sql', '2024/summer'],
                 ['technology', '2017/x'],
                 ['web', '2020/x'],
                 ['web', '2024/spring'],
-                ['yale', '2023/fall']
+                ['web', '2024/summer'],
+                ['yale', '2024/summer']
             ];
             for (let dependent of dependents) {
                 await github.rest.actions.createWorkflowDispatch({
