@@ -3,9 +3,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Re-deploy dependents 
+      - name: Re-deploy dependents
         if: ${{ github.ref == 'refs/heads/develop' }}
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.DEPLOY50_PAT }}
           script: |
