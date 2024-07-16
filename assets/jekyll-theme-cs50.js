@@ -597,7 +597,8 @@ $(document).on('DOMContentLoaded', function() {
     });
 
     // Parse emoji
-    twemoji.parse(document.body);
+    // https://github.com/twitter/twemoji/issues/580#issuecomment-1376299586
+    twemoji.parse(document.body, {base: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/'});
 
     // Reveal page
     $('body').removeClass('invisible');
