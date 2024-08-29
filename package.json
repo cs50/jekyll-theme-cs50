@@ -1,16 +1,16 @@
 {
   "dependencies": {
-    "@fortawesome/fontawesome-free": "6.5.2",
-    "algoliasearch": "4.23.3",
+    "@fortawesome/fontawesome-free": "6.6.0",
+    "algoliasearch": "5.2.1",
     "bootstrap": "5.3.3",
-    "bootstrap-table": "1.22.6",
-    "iframe-resizer": "4.4.2",
-    "instantsearch.js": "4.71.1",
+    "bootstrap-table": "1.23.2",
+    "iframe-resizer": "5.2.6",
+    "instantsearch.js": "4.74.0",
     "intersection-observer": "0.12.2",
     "jquery": "3.7.1",
-    "luxon": "3.4.4",
+    "luxon": "3.5.0",
     "mathjax": "3.2.2",
-    "mermaid": "10.9.1",
+    "mermaid": "11.0.2",
     "twemoji": "14.0.2",
     "vanilla-lazyload": "19.1.3"
   },
