@@ -576,11 +576,15 @@ module Kramdown
         current_link = @tree.children.select{ |element| [:a].include?(element.type) }.last
         unless current_link.nil? 
 
-          # If inline link ends with .md
-          if match = current_link.attr["href"].match(/\A([^\s]*)\.md(\s*.*)\z/)
+          # If a relative link
+          if !current_link.attr["href"].start_with?("https://", "http://")
+          
+            # If link ends with .md
+            if match = current_link.attr["href"].match(/\A([^\s]*)\.md(\s*.*)\z/)
 
-            # Rewrite as /, just as jekyll-relative-links does
-            current_link.attr["href"] = match.captures[0] + "/" + match.captures[1]
+              # Rewrite as /, just as jekyll-relative-links does
+              current_link.attr["href"] = match.captures[0] + "/" + match.captures[1]
+            end
           end
         end
       end
