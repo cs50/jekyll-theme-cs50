@@ -466,6 +466,9 @@ Jekyll::Hooks.register [:site], :post_render do |site|
   # For each page
   site.pages.each do |page|
 
+    # Skip relative path logic for 404.md or 404.html
+    next if page.name == "404.md" || page.name == "404.html"    
+
     # If HTML
     if page.output_ext == ".html"
 
