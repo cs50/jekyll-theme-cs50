@@ -593,7 +593,7 @@ $(document).on('DOMContentLoaded', function() {
 
     // Resize iframes dynamically
     $('iframe').on('load', function() {
-        iFrameResize({}, this);
+        iframeResize({}, this);
     });
 
     // Parse emoji
