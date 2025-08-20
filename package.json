@@ -10,7 +10,7 @@
     "jquery": "3.7.1",
     "luxon": "3.6.1",
     "mathjax": "3.2.2",
-    "mermaid": "11.6.0",
+    "mermaid": "11.10.0",
     "twemoji": "14.0.2",
     "vanilla-lazyload": "19.1.3"
   },
