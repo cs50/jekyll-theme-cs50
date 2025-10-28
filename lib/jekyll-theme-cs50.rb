@@ -1,4 +1,5 @@
 require "cgi"
+require "date"
 require "deep_merge"
 require "digest/md5"
 require "jekyll"
@@ -60,25 +61,37 @@ module CS50
         Time.strptime(s, "%Y-%m-%d %H:%M")
       rescue
 
-        # Try HH:MM:SS, relative to now
+        # Try A HH:MM
         begin
-          t = Time.strptime(s, "%H:%M:%S", now)
+          t = Date.strptime(s, "%A %H:%M")
         rescue
 
-          # Try HH:MM, relative to now
+          # Try a HH:MM
           begin
-            t = Time.strptime(s, "%H:%M", now)
+            t = Date.strptime(s, "%a %H:%M")
           rescue
-            raise "Invalid datetime: #{s}"
+
+            # Try u HH:MM
+            begin
+              t = Date.strptime(s, "%u %H:%M")
+            rescue
+
+              # Try HH:MM, relative to now
+              begin
+                t = Time.strptime(s, "%H:%M", now)
+              rescue
+                raise "Invalid datetime: #{s}"
+              end
+
+              # Because Time.strptime parses relative to now's date,
+              # not now's date plus time, add one day if t is in past
+              if t < now
+                t += 24 * 60 * 60
+              end
+              t
+            end
           end
         end
-
-        # Because Time.strptime parses relative to now's date,
-        # not now's date plus time, add one day if t is in past
-        if t < now
-          t += 24 * 60 * 60
-        end
-        t
       end
     end
   end
