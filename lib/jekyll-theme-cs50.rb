@@ -104,8 +104,19 @@ module CS50
     def describe(input, max_length = 160)
       return "" if input.nil? || input.to_s.strip.empty?
 
+      # Render Liquid tags first if $site is defined
+      markdown = input.to_s
+      if defined?($site) && $site
+        begin
+          markdown = $site.liquid_renderer.file("(cs50-describe)").parse(markdown).render!($site.site_payload, { :registers => { :site => $site } })
+        rescue => e
+          Jekyll.logger.warn "CS50 warning: failed to render Liquid in description: #{e.message}"
+          markdown = input.to_s
+        end
+      end
+
       # Convert Markdown to HTML
-      html = $site.find_converter_instance(::Jekyll::Converters::Markdown).convert(input.to_s)
+      html = $site.find_converter_instance(::Jekyll::Converters::Markdown).convert(markdown)
       
       # Parse HTML and extract text
       doc = Nokogiri::HTML5.fragment(html)
