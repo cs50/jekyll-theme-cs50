@@ -104,8 +104,9 @@ module CS50
     def describe(input, max_length = 160)
       return "" if input.nil? || input.to_s.strip.empty?
 
-      # Render Liquid tags first if $site is defined
       markdown = input.to_s
+      
+      # Render Liquid tags first if $site is defined
       if defined?($site) && $site
         begin
           markdown = $site.liquid_renderer.file("(cs50-describe)").parse(markdown).render!($site.site_payload, { :registers => { :site => $site } })
