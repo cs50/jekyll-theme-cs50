@@ -105,7 +105,7 @@ module CS50
       return "" if input.nil? || input.to_s.strip.empty?
 
       markdown = input.to_s
-      
+
       # Render Liquid tags first if $site is defined
       if defined?($site) && $site
         begin
