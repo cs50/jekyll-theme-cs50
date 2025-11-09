@@ -99,6 +99,45 @@ module CS50
   end
   Liquid::Template.register_filter(MDhash)
 
+  # Generate a description from page content
+  module DescriptionGenerator
+    def describe(input, max_length = 160)
+      return "" if input.nil? || input.to_s.strip.empty?
+
+      # Convert Markdown to HTML
+      html = $site.find_converter_instance(::Jekyll::Converters::Markdown).convert(input.to_s)
+      
+      # Parse HTML and extract text
+      doc = Nokogiri::HTML5.fragment(html)
+      
+      # Remove the page's title (i.e., first h1 tag)
+      doc.css("h1").first&.remove
+      
+      # Remove any table of contents
+      doc.css("ul#markdown-toc").first&.remove
+      
+      # Strip tags
+      text = doc.text.strip
+      
+      # Clean up whitespace
+      text = text.gsub(/\s+/, " ").strip
+      
+      # Return empty string if no text extracted
+      return "" if text.empty?
+      
+      # Truncate to max_length, breaking at word boundary
+      if text.length > max_length
+        text = text[0...(max_length - 3)]
+        last_space = text.rindex(" ")
+        text = text[0...last_space] if last_space && last_space > 0
+        text += "..."
+      end
+      
+      text
+    end
+  end
+  Liquid::Template.register_filter(DescriptionGenerator)
+
   module Mixins
 
     def initialize(tag_name, markup, options)
