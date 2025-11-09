@@ -7,20 +7,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1, width=device-width">
 
-        {%- if page.refresh -%}
+        {%- if page.refresh %}
         <meta content="{{ page.refresh }}" http-equiv="refresh">
-        {%- endif -%}
-
-        {%- capture description -%}
-            {%- if page.description -%}
-                {{- page.description -}}
-            {%- elsif page.content -%}
-                {{- page.content | describe -}}
-            {%- else -%}
-                {{- site.cs50.description -}}
-            {%- endif -%}
-        {%- endcapture -%}
-        <meta property="og:description" content="{{ description | strip }}">
+        {%- endif %}
 
         <meta property="og:image" content="{{ page.image | default: site.cs50.image }}">
 
@@ -34,7 +23,7 @@
                     {{- site.cs50.title -}}
                 {%- endunless -%}
             {%- endif -%}
-        {%- endcapture -%}
+        {%- endcapture %}
 
         <meta property="og:title" content="{{ title }}">
 

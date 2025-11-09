@@ -470,6 +470,60 @@ Jekyll::Hooks.register :site, :pre_render do |site, payload|
   end
 end
 
+Jekyll::Hooks.register [:pages], :post_render do |page|
+
+  # Skip if not HTML
+  next if page.output_ext != ".html"
+
+  # Parse HTML
+  doc = Nokogiri::HTML(page.output)
+  main = doc.at_css("main")
+  next if main.nil?
+
+  # If page.description
+  if page.data.key?("description")
+    description = page.data["description"]
+
+  # Else infer
+  else
+
+    # Remove the page's title (i.e., first h1 tag)
+    main.css("h1").first&.remove
+        
+    # Remove any table of contents
+    main.css("ul#markdown-toc").first&.remove
+        
+    # Remove any spoilers
+    main.css("details")&.remove
+        
+    # Strip tags
+    text = main.text.strip
+
+    # Clean up whitespace
+    text = text.gsub(/\s+/, " ").strip
+      
+    # Truncate to max_length, breaking at word boundary
+    max_length = 160
+    if text.length > max_length
+      description = text[0...(max_length - 3)]
+      last_space = description .rindex(" ")
+      description = description[0...last_space] if last_space && last_space > 0
+      description += "..."
+    end
+  end
+
+  # Inject description
+  head = doc.at_css("head")
+  next if head.nil?
+  meta = Nokogiri::XML::Node.new("meta", doc)
+  meta["property"] = "og:description"
+  meta["content"] = CGI.escapeHTML(description)
+  head.add_child(meta)
+
+  # Update HTML
+  page.output = doc.to_html
+end
+
 Jekyll::Hooks.register [:site], :post_render do |site|
 
   # Paths of pages
