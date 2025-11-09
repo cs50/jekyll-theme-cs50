@@ -517,7 +517,7 @@ Jekyll::Hooks.register [:pages], :post_render do |page|
   next if head.nil?
   meta = Nokogiri::XML::Node.new("meta", doc)
   meta["property"] = "og:description"
-  meta["content"] = CGI.escapeHTML(description)
+  meta["content"] = CGI.escapeHTML(description.to_s)
   head.add_child(meta)
 
   # Update HTML
