@@ -3,8 +3,10 @@ require "deep_merge"
 require "digest/md5"
 require "jekyll"
 require "jekyll-redirect-from"
+require "json"
 require "kramdown/parser/gfm"
 require "kramdown/parser/kramdown/link"
+require "net/http"
 require "pathname"
 require "sanitize"
 require "time"
@@ -178,6 +180,62 @@ module CS50
     Liquid::Template.register_tag("before", self)
 
   end
+
+  class AlbumTag < Tag
+
+    def render(context)
+      super
+
+      # Parse URL 
+      begin
+        album_uri = URI(@args[0])
+        raise unless album_uri.is_a?(URI::HTTP) || album_uri.is_a?(URI::HTTPS)
+        album = album_uri.path.split("/")[1]
+      rescue
+        raise "Invalid album URL: #{@args[0]}"
+      end
+
+      # Get album's AlbumKey
+      begin
+        api_uri = URI("https://api.smugmug.com/api/v2!weburilookup")
+        api_uri.query = URI.encode_www_form({
+          "APIKey" => $site.config["cs50"]["smugmug"],
+          "WebUri" => URI::HTTPS.build(:host => album_uri.host, :path => "/#{album}")
+        })
+        http = Net::HTTP.new(api_uri.host, api_uri.port)
+        http.use_ssl = true
+        request = Net::HTTP::Get.new(api_uri.request_uri)
+        request["Accept"] = "application/json"
+        response = http.request(request)
+        raise unless response.is_a?(Net::HTTPSuccess)
+        data = JSON.parse(response.body)
+        album_key = data["Response"]["Album"]["AlbumKey"]
+      rescue
+        raise "Could not GET album's AlbumKey from API"
+      end
+
+      # Build embeddable URL
+      components = {
+        "autoStart" => "1",
+        "captions" => "0",
+        "key" => album_key,
+        "navigation" => "0",
+        "playButton" => "0",
+        "randomize" => "1",
+        "speed" => "3",
+        "transition" => "fade",
+        "transitionSpeed" => "2"
+      }
+      src = URI::HTTPS.build(:host => album_uri.host, :path => "/frame/slideshow", :query => URI.encode_www_form(components))
+
+      # Return HTML
+      return "<iframe src='#{src}'></iframe>"
+    end
+
+    Liquid::Template.register_tag("album", self)
+
+  end
+
 
   class AlertBlock < Block
 
