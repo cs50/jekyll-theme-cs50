@@ -195,6 +195,11 @@ module CS50
         raise "Invalid album URL: #{@args[0]}"
       end
 
+      # Check for API key
+      if $site.config["cs50"]["smugmug"].nil? || $site.config["cs50"]["smugmug"].empty?
+        raise "Missing API key for SmugMug" 
+      end
+
       # Get album's AlbumKey
       begin
         api_uri = URI("https://api.smugmug.com/api/v2!weburilookup")
