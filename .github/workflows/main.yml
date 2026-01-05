@@ -25,7 +25,7 @@ jobs:
                 ['hls', '2025/winter'],
                 ['law', '2019/x'],
                 ['mobile', '2018/x'],
-                ['oxford', '2025/michaelmas'],
+                ['oxford', '2026/hilary'],
                 ['python', '2022/x'],
                 ['r', '2024/x'],
                 ['scratch', '2024/x'],
