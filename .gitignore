@@ -64,7 +64,6 @@ assets/instantsearch.js/*
 !assets/instantsearch.js/dist/
 assets/instantsearch.js/dist/*
 !assets/instantsearch.js/dist/instantsearch.production.min.js
-!assets/instantsearch.js/dist/instantsearch.production.min.js.map
 
 assets/intersection-observer/*
 !assets/intersection-observer/intersection-observer.js
