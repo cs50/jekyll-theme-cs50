@@ -10,7 +10,7 @@
     "luxon": "3.7.2",
     "mathjax": "4.1.1",
     "@mathjax/mathjax-newcm-font": "4.1.1",
-    "mermaid": "11.13.0",
+    "mermaid": "11.15.0",
     "@twemoji/api": "17.0.2",
     "vanilla-lazyload": "19.1.3"
   },
