@@ -591,12 +591,33 @@ $(document).on('DOMContentLoaded', function() {
     });
     $(window).trigger('resize');
 
-    // Resize iframes dynamically
+    // Resize iframes dynamically, except those deferred until their spoiler is opened (see below)
     // https://iframe-resizer.com/licenses/
-    iframeResize({
+    const options = {
         license: 'GPLv3',
         waitForLoad: false
-    });
+    };
+    iframeResize(options, 'iframe:not([data-src])');
+
+    // Load deferred iframes once their spoiler is opened, since YouTube's player
+    // otherwise chooses a tiny (blurry) poster for a still-hidden iframe
+    const load = function() {
+        $(this).find('iframe[data-src]').each(function(index, element) {
+
+            // Skip iframes still inside a closed (nested) spoiler
+            if ($(element).closest('details:not([open])').length) {
+                return;
+            }
+
+            // Load iframe, then resize it dynamically (iframe-resizer needs src for its origin check)
+            $(element).attr('src', $(element).attr('data-src')).removeAttr('data-src');
+            iframeResize(options, element);
+        });
+    };
+    $('details').on('toggle', load);
+
+    // In case a spoiler is already open (e.g., via find-in-page)
+    $('details[open]').each(load);
 
     // Parse emoji
     // https://github.com/twitter/twemoji/issues/580#issuecomment-1376299586
