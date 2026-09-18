@@ -353,7 +353,11 @@ module CS50
     # https://stackoverflow.com/q/19169849/5156190
     # https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button (re phrasing, but not interactive, content)
     def render(context)
-      html = CS50::convert(super)
+
+      # Let nested tags (e.g., video) know they're inside a spoiler
+      html = context.stack("spoiler" => true) do
+        CS50::convert(super)
+      end
       summary = CS50::sanitize(CS50::convert((@args[0]) ? CGI.escapeHTML(@args[0]) : "Spoiler"))
       "<details>" \
         "<summary>#{summary}</summary>" \
@@ -369,6 +373,10 @@ module CS50
 
     def render(context)
       super
+
+      # If inside a spoiler, defer loading (via JavaScript) until spoiler is opened, since
+      # YouTube's player otherwise chooses a tiny (blurry) poster for a still-hidden iframe
+      src_attr = context["spoiler"] ? "data-src" : "src"
 
       # Parse YouTube URL
       if @args[0] 
@@ -412,11 +420,11 @@ module CS50
           src = URI::HTTPS.build(:host => "www.youtube.com", :path => "/embed/#{v}", :query => URI.encode_www_form(components))
 
           # Return HTML
-          return "<div class='ratio ratio-16x9' data-video><iframe allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='border' data-video src='#{src}'></iframe></div>"
+          return "<div class='ratio ratio-16x9' data-video><iframe allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='border' data-video #{src_attr}='#{src}'></iframe></div>"
 
         # If CS50 Video Player
         elsif @args[0] =~ /^https?:\/\/video\.cs50\.io\/([^?]+)/
-          return "<iframe allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='border' data-video src='#{@args[0]}'></iframe>"
+          return "<iframe allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen class='border' data-video #{src_attr}='#{@args[0]}'></iframe>"
         end
       end
 
