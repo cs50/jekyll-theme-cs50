@@ -325,20 +325,20 @@ $(document).on('DOMContentLoaded', function() {
                 const marker = $(element).attr('data-marker');
                 if (marker === '+') {
                     $(element).attr('data-marker', '-');
-                    $(element).find('> .fa-li > .fa-plus-square').removeClass('fa-plus-square').addClass('fa-minus-square');
+                    $(element).find('> .fa-li > .fa-square-plus').removeClass('fa-square-plus').addClass('fa-square-minus');
                 }
                 else if (marker === '-') {
                     $(element).attr('data-marker', '+');
-                    $(element).find('> .fa-li > .fa-minus-square').removeClass('fa-minus-square').addClass('fa-plus-square');
+                    $(element).find('> .fa-li > .fa-square-minus').removeClass('fa-square-minus').addClass('fa-square-plus');
                 }
                 $(window).trigger('resize');
             }
         };
 
         // Icons
-        const plus = $('<span class="fa-li"><i class="far fa-plus-square"></i></span>').click(click);
-        const minus = $('<span class="fa-li"><i class="far fa-minus-square"></i></span>').click(click);
-        const square = $('<span class="fa-li"><i class="fas fa-square"></i></span>');
+        const plus = $('<span class="fa-li"><i class="fa-regular fa-square-plus"></i></span>').click(click);
+        const minus = $('<span class="fa-li"><i class="fa-regular fa-square-minus"></i></span>').click(click);
+        const square = $('<span class="fa-li"><i class="fa-solid fa-square"></i></span>');
 
         // Wrapper
         const $span = $('<span>').click(click);

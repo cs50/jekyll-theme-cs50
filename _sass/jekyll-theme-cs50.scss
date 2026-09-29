@@ -283,7 +283,7 @@ pre code span {
 [data-marker="+"] > .fa-li, [data-marker="-"] > .fa-li {
     user-select: none;
 }
-[data-marker="+"] > .fa-li > .fa-plus-square, [data-marker="-"] > .fa-li > .fa-minus-square {
+[data-marker="+"] > .fa-li > .fa-square-plus, [data-marker="-"] > .fa-li > .fa-square-minus {
     font-size: 80%;
 }
 
