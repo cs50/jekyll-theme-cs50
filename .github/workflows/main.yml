@@ -41,6 +41,9 @@ jobs:
                   owner: 'cs50',
                   repo: dependent[0],
                   workflow_id: 'main.yml',
-                  ref: dependent[1]
+                  ref: dependent[1],
+                  headers: {
+                    'X-GitHub-Api-Version': '2026-03-10'
+                  }
                 });
             }
