@@ -459,11 +459,23 @@ Jekyll::Hooks.register :pages, :pre_render do |page|
     ENV["TZ"] = $site.config["cs50"]["tz"]
   end
 
-  # Trim whitespace from indented conditionals, so that LI tags aren't wrapped with P tags
-  page.content = page.content.gsub(/^(\s+){%\s*(if .*?[^\-])\s*%}(\s*)$/, '\1{% \2 -%}\3')
-  page.content = page.content.gsub(/^(\s+){%\s*(elsif .*?[^\-])\s*%}(\s*)$/, '\1{%- \2 -%}\3')
-  page.content = page.content.gsub(/^(\s+){%\s*(else)\s*%}(\s*)$/, '\1{%- \2 -%}\3')
-  page.content = page.content.gsub(/^(\s+){%\s*(endif)\s*%}(\s*)$/, '\1{%- \2 %}\3')
+  # Trim whitespace from indented conditionals, so that LI tags aren't wrapped with P tags,
+  # but leave {% raw %}...{% endraw %} blocks untouched, since Liquid outputs their contents verbatim
+  # (so any whitespace-control dashes injected there would appear literally in the rendered page).
+  # Each rule is matched alongside the raw block as a single alternation (rather than splitting the
+  # page on raw blocks), so that ^ and $ stay anchored to real line boundaries, even right after an
+  # inline {% endraw %}.
+  raw_block = /{%-?\s*raw\s*-?%}.*?{%-?\s*endraw\s*-?%}/m
+  [
+    [/^(\s+){%\s*(if .*?[^\-])\s*%}(\s*)$/, '\1{% \2 -%}\3'],
+    [/^(\s+){%\s*(elsif .*?[^\-])\s*%}(\s*)$/, '\1{%- \2 -%}\3'],
+    [/^(\s+){%\s*(else)\s*%}(\s*)$/, '\1{%- \2 -%}\3'],
+    [/^(\s+){%\s*(endif)\s*%}(\s*)$/, '\1{%- \2 %}\3']
+  ].each do |pattern, replacement|
+    page.content = page.content.gsub(/(#{raw_block})|#{pattern}/) do |match|
+      $1 ? match : match.sub(pattern, replacement)
+    end
+  end
 
 end
 
