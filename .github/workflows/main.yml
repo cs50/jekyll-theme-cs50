@@ -11,7 +11,7 @@ jobs:
           script: |
             const dependents = [
                 ['ai', '2024/x'],
-                ['ap', '2024'],
+                ['ap', '2026'],
                 ['business', '2017/x'],
                 ['business', '2025/x'],
                 ['business', '2026/fall'],
@@ -20,7 +20,6 @@ jobs:
                 ['cybersecurity', '2026/fall'],
                 ['games', '2018/x'],
                 ['games', '2025/x'],
-                ['harvard', '2025/x'],
                 ['harvard', '2026/fall'],
                 ['harvard', '2026/x'],
                 ['hbap.io', 'main'],
