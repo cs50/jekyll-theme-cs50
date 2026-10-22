@@ -417,39 +417,58 @@ $(document).on('DOMContentLoaded', function() {
         }
     });
 
-    // Convert Jekyll's code blocks to Mermaid's format
-    $('code[class="language-mermaid"]').each(function(index, element) {
+    // Render Mermaid diagrams, if Mermaid loaded (else leave code blocks as is)
+    if (typeof mermaid !== 'undefined') {
 
-        // Replace pre > code with div
-        const $element = $(element);
-        const $div = $('<div class="mermaid">').text($element.text());
-        $div.attr('data-original-code', $element.text()); // https://github.com/mermaid-js/mermaid/issues/1945#issuecomment-1661264708
-        $element.parent().replaceWith($div);
-    });
-    (function() {
+        // Convert Jekyll's code blocks to Mermaid's format
+        $('code[class="language-mermaid"]').each(function(index, element) {
+
+            // Replace pre > code with div
+            const $element = $(element);
+            const $div = $('<div class="mermaid">').text($element.text());
+            $div.attr('data-original-code', $element.text()); // https://github.com/mermaid-js/mermaid/issues/1945#issuecomment-1661264708
+            $element.parent().replaceWith($div);
+        });
 
         // Allow for theme changing
-        const init = function() {
+        const render = function() {
 
-            // Render chart
+            // Configure Mermaid, overriding 12.x's new defaults (ELK layout, "neo" look, uniform node widths) to preserve diagrams' appearance
+            // https://mermaid.js.org/config/schema-docs/config.html
             const theme = (window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'default';
-            $('div.mermaid').each(function(index, element) {
+            mermaid.initialize({
+                flowchart: {
+                    minNodeWidth: 0,
+                    wrappingWidth: 200
+                },
+                layout: 'dagre',
+                look: 'classic',
+                startOnLoad: false,
+                theme: theme
+            });
 
-                // Workaround for now, per https://github.com/mermaid-js/mermaid/issues/1945#issuecomment-1661264708
-                $(element).removeAttr('data-processed');
-                $(element).html($(element).attr('data-original-code'));
+            // Restore diagrams' source, per https://github.com/mermaid-js/mermaid/issues/1945#issuecomment-1661264708
+            const nodes = $('div.mermaid').removeAttr('data-processed').each(function(index, element) {
+                $(element).text($(element).attr('data-original-code'));
+            }).get();
+            if (!nodes.length) {
+                return;
+            }
 
-                // (Re-)initialize chart
-                mermaid.init({theme: theme}, element);
-
-                // Left-align Mermaid, until https://github.com/mermaid-js/mermaid/issues/1983
-                // https://stackoverflow.com/a/6322799/5156190
-                $(element).children('svg').attr('preserveAspectRatio', 'xMinYMin meet');
+            // (Re-)render diagrams
+            // https://mermaid.js.org/config/usage.html#using-mermaid-run
+            mermaid.run({nodes: nodes}).catch(function(err) {
+                console.error(err);
             });
         };
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', init);
-        init();
-    })();
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
+        try {
+            render();
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
 
     // Render Scratch blocks
     scratchblocks.renderMatching('pre code.language-scratch', {
