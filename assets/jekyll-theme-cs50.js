@@ -433,10 +433,12 @@ $(document).on('DOMContentLoaded', function() {
         // Allow for theme changing
         const render = function() {
 
-            // Configure Mermaid, overriding 12.x's new defaults (ELK layout, "neo" look, uniform node widths) to preserve diagrams' appearance
+            // Configure Mermaid, overriding 12.x's new defaults (ELK layout, "neo" look, uniform node widths) to preserve diagrams' appearance,
+            // and using counter-based ids rather than Date.now(), so that diagrams rendered in the same millisecond can't collide
             // https://mermaid.js.org/config/schema-docs/config.html
             const theme = (window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'default';
             mermaid.initialize({
+                deterministicIds: true,
                 flowchart: {
                     minNodeWidth: 0,
                     wrappingWidth: 200
