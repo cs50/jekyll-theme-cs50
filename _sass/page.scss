@@ -125,10 +125,6 @@ nav ol li, nav ul li {
     @include text-truncate;
 }
 
-nav a > i[class*="fa-"] {
-    margin-inline-end: .5rem;
-}
-
 // Left-align ordered lists
 nav ol {
     list-style-position: inside;
