@@ -24,6 +24,15 @@ $color-mode-type: media-query;
 // Import Bootstrap
 @import "bootstrap/scss/bootstrap.scss";
 
+// Font Awesome 7 renders every icon at a fixed 1.25em width by default (what fa-fw did in 6),
+// which, under Bootstrap's border-box sizing, swallows spacing utilities like pe-2 instead of
+// adding to them. Restore 6's automatic width, so icons hug their glyphs and spacing utilities
+// behave as before; fa-fw still opts individual icons back into a fixed width.
+// https://docs.fontawesome.com/upgrade/whats-changed#fixed-width-icons-by-default
+:root {
+    --fa-width: auto;
+}
+
 // Syntax highlighting from Pygments
 // https://pygments.org/styles/
 @media (prefers-color-scheme: dark) {
