@@ -336,12 +336,12 @@ $(document).on('DOMContentLoaded', function() {
         };
 
         // Icons
-        const plus = $('<span class="fa-li"><i class="fa-regular fa-square-plus"></i></span>').click(click);
-        const minus = $('<span class="fa-li"><i class="fa-regular fa-square-minus"></i></span>').click(click);
+        const plus = $('<span class="fa-li"><i class="fa-regular fa-square-plus"></i></span>').on('click', click);
+        const minus = $('<span class="fa-li"><i class="fa-regular fa-square-minus"></i></span>').on('click', click);
         const square = $('<span class="fa-li"><i class="fa-solid fa-square"></i></span>');
 
         // Wrapper
-        const $span = $('<span>').click(click);
+        const $span = $('<span>').on('click', click);
 
         // If +
         if ($(element).attr('data-marker') === '+') {
@@ -390,7 +390,7 @@ $(document).on('DOMContentLoaded', function() {
         next($(this).parent()).addClass('next');
 
         // Listen for clicks
-        $(this).click(function() {
+        $(this).on('click', function() {
 
             // Show next elements
             next($(this).parent()).removeClass('next');
